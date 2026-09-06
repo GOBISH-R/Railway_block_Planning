@@ -6,6 +6,7 @@ import { ControlsBar } from "./ControlsBar";
 import { DeferredList } from "./DeferredList";
 import { SummaryStrip } from "./SummaryStrip";
 import { TimelineGrid } from "./TimelineGrid";
+import { TimelineOverview } from "./TimelineOverview";
 import "./TimelineView.css";
 
 export function TimelineView({
@@ -79,14 +80,21 @@ export function TimelineView({
         )}
         {plan && (
           <div className="timeline-view__content" aria-hidden={isPlanning}>
-            <TimelineGrid
-              corridor={corridor}
-              blocks={plan.blocks}
-              movements={movements}
-              horizonDays={plan.horizon_days}
-              selectedBlockId={selectedBlockId}
-              onSelectBlock={onSelectBlock}
-            />
+            <div className="timeline-view__main">
+              <TimelineOverview
+                corridor={corridor}
+                blocks={plan.blocks}
+                horizonDays={plan.horizon_days}
+              />
+              <TimelineGrid
+                corridor={corridor}
+                blocks={plan.blocks}
+                movements={movements}
+                horizonDays={plan.horizon_days}
+                selectedBlockId={selectedBlockId}
+                onSelectBlock={onSelectBlock}
+              />
+            </div>
             <DeferredList deferred={plan.deferred} onSelectJob={onSelectJob} />
           </div>
         )}

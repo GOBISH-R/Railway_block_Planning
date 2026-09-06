@@ -42,6 +42,54 @@ export const MIN_WIDTH_FOR_RELIABILITY_LABEL = 34;
 export const HEADER_HEIGHT = 40;
 export const LABEL_COLUMN_WIDTH = 132;
 
+/* ---------------------------------------------------------------------------
+ * Overview strip
+ *
+ * The detailed grid deliberately draws blocks large enough to read, which means
+ * it can only ever show a few days at a time -- about 4 of 14 at 1280px. The
+ * overview answers the other question ("what does the whole plan look like?")
+ * at a scale where a block is a mark rather than a bar. Same section order,
+ * same day axis, same block positions; only the scale differs.
+ * ------------------------------------------------------------------------- */
+
+/**
+ * viewBox width, chosen to sit near the strip's real rendered width (794px at
+ * 1024 up to ~1210px at 1440) so the day numbers render close to 1:1 rather
+ * than being scaled down into illegibility.
+ */
+export const OVERVIEW_WIDTH = 900;
+
+/** 2px is the floor: below it adjacent section rows merge into each other. */
+export const OVERVIEW_ROW_HEIGHT = 2;
+
+/** Band above the rows carrying the day numbers. */
+export const OVERVIEW_HEADER_HEIGHT = 11;
+
+/** So a short block stays visible even though it is only ~6.7px wide. */
+export const OVERVIEW_MIN_MARK_WIDTH = 2;
+
+export function overviewHeight(sectionCount: number): number {
+  return OVERVIEW_HEADER_HEIGHT + sectionCount * OVERVIEW_ROW_HEIGHT;
+}
+
+export function overviewDayWidth(horizonDays: number): number {
+  return OVERVIEW_WIDTH / horizonDays;
+}
+
+export function overviewX(day: number, minuteOfDay: number, horizonDays: number): number {
+  const dayWidth = overviewDayWidth(horizonDays);
+  return day * dayWidth + (minuteOfDay / MINUTES_PER_DAY) * dayWidth;
+}
+
+export function overviewMarkWidth(minutes: number, horizonDays: number): number {
+  const dayWidth = overviewDayWidth(horizonDays);
+  return Math.max(OVERVIEW_MIN_MARK_WIDTH, (minutes / MINUTES_PER_DAY) * dayWidth);
+}
+
+export function overviewRowY(rowIndex: number): number {
+  return OVERVIEW_HEADER_HEIGHT + rowIndex * OVERVIEW_ROW_HEIGHT;
+}
+
 /** Section-lines in true corridor order: by station sequence, UP before DN. */
 export function orderSections(sections: SectionMeta[], stationSeq: Map<string, number>): SectionMeta[] {
   return [...sections].sort((a, b) => {

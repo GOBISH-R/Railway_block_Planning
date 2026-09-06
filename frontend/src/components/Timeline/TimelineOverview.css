@@ -1,0 +1,82 @@
+.toverview {
+  flex: none;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  border-bottom: 1px solid var(--hairline-strong);
+  background: var(--paper-1);
+}
+
+.toverview__caption {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: var(--space-1);
+  font-size: var(--text-2xs);
+  color: var(--ink-2);
+}
+
+.toverview__title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-1);
+}
+
+.toverview__key {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-3);
+}
+
+.toverview__key-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toverview__swatch {
+  width: 9px;
+  height: 5px;
+}
+
+.toverview__swatch--single {
+  background: var(--hairline-strong);
+}
+
+.toverview__swatch--multi {
+  background: var(--ink-0);
+}
+
+/* The meta line is the first thing to go when the pane gets narrow -- the
+   strip itself and its key are what carry the information. */
+@media (max-width: 1100px) {
+  .toverview__meta {
+    display: none;
+  }
+}
+
+.toverview__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.toverview__day-boundary {
+  stroke: var(--hairline);
+  stroke-width: 1;
+}
+
+.toverview__day-label {
+  font-size: 8px;
+  fill: var(--ink-2);
+  font-weight: 700;
+}
+
+/* Single-department work: present, but deliberately quiet. */
+.toverview__mark {
+  fill: var(--hairline-strong);
+}
+
+/* The blocks the plan exists to produce. */
+.toverview__mark--multi {
+  fill: var(--ink-0);
+}

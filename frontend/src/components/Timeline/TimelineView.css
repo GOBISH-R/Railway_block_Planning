@@ -20,6 +20,17 @@
   display: flex;
 }
 
+/* The overview stacked above the detailed grid, with the deferred list still
+   alongside both. min-width/min-height:0 for the same reason the grid needs
+   them -- otherwise the flex item grows to the grid's full intrinsic width. */
+.timeline-view__main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Below ~640px the fixed-width deferred list would take more than half the
    viewport if kept beside the timeline. Stacking it underneath keeps both
    usable rather than shrinking the timeline to the point its bars carry no
