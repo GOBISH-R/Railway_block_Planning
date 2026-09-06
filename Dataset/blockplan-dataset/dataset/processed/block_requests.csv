@@ -1,0 +1,176 @@
+request_id,job_id,department,preferred_date,preferred_window_start_min,minimum_duration_min,requested_duration_min,protection_type,deadline_day,priority,reason,provenance
+R00006,J00006,TRD,0,120,60,60,NONE,0,URGENT,defect requiring early attention,D:synthesised_from_job
+R00016,J00016,ENGG,0,540,61,150,T,0,URGENT,defect requiring early attention,D:synthesised_from_job
+R00042,J00042,SNT,0,1380,60,120,TD,0,URGENT,defect requiring early attention,D:synthesised_from_job
+R00122,J00122,ENGG,0,780,73,150,T,0,URGENT,defect requiring early attention,D:synthesised_from_job
+R00156,J00156,TRD,0,180,60,120,TP,0,URGENT,defect requiring early attention,D:synthesised_from_job
+R00172,J00172,ENGG,0,540,60,120,T,0,URGENT,defect requiring early attention,D:synthesised_from_job
+R00015,J00015,SNT,0,0,60,120,TD,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00021,J00021,TRD,0,60,60,120,TP,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00031,J00031,SNT,1,0,98,240,TD,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00038,J00038,TRD,0,0,60,120,TP,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00041,J00041,SNT,1,1320,60,120,TD,1,HIGH,schedule due,D:synthesised_from_job
+R00064,J00064,ENGG,1,600,66,150,T,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00066,J00066,SNT,1,60,60,120,TD,1,URGENT,defect requiring early attention,D:synthesised_from_job
+R00070,J00070,SNT,0,1380,60,120,TD,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00079,J00079,ENGG,0,780,60,120,T,1,URGENT,defect requiring early attention,D:synthesised_from_job
+R00097,J00097,TRD,0,240,60,120,TP,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00131,J00131,ENGG,0,660,60,120,T,1,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00153,J00153,SNT,0,180,60,120,TD,1,URGENT,defect requiring early attention,D:synthesised_from_job
+R00174,J00174,ENGG,0,780,60,120,T,1,HIGH,schedule due,D:synthesised_from_job
+R00018,J00018,ENGG,1,660,60,120,T,2,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00065,J00065,SNT,2,180,60,120,TD,2,HIGH,schedule due,D:synthesised_from_job
+R00071,J00071,TRD,0,60,60,120,TP,2,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00076,J00076,TRD,2,60,60,60,NONE,2,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00080,J00080,SNT,2,60,60,120,TD,2,HIGH,schedule due,D:synthesised_from_job
+R00099,J00099,SNT,0,180,60,30,NONE,2,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00100,J00100,ENGG,1,600,71,150,T,2,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00133,J00133,SNT,0,180,60,120,TD,2,URGENT,defect requiring early attention,D:synthesised_from_job
+R00159,J00159,TRD,1,60,60,120,TP,2,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00169,J00169,SNT,1,60,60,120,TD,2,HIGH,schedule due,D:synthesised_from_job
+R00008,J00008,TRD,3,0,60,120,TP,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00011,J00011,SNT,3,180,60,120,TD,3,URGENT,defect requiring early attention,D:synthesised_from_job
+R00033,J00033,ENGG,3,600,60,120,T,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00125,J00125,ENGG,3,540,60,150,T,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00126,J00126,TRD,1,60,60,120,TP,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00128,J00128,TRD,3,0,60,120,TP,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00129,J00129,ENGG,2,540,60,150,T,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00139,J00139,ENGG,1,600,60,150,T,3,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00149,J00149,ENGG,1,660,86,150,T,3,HIGH,schedule due,D:synthesised_from_job
+R00002,J00002,ENGG,3,720,60,120,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00014,J00014,ENGG,3,780,60,120,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00028,J00028,ENGG,2,780,60,120,T,4,HIGH,schedule due,D:synthesised_from_job
+R00059,J00059,ENGG,2,660,60,120,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00063,J00063,ENGG,2,600,61,150,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00069,J00069,ENGG,2,720,60,120,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00081,J00081,TRD,2,60,60,120,TP,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00086,J00086,ENGG,4,660,197,240,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00140,J00140,ENGG,3,540,71,150,T,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00144,J00144,SNT,4,1380,60,120,TD,4,HIGH,schedule due,D:synthesised_from_job
+R00168,J00168,TRD,3,120,60,120,TP,4,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00004,J00004,ENGG,3,600,60,120,T,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00022,J00022,SNT,4,120,60,30,NONE,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00029,J00029,ENGG,4,780,74,120,T,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00045,J00045,SNT,5,1320,60,120,TD,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00067,J00067,TRD,3,240,60,120,TP,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00077,J00077,TRD,5,180,60,60,NONE,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00093,J00093,TRD,5,60,60,120,TP,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00104,J00104,ENGG,5,540,60,150,T,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00113,J00113,ENGG,5,660,60,120,T,5,URGENT,defect requiring early attention,D:synthesised_from_job
+R00155,J00155,SNT,4,180,60,120,TD,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00161,J00161,ENGG,4,600,66,150,T,5,HIGH,schedule due,D:synthesised_from_job
+R00164,J00164,ENGG,5,720,60,120,T,5,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00009,J00009,TRD,6,0,60,60,NONE,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00010,J00010,ENGG,6,780,70,150,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00020,J00020,ENGG,5,720,67,150,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00027,J00027,ENGG,6,720,66,150,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00047,J00047,ENGG,4,780,66,150,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00055,J00055,TRD,6,120,60,120,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00061,J00061,SNT,6,180,60,30,NONE,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00075,J00075,ENGG,5,660,60,120,T,6,HIGH,schedule due,D:synthesised_from_job
+R00088,J00088,SNT,5,1380,60,120,TD,6,HIGH,schedule due,D:synthesised_from_job
+R00089,J00089,SNT,6,1320,60,120,TD,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00095,J00095,SNT,6,1380,60,120,TD,6,URGENT,defect requiring early attention,D:synthesised_from_job
+R00120,J00120,ENGG,4,660,60,120,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00124,J00124,ENGG,6,540,60,150,T,6,HIGH,schedule due,D:synthesised_from_job
+R00150,J00150,ENGG,5,540,87,150,T,6,HIGH,schedule due,D:synthesised_from_job
+R00152,J00152,ENGG,5,600,60,120,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00163,J00163,TRD,6,0,60,120,TP,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00165,J00165,ENGG,5,660,60,120,T,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00166,J00166,SNT,4,60,60,150,TD,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00167,J00167,SNT,4,0,60,120,TD,6,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00013,J00013,ENGG,7,660,78,150,T,7,HIGH,schedule due,D:synthesised_from_job
+R00024,J00024,ENGG,7,600,70,150,T,7,HIGH,schedule due,D:synthesised_from_job
+R00044,J00044,ENGG,7,660,60,120,T,7,HIGH,schedule due,D:synthesised_from_job
+R00046,J00046,TRD,6,240,60,120,TP,7,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00058,J00058,TRD,5,240,60,120,TP,7,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00114,J00114,SNT,7,0,60,120,TD,7,URGENT,defect requiring early attention,D:synthesised_from_job
+R00121,J00121,SNT,7,120,60,120,TD,7,HIGH,schedule due,D:synthesised_from_job
+R00136,J00136,TRD,5,60,60,120,TP,7,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00142,J00142,ENGG,7,660,60,120,T,7,HIGH,schedule due,D:synthesised_from_job
+R00147,J00147,ENGG,6,660,60,120,T,7,URGENT,defect requiring early attention,D:synthesised_from_job
+R00158,J00158,TRD,5,240,60,120,TP,7,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00171,J00171,SNT,7,1380,60,120,TD,7,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00030,J00030,SNT,8,60,60,120,TD,8,HIGH,schedule due,D:synthesised_from_job
+R00053,J00053,SNT,8,1380,60,120,TD,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00054,J00054,TRD,6,0,60,120,TP,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00072,J00072,TRD,8,0,60,60,NONE,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00091,J00091,ENGG,8,780,64,150,T,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00103,J00103,ENGG,8,780,60,150,T,8,HIGH,schedule due,D:synthesised_from_job
+R00105,J00105,ENGG,8,540,60,120,T,8,HIGH,schedule due,D:synthesised_from_job
+R00106,J00106,ENGG,7,720,60,120,T,8,URGENT,defect requiring early attention,D:synthesised_from_job
+R00110,J00110,SNT,8,0,60,30,NONE,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00123,J00123,ENGG,7,540,60,150,T,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00157,J00157,TRD,7,60,60,120,TP,8,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00017,J00017,ENGG,7,720,60,150,T,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00023,J00023,ENGG,9,660,76,150,T,9,HIGH,schedule due,D:synthesised_from_job
+R00032,J00032,ENGG,7,600,69,150,T,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00039,J00039,SNT,8,60,60,60,NONE,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00052,J00052,ENGG,9,660,75,150,T,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00060,J00060,ENGG,7,780,60,120,T,9,URGENT,defect requiring early attention,D:synthesised_from_job
+R00108,J00108,TRD,7,240,60,120,TP,9,HIGH,schedule due,D:synthesised_from_job
+R00130,J00130,ENGG,9,600,60,120,T,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00145,J00145,TRD,7,60,60,120,TP,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00154,J00154,SNT,8,60,60,120,TD,9,HIGH,schedule due,D:synthesised_from_job
+R00160,J00160,TRD,8,240,60,120,T,9,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00175,J00175,SNT,7,180,60,120,TD,9,HIGH,schedule due,D:synthesised_from_job
+R00036,J00036,ENGG,9,540,60,120,T,10,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00096,J00096,SNT,8,120,60,30,NONE,10,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00102,J00102,TRD,10,0,60,120,TP,10,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00111,J00111,TRD,8,120,60,60,NONE,10,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00001,J00001,ENGG,10,540,60,150,T,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00003,J00003,ENGG,11,600,60,120,T,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00019,J00019,ENGG,10,660,60,120,T,11,HIGH,schedule due,D:synthesised_from_job
+R00026,J00026,SNT,11,60,60,120,TD,11,URGENT,defect requiring early attention,D:synthesised_from_job
+R00037,J00037,TRD,11,240,60,120,TP,11,HIGH,schedule due,D:synthesised_from_job
+R00048,J00048,SNT,11,180,60,120,TD,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00049,J00049,SNT,10,120,60,120,TD,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00050,J00050,TRD,11,60,60,120,TP,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00051,J00051,TRD,11,180,60,120,TP,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00082,J00082,TRD,9,180,60,120,TP,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00117,J00117,TRD,9,240,60,60,NONE,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00119,J00119,TRD,9,60,60,120,TP,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00127,J00127,ENGG,11,780,67,150,T,11,HIGH,schedule due,D:synthesised_from_job
+R00132,J00132,ENGG,9,540,60,120,T,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00135,J00135,TRD,10,0,60,120,TP,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00146,J00146,TRD,11,60,60,120,TP,11,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00148,J00148,ENGG,11,720,60,150,T,11,HIGH,schedule due,D:synthesised_from_job
+R00005,J00005,SNT,10,120,60,60,NONE,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00025,J00025,ENGG,12,540,60,120,T,12,HIGH,schedule due,D:synthesised_from_job
+R00034,J00034,ENGG,11,720,60,120,T,12,HIGH,schedule due,D:synthesised_from_job
+R00040,J00040,ENGG,10,540,60,120,T,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00073,J00073,ENGG,12,600,60,120,T,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00084,J00084,TRD,12,240,60,60,NONE,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00090,J00090,TRD,10,120,60,120,TP,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00092,J00092,ENGG,11,660,60,120,T,12,HIGH,schedule due,D:synthesised_from_job
+R00098,J00098,TRD,12,60,60,120,T,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00107,J00107,SNT,10,60,60,120,TD,12,HIGH,schedule due,D:synthesised_from_job
+R00109,J00109,TRD,10,0,60,120,TP,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00116,J00116,SNT,11,0,60,120,TD,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00137,J00137,SNT,11,1320,60,60,NONE,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00143,J00143,ENGG,12,540,60,120,T,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00170,J00170,SNT,12,120,60,120,TD,12,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00012,J00012,TRD,12,120,60,60,NONE,13,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00056,J00056,SNT,13,1320,60,120,TD,13,URGENT,defect requiring early attention,D:synthesised_from_job
+R00074,J00074,ENGG,12,600,60,120,T,13,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00078,J00078,ENGG,11,780,79,150,T,13,HIGH,schedule due,D:synthesised_from_job
+R00094,J00094,ENGG,13,540,60,120,T,13,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00101,J00101,SNT,12,1320,60,120,TD,13,HIGH,schedule due,D:synthesised_from_job
+R00112,J00112,TRD,13,0,60,30,NONE,13,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00115,J00115,SNT,11,180,60,120,TD,13,URGENT,defect requiring early attention,D:synthesised_from_job
+R00173,J00173,ENGG,13,780,60,120,T,13,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00007,J00007,ENGG,13,720,60,120,T,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00035,J00035,ENGG,13,540,60,120,T,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00043,J00043,SNT,13,60,60,120,TD,14,HIGH,schedule due,D:synthesised_from_job
+R00057,J00057,SNT,12,120,60,120,TD,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00062,J00062,ENGG,12,660,60,150,T,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00068,J00068,ENGG,13,720,60,150,T,14,HIGH,schedule due,D:synthesised_from_job
+R00083,J00083,SNT,12,1380,60,60,NONE,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00085,J00085,TRD,12,180,60,60,NONE,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00087,J00087,ENGG,13,540,60,120,T,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00118,J00118,SNT,13,180,60,150,TD,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00134,J00134,SNT,14,180,60,120,TD,14,HIGH,schedule due,D:synthesised_from_job
+R00138,J00138,TRD,12,0,60,60,NONE,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00141,J00141,ENGG,13,600,60,120,T,14,HIGH,schedule due,D:synthesised_from_job
+R00151,J00151,ENGG,13,660,60,120,T,14,NORMAL,planned periodic maintenance,D:synthesised_from_job
+R00162,J00162,ENGG,14,780,60,120,T,14,NORMAL,planned periodic maintenance,D:synthesised_from_job

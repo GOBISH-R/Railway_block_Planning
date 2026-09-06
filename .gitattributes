@@ -1,0 +1,15 @@
+# Disable ALL line-ending conversion for this repository.
+#
+# This is not a style preference -- it protects a documented invariant.
+# blockplan/core.py is frozen at exactly 44,044 bytes with LF endings, and
+# that byte count and its SHA-256 are recorded in the project memory document
+# and in CLAUDE.md as the way to prove the frozen core has not been altered.
+#
+# This machine has core.autocrlf=true. Without the rule below, git would
+# convert core.py's 1,003 LF endings to CRLF on checkout, making the file
+# 45,047 bytes and breaking every integrity check that refers to it -- while
+# `git status` still reported a clean tree. The frozen CSV artifacts carry the
+# same risk.
+#
+# Do not remove this line.
+* -text

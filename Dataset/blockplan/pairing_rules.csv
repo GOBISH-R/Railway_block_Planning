@@ -1,0 +1,7 @@
+activity,compelled_dept,companion_activity,duration_mean_min,duration_sd_min,must_follow_parent,precedes_parent,source,confidence
+THROUGH_TAMPING,TRD,OHE_HEIGHT_ADJUSTMENT,25,8,1,0,ACTM Ch.17 - due notice to OHE staff before any alteration to alignment or level; permitted variation 20 mm rail level; no major track work without written permission of AEE/TrD and a TrD skilled artisan present,0.9
+THROUGH_TAMPING,SNT,SNT_ASSOCIATION,15,5,0,0,"IRTMM Ch.3 - 'During and before tamping, S&T and Electrical staff should also be associated to complete their portion of work'",0.88
+TURNOUT_TAMPING,SNT,POINT_MOTOR_RESET,30,10,1,0,IRTMM Ch.5 - S&T staff actively associated for turnouts; heavy lifting requires resetting of point motors and rodding,0.7
+TURNOUT_TAMPING,TRD,OHE_HEIGHT_ADJUSTMENT,20,7,1,0,IRTMM Ch.5 / ACTM Ch.17,0.7
+RAIL_RENEWAL,TRD,TRACTION_BOND_JUMPER,20,6,0,0,ACTM Ch.17 - traction return continuity must be maintained across removed track; P-Way staff may not disturb bonds,0.9
+DEEP_SCREENING,SNT,CABLE_ROD_CLEARANCE,35,12,0,1,IRTMM Ch.3 - cables and signalling rods must be temporarily disconnected or removed in advance; machine cannot work through infringements,0.88

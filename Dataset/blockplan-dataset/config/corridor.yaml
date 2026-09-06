@@ -1,0 +1,47 @@
+# Study area definition.
+#
+# The corridor is defined by REAL station codes and is extracted from real
+# public data at build time. We do not hard-code the station sequence: we take
+# the endpoints, then let the real train schedules tell us which stations lie
+# between them and in what order. That way the topology is a consequence of the
+# data rather than a claim we make about the data.
+
+study_area:
+  name: "Jolarpettai - Salem - Erode corridor"
+  zone: "Southern Railway"
+  division: "Salem"
+  # Verified public facts about the study area (see docs/data_sources.md):
+  #   Salem division inaugurated 14 November 2006; 862 route km;
+  #   entire broad-gauge line electrified.
+  #   Jolarpettai-Shoranur line total 366 km; electrified in stages
+  #   1989-90 (Jolarpettai-Morappur) through 1996-97 (to Shoranur).
+  # These are context, not inputs. Nothing below depends on them.
+  endpoints:
+    from_station_code: "JTJ"     # Jolarpettai Junction
+    to_station_code: "ED"        # Erode Junction
+  via_station_codes:             # anchors used to disambiguate the route
+    - "SA"                       # Salem Junction
+  # A station is admitted to the corridor only if it appears between the
+  # endpoints, in order, on at least this many distinct real train routes.
+  min_supporting_trains: 3
+
+horizon:
+  days: 14
+  slot_minutes: 30
+
+# Track configuration per section. OSM is the preferred source; where OSM
+# coverage is missing the fallback below is used and the row is tagged
+# provenance=E (explicit assumption) rather than A/B.
+track_configuration:
+  source: "osm"                  # osm | declared
+  osm_query_padding_km: 2.0
+  fallback:
+    tracks: 2
+    electrified: true
+    gauge_mm: 1676
+
+# Section-line naming. A double-track section becomes two independently
+# blockable section-lines; a single-track section becomes one.
+line_labels:
+  double: ["UP", "DN"]
+  single: ["SINGLE"]

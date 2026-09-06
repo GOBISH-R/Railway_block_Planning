@@ -1,0 +1,118 @@
+# RULE-CLASS CONFIGURATION (provenance C)
+#
+# Everything in this file traces to an Indian Railways manual or rule, and
+# every row carries its source and a confidence. This is the ONLY file in the
+# dataset that claims railway provenance, and it is an editable input rather
+# than a claim the system makes: a division that disagrees with a row edits
+# the row, and the planner re-solves.
+
+# ---------------------------------------------------------------------------
+# Block envelope. Corridor block norms.
+# ---------------------------------------------------------------------------
+block_envelope:
+  single_line:
+    options_min: [240, 150]        # one 4-hour block, or two of 2.5 hours
+    exceptional_min: 120
+  double_line:
+    options_min: [240, 150]
+  source: "IRTMM Ch.5 - corridor block durations; corroborated by CAG Report 45/2018 Ch.3 quoting the Railway Board norm as a single block of at least four hours per day or two separate blocks of 2.5 hours each"
+  confidence: 0.90
+
+# ---------------------------------------------------------------------------
+# Protection regimes. Three independent access rights.
+# ---------------------------------------------------------------------------
+protection_regimes:
+  T:
+    name: "Traffic block"
+    grants: "Bar on trains entering the block section"
+    ground_protection_m: {stop_hand_signal: 30, banner_flag: 600, detonators: 1200}
+    source: "Indian Railways General Rules 15.08, 15.09"
+    confidence: 0.90
+  P:
+    name: "Power block"
+    grants: "OHE de-energised, isolated and earthed; permit-to-work ETR-3 per party"
+    stops_trains: false            # diesel/steam may enter under caution order
+    clearance_m: 2.0
+    source: "AC Traction Manual Vol.II Pt.I Ch.VI; ACTM Ch.17"
+    confidence: 0.92
+  D:
+    name: "S&T disconnection"
+    grants: "Signalling equipment disconnected from interlocking"
+    post_block_first_train_under_caution: true
+    source: "GR 15.08; disconnection/reconnection memo and correspondence test per zonal Joint Procedure Order"
+    confidence: 0.80
+
+# ---------------------------------------------------------------------------
+# Mandatory pairings. The core of the innovation: activities that COMPEL
+# another department's attendance. Each generates a companion job.
+# ---------------------------------------------------------------------------
+mandatory_pairings:
+  - activity: THROUGH_TAMPING
+    compelled_dept: TRD
+    companion_activity: OHE_HEIGHT_ADJUSTMENT
+    duration_min: {mean: 25, sd: 8}
+    must_follow_parent: true
+    source: "ACTM Ch.17 - due notice to OHE staff before any alteration to alignment or level; permitted variation 20 mm rail level; no major track work without written permission of AEE/TrD and a TrD skilled artisan present"
+    confidence: 0.90
+  - activity: THROUGH_TAMPING
+    compelled_dept: SNT
+    companion_activity: SNT_ASSOCIATION
+    duration_min: {mean: 15, sd: 5}
+    must_follow_parent: false
+    source: "IRTMM Ch.3 - 'During and before tamping, S&T and Electrical staff should also be associated to complete their portion of work'"
+    confidence: 0.88
+  - activity: TURNOUT_TAMPING
+    compelled_dept: SNT
+    companion_activity: POINT_MOTOR_RESET
+    duration_min: {mean: 30, sd: 10}
+    must_follow_parent: true
+    source: "IRTMM Ch.5 - S&T staff actively associated for turnouts; heavy lifting requires resetting of point motors and rodding"
+    confidence: 0.70
+  - activity: TURNOUT_TAMPING
+    compelled_dept: TRD
+    companion_activity: OHE_HEIGHT_ADJUSTMENT
+    duration_min: {mean: 20, sd: 7}
+    must_follow_parent: true
+    source: "IRTMM Ch.5 / ACTM Ch.17"
+    confidence: 0.70
+  - activity: RAIL_RENEWAL
+    compelled_dept: TRD
+    companion_activity: TRACTION_BOND_JUMPER
+    duration_min: {mean: 20, sd: 6}
+    must_follow_parent: false
+    source: "ACTM Ch.17 - traction return continuity must be maintained across removed track; P-Way staff may not disturb bonds"
+    confidence: 0.90
+  - activity: DEEP_SCREENING
+    compelled_dept: SNT
+    companion_activity: CABLE_ROD_CLEARANCE
+    duration_min: {mean: 35, sd: 12}
+    must_follow_parent: false      # must PRECEDE - handled as a precedence edge
+    precedes_parent: true
+    source: "IRTMM Ch.3 - cables and signalling rods must be temporarily disconnected or removed in advance; machine cannot work through infringements"
+    confidence: 0.88
+
+# ---------------------------------------------------------------------------
+# Incompatibility rules beyond the pairwise geometry checks.
+# ---------------------------------------------------------------------------
+incompatibility:
+  contradictory_ohe_state:
+    rule: "A job requiring live OHE cannot share a block with a job requiring a power block"
+    source: "ACTM Ch.17 - power block means de-energised and earthed"
+    confidence: 0.92
+  train_movements_required:
+    rule: "A job requiring train movements cannot sit inside a traffic block, with anything"
+    source: "Definition of a traffic block: GR 15.08"
+    confidence: 0.90
+  spatial_overlap:
+    rule: "Two jobs whose footprints overlap on the same section-line cannot be worked simultaneously unless they are a rule-mandated pair"
+    source: "Operational safety - separate work parties require separate protection envelopes (GR 15.09 protection is defined per obstruction)"
+    confidence: 0.70
+
+# ---------------------------------------------------------------------------
+# Hand-back chains. STRUCTURE is rule-derived; the TIMINGS are assumptions
+# and live in assumptions.yaml.
+# ---------------------------------------------------------------------------
+handback:
+  structure: "max over departments present"
+  source: "No Indian Railways equivalent of a nominated person-in-charge of possession was found. Responsibility is distributed: the Inspector of Way superintends engineering work (GR 15.06); a TRD representative must remain on site for every permit-to-work (ACTM Ch.17); the Station Master personally verifies signalling gear and signs the reconnection memo. The block therefore ends when the slowest of three independent closing chains finishes."
+  confidence: 0.60      # our synthesis of three separately-sourced procedures

@@ -1,0 +1,109 @@
+train_number,train_name,train_class,is_synthetic,direction
+56839,Jolarpettai Erode Passenger,PASSENGER,False,DN
+18190,Allapuzha Dhanbad Slip Express,EXPRESS,False,UP
+16381,Mumbai CST - Kanyakumari Express,EXPRESS,False,DN
+16670,Yercaud Express,EXPRESS,False,UP
+16321,Bangalore Tiruvananthapuram Weekly Express,EXPRESS,False,DN
+19568,OKHA - TUTICORIN Exp,EXPRESS,False,DN
+16787,TIRUNELVELI - KATRA Exp,EXPRESS,False,UP
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,EXPRESS,False,DN
+17229,Sabari Express,EXPRESS,False,UP
+12970,Jaipur-Coimbatore Express,EXPRESS,False,DN
+12511,Rapti Sagar Express,EXPRESS,False,DN
+12625,Kerala Express,EXPRESS,False,UP
+12601,Chennai Mangalore Mail,MAIL,False,DN
+16627,West Coast Express,EXPRESS,False,DN
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,SUPERFAST,False,UP
+17230,Sabari Express,EXPRESS,False,DN
+06012,Kollam Chennai Central (Weekly) SF Special,SUPERFAST,False,UP
+16322,Tiruvananthapuram Bangalore Weekly Express,EXPRESS,False,UP
+12679,ChennaiCentral-Coimbatore InterCity,EXPRESS,False,DN
+06621,Coimbatore-Yesvantpur SF Special,SUPERFAST,False,UP
+12685,Chennai - Mangalore Express,EXPRESS,False,DN
+12686,Mangalore - Chennai Express,EXPRESS,False,UP
+12681,Chennai-Coimbatore Express,EXPRESS,False,DN
+16734,Okha-Rameswaram Express,EXPRESS,False,DN
+12695,Chennai-Trivandrum SuperFast Express,SUPERFAST,False,DN
+12787,Bilaspur Tirunelveli SF Express,SUPERFAST,False,DN
+08569,Visakhapatnam-Kollam Sabarimalai Special,EXPRESS,False,DN
+12696,Trivandrum-Chennai Superfast Express,SUPERFAST,False,UP
+16325,Ahilyanagari Express,EXPRESS,False,DN
+12676,Kovai Express,EXPRESS,False,UP
+06006,Kollam-Chennai Central SF Special,SUPERFAST,False,UP
+16628,West Coast Express,EXPRESS,False,UP
+12671,Nilgiri (Blue Mountain) Express,EXPRESS,False,DN
+12757,Tirupati-Coimbatore Intercity Express,EXPRESS,False,DN
+16687,Navyug Express,EXPRESS,False,UP
+12680,Coimbatore-Chennai Central InterCity SF Express,SUPERFAST,False,UP
+16669,Yercaud Express,EXPRESS,False,DN
+56840,Erode Jolarpettai Passenger,PASSENGER,False,UP
+12626,Kerala Express,EXPRESS,False,DN
+12243,Chennai Central-Coimbatore AC Duronto Express,SUPERFAST,False,DN
+12644,Swarna Jayanti Express,EXPRESS,False,DN
+12690,NAGERCOIL - CHENNAI SF Exp,SUPERFAST,False,UP
+12675,Kovai Express,EXPRESS,False,DN
+12698,Thiruvananthapuram Central Chennai Central weekly express,EXPRESS,False,UP
+12602,Chennai Mail,MAIL,False,UP
+12969,Coimbatore-Jaipur Express,EXPRESS,False,UP
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,EXPRESS,False,UP
+12788,Tirunelveli Bilaspur SF Express,SUPERFAST,False,UP
+12623,Chennai Tiruvananthapuram SF Mail,SUPERFAST,False,DN
+12522,Raptisagar Express,EXPRESS,False,UP
+16318-Slip,Himsagar Express Slip,EXPRESS,False,DN
+12512,Rapti Sagar Expres,EXPRESS,False,UP
+12659,Gurudev Express,EXPRESS,False,UP
+16688,Navyug Express,EXPRESS,False,DN
+12645,Millennium Expres,EXPRESS,False,UP
+16324,Shalimar Tiruvananthapuram Express,EXPRESS,False,DN
+12643,Swarna Jayanthi Express,EXPRESS,False,UP
+12624,Tiruvananthapuram Chennai SF Mail,SUPERFAST,False,UP
+22816,Ernakulam-Bilaspur Express,EXPRESS,False,UP
+06003,Chennai Central-Kollam Special,EXPRESS,False,DN
+06622,Yesvantpur-Coimbatore SF Special,SUPERFAST,False,DN
+16327,Korba Tiruvananthapuram Express,EXPRESS,False,DN
+12507,TRIVANDRUM - GUWAHATI SF Exp,SUPERFAST,False,UP
+18189,Tatanagar- Alappuzha (Alleppey) Express,EXPRESS,False,DN
+06009,Chennai CentralKollam SF Special,SUPERFAST,False,DN
+16688-Slip,Navyug Express Slip,EXPRESS,False,DN
+12646,Millennium Express,EXPRESS,False,DN
+06005,Chennai Central-Kollam SF Special,SUPERFAST,False,DN
+06002,Kollam-Chennai Central SF Special,SUPERFAST,False,UP
+16359,ERNAKULAM - PATNA Exp,EXPRESS,False,UP
+12244,Coimbatore-Chennai Central AC Duronto Express,SUPERFAST,False,UP
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,EXPRESS,False,DN
+12682,Coimbatore-Chennai Express,EXPRESS,False,UP
+16309,Ernakulam-Patna Express,EXPRESS,False,UP
+16360,PATNA - ERNAKULAM Express,EXPRESS,False,DN
+12508,GUWAHATI - TRIVANDRUM SF Exp,SUPERFAST,False,DN
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,EXPRESS,False,UP
+12515,RIVANDRUM - GUWAHATI Exp,EXPRESS,False,UP
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,EXPRESS,False,UP
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,SUPERFAST,False,DN
+16323,Trivandrum Shalimar Biweekly Express,EXPRESS,False,UP
+56846,Erode Jolarpettai Passenger,PASSENGER,False,UP
+16310,Patna - Ernakulam Express,EXPRESS,False,DN
+16733,Rameswaram-Okha Express,EXPRESS,False,UP
+16318,Himsagar Express,EXPRESS,False,DN
+22815,Bilaspur-Ernakulam Express,EXPRESS,False,DN
+12521,Raptisagar Express,EXPRESS,False,DN
+12673,Cheran Express,EXPRESS,False,DN
+12674,Cheran Express,EXPRESS,False,UP
+16041,Chennai- Alapuzha Alleppey Express,EXPRESS,False,DN
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,SUPERFAST,False,UP
+16042,Alappuzha-Chennai Express,EXPRESS,False,UP
+13351,DHANBAD - ALAPPUZHA Exp,EXPRESS,False,DN
+06007,Chennai Central-Kollam SF Special,SUPERFAST,False,DN
+12697,Chennai-Thiruvananthapuram Express,EXPRESS,False,DN
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,SUPERFAST,False,DN
+16382,Kanniyakumari-Mumbai CST Express,EXPRESS,False,UP
+06001,Chennai Central-Kollam SF Special,SUPERFAST,False,DN
+12660,Shalimar-Nagercoil Gurudev Express,EXPRESS,False,DN
+16326,Ahilyanagari Express,EXPRESS,False,UP
+56845,Jolarpettai Erode Passenger,PASSENGER,False,DN
+12672,Nilgiri (Blue Mountain) Express,EXPRESS,False,UP
+16317,Himsagar Express,EXPRESS,False,UP
+16328,Trivandrum-Korba Express,EXPRESS,False,UP
+06010,KollamChennai Central SF Special,SUPERFAST,False,UP
+06004,Kollam-Chennai Central Special,EXPRESS,False,UP
+06011,Chennai Central Kollam (Weekly) SF Special,SUPERFAST,False,DN
+06008,KollamChennai Central SF Special,SUPERFAST,False,UP

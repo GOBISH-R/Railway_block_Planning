@@ -1,0 +1,9 @@
+scenario,demand_scale,freight_scale,uncertainty_scale,urgency_shift,backlog,extra_passenger_scale,cancel_window_fraction,note
+NORMAL_TRAFFIC,1.0,1.0,1.0,0,1.0,,,"Baseline. Real timetable, ordinary maintenance load."
+PEAK_TRAFFIC,1.0,1.0,1.0,0,1.0,1.35,,"Festival/peak period: additional passenger services on the real paths, squeezing the cheap windows."
+HEAVY_FREIGHT,1.0,2.0,1.0,0,1.0,,,"Freight surge. Bites hardest at night, which is where much maintenance wants to go."
+MAINTENANCE_BACKLOG,1.8,1.0,1.0,-2,1.8,,,Accumulated backlog after blocks were refused. This is the scenario in which the reliability constraint actually binds.
+URGENT_MAINTENANCE,1.0,1.0,1.0,-4,1.2,,,Safety-critical defects with compressed deadlines.
+HIGH_DURATION_UNCERTAINTY,1.0,1.0,1.8,0,1.0,,,Poorly characterised work. Tests whether the planner trades bundle size for hand-back reliability.
+DISRUPTED_OPERATION,1.2,1.3,1.3,-2,1.3,,0.25,"A quarter of the cheap windows are withdrawn mid-horizon, forcing a re-plan. Used for the plan-stability metric."
+MULTIPLE_DEPARTMENT_REQUESTS,1.5,1.0,1.0,0,1.4,,,"Higher maintenance demand across all three departments on the same real sections, so cross-department bundling has more to gain. The mix is whatever the periodicity-and-asset-inventory arrival model produces at this rate; it is NOT force-balanced between ENGG/SNT/TRD, and must not be described as such."

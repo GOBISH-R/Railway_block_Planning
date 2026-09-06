@@ -1,0 +1,9 @@
+scenario,seed,target_jobs,generated_jobs,demand_scale,backlog_multiplier,uncertainty_scale,urgency_shift,jobs_ENGG,jobs_SNT,jobs_TRD,overdue_jobs,file,method
+NORMAL_TRAFFIC,42,180,175,1.0,1.0,1.0,0,79,49,47,0,scenarios/jobs/jobs_NORMAL_TRAFFIC.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+PEAK_TRAFFIC,42,180,175,1.0,1.0,1.0,0,79,49,47,0,scenarios/jobs/jobs_PEAK_TRAFFIC.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+HEAVY_FREIGHT,42,180,175,1.0,1.0,1.0,0,79,49,47,0,scenarios/jobs/jobs_HEAVY_FREIGHT.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+MAINTENANCE_BACKLOG,42,324,340,1.8,1.8,1.0,-2,146,97,97,142,scenarios/jobs/jobs_MAINTENANCE_BACKLOG.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+URGENT_MAINTENANCE,42,180,175,1.0,1.2,1.0,-4,79,49,47,44,scenarios/jobs/jobs_URGENT_MAINTENANCE.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+HIGH_DURATION_UNCERTAINTY,42,180,175,1.0,1.0,1.8,0,79,49,47,0,scenarios/jobs/jobs_HIGH_DURATION_UNCERTAINTY.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+DISRUPTED_OPERATION,42,216,222,1.2,1.3,1.3,-2,92,61,69,40,scenarios/jobs/jobs_DISRUPTED_OPERATION.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"
+MULTIPLE_DEPARTMENT_REQUESTS,42,270,236,1.5,1.4,1.0,0,92,77,67,38,scenarios/jobs/jobs_MULTIPLE_DEPARTMENT_REQUESTS.csv,"dsgen.demand.generate_jobs (poisson_from_periodicity), identical to the base dataset; no cloning"

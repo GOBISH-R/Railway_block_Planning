@@ -1,0 +1,7 @@
+method,blocks,realisations,block_realisations,mean_modelled_reliability,on_time_with_penalty,late_with_penalty,plan_observed_rate_with_penalty,block_observed_rate_with_penalty,modelled_minus_observed_with_penalty,blocks_below_theta_with_penalty,worst_block_observed_with_penalty,blocks_observed_below_theta_with_penalty,max_observed_overrun_min_with_penalty,mean_abs_error_with_penalty,on_time_without_penalty,late_without_penalty,plan_observed_rate_without_penalty,block_observed_rate_without_penalty,modelled_minus_observed_without_penalty,blocks_below_theta_without_penalty,worst_block_observed_without_penalty,blocks_observed_below_theta_without_penalty,max_observed_overrun_min_without_penalty,mean_abs_error_without_penalty,blocks_modelled_below_theta
+"B0 Dept-wise, no reliability",161,30,4830,0.99,4808,22,0.995,0.995,-0.005,0,0.83,1,38.7,0.004,4822,8,0.998,0.998,-0.008,0,0.83,1,32.7,0.006,3
+B1 Dept-wise + reliability,160,30,4800,1.0,4789,11,0.998,0.998,0.002,0,0.93,0,16.2,0.002,4798,2,1.0,1.0,0.0,0,0.97,0,11.5,0.004,0
+B2 Fixed-calendar,105,30,3150,1.0,3141,9,0.997,0.997,0.003,0,0.83,1,38.7,0.002,3143,7,0.998,0.998,0.002,0,0.83,1,32.7,0.003,2
+B3 Greedy-earliest,161,30,4830,0.98,4783,47,0.99,0.99,-0.01,0,0.0,2,66.1,0.006,4797,33,0.993,0.993,-0.013,0,0.03,1,62.2,0.009,7
+B4 Bundle-only,142,30,4260,0.99,4234,26,0.994,0.994,-0.004,0,0.83,1,38.7,0.007,4250,10,0.998,0.998,-0.008,0,0.83,1,32.7,0.01,4
+OURS,140,30,4200,0.99,4185,15,0.996,0.996,-0.006,0,0.93,0,16.2,0.004,4196,4,0.999,0.999,-0.009,0,0.97,0,18.1,0.007,0

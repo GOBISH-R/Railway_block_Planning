@@ -1,0 +1,170 @@
+[
+  {
+    "check": "source_mode_is_real",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "source_mode=datameet; a scaffold build is for development only and must not be presented"
+  },
+  {
+    "check": "station_coordinates_in_india",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 station(s) outside India bounds"
+  },
+  {
+    "check": "station_codes_unique",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "27 stations, 27 unique"
+  },
+  {
+    "check": "positive_section_lengths",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "min length 3.085 km"
+  },
+  {
+    "check": "corridor_is_a_path",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "station sequence contiguous"
+  },
+  {
+    "check": "network_connected",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 consecutive pair(s) with no section-line"
+  },
+  {
+    "check": "sections_supported_by_real_trains",
+    "level": "WARN",
+    "passed": true,
+    "detail": "0 section(s) not traversed by any real train"
+  },
+  {
+    "check": "arrival_before_departure",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 stop(s) with an implausible dwell out of 2665 with both times (allowing for midnight crossing, max 120 min)"
+  },
+  {
+    "check": "train_routes_contiguous",
+    "level": "WARN",
+    "passed": true,
+    "detail": "0 train(s) with a non-contiguous stop sequence"
+  },
+  {
+    "check": "plausible_daily_train_count",
+    "level": "WARN",
+    "passed": true,
+    "detail": "busiest station pair sees 107 real train movements/day"
+  },
+  {
+    "check": "plausible_headways",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "headway range 4-8 min"
+  },
+  {
+    "check": "unknown_class_fallback_weight_declared",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "assumptions.yaml traffic.train_weight declares an explicit UNKNOWN weight (=1.5)"
+  },
+  {
+    "check": "train_class_unknown_share",
+    "level": "WARN",
+    "passed": true,
+    "detail": "0/2978 movements (0.0%) have an unreadable service class and use the declared fallback weight"
+  },
+  {
+    "check": "track_source_labelled",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "track_source per section-line: declared=52 (declared = from config/corridor.yaml, NOT corroborated against OpenStreetMap)"
+  },
+  {
+    "check": "jobs_on_real_sections",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) reference a section that does not exist"
+  },
+  {
+    "check": "job_footprint_inside_section",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) with a footprint outside the section"
+  },
+  {
+    "check": "dept_matches_activity",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) whose department contradicts the activity catalogue"
+  },
+  {
+    "check": "protection_matches_catalogue",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) whose protection differs from the catalogue"
+  },
+  {
+    "check": "durations_plausible",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) with an implausible duration triple"
+  },
+  {
+    "check": "jobs_fit_some_block",
+    "level": "WARN",
+    "passed": true,
+    "detail": "0 job(s) longer than the largest permitted block (240 min) - these SHOULD be deferred with an explanation, not silently dropped"
+  },
+  {
+    "check": "resources_well_formed",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) with a malformed resource id"
+  },
+  {
+    "check": "class_d_jobs_present",
+    "level": "WARN",
+    "passed": true,
+    "detail": "21 job(s) requiring the negation of a block; a dataset without these lets a broken compatibility engine look correct"
+  },
+  {
+    "check": "no_self_contradictory_jobs",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 job(s) needing live OHE AND a power block"
+  },
+  {
+    "check": "pairing_rules_reference_real_activities",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "0 pairing rule(s) naming an unknown activity"
+  },
+  {
+    "check": "pairing_rules_all_cited",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "6/6 pairing rules carry a source citation"
+  },
+  {
+    "check": "scenarios_defined",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "8 scenarios"
+  },
+  {
+    "check": "scenario_multipliers_sane",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "demand scales within 0.1-5x"
+  },
+  {
+    "check": "provenance_registered_for_jobs",
+    "level": "CRITICAL",
+    "passed": true,
+    "detail": "all job columns registered"
+  }
+]

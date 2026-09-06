@@ -1,0 +1,4 @@
+section_id,line,is_single,headway_min,degraded_factor
+S1,SINGLE,1,15,1.0
+S2U,UP,0,8,2.5
+S2D,DN,0,8,2.5

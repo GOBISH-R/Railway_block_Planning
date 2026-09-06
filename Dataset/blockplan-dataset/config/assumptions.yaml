@@ -1,0 +1,100 @@
+# EXPLICIT MODELLING ASSUMPTIONS (provenance E)
+#
+# Nothing in this file is an Indian Railways figure. Every value here is a
+# choice we made because no public source supports a number. They are gathered
+# in one file precisely so that a judge, a reviewer or a railway officer can
+# see the entire assumption surface of the project on one screen, and so that
+# the sensitivity analysis has one place to sweep from.
+#
+# If you find a published value for any of these, move it to rules.yaml with a
+# citation and delete it from here. That is the direction of travel.
+
+# --- reliability model -------------------------------------------------------
+reliability:
+  theta: 0.90                     # minimum acceptable P(hand back on time)
+  kappa: 0.15                     # duration-spread inflation per EXTRA department
+  lambda_close_min: 6.0           # extra closing minutes per EXTRA department
+  mc_samples: 4000
+  # kappa and lambda are the entire quantitative content of "more departments
+  # means more risk". Sweep them. If the conclusion does not survive
+  # kappa in [0, 0.30], say so.
+
+closing_chain_min:                # per-department block closing time
+  ENGG: {mean: 12.0, sd: 4.0}     # clear site, withdraw protection, hand back
+  SNT:  {mean: 20.0, sd: 7.0}     # reconnect, correspondence test, SM signs memo
+  TRD:  {mean: 15.0, sd: 5.0}     # withdraw staff, verify earths, return ETR-3
+
+# --- traffic cost model ------------------------------------------------------
+traffic:
+  train_weight:                   # relative priority. NOT railway policy.
+    VANDE_BHARAT: 3.0
+    RAJDHANI: 3.0
+    SHATABDI: 3.0
+    SUPERFAST: 2.2
+    EXPRESS: 2.0
+    MAIL: 2.0
+    PASSENGER: 1.2
+    MEMU: 1.2
+    DEMU: 1.2
+    FREIGHT: 1.0
+    UNKNOWN: 1.5
+  default_headway_min: 8          # used when no better estimate is derivable
+  single_line_headway_min: 15
+  degraded_factor: 2.5            # headway multiplier under single-line working
+  tail_minutes: 240               # how long after a block we track the queue
+  overrun_rate: 3.0               # weighted train-minutes per minute of overrun
+  post_block_caution_min: 10      # first train after S&T reconnection, per rules.yaml
+
+# --- freight ----------------------------------------------------------------
+# The audit finding that goods trains run "without any scheduled timing"
+# (CAG Report 45/2018 Ch.3) means the freight side is stochastic by
+# institutional design. Public timetables contain almost no freight, so we
+# generate it. This is the largest single synthetic component of the traffic
+# layer and must be labelled as such.
+freight:
+  enabled: true
+  trains_per_day_per_section: {mean: 8, sd: 3}
+  hourly_weight: [3,3,3,2,2,2,1,1,1,1,1,2,2,2,1,1,1,1,1,2,2,3,3,3]
+
+# --- maintenance demand ------------------------------------------------------
+demand:
+  # Jobs arrive as a Poisson process whose rate comes from the activity
+  # periodicity and the asset inventory. See docs/methodology.md.
+  arrival_model: "poisson_from_periodicity"
+  backlog_multiplier: 1.0         # >1 simulates an accumulated backlog
+  # Due dates are drawn to look like a steady-state maintenance programme:
+  # time-since-last-service is uniform over the periodicity, so the backlog is
+  # a snapshot of a running cycle rather than a uniform random scatter.
+  due_date_model: "steady_state_phase"
+  criticality_defect_multiplier: {mean: 1.0, sd: 0.25, min: 0.5, max: 2.5}
+
+# --- asset inventory ---------------------------------------------------------
+# Counts of maintainable assets per unit of real network. Used to turn
+# periodicity into an arrival rate. All E.
+assets:
+  turnouts_per_station: {junction: 14, regular: 4}
+  signal_points_per_station: {junction: 10, regular: 4}
+  ohe_km_per_track_km: 1.0
+
+# --- resources ---------------------------------------------------------------
+# Fleet available to the division over the horizon. All E.
+resources:
+  TAMPER: 2
+  BCM: 1
+  PQRS: 1
+  PWAY_GANG: 4
+  SNT_GANG: 3
+  TOWER_WAGON: 2
+  TRD_GANG: 2
+
+# --- bundling ----------------------------------------------------------------
+bundling:
+  max_span_km: 8.0                # a block covers a limited stretch of line
+  max_bundle_size: 5
+
+# --- execution realisation ---------------------------------------------------
+# Used ONLY for evaluation, never for planning. Kept separate so that the
+# planner cannot accidentally see the realised durations it is being judged on.
+execution:
+  realisation_seed_offset: 100000
+  n_realisations: 30

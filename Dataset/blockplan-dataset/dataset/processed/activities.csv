@@ -1,0 +1,19 @@
+activity_id,dept,label,asset,needs_T,needs_P,needs_D,needs_train_movements,needs_live_ohe,duration_mean_min,duration_sd_min,periodicity_days,min_block_min,min_block_provenance,resource_class,criticality_base,protection_source
+THROUGH_TAMPING,ENGG,Through tamping (plain line),TRACK_KM,1,0,0,0,0,65,12,240,150,E,TAMPER,1.4,IRTMM Ch.5 - machine works under traffic block; power block only if staff/equipment enter the 2 m zone (ACTM Ch.17)
+TURNOUT_TAMPING,ENGG,Turnout tamping,TURNOUT,1,0,0,0,0,55,14,180,150,E,TAMPER,1.6,IRTMM Ch.5
+DEEP_SCREENING,ENGG,Deep screening / ballast cleaning (BCM),TRACK_KM,1,0,0,0,0,150,30,2200,240,C,BCM,1.0,IRTMM Ch.3
+RAIL_RENEWAL,ENGG,Rail renewal,TRACK_KM,1,0,0,0,0,80,18,3600,150,E,PQRS,1.7,ACTM Ch.17 - traction return continuity must be maintained; TRD attendance compelled (see rules.yaml)
+TRACK_GEOMETRY_CORRECTION,ENGG,Track geometry correction (spot attention),TRACK_KM,1,0,0,0,0,45,12,120,120,E,PWAY_GANG,1.2,
+WELDING_REPAIR,ENGG,Rail welding / fracture repair,TRACK_KM,1,0,0,0,0,55,15,900,120,E,PWAY_GANG,1.9,
+POINT_MACHINE_OVERHAUL,SNT,Point machine overhaul,TURNOUT,1,0,1,0,0,45,10,180,120,E,SNT_GANG,1.8,GR 15.08 - no disconnection of points/signals until stop signals exhibited; written permission of the SM within station limits
+TRACK_CIRCUIT_MAINTENANCE,SNT,Track circuit maintenance,SIGNAL_POINT,1,0,1,0,0,35,8,90,120,E,SNT_GANG,1.1,
+SIGNALLING_CABLE_WORK,SNT,Signalling cable work,SIGNAL_POINT,1,0,1,0,0,50,11,730,150,E,SNT_GANG,1.3,
+SIGNAL_EQUIPMENT_MAINTENANCE,SNT,Signal equipment maintenance,SIGNAL_POINT,1,0,1,0,0,40,9,120,120,E,SNT_GANG,1.4,
+INTERLOCKING_ALTERATION,SNT,Interlocking circuit alteration,SIGNAL_POINT,1,0,1,0,0,90,25,1800,240,E,SNT_GANG,1.5,Zonal JPO practice: circuit alteration requiring wiring changes is done during traffic block / non-interlocking
+OHE_INSPECTION,TRD,OHE inspection,OHE_KM,1,1,0,0,0,45,12,240,120,E,TOWER_WAGON,1.1,"ACTM Ch.17 - no work within 2 m of live OHE without permit-to-work ETR-3, which requires a power block and earthing"
+INSULATOR_REPLACEMENT,TRD,Insulator replacement,OHE_KM,1,1,0,0,0,40,9,1100,120,E,TOWER_WAGON,1.3,
+DROPPER_WORK,TRD,Dropper replacement / adjustment,OHE_KM,1,1,0,0,0,30,7,550,120,E,TOWER_WAGON,1.2,
+OHE_HEIGHT_ADJUSTMENT,TRD,OHE height / stagger adjustment,OHE_KM,1,1,0,0,0,25,8,730,120,E,TOWER_WAGON,1.0,"ACTM Ch.17 - permitted variation 20 mm in rail level, 30 mm in setting distance; adjustment required after track level alteration"
+TRACTION_BONDING,TRD,Traction return bonding,TRACK_KM,1,0,0,0,0,20,6,900,120,E,TRD_GANG,1.0,ACTM Ch.17 - P-Way staff may not disturb bonds; alterations require TrD staff
+TRACK_CIRCUIT_SHUNT_CHECK,SNT,Track circuit shunting verification,SIGNAL_POINT,0,0,0,1,0,25,6,180,0,E,SNT_GANG,0.9,Requires train movements to verify shunting; cannot be performed inside a traffic block
+OHE_MEASUREMENT_UNDER_LOAD,TRD,OHE parameter measurement under load,OHE_KM,0,0,0,0,1,30,7,365,0,E,TRD_GANG,0.8,Requires energised OHE; cannot be performed inside a power block

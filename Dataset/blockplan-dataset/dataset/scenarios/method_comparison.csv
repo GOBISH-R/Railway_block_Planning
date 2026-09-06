@@ -1,0 +1,7 @@
+method,blocks,jobs_done,jobs_deferred,traffic_cost,traffic_per_job,exp_overrun_cost,cross_dept_blocks,cross_dept_share,mean_reliability,min_reliability,block_utilisation
+"B0 Dept-wise, no reliability",161,161,14,391.4,2.4,66.8,31,0.193,0.99,0.74,0.312
+B1 Dept-wise + reliability,160,160,15,430.8,2.7,25.3,30,0.188,1.0,0.9,0.303
+B2 Fixed-calendar,105,175,0,743.4,4.2,37.6,53,0.505,1.0,0.73,0.37
+B3 Greedy-earliest,161,161,14,1750.2,10.9,262.4,34,0.211,0.98,0.03,0.308
+B4 Bundle-only,138,175,0,272.8,1.6,69.0,54,0.391,0.99,0.74,0.403
+OURS,140,174,1,299.2,1.7,38.6,51,0.364,0.99,0.9,0.385

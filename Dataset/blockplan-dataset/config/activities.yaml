@@ -1,0 +1,263 @@
+# ACTIVITY CATALOGUE
+#
+# One row per maintenance activity type. Jobs reference this catalogue rather
+# than each carrying its own protection flags, so two jobs of the same activity
+# can never disagree about what protection they need.
+#
+# PROVENANCE PER FIELD, not per row. Read the tags:
+#   C = derived from an official Indian Railways rule or manual (source given)
+#   E = explicit modelling assumption. NOT an Indian Railways figure.
+#
+# BE HONEST ABOUT WHAT IS TAGGED E. Protection regimes and block-length rules
+# are traceable to manuals. Almost every DURATION below is an assumption: we
+# could not find published per-activity working times in public sources, and we
+# say so rather than dressing an assumption up as a fact.
+
+defaults:
+  duration_provenance: E
+  periodicity_provenance: E
+  protection_provenance: C
+
+activities:
+
+  # ---------------------------------------------------------- ENGINEERING
+  - id: THROUGH_TAMPING
+    dept: ENGG
+    label: "Through tamping (plain line)"
+    asset: TRACK_KM
+    protection: {T: true, P: false, D: false}          # C
+    protection_source: "IRTMM Ch.5 - machine works under traffic block; power block only if staff/equipment enter the 2 m zone (ACTM Ch.17)"
+    footprint_km: {mean: 3.0, sd: 0.8}                 # E
+    duration_min: {mean: 65, sd: 12, min: 35, max: 150}# E
+    periodicity_days: 240                              # E
+    min_block_min: 150                                 # E
+    resource_class: TAMPER
+    criticality_base: 1.4                              # E
+
+  - id: TURNOUT_TAMPING
+    dept: ENGG
+    label: "Turnout tamping"
+    asset: TURNOUT
+    protection: {T: true, P: false, D: false}          # C
+    protection_source: "IRTMM Ch.5"
+    footprint_km: {mean: 0.4, sd: 0.1}                 # E
+    duration_min: {mean: 55, sd: 14, min: 30, max: 130}# E
+    periodicity_days: 180                              # E
+    min_block_min: 150                                 # E
+    resource_class: TAMPER
+    criticality_base: 1.6
+
+  - id: DEEP_SCREENING
+    dept: ENGG
+    label: "Deep screening / ballast cleaning (BCM)"
+    asset: TRACK_KM
+    protection: {T: true, P: false, D: false}          # C
+    protection_source: "IRTMM Ch.3"
+    footprint_km: {mean: 1.0, sd: 0.3}                 # E
+    duration_min: {mean: 150, sd: 30, min: 90, max: 300}  # E
+    periodicity_days: 2200                             # E
+    min_block_min: 240                                 # C  <-- PUBLISHED
+    min_block_source: "IRTMM Ch.3 states BCM requires a block of at least four hours"
+    min_block_provenance: C
+    resource_class: BCM
+    criticality_base: 1.0
+
+  - id: RAIL_RENEWAL
+    dept: ENGG
+    label: "Rail renewal"
+    asset: TRACK_KM
+    protection: {T: true, P: false, D: false}          # C
+    protection_source: "ACTM Ch.17 - traction return continuity must be maintained; TRD attendance compelled (see rules.yaml)"
+    footprint_km: {mean: 0.3, sd: 0.1}
+    duration_min: {mean: 80, sd: 18, min: 45, max: 180}
+    periodicity_days: 3600
+    min_block_min: 150
+    resource_class: PQRS
+    criticality_base: 1.7
+
+  - id: TRACK_GEOMETRY_CORRECTION
+    dept: ENGG
+    label: "Track geometry correction (spot attention)"
+    asset: TRACK_KM
+    protection: {T: true, P: false, D: false}
+    footprint_km: {mean: 0.5, sd: 0.2}
+    duration_min: {mean: 45, sd: 12, min: 25, max: 100}
+    periodicity_days: 120
+    min_block_min: 120
+    resource_class: PWAY_GANG
+    criticality_base: 1.2
+
+  - id: WELDING_REPAIR
+    dept: ENGG
+    label: "Rail welding / fracture repair"
+    asset: TRACK_KM
+    protection: {T: true, P: false, D: false}
+    footprint_km: {mean: 0.1, sd: 0.05}
+    duration_min: {mean: 55, sd: 15, min: 30, max: 120}
+    periodicity_days: 900
+    min_block_min: 120
+    resource_class: PWAY_GANG
+    criticality_base: 1.9
+
+  # ----------------------------------------------------------------- S&T
+  - id: POINT_MACHINE_OVERHAUL
+    dept: SNT
+    label: "Point machine overhaul"
+    asset: TURNOUT
+    protection: {T: true, P: false, D: true}           # C
+    protection_source: "GR 15.08 - no disconnection of points/signals until stop signals exhibited; written permission of the SM within station limits"
+    footprint_km: {mean: 0.2, sd: 0.05}
+    duration_min: {mean: 45, sd: 10, min: 25, max: 100}
+    periodicity_days: 180
+    min_block_min: 120
+    resource_class: SNT_GANG
+    criticality_base: 1.8
+
+  - id: TRACK_CIRCUIT_MAINTENANCE
+    dept: SNT
+    label: "Track circuit maintenance"
+    asset: SIGNAL_POINT
+    protection: {T: true, P: false, D: true}
+    footprint_km: {mean: 0.3, sd: 0.1}
+    duration_min: {mean: 35, sd: 8, min: 20, max: 80}
+    periodicity_days: 90
+    min_block_min: 120
+    resource_class: SNT_GANG
+    criticality_base: 1.1
+
+  - id: SIGNALLING_CABLE_WORK
+    dept: SNT
+    label: "Signalling cable work"
+    asset: SIGNAL_POINT
+    protection: {T: true, P: false, D: true}
+    footprint_km: {mean: 0.4, sd: 0.15}
+    duration_min: {mean: 50, sd: 11, min: 30, max: 110}
+    periodicity_days: 730
+    min_block_min: 150
+    resource_class: SNT_GANG
+    criticality_base: 1.3
+
+  - id: SIGNAL_EQUIPMENT_MAINTENANCE
+    dept: SNT
+    label: "Signal equipment maintenance"
+    asset: SIGNAL_POINT
+    protection: {T: true, P: false, D: true}
+    footprint_km: {mean: 0.1, sd: 0.05}
+    duration_min: {mean: 40, sd: 9, min: 20, max: 90}
+    periodicity_days: 120
+    min_block_min: 120
+    resource_class: SNT_GANG
+    criticality_base: 1.4
+
+  - id: INTERLOCKING_ALTERATION
+    dept: SNT
+    label: "Interlocking circuit alteration"
+    asset: SIGNAL_POINT
+    protection: {T: true, P: false, D: true}           # C
+    protection_source: "Zonal JPO practice: circuit alteration requiring wiring changes is done during traffic block / non-interlocking"
+    footprint_km: {mean: 0.2, sd: 0.05}
+    duration_min: {mean: 90, sd: 25, min: 50, max: 200}
+    periodicity_days: 1800
+    min_block_min: 240
+    resource_class: SNT_GANG
+    criticality_base: 1.5
+
+  # ------------------------------------------------------- TRACTION / TRD
+  - id: OHE_INSPECTION
+    dept: TRD
+    label: "OHE inspection"
+    asset: OHE_KM
+    protection: {T: true, P: true, D: false}           # C
+    protection_source: "ACTM Ch.17 - no work within 2 m of live OHE without permit-to-work ETR-3, which requires a power block and earthing"
+    # An inspection outing covers a long stretch at a time, so the per-km rate
+    # is low and the footprint is long. Raising this periodicity from 90 to 240
+    # days is a deliberate calibration of the ACTIVITY MIX, not of any railway
+    # fact: see docs/methodology.md. The mix is an output of this table.
+    footprint_km: {mean: 4.0, sd: 1.2}
+    duration_min: {mean: 45, sd: 12, min: 25, max: 100}
+    periodicity_days: 240
+    min_block_min: 120
+    resource_class: TOWER_WAGON
+    criticality_base: 1.1
+
+  - id: INSULATOR_REPLACEMENT
+    dept: TRD
+    label: "Insulator replacement"
+    asset: OHE_KM
+    protection: {T: true, P: true, D: false}
+    footprint_km: {mean: 0.2, sd: 0.05}
+    duration_min: {mean: 40, sd: 9, min: 25, max: 90}
+    periodicity_days: 1100
+    min_block_min: 120
+    resource_class: TOWER_WAGON
+    criticality_base: 1.3
+
+  - id: DROPPER_WORK
+    dept: TRD
+    label: "Dropper replacement / adjustment"
+    asset: OHE_KM
+    protection: {T: true, P: true, D: false}
+    footprint_km: {mean: 0.3, sd: 0.1}
+    duration_min: {mean: 30, sd: 7, min: 18, max: 70}
+    periodicity_days: 550
+    min_block_min: 120
+    resource_class: TOWER_WAGON
+    criticality_base: 1.2
+
+  - id: OHE_HEIGHT_ADJUSTMENT
+    dept: TRD
+    label: "OHE height / stagger adjustment"
+    asset: OHE_KM
+    protection: {T: true, P: true, D: false}           # C
+    protection_source: "ACTM Ch.17 - permitted variation 20 mm in rail level, 30 mm in setting distance; adjustment required after track level alteration"
+    footprint_km: {mean: 0.5, sd: 0.2}
+    duration_min: {mean: 25, sd: 8, min: 15, max: 60}
+    periodicity_days: 730
+    min_block_min: 120
+    resource_class: TOWER_WAGON
+    criticality_base: 1.0
+
+  - id: TRACTION_BONDING
+    dept: TRD
+    label: "Traction return bonding"
+    asset: TRACK_KM
+    protection: {T: true, P: false, D: false}          # C
+    protection_source: "ACTM Ch.17 - P-Way staff may not disturb bonds; alterations require TrD staff"
+    footprint_km: {mean: 0.2, sd: 0.05}
+    duration_min: {mean: 20, sd: 6, min: 12, max: 50}
+    periodicity_days: 900
+    min_block_min: 120
+    resource_class: TRD_GANG
+    criticality_base: 1.0
+
+  # ------------------------- CLASS D: work that needs the NEGATION of a block
+  # These exist so the compatibility engine is exercised. They can never be
+  # bundled into a traffic block, and a dataset without them lets a broken
+  # compatibility engine look correct.
+  - id: TRACK_CIRCUIT_SHUNT_CHECK
+    dept: SNT
+    label: "Track circuit shunting verification"
+    asset: SIGNAL_POINT
+    protection: {T: false, P: false, D: false}
+    needs_train_movements: true                        # C
+    protection_source: "Requires train movements to verify shunting; cannot be performed inside a traffic block"
+    footprint_km: {mean: 0.2, sd: 0.05}
+    duration_min: {mean: 25, sd: 6, min: 15, max: 55}
+    periodicity_days: 180
+    min_block_min: 0
+    resource_class: SNT_GANG
+    criticality_base: 0.9
+
+  - id: OHE_MEASUREMENT_UNDER_LOAD
+    dept: TRD
+    label: "OHE parameter measurement under load"
+    asset: OHE_KM
+    protection: {T: false, P: false, D: false}
+    needs_live_ohe: true                               # C
+    protection_source: "Requires energised OHE; cannot be performed inside a power block"
+    footprint_km: {mean: 0.4, sd: 0.1}
+    duration_min: {mean: 30, sd: 7, min: 18, max: 65}
+    periodicity_days: 365
+    min_block_min: 0
+    resource_class: TRD_GANG
+    criticality_base: 0.8

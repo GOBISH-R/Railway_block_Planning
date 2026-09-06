@@ -1,0 +1,107 @@
+{
+  "_fixture_note": "Phase 0 mock fixture for frontend/contract development ONLY. Values are plausible but NOT produced by core.py — do not cite these numbers anywhere. The real frozen benchmark numbers live in dataset/scenarios/benchmark_results.csv and memory doc §22.",
+  "plan_id": "a3f9c1e2b7d4",
+  "scenario": "NORMAL_TRAFFIC",
+  "horizon_days": 14,
+  "theta": 0.90,
+  "status": "OPTIMAL",
+  "objective": 337.8,
+  "blocks": [
+    {
+      "block_id": "B0001",
+      "section_id": "KEY-KNNT-UP",
+      "day": 3,
+      "start_min": 540,
+      "length": 150,
+      "end_min": 690,
+      "reliability": 0.93,
+      "traffic_cost": 41.2,
+      "exp_overrun_cost": 3.1,
+      "dept_mix": ["ENGG", "SNT", "TRD"],
+      "job_ids": ["J00016", "J00016_C_SNT", "J00016_C_TRD"]
+    },
+    {
+      "block_id": "B0002",
+      "section_id": "DST-DPI-DN",
+      "day": 5,
+      "start_min": 120,
+      "length": 120,
+      "end_min": 240,
+      "reliability": 0.99,
+      "traffic_cost": 18.6,
+      "exp_overrun_cost": 0.4,
+      "dept_mix": ["SNT"],
+      "job_ids": ["J00042"]
+    },
+    {
+      "block_id": "B0003",
+      "section_id": "SGE-ANU-DN",
+      "day": 7,
+      "start_min": 780,
+      "length": 150,
+      "end_min": 930,
+      "reliability": 0.97,
+      "traffic_cost": 26.9,
+      "exp_overrun_cost": 1.2,
+      "dept_mix": ["TRD"],
+      "job_ids": ["J00156"]
+    },
+    {
+      "block_id": "B0004",
+      "section_id": "DVBH-DC-UP",
+      "day": 9,
+      "start_min": 300,
+      "length": 150,
+      "end_min": 450,
+      "reliability": 0.95,
+      "traffic_cost": 22.4,
+      "exp_overrun_cost": 1.8,
+      "dept_mix": ["ENGG"],
+      "job_ids": ["J00122"]
+    },
+    {
+      "block_id": "B0005",
+      "section_id": "SLY-DST-UP",
+      "day": 11,
+      "start_min": 660,
+      "length": 240,
+      "end_min": 900,
+      "reliability": 0.91,
+      "traffic_cost": 55.3,
+      "exp_overrun_cost": 4.6,
+      "dept_mix": ["SNT"],
+      "job_ids": ["J00031"]
+    }
+  ],
+  "deferred": [
+    {
+      "job_id": "J00006",
+      "dept": "TRD"
+    },
+    {
+      "job_id": "J00172",
+      "dept": "ENGG"
+    }
+  ],
+  "summary": {
+    "blocks": 5,
+    "jobs_done": 7,
+    "jobs_deferred": 2,
+    "traffic_cost": 164.4,
+    "traffic_per_job": 23.5,
+    "exp_overrun_cost": 11.1,
+    "cross_dept_blocks": 1,
+    "cross_dept_share": 0.2,
+    "min_reliability": 0.91,
+    "mean_reliability": 0.95,
+    "block_utilisation": 0.61
+  },
+  "stage_timings_s": {
+    "load_config": 0.0,
+    "expand_pairings": 0.0,
+    "enumerate_bundles": 0.01,
+    "build_columns": 0.6,
+    "solve": 3.9,
+    "total_warm": 4.5
+  }
+}

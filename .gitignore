@@ -1,0 +1,107 @@
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Testing / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+
+# ---------------------------------------------------------------------------
+# Secrets and credentials -- never commit these
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+service-account*.json
+*_secret*
+*_credentials*
+
+# ---------------------------------------------------------------------------
+# Frontend (Phase 2 onwards)
+# ---------------------------------------------------------------------------
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+*.tsbuildinfo
+.vite/
+frontend/dist/
+
+# ---------------------------------------------------------------------------
+# Editors / OS
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Logs and scratch
+# ---------------------------------------------------------------------------
+*.log
+scratch/
+scratchpad/
+tmp/
+*.tmp
+*.bak
+
+# ---------------------------------------------------------------------------
+# Raw source data -- deliberately NOT tracked
+#
+# dataset/raw/ is 95 MB of real public source JSON (schedules.json alone is
+# 82 MB). It is read-only input: no script in this project ever writes to it,
+# so it carries none of the accidental-overwrite risk this repository exists
+# to guard against. Committing it would permanently bloat history and push
+# schedules.json past GitHub's 50 MB warning threshold.
+#
+# Integrity is still verifiable: the SHA-256 prefixes of all three files are
+# recorded in dataset/metadata/manifest.json (source_hashes), which IS
+# tracked, and the files are re-downloadable from
+# https://github.com/datameet/railways (CC0).
+#
+# Remove these two lines if you decide a fully self-contained offline archive
+# matters more than repository size.
+# ---------------------------------------------------------------------------
+Dataset/blockplan-dataset/dataset/raw/

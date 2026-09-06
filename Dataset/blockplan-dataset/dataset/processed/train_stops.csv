@@ -1,0 +1,2737 @@
+train_number,train_name,station_code,arrival_min,departure_min,day,stop_seq
+56839,Jolarpettai Erode Passenger,JTJ,,920,1,0
+56839,Jolarpettai Erode Passenger,TPT,928,930,1,1
+56839,Jolarpettai Erode Passenger,KEY,943,944,1,2
+56839,Jolarpettai Erode Passenger,KNNT,948,949,1,3
+56839,Jolarpettai Erode Passenger,SLY,953,955,1,4
+56839,Jolarpettai Erode Passenger,DST,963,964,1,5
+56839,Jolarpettai Erode Passenger,DPI,972,973,1,6
+56839,Jolarpettai Erode Passenger,MAP,981,982,1,7
+56839,Jolarpettai Erode Passenger,TNGR,988,989,1,8
+56839,Jolarpettai Erode Passenger,BDY,995,996,1,9
+56839,Jolarpettai Erode Passenger,BQI,1005,1006,1,10
+56839,Jolarpettai Erode Passenger,LCR,1014,1015,1,11
+56839,Jolarpettai Erode Passenger,DSPT,1024,1025,1,12
+56839,Jolarpettai Erode Passenger,TNT,1031,1032,1,13
+56839,Jolarpettai Erode Passenger,KPPR,1041,1042,1,14
+56839,Jolarpettai Erode Passenger,MGSJ,1057,1057,1,15
+56839,Jolarpettai Erode Passenger,SA,1070,1075,1,16
+56839,Jolarpettai Erode Passenger,NEA,1080,1081,1,17
+56839,Jolarpettai Erode Passenger,VRPD,1085,1086,1,18
+56839,Jolarpettai Erode Passenger,DC,1098,1100,1,19
+56839,Jolarpettai Erode Passenger,MVPM,1114,1115,1,20
+56839,Jolarpettai Erode Passenger,SGE,1122,1124,1,21
+56839,Jolarpettai Erode Passenger,ANU,1133,1135,1,22
+56839,Jolarpettai Erode Passenger,CV,1144,1145,1,23
+56839,Jolarpettai Erode Passenger,ED,1175,,1,24
+18190,Allapuzha Dhanbad Slip Express,ED,,,1,0
+18190,Allapuzha Dhanbad Slip Express,CV,,,1,1
+18190,Allapuzha Dhanbad Slip Express,ANU,,,1,2
+18190,Allapuzha Dhanbad Slip Express,SGE,,,1,3
+18190,Allapuzha Dhanbad Slip Express,MVPM,,,1,4
+18190,Allapuzha Dhanbad Slip Express,DC,,,1,5
+18190,Allapuzha Dhanbad Slip Express,DVBH,,,1,6
+18190,Allapuzha Dhanbad Slip Express,VRPD,,,1,7
+18190,Allapuzha Dhanbad Slip Express,NEA,,,1,8
+18190,Allapuzha Dhanbad Slip Express,SA,,,1,9
+18190,Allapuzha Dhanbad Slip Express,MGSJ,,,1,10
+18190,Allapuzha Dhanbad Slip Express,KPPR,,,1,11
+18190,Allapuzha Dhanbad Slip Express,TNT,,,1,12
+18190,Allapuzha Dhanbad Slip Express,DSPT,,,1,13
+18190,Allapuzha Dhanbad Slip Express,LCR,,,1,14
+18190,Allapuzha Dhanbad Slip Express,BQI,,,1,15
+18190,Allapuzha Dhanbad Slip Express,BDY,,,1,16
+18190,Allapuzha Dhanbad Slip Express,TNGR,,,1,17
+18190,Allapuzha Dhanbad Slip Express,MAP,,,1,18
+18190,Allapuzha Dhanbad Slip Express,DPI,,,1,19
+18190,Allapuzha Dhanbad Slip Express,DST,,,1,20
+18190,Allapuzha Dhanbad Slip Express,SLY,,,1,21
+18190,Allapuzha Dhanbad Slip Express,KNNT,,,1,22
+18190,Allapuzha Dhanbad Slip Express,KEY,,,1,23
+18190,Allapuzha Dhanbad Slip Express,MOLK,,,1,24
+18190,Allapuzha Dhanbad Slip Express,TPT,,,1,25
+18190,Allapuzha Dhanbad Slip Express,JTJ,,,1,26
+16381,Mumbai CST - Kanyakumari Express,JTJ,1165,1170,2,0
+16381,Mumbai CST - Kanyakumari Express,TPT,1176,1176,2,1
+16381,Mumbai CST - Kanyakumari Express,KEY,1184,1184,2,2
+16381,Mumbai CST - Kanyakumari Express,KNNT,1188,1188,2,3
+16381,Mumbai CST - Kanyakumari Express,SLY,1193,1193,2,4
+16381,Mumbai CST - Kanyakumari Express,DST,1200,1200,2,5
+16381,Mumbai CST - Kanyakumari Express,DPI,1206,1206,2,6
+16381,Mumbai CST - Kanyakumari Express,MAP,1211,1211,2,7
+16381,Mumbai CST - Kanyakumari Express,TNGR,1216,1216,2,8
+16381,Mumbai CST - Kanyakumari Express,BDY,1221,1221,2,9
+16381,Mumbai CST - Kanyakumari Express,BQI,1228,1228,2,10
+16381,Mumbai CST - Kanyakumari Express,LCR,1236,1236,2,11
+16381,Mumbai CST - Kanyakumari Express,DSPT,1243,1243,2,12
+16381,Mumbai CST - Kanyakumari Express,TNT,1249,1249,2,13
+16381,Mumbai CST - Kanyakumari Express,KPPR,1256,1256,2,14
+16381,Mumbai CST - Kanyakumari Express,MGSJ,1259,1259,2,15
+16381,Mumbai CST - Kanyakumari Express,SA,1260,1265,2,16
+16381,Mumbai CST - Kanyakumari Express,NEA,1272,1272,2,17
+16381,Mumbai CST - Kanyakumari Express,VRPD,1275,1275,2,18
+16381,Mumbai CST - Kanyakumari Express,DC,1286,1286,2,19
+16381,Mumbai CST - Kanyakumari Express,MVPM,1298,1298,2,20
+16381,Mumbai CST - Kanyakumari Express,SGE,1303,1303,2,21
+16381,Mumbai CST - Kanyakumari Express,ANU,1311,1311,2,22
+16381,Mumbai CST - Kanyakumari Express,CV,1320,1320,2,23
+16381,Mumbai CST - Kanyakumari Express,ED,1325,1330,2,24
+16670,Yercaud Express,ED,,1260,1,0
+16670,Yercaud Express,CV,1266,1266,1,1
+16670,Yercaud Express,ANU,1277,1277,1,2
+16670,Yercaud Express,SGE,1284,1285,1,3
+16670,Yercaud Express,MVPM,1289,1289,1,4
+16670,Yercaud Express,DC,1298,1298,1,5
+16670,Yercaud Express,VRPD,1306,1306,1,6
+16670,Yercaud Express,NEA,1308,1308,1,7
+16670,Yercaud Express,SA,1315,1320,1,8
+16670,Yercaud Express,MGSJ,1323,1323,1,9
+16670,Yercaud Express,KPPR,1325,1325,1,10
+16670,Yercaud Express,TNT,1333,1333,1,11
+16670,Yercaud Express,DSPT,1339,1339,1,12
+16670,Yercaud Express,LCR,1346,1346,1,13
+16670,Yercaud Express,BQI,1354,1355,1,14
+16670,Yercaud Express,BDY,1364,1365,1,15
+16670,Yercaud Express,TNGR,1369,1369,1,16
+16670,Yercaud Express,MAP,1374,1375,1,17
+16670,Yercaud Express,DPI,1382,1382,1,18
+16670,Yercaud Express,DST,1391,1391,1,19
+16670,Yercaud Express,SLY,1399,1400,1,20
+16670,Yercaud Express,KNNT,1407,1407,1,21
+16670,Yercaud Express,KEY,1413,1413,1,22
+16670,Yercaud Express,TPT,1424,1425,1,23
+16670,Yercaud Express,JTJ,13,15,2,24
+16321,Bangalore Tiruvananthapuram Weekly Express,JTJ,1282,1282,1,0
+16321,Bangalore Tiruvananthapuram Weekly Express,TPT,1294,1295,1,1
+16321,Bangalore Tiruvananthapuram Weekly Express,KEY,1304,1304,1,2
+16321,Bangalore Tiruvananthapuram Weekly Express,KNNT,1309,1309,1,3
+16321,Bangalore Tiruvananthapuram Weekly Express,SLY,1314,1314,1,4
+16321,Bangalore Tiruvananthapuram Weekly Express,DST,1320,1320,1,5
+16321,Bangalore Tiruvananthapuram Weekly Express,DPI,1327,1327,1,6
+16321,Bangalore Tiruvananthapuram Weekly Express,MAP,1333,1333,1,7
+16321,Bangalore Tiruvananthapuram Weekly Express,TNGR,1338,1338,1,8
+16321,Bangalore Tiruvananthapuram Weekly Express,BDY,1343,1343,1,9
+16321,Bangalore Tiruvananthapuram Weekly Express,BQI,1351,1351,1,10
+16321,Bangalore Tiruvananthapuram Weekly Express,LCR,1359,1359,1,11
+16321,Bangalore Tiruvananthapuram Weekly Express,DSPT,1366,1366,1,12
+16321,Bangalore Tiruvananthapuram Weekly Express,TNT,1372,1372,1,13
+16321,Bangalore Tiruvananthapuram Weekly Express,KPPR,1380,1380,1,14
+16321,Bangalore Tiruvananthapuram Weekly Express,MGSJ,1382,1382,1,15
+16321,Bangalore Tiruvananthapuram Weekly Express,SA,1385,1390,1,16
+16321,Bangalore Tiruvananthapuram Weekly Express,NEA,1397,1397,1,17
+16321,Bangalore Tiruvananthapuram Weekly Express,VRPD,1399,1399,1,18
+16321,Bangalore Tiruvananthapuram Weekly Express,DC,1409,1409,1,19
+16321,Bangalore Tiruvananthapuram Weekly Express,MVPM,1420,1420,1,20
+16321,Bangalore Tiruvananthapuram Weekly Express,SGE,1424,1424,1,21
+16321,Bangalore Tiruvananthapuram Weekly Express,ANU,1431,1431,1,22
+16321,Bangalore Tiruvananthapuram Weekly Express,CV,0,0,2,23
+16321,Bangalore Tiruvananthapuram Weekly Express,ED,5,10,2,24
+19568,OKHA - TUTICORIN Exp,JTJ,1216,1216,2,0
+19568,OKHA - TUTICORIN Exp,TPT,1224,1224,2,1
+19568,OKHA - TUTICORIN Exp,MOLK,,,1,2
+19568,OKHA - TUTICORIN Exp,KEY,1237,1237,2,3
+19568,OKHA - TUTICORIN Exp,KNNT,1244,1244,2,4
+19568,OKHA - TUTICORIN Exp,SLY,1251,1251,2,5
+19568,OKHA - TUTICORIN Exp,DST,1261,1261,2,6
+19568,OKHA - TUTICORIN Exp,DPI,1270,1270,2,7
+19568,OKHA - TUTICORIN Exp,MAP,1279,1279,2,8
+19568,OKHA - TUTICORIN Exp,TNGR,1286,1286,2,9
+19568,OKHA - TUTICORIN Exp,BDY,1293,1293,2,10
+19568,OKHA - TUTICORIN Exp,BQI,1305,1305,2,11
+19568,OKHA - TUTICORIN Exp,LCR,1316,1316,2,12
+19568,OKHA - TUTICORIN Exp,DSPT,1327,1327,2,13
+19568,OKHA - TUTICORIN Exp,TNT,1335,1335,2,14
+19568,OKHA - TUTICORIN Exp,KPPR,1347,1347,2,15
+19568,OKHA - TUTICORIN Exp,MGSJ,1350,1350,2,16
+19568,OKHA - TUTICORIN Exp,SA,1355,1360,2,17
+19568,OKHA - TUTICORIN Exp,NEA,1368,1368,2,18
+19568,OKHA - TUTICORIN Exp,VRPD,1372,1372,2,19
+19568,OKHA - TUTICORIN Exp,DVBH,,,1,20
+19568,OKHA - TUTICORIN Exp,DC,1384,1384,2,21
+19568,OKHA - TUTICORIN Exp,MVPM,1398,1398,2,22
+19568,OKHA - TUTICORIN Exp,SGE,1404,1404,2,23
+19568,OKHA - TUTICORIN Exp,ANU,1413,1413,2,24
+19568,OKHA - TUTICORIN Exp,CV,1425,1425,2,25
+19568,OKHA - TUTICORIN Exp,ED,1430,5,2,26
+16787,TIRUNELVELI - KATRA Exp,ED,105,185,2,0
+16787,TIRUNELVELI - KATRA Exp,CV,189,189,2,1
+16787,TIRUNELVELI - KATRA Exp,ANU,198,198,2,2
+16787,TIRUNELVELI - KATRA Exp,SGE,205,205,2,3
+16787,TIRUNELVELI - KATRA Exp,MVPM,210,210,2,4
+16787,TIRUNELVELI - KATRA Exp,DC,220,220,2,5
+16787,TIRUNELVELI - KATRA Exp,DVBH,,,1,6
+16787,TIRUNELVELI - KATRA Exp,VRPD,230,230,2,7
+16787,TIRUNELVELI - KATRA Exp,NEA,232,232,2,8
+16787,TIRUNELVELI - KATRA Exp,SA,240,245,2,9
+16787,TIRUNELVELI - KATRA Exp,MGSJ,248,248,2,10
+16787,TIRUNELVELI - KATRA Exp,KPPR,251,251,2,11
+16787,TIRUNELVELI - KATRA Exp,TNT,260,260,2,12
+16787,TIRUNELVELI - KATRA Exp,DSPT,267,267,2,13
+16787,TIRUNELVELI - KATRA Exp,LCR,275,275,2,14
+16787,TIRUNELVELI - KATRA Exp,BQI,284,284,2,15
+16787,TIRUNELVELI - KATRA Exp,BDY,294,294,2,16
+16787,TIRUNELVELI - KATRA Exp,TNGR,299,299,2,17
+16787,TIRUNELVELI - KATRA Exp,MAP,305,305,2,18
+16787,TIRUNELVELI - KATRA Exp,DPI,312,312,2,19
+16787,TIRUNELVELI - KATRA Exp,DST,319,319,2,20
+16787,TIRUNELVELI - KATRA Exp,SLY,327,327,2,21
+16787,TIRUNELVELI - KATRA Exp,KNNT,333,333,2,22
+16787,TIRUNELVELI - KATRA Exp,KEY,338,338,2,23
+16787,TIRUNELVELI - KATRA Exp,MOLK,,,1,24
+16787,TIRUNELVELI - KATRA Exp,TPT,348,348,2,25
+16787,TIRUNELVELI - KATRA Exp,JTJ,355,360,2,26
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,JTJ,508,510,3,0
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,TPT,515,515,3,1
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,MOLK,,,1,2
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,KEY,522,522,3,3
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,KNNT,526,526,3,4
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,SLY,531,531,3,5
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,DST,536,536,3,6
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,DPI,542,542,3,7
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,MAP,547,547,3,8
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,TNGR,551,551,3,9
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,BDY,555,555,3,10
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,BQI,562,562,3,11
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,LCR,569,569,3,12
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,DSPT,575,575,3,13
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,TNT,580,580,3,14
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,KPPR,587,587,3,15
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,MGSJ,589,589,3,16
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,SA,590,595,3,17
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,NEA,603,603,3,18
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,VRPD,607,607,3,19
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,DVBH,,,1,20
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,DC,619,619,3,21
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,MVPM,633,633,3,22
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,SGE,639,639,3,23
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,ANU,648,648,3,24
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,CV,660,660,3,25
+12516,GUWAHATI - TRIVANDRUM CENTRAL EXP,ED,665,675,3,26
+17229,Sabari Express,ED,1100,1110,1,0
+17229,Sabari Express,CV,1114,1114,1,1
+17229,Sabari Express,ANU,1124,1124,1,2
+17229,Sabari Express,SGE,1131,1131,1,3
+17229,Sabari Express,MVPM,1135,1135,1,4
+17229,Sabari Express,DC,1146,1146,1,5
+17229,Sabari Express,VRPD,1156,1156,1,6
+17229,Sabari Express,NEA,1159,1159,1,7
+17229,Sabari Express,SA,1165,1170,1,8
+17229,Sabari Express,MGSJ,1172,1172,1,9
+17229,Sabari Express,KPPR,1174,1174,1,10
+17229,Sabari Express,TNT,1181,1181,1,11
+17229,Sabari Express,DSPT,1185,1185,1,12
+17229,Sabari Express,LCR,1192,1192,1,13
+17229,Sabari Express,BQI,1198,1198,1,14
+17229,Sabari Express,BDY,1205,1205,1,15
+17229,Sabari Express,TNGR,1209,1209,1,16
+17229,Sabari Express,MAP,1213,1215,1,17
+17229,Sabari Express,DPI,1224,1224,1,18
+17229,Sabari Express,DST,1234,1234,1,19
+17229,Sabari Express,SLY,1244,1244,1,20
+17229,Sabari Express,KNNT,1252,1252,1,21
+17229,Sabari Express,KEY,1259,1259,1,22
+17229,Sabari Express,TPT,1272,1272,1,23
+17229,Sabari Express,JTJ,1280,1285,1,24
+12970,Jaipur-Coimbatore Express,JTJ,798,800,3,0
+12970,Jaipur-Coimbatore Express,TPT,806,806,3,1
+12970,Jaipur-Coimbatore Express,KEY,814,814,3,2
+12970,Jaipur-Coimbatore Express,KNNT,818,818,3,3
+12970,Jaipur-Coimbatore Express,SLY,823,823,3,4
+12970,Jaipur-Coimbatore Express,DST,830,830,3,5
+12970,Jaipur-Coimbatore Express,DPI,836,836,3,6
+12970,Jaipur-Coimbatore Express,MAP,841,841,3,7
+12970,Jaipur-Coimbatore Express,TNGR,846,846,3,8
+12970,Jaipur-Coimbatore Express,BDY,851,851,3,9
+12970,Jaipur-Coimbatore Express,BQI,858,858,3,10
+12970,Jaipur-Coimbatore Express,LCR,866,866,3,11
+12970,Jaipur-Coimbatore Express,DSPT,873,873,3,12
+12970,Jaipur-Coimbatore Express,TNT,879,879,3,13
+12970,Jaipur-Coimbatore Express,KPPR,886,886,3,14
+12970,Jaipur-Coimbatore Express,MGSJ,889,889,3,15
+12970,Jaipur-Coimbatore Express,SA,890,895,3,16
+12970,Jaipur-Coimbatore Express,NEA,901,901,3,17
+12970,Jaipur-Coimbatore Express,VRPD,904,904,3,18
+12970,Jaipur-Coimbatore Express,DC,914,914,3,19
+12970,Jaipur-Coimbatore Express,MVPM,925,925,3,20
+12970,Jaipur-Coimbatore Express,SGE,929,929,3,21
+12970,Jaipur-Coimbatore Express,ANU,936,936,3,22
+12970,Jaipur-Coimbatore Express,CV,945,945,3,23
+12970,Jaipur-Coimbatore Express,ED,950,960,3,24
+12511,Rapti Sagar Express,JTJ,195,200,3,0
+12511,Rapti Sagar Express,TPT,205,205,3,1
+12511,Rapti Sagar Express,KEY,213,213,3,2
+12511,Rapti Sagar Express,KNNT,217,217,3,3
+12511,Rapti Sagar Express,SLY,222,222,3,4
+12511,Rapti Sagar Express,DST,228,228,3,5
+12511,Rapti Sagar Express,DPI,234,234,3,6
+12511,Rapti Sagar Express,MAP,239,239,3,7
+12511,Rapti Sagar Express,TNGR,243,243,3,8
+12511,Rapti Sagar Express,BDY,248,248,3,9
+12511,Rapti Sagar Express,BQI,255,255,3,10
+12511,Rapti Sagar Express,LCR,262,262,3,11
+12511,Rapti Sagar Express,DSPT,269,269,3,12
+12511,Rapti Sagar Express,TNT,274,274,3,13
+12511,Rapti Sagar Express,KPPR,281,281,3,14
+12511,Rapti Sagar Express,MGSJ,284,284,3,15
+12511,Rapti Sagar Express,SA,285,290,3,16
+12511,Rapti Sagar Express,NEA,299,299,3,17
+12511,Rapti Sagar Express,VRPD,302,302,3,18
+12511,Rapti Sagar Express,DC,315,315,3,19
+12511,Rapti Sagar Express,MVPM,331,331,3,20
+12511,Rapti Sagar Express,SGE,337,337,3,21
+12511,Rapti Sagar Express,ANU,346,346,3,22
+12511,Rapti Sagar Express,CV,358,358,3,23
+12511,Rapti Sagar Express,ED,365,375,3,24
+12625,Kerala Express,ED,1310,1320,1,0
+12625,Kerala Express,CV,1324,1324,1,1
+12625,Kerala Express,ANU,1334,1334,1,2
+12625,Kerala Express,SGE,1341,1341,1,3
+12625,Kerala Express,MVPM,1345,1345,1,4
+12625,Kerala Express,DC,1356,1356,1,5
+12625,Kerala Express,VRPD,1366,1366,1,6
+12625,Kerala Express,NEA,1369,1369,1,7
+12625,Kerala Express,SA,1375,1380,1,8
+12625,Kerala Express,MGSJ,1383,1383,1,9
+12625,Kerala Express,KPPR,1385,1385,1,10
+12625,Kerala Express,TNT,1394,1394,1,11
+12625,Kerala Express,DSPT,1400,1400,1,12
+12625,Kerala Express,LCR,1408,1408,1,13
+12625,Kerala Express,BQI,1416,1416,1,14
+12625,Kerala Express,BDY,1425,1425,1,15
+12625,Kerala Express,TNGR,1430,1430,1,16
+12625,Kerala Express,MAP,1435,1435,1,17
+12625,Kerala Express,DPI,1,1,2,18
+12625,Kerala Express,DST,8,8,2,19
+12625,Kerala Express,SLY,15,15,2,20
+12625,Kerala Express,KNNT,21,21,2,21
+12625,Kerala Express,KEY,26,26,2,22
+12625,Kerala Express,TPT,35,35,2,23
+12625,Kerala Express,JTJ,40,45,2,24
+12601,Chennai Mangalore Mail,JTJ,1410,1412,1,0
+12601,Chennai Mangalore Mail,TPT,1418,1418,1,1
+12601,Chennai Mangalore Mail,KEY,1426,1426,1,2
+12601,Chennai Mangalore Mail,KNNT,1431,1431,1,3
+12601,Chennai Mangalore Mail,SLY,1436,1436,1,4
+12601,Chennai Mangalore Mail,DST,3,3,2,5
+12601,Chennai Mangalore Mail,DPI,9,9,2,6
+12601,Chennai Mangalore Mail,MAP,15,15,2,7
+12601,Chennai Mangalore Mail,TNGR,20,20,2,8
+12601,Chennai Mangalore Mail,BDY,25,25,2,9
+12601,Chennai Mangalore Mail,BQI,32,32,2,10
+12601,Chennai Mangalore Mail,LCR,40,40,2,11
+12601,Chennai Mangalore Mail,DSPT,48,48,2,12
+12601,Chennai Mangalore Mail,TNT,53,53,2,13
+12601,Chennai Mangalore Mail,KPPR,61,61,2,14
+12601,Chennai Mangalore Mail,MGSJ,64,64,2,15
+12601,Chennai Mangalore Mail,SA,65,70,2,16
+12601,Chennai Mangalore Mail,NEA,77,77,2,17
+12601,Chennai Mangalore Mail,VRPD,79,79,2,18
+12601,Chennai Mangalore Mail,DC,89,89,2,19
+12601,Chennai Mangalore Mail,MVPM,100,100,2,20
+12601,Chennai Mangalore Mail,SGE,105,105,2,21
+12601,Chennai Mangalore Mail,ANU,112,112,2,22
+12601,Chennai Mangalore Mail,CV,121,121,2,23
+12601,Chennai Mangalore Mail,ED,125,130,2,24
+16627,West Coast Express,JTJ,888,890,1,0
+16627,West Coast Express,TPT,903,905,1,1
+16627,West Coast Express,KEY,913,913,1,2
+16627,West Coast Express,KNNT,917,917,1,3
+16627,West Coast Express,SLY,922,922,1,4
+16627,West Coast Express,DST,928,928,1,5
+16627,West Coast Express,DPI,933,933,1,6
+16627,West Coast Express,MAP,938,940,1,7
+16627,West Coast Express,TNGR,945,945,1,8
+16627,West Coast Express,BDY,950,950,1,9
+16627,West Coast Express,BQI,958,960,1,10
+16627,West Coast Express,LCR,969,969,1,11
+16627,West Coast Express,DSPT,978,978,1,12
+16627,West Coast Express,TNT,984,984,1,13
+16627,West Coast Express,KPPR,994,994,1,14
+16627,West Coast Express,MGSJ,997,997,1,15
+16627,West Coast Express,SA,1000,1005,1,16
+16627,West Coast Express,NEA,1011,1011,1,17
+16627,West Coast Express,VRPD,1013,1013,1,18
+16627,West Coast Express,DC,1022,1022,1,19
+16627,West Coast Express,MVPM,1032,1032,1,20
+16627,West Coast Express,SGE,1038,1040,1,21
+16627,West Coast Express,ANU,1055,1055,1,22
+16627,West Coast Express,CV,1075,1075,1,23
+16627,West Coast Express,ED,1080,1090,1,24
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,ED,445,450,1,0
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,CV,454,454,1,1
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,ANU,463,463,1,2
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,SGE,470,470,1,3
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,MVPM,475,475,1,4
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,DC,486,486,1,5
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,VRPD,495,495,1,6
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,NEA,498,498,1,7
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,SA,505,510,1,8
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,MGSJ,513,513,1,9
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,KPPR,515,515,1,10
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,TNT,524,524,1,11
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,DSPT,530,530,1,12
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,LCR,538,538,1,13
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,BQI,546,546,1,14
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,BDY,555,555,1,15
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,TNGR,560,560,1,16
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,MAP,565,565,1,17
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,DPI,572,572,1,18
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,DST,579,579,1,19
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,SLY,586,586,1,20
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,KNNT,591,591,1,21
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,KEY,596,596,1,22
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,TPT,605,605,1,23
+12758,Coimbatore-Tirupati (Triweekly) SF Intercity Expre,JTJ,612,612,1,24
+17230,Sabari Express,JTJ,228,230,2,0
+17230,Sabari Express,TPT,235,235,2,1
+17230,Sabari Express,KEY,243,243,2,2
+17230,Sabari Express,KNNT,248,248,2,3
+17230,Sabari Express,SLY,252,252,2,4
+17230,Sabari Express,DST,259,259,2,5
+17230,Sabari Express,DPI,265,265,2,6
+17230,Sabari Express,MAP,269,270,2,7
+17230,Sabari Express,TNGR,275,275,2,8
+17230,Sabari Express,BDY,281,281,2,9
+17230,Sabari Express,BQI,289,289,2,10
+17230,Sabari Express,LCR,298,298,2,11
+17230,Sabari Express,DSPT,305,305,2,12
+17230,Sabari Express,TNT,311,311,2,13
+17230,Sabari Express,KPPR,320,320,2,14
+17230,Sabari Express,MGSJ,323,323,2,15
+17230,Sabari Express,SA,325,330,2,16
+17230,Sabari Express,NEA,338,338,2,17
+17230,Sabari Express,VRPD,341,341,2,18
+17230,Sabari Express,DC,352,352,2,19
+17230,Sabari Express,MVPM,366,366,2,20
+17230,Sabari Express,SGE,371,371,2,21
+17230,Sabari Express,ANU,379,379,2,22
+17230,Sabari Express,CV,390,390,2,23
+17230,Sabari Express,ED,395,405,2,24
+06012,Kollam Chennai Central (Weekly) SF Special,ED,1280,1285,1,0
+06012,Kollam Chennai Central (Weekly) SF Special,CV,1289,1289,1,1
+06012,Kollam Chennai Central (Weekly) SF Special,ANU,1298,1298,1,2
+06012,Kollam Chennai Central (Weekly) SF Special,SGE,1305,1305,1,3
+06012,Kollam Chennai Central (Weekly) SF Special,MVPM,1310,1310,1,4
+06012,Kollam Chennai Central (Weekly) SF Special,DC,1320,1320,1,5
+06012,Kollam Chennai Central (Weekly) SF Special,VRPD,1330,1330,1,6
+06012,Kollam Chennai Central (Weekly) SF Special,NEA,1332,1332,1,7
+06012,Kollam Chennai Central (Weekly) SF Special,SA,1340,1345,1,8
+06012,Kollam Chennai Central (Weekly) SF Special,MGSJ,1347,1347,1,9
+06012,Kollam Chennai Central (Weekly) SF Special,KPPR,1350,1350,1,10
+06012,Kollam Chennai Central (Weekly) SF Special,TNT,1357,1357,1,11
+06012,Kollam Chennai Central (Weekly) SF Special,DSPT,1362,1362,1,12
+06012,Kollam Chennai Central (Weekly) SF Special,LCR,1369,1369,1,13
+06012,Kollam Chennai Central (Weekly) SF Special,BQI,1377,1377,1,14
+06012,Kollam Chennai Central (Weekly) SF Special,BDY,1384,1384,1,15
+06012,Kollam Chennai Central (Weekly) SF Special,TNGR,1389,1389,1,16
+06012,Kollam Chennai Central (Weekly) SF Special,MAP,1393,1393,1,17
+06012,Kollam Chennai Central (Weekly) SF Special,DPI,1398,1398,1,18
+06012,Kollam Chennai Central (Weekly) SF Special,DST,1404,1404,1,19
+06012,Kollam Chennai Central (Weekly) SF Special,SLY,1411,1411,1,20
+06012,Kollam Chennai Central (Weekly) SF Special,KNNT,1415,1415,1,21
+06012,Kollam Chennai Central (Weekly) SF Special,KEY,1420,1420,1,22
+06012,Kollam Chennai Central (Weekly) SF Special,TPT,1428,1428,1,23
+06012,Kollam Chennai Central (Weekly) SF Special,JTJ,1433,1435,1,24
+16322,Tiruvananthapuram Bangalore Weekly Express,ED,155,160,2,0
+16322,Tiruvananthapuram Bangalore Weekly Express,CV,164,164,2,1
+16322,Tiruvananthapuram Bangalore Weekly Express,ANU,173,173,2,2
+16322,Tiruvananthapuram Bangalore Weekly Express,SGE,180,180,2,3
+16322,Tiruvananthapuram Bangalore Weekly Express,MVPM,185,185,2,4
+16322,Tiruvananthapuram Bangalore Weekly Express,DC,196,196,2,5
+16322,Tiruvananthapuram Bangalore Weekly Express,VRPD,205,205,2,6
+16322,Tiruvananthapuram Bangalore Weekly Express,NEA,208,208,2,7
+16322,Tiruvananthapuram Bangalore Weekly Express,SA,215,220,2,8
+16322,Tiruvananthapuram Bangalore Weekly Express,MGSJ,222,222,2,9
+16322,Tiruvananthapuram Bangalore Weekly Express,KPPR,225,225,2,10
+16322,Tiruvananthapuram Bangalore Weekly Express,TNT,232,232,2,11
+16322,Tiruvananthapuram Bangalore Weekly Express,DSPT,238,238,2,12
+16322,Tiruvananthapuram Bangalore Weekly Express,LCR,245,245,2,13
+16322,Tiruvananthapuram Bangalore Weekly Express,BQI,252,252,2,14
+16322,Tiruvananthapuram Bangalore Weekly Express,BDY,260,260,2,15
+16322,Tiruvananthapuram Bangalore Weekly Express,TNGR,264,264,2,16
+16322,Tiruvananthapuram Bangalore Weekly Express,MAP,269,269,2,17
+16322,Tiruvananthapuram Bangalore Weekly Express,DPI,275,275,2,18
+16322,Tiruvananthapuram Bangalore Weekly Express,DST,281,281,2,19
+16322,Tiruvananthapuram Bangalore Weekly Express,SLY,287,287,2,20
+16322,Tiruvananthapuram Bangalore Weekly Express,KNNT,292,292,2,21
+16322,Tiruvananthapuram Bangalore Weekly Express,KEY,296,296,2,22
+16322,Tiruvananthapuram Bangalore Weekly Express,TPT,303,305,2,23
+16322,Tiruvananthapuram Bangalore Weekly Express,JTJ,313,313,2,24
+12679,ChennaiCentral-Coimbatore InterCity,JTJ,1053,1055,1,0
+12679,ChennaiCentral-Coimbatore InterCity,TPT,1060,1060,1,1
+12679,ChennaiCentral-Coimbatore InterCity,KEY,1068,1068,1,2
+12679,ChennaiCentral-Coimbatore InterCity,KNNT,1073,1073,1,3
+12679,ChennaiCentral-Coimbatore InterCity,SLY,1077,1077,1,4
+12679,ChennaiCentral-Coimbatore InterCity,DST,1084,1084,1,5
+12679,ChennaiCentral-Coimbatore InterCity,DPI,1090,1090,1,6
+12679,ChennaiCentral-Coimbatore InterCity,MAP,1094,1095,1,7
+12679,ChennaiCentral-Coimbatore InterCity,TNGR,1100,1100,1,8
+12679,ChennaiCentral-Coimbatore InterCity,BDY,1106,1106,1,9
+12679,ChennaiCentral-Coimbatore InterCity,BQI,1114,1115,1,10
+12679,ChennaiCentral-Coimbatore InterCity,LCR,1125,1125,1,11
+12679,ChennaiCentral-Coimbatore InterCity,DSPT,1134,1134,1,12
+12679,ChennaiCentral-Coimbatore InterCity,TNT,1141,1141,1,13
+12679,ChennaiCentral-Coimbatore InterCity,KPPR,1150,1150,1,14
+12679,ChennaiCentral-Coimbatore InterCity,MGSJ,1153,1153,1,15
+12679,ChennaiCentral-Coimbatore InterCity,SA,1157,1160,1,16
+12679,ChennaiCentral-Coimbatore InterCity,NEA,1167,1167,1,17
+12679,ChennaiCentral-Coimbatore InterCity,VRPD,1170,1170,1,18
+12679,ChennaiCentral-Coimbatore InterCity,DC,1181,1181,1,19
+12679,ChennaiCentral-Coimbatore InterCity,MVPM,1193,1193,1,20
+12679,ChennaiCentral-Coimbatore InterCity,SGE,1198,1198,1,21
+12679,ChennaiCentral-Coimbatore InterCity,ANU,1206,1206,1,22
+12679,ChennaiCentral-Coimbatore InterCity,CV,1215,1215,1,23
+12679,ChennaiCentral-Coimbatore InterCity,ED,1220,1225,1,24
+06621,Coimbatore-Yesvantpur SF Special,ED,445,450,1,0
+06621,Coimbatore-Yesvantpur SF Special,CV,454,454,1,1
+06621,Coimbatore-Yesvantpur SF Special,ANU,463,463,1,2
+06621,Coimbatore-Yesvantpur SF Special,SGE,470,470,1,3
+06621,Coimbatore-Yesvantpur SF Special,MVPM,475,475,1,4
+06621,Coimbatore-Yesvantpur SF Special,DC,486,486,1,5
+06621,Coimbatore-Yesvantpur SF Special,VRPD,495,495,1,6
+06621,Coimbatore-Yesvantpur SF Special,NEA,498,498,1,7
+06621,Coimbatore-Yesvantpur SF Special,SA,505,510,1,8
+06621,Coimbatore-Yesvantpur SF Special,MGSJ,512,512,1,9
+06621,Coimbatore-Yesvantpur SF Special,KPPR,515,515,1,10
+06621,Coimbatore-Yesvantpur SF Special,TNT,522,522,1,11
+06621,Coimbatore-Yesvantpur SF Special,DSPT,528,528,1,12
+06621,Coimbatore-Yesvantpur SF Special,LCR,535,535,1,13
+06621,Coimbatore-Yesvantpur SF Special,BQI,542,542,1,14
+06621,Coimbatore-Yesvantpur SF Special,BDY,550,550,1,15
+06621,Coimbatore-Yesvantpur SF Special,TNGR,554,554,1,16
+06621,Coimbatore-Yesvantpur SF Special,MAP,558,560,1,17
+06621,Coimbatore-Yesvantpur SF Special,DPI,566,566,1,18
+06621,Coimbatore-Yesvantpur SF Special,DST,573,573,1,19
+06621,Coimbatore-Yesvantpur SF Special,SLY,580,580,1,20
+06621,Coimbatore-Yesvantpur SF Special,KNNT,585,585,1,21
+06621,Coimbatore-Yesvantpur SF Special,KEY,590,590,1,22
+06621,Coimbatore-Yesvantpur SF Special,TPT,598,600,1,23
+06621,Coimbatore-Yesvantpur SF Special,JTJ,607,607,1,24
+12685,Chennai - Mangalore Express,JTJ,1197,1197,1,0
+12685,Chennai - Mangalore Express,TPT,1203,1203,1,1
+12685,Chennai - Mangalore Express,KEY,1212,1212,1,2
+12685,Chennai - Mangalore Express,KNNT,1216,1216,1,3
+12685,Chennai - Mangalore Express,SLY,1221,1221,1,4
+12685,Chennai - Mangalore Express,DST,1228,1228,1,5
+12685,Chennai - Mangalore Express,DPI,1235,1235,1,6
+12685,Chennai - Mangalore Express,MAP,1239,1240,1,7
+12685,Chennai - Mangalore Express,TNGR,1245,1245,1,8
+12685,Chennai - Mangalore Express,BDY,1251,1251,1,9
+12685,Chennai - Mangalore Express,BQI,1259,1259,1,10
+12685,Chennai - Mangalore Express,LCR,1268,1268,1,11
+12685,Chennai - Mangalore Express,DSPT,1275,1275,1,12
+12685,Chennai - Mangalore Express,TNT,1281,1281,1,13
+12685,Chennai - Mangalore Express,KPPR,1290,1290,1,14
+12685,Chennai - Mangalore Express,MGSJ,1293,1293,1,15
+12685,Chennai - Mangalore Express,SA,1295,1300,1,16
+12685,Chennai - Mangalore Express,NEA,1307,1307,1,17
+12685,Chennai - Mangalore Express,VRPD,1310,1310,1,18
+12685,Chennai - Mangalore Express,DC,1321,1321,1,19
+12685,Chennai - Mangalore Express,MVPM,1333,1333,1,20
+12685,Chennai - Mangalore Express,SGE,1338,1338,1,21
+12685,Chennai - Mangalore Express,ANU,1346,1346,1,22
+12685,Chennai - Mangalore Express,CV,1355,1355,1,23
+12685,Chennai - Mangalore Express,ED,1360,1365,1,24
+12686,Mangalore - Chennai Express,ED,100,105,2,0
+12686,Mangalore - Chennai Express,CV,109,109,2,1
+12686,Mangalore - Chennai Express,ANU,118,118,2,2
+12686,Mangalore - Chennai Express,SGE,125,125,2,3
+12686,Mangalore - Chennai Express,MVPM,130,130,2,4
+12686,Mangalore - Chennai Express,DC,141,141,2,5
+12686,Mangalore - Chennai Express,VRPD,150,150,2,6
+12686,Mangalore - Chennai Express,NEA,153,153,2,7
+12686,Mangalore - Chennai Express,SA,160,165,2,8
+12686,Mangalore - Chennai Express,MGSJ,168,168,2,9
+12686,Mangalore - Chennai Express,KPPR,170,170,2,10
+12686,Mangalore - Chennai Express,TNT,179,179,2,11
+12686,Mangalore - Chennai Express,DSPT,184,184,2,12
+12686,Mangalore - Chennai Express,LCR,192,192,2,13
+12686,Mangalore - Chennai Express,BQI,201,201,2,14
+12686,Mangalore - Chennai Express,BDY,209,209,2,15
+12686,Mangalore - Chennai Express,TNGR,214,214,2,16
+12686,Mangalore - Chennai Express,MAP,219,220,2,17
+12686,Mangalore - Chennai Express,DPI,227,227,2,18
+12686,Mangalore - Chennai Express,DST,234,234,2,19
+12686,Mangalore - Chennai Express,SLY,242,242,2,20
+12686,Mangalore - Chennai Express,KNNT,247,247,2,21
+12686,Mangalore - Chennai Express,KEY,253,253,2,22
+12686,Mangalore - Chennai Express,TPT,263,263,2,23
+12686,Mangalore - Chennai Express,JTJ,269,269,2,24
+12681,Chennai-Coimbatore Express,JTJ,91,91,2,0
+12681,Chennai-Coimbatore Express,TPT,97,97,2,1
+12681,Chennai-Coimbatore Express,KEY,106,106,2,2
+12681,Chennai-Coimbatore Express,KNNT,111,111,2,3
+12681,Chennai-Coimbatore Express,SLY,117,117,2,4
+12681,Chennai-Coimbatore Express,DST,124,124,2,5
+12681,Chennai-Coimbatore Express,DPI,131,131,2,6
+12681,Chennai-Coimbatore Express,MAP,137,137,2,7
+12681,Chennai-Coimbatore Express,TNGR,142,142,2,8
+12681,Chennai-Coimbatore Express,BDY,148,148,2,9
+12681,Chennai-Coimbatore Express,BQI,156,156,2,10
+12681,Chennai-Coimbatore Express,LCR,164,164,2,11
+12681,Chennai-Coimbatore Express,DSPT,172,172,2,12
+12681,Chennai-Coimbatore Express,TNT,178,178,2,13
+12681,Chennai-Coimbatore Express,KPPR,187,187,2,14
+12681,Chennai-Coimbatore Express,MGSJ,189,189,2,15
+12681,Chennai-Coimbatore Express,SA,190,195,2,16
+12681,Chennai-Coimbatore Express,NEA,203,203,2,17
+12681,Chennai-Coimbatore Express,VRPD,206,206,2,18
+12681,Chennai-Coimbatore Express,DC,217,217,2,19
+12681,Chennai-Coimbatore Express,MVPM,231,231,2,20
+12681,Chennai-Coimbatore Express,SGE,236,236,2,21
+12681,Chennai-Coimbatore Express,ANU,244,244,2,22
+12681,Chennai-Coimbatore Express,CV,255,255,2,23
+12681,Chennai-Coimbatore Express,ED,260,265,2,24
+16734,Okha-Rameswaram Express,JTJ,578,580,3,0
+16734,Okha-Rameswaram Express,TPT,586,586,3,1
+16734,Okha-Rameswaram Express,KEY,595,595,3,2
+16734,Okha-Rameswaram Express,KNNT,599,599,3,3
+16734,Okha-Rameswaram Express,SLY,604,604,3,4
+16734,Okha-Rameswaram Express,DST,611,611,3,5
+16734,Okha-Rameswaram Express,DPI,618,618,3,6
+16734,Okha-Rameswaram Express,MAP,624,624,3,7
+16734,Okha-Rameswaram Express,TNGR,629,629,3,8
+16734,Okha-Rameswaram Express,BDY,634,634,3,9
+16734,Okha-Rameswaram Express,BQI,642,642,3,10
+16734,Okha-Rameswaram Express,LCR,650,650,3,11
+16734,Okha-Rameswaram Express,DSPT,657,657,3,12
+16734,Okha-Rameswaram Express,TNT,663,663,3,13
+16734,Okha-Rameswaram Express,KPPR,671,671,3,14
+16734,Okha-Rameswaram Express,MGSJ,674,674,3,15
+16734,Okha-Rameswaram Express,SA,675,680,3,16
+16734,Okha-Rameswaram Express,NEA,687,687,3,17
+16734,Okha-Rameswaram Express,VRPD,690,690,3,18
+16734,Okha-Rameswaram Express,DC,700,700,3,19
+16734,Okha-Rameswaram Express,MVPM,712,712,3,20
+16734,Okha-Rameswaram Express,SGE,717,717,3,21
+16734,Okha-Rameswaram Express,ANU,725,725,3,22
+16734,Okha-Rameswaram Express,CV,735,735,3,23
+16734,Okha-Rameswaram Express,ED,740,750,3,24
+12695,Chennai-Trivandrum SuperFast Express,JTJ,1118,1120,1,0
+12695,Chennai-Trivandrum SuperFast Express,TPT,1125,1125,1,1
+12695,Chennai-Trivandrum SuperFast Express,KEY,1133,1133,1,2
+12695,Chennai-Trivandrum SuperFast Express,KNNT,1137,1137,1,3
+12695,Chennai-Trivandrum SuperFast Express,SLY,1142,1142,1,4
+12695,Chennai-Trivandrum SuperFast Express,DST,1148,1148,1,5
+12695,Chennai-Trivandrum SuperFast Express,DPI,1154,1154,1,6
+12695,Chennai-Trivandrum SuperFast Express,MAP,1159,1159,1,7
+12695,Chennai-Trivandrum SuperFast Express,TNGR,1163,1163,1,8
+12695,Chennai-Trivandrum SuperFast Express,BDY,1168,1168,1,9
+12695,Chennai-Trivandrum SuperFast Express,BQI,1175,1175,1,10
+12695,Chennai-Trivandrum SuperFast Express,LCR,1182,1182,1,11
+12695,Chennai-Trivandrum SuperFast Express,DSPT,1188,1188,1,12
+12695,Chennai-Trivandrum SuperFast Express,TNT,1193,1193,1,13
+12695,Chennai-Trivandrum SuperFast Express,KPPR,1201,1201,1,14
+12695,Chennai-Trivandrum SuperFast Express,MGSJ,1203,1203,1,15
+12695,Chennai-Trivandrum SuperFast Express,SA,1205,1210,1,16
+12695,Chennai-Trivandrum SuperFast Express,NEA,1218,1218,1,17
+12695,Chennai-Trivandrum SuperFast Express,VRPD,1222,1222,1,18
+12695,Chennai-Trivandrum SuperFast Express,DC,1234,1234,1,19
+12695,Chennai-Trivandrum SuperFast Express,MVPM,1248,1248,1,20
+12695,Chennai-Trivandrum SuperFast Express,SGE,1254,1254,1,21
+12695,Chennai-Trivandrum SuperFast Express,ANU,1263,1263,1,22
+12695,Chennai-Trivandrum SuperFast Express,CV,1274,1274,1,23
+12695,Chennai-Trivandrum SuperFast Express,ED,1280,1285,1,24
+12787,Bilaspur Tirunelveli SF Express,JTJ,768,768,2,0
+12787,Bilaspur Tirunelveli SF Express,TPT,774,774,2,1
+12787,Bilaspur Tirunelveli SF Express,KEY,784,784,2,2
+12787,Bilaspur Tirunelveli SF Express,KNNT,789,789,2,3
+12787,Bilaspur Tirunelveli SF Express,SLY,795,795,2,4
+12787,Bilaspur Tirunelveli SF Express,DST,802,802,2,5
+12787,Bilaspur Tirunelveli SF Express,DPI,809,809,2,6
+12787,Bilaspur Tirunelveli SF Express,MAP,816,816,2,7
+12787,Bilaspur Tirunelveli SF Express,TNGR,821,821,2,8
+12787,Bilaspur Tirunelveli SF Express,BDY,826,826,2,9
+12787,Bilaspur Tirunelveli SF Express,BQI,835,835,2,10
+12787,Bilaspur Tirunelveli SF Express,LCR,844,844,2,11
+12787,Bilaspur Tirunelveli SF Express,DSPT,852,852,2,12
+12787,Bilaspur Tirunelveli SF Express,TNT,858,858,2,13
+12787,Bilaspur Tirunelveli SF Express,KPPR,867,867,2,14
+12787,Bilaspur Tirunelveli SF Express,MGSJ,870,870,2,15
+12787,Bilaspur Tirunelveli SF Express,SA,870,875,2,16
+12787,Bilaspur Tirunelveli SF Express,NEA,883,883,2,17
+12787,Bilaspur Tirunelveli SF Express,VRPD,887,887,2,18
+12787,Bilaspur Tirunelveli SF Express,DC,899,899,2,19
+12787,Bilaspur Tirunelveli SF Express,MVPM,913,913,2,20
+12787,Bilaspur Tirunelveli SF Express,SGE,919,919,2,21
+12787,Bilaspur Tirunelveli SF Express,ANU,927,927,2,22
+12787,Bilaspur Tirunelveli SF Express,CV,939,939,2,23
+12787,Bilaspur Tirunelveli SF Express,ED,945,955,2,24
+08569,Visakhapatnam-Kollam Sabarimalai Special,JTJ,115,120,2,0
+08569,Visakhapatnam-Kollam Sabarimalai Special,TPT,125,125,2,1
+08569,Visakhapatnam-Kollam Sabarimalai Special,KEY,133,133,2,2
+08569,Visakhapatnam-Kollam Sabarimalai Special,KNNT,137,137,2,3
+08569,Visakhapatnam-Kollam Sabarimalai Special,SLY,142,142,2,4
+08569,Visakhapatnam-Kollam Sabarimalai Special,DST,148,148,2,5
+08569,Visakhapatnam-Kollam Sabarimalai Special,DPI,154,154,2,6
+08569,Visakhapatnam-Kollam Sabarimalai Special,MAP,159,159,2,7
+08569,Visakhapatnam-Kollam Sabarimalai Special,TNGR,163,163,2,8
+08569,Visakhapatnam-Kollam Sabarimalai Special,BDY,168,168,2,9
+08569,Visakhapatnam-Kollam Sabarimalai Special,BQI,175,175,2,10
+08569,Visakhapatnam-Kollam Sabarimalai Special,LCR,182,182,2,11
+08569,Visakhapatnam-Kollam Sabarimalai Special,DSPT,188,188,2,12
+08569,Visakhapatnam-Kollam Sabarimalai Special,TNT,193,193,2,13
+08569,Visakhapatnam-Kollam Sabarimalai Special,KPPR,201,201,2,14
+08569,Visakhapatnam-Kollam Sabarimalai Special,MGSJ,203,203,2,15
+08569,Visakhapatnam-Kollam Sabarimalai Special,SA,205,210,2,16
+08569,Visakhapatnam-Kollam Sabarimalai Special,NEA,217,217,2,17
+08569,Visakhapatnam-Kollam Sabarimalai Special,VRPD,220,220,2,18
+08569,Visakhapatnam-Kollam Sabarimalai Special,DC,230,230,2,19
+08569,Visakhapatnam-Kollam Sabarimalai Special,MVPM,243,243,2,20
+08569,Visakhapatnam-Kollam Sabarimalai Special,SGE,248,248,2,21
+08569,Visakhapatnam-Kollam Sabarimalai Special,ANU,255,255,2,22
+08569,Visakhapatnam-Kollam Sabarimalai Special,CV,265,265,2,23
+08569,Visakhapatnam-Kollam Sabarimalai Special,ED,270,275,2,24
+12696,Trivandrum-Chennai Superfast Express,ED,220,225,2,0
+12696,Trivandrum-Chennai Superfast Express,CV,229,229,2,1
+12696,Trivandrum-Chennai Superfast Express,ANU,239,239,2,2
+12696,Trivandrum-Chennai Superfast Express,SGE,246,246,2,3
+12696,Trivandrum-Chennai Superfast Express,MVPM,250,250,2,4
+12696,Trivandrum-Chennai Superfast Express,DC,261,261,2,5
+12696,Trivandrum-Chennai Superfast Express,VRPD,271,271,2,6
+12696,Trivandrum-Chennai Superfast Express,NEA,274,274,2,7
+12696,Trivandrum-Chennai Superfast Express,SA,280,285,2,8
+12696,Trivandrum-Chennai Superfast Express,MGSJ,287,287,2,9
+12696,Trivandrum-Chennai Superfast Express,KPPR,290,290,2,10
+12696,Trivandrum-Chennai Superfast Express,TNT,298,298,2,11
+12696,Trivandrum-Chennai Superfast Express,DSPT,303,303,2,12
+12696,Trivandrum-Chennai Superfast Express,LCR,311,311,2,13
+12696,Trivandrum-Chennai Superfast Express,BQI,319,319,2,14
+12696,Trivandrum-Chennai Superfast Express,BDY,326,326,2,15
+12696,Trivandrum-Chennai Superfast Express,TNGR,332,332,2,16
+12696,Trivandrum-Chennai Superfast Express,MAP,336,336,2,17
+12696,Trivandrum-Chennai Superfast Express,DPI,342,342,2,18
+12696,Trivandrum-Chennai Superfast Express,DST,348,348,2,19
+12696,Trivandrum-Chennai Superfast Express,SLY,355,355,2,20
+12696,Trivandrum-Chennai Superfast Express,KNNT,360,360,2,21
+12696,Trivandrum-Chennai Superfast Express,KEY,365,365,2,22
+12696,Trivandrum-Chennai Superfast Express,TPT,373,373,2,23
+12696,Trivandrum-Chennai Superfast Express,JTJ,378,380,2,24
+16325,Ahilyanagari Express,JTJ,195,200,3,0
+16325,Ahilyanagari Express,TPT,205,205,3,1
+16325,Ahilyanagari Express,KEY,213,213,3,2
+16325,Ahilyanagari Express,KNNT,217,217,3,3
+16325,Ahilyanagari Express,SLY,222,222,3,4
+16325,Ahilyanagari Express,DST,228,228,3,5
+16325,Ahilyanagari Express,DPI,234,234,3,6
+16325,Ahilyanagari Express,MAP,239,239,3,7
+16325,Ahilyanagari Express,TNGR,243,243,3,8
+16325,Ahilyanagari Express,BDY,248,248,3,9
+16325,Ahilyanagari Express,BQI,255,255,3,10
+16325,Ahilyanagari Express,LCR,262,262,3,11
+16325,Ahilyanagari Express,DSPT,269,269,3,12
+16325,Ahilyanagari Express,TNT,274,274,3,13
+16325,Ahilyanagari Express,KPPR,281,281,3,14
+16325,Ahilyanagari Express,MGSJ,284,284,3,15
+16325,Ahilyanagari Express,SA,285,290,3,16
+16325,Ahilyanagari Express,NEA,299,299,3,17
+16325,Ahilyanagari Express,VRPD,303,303,3,18
+16325,Ahilyanagari Express,DC,316,316,3,19
+16325,Ahilyanagari Express,MVPM,331,331,3,20
+16325,Ahilyanagari Express,SGE,337,337,3,21
+16325,Ahilyanagari Express,ANU,347,347,3,22
+16325,Ahilyanagari Express,CV,359,359,3,23
+16325,Ahilyanagari Express,ED,365,375,3,24
+12676,Kovai Express,ED,940,945,1,0
+12676,Kovai Express,CV,949,949,1,1
+12676,Kovai Express,ANU,957,957,1,2
+12676,Kovai Express,SGE,964,964,1,3
+12676,Kovai Express,MVPM,968,968,1,4
+12676,Kovai Express,DC,978,978,1,5
+12676,Kovai Express,VRPD,987,987,1,6
+12676,Kovai Express,NEA,989,989,1,7
+12676,Kovai Express,SA,996,1000,1,8
+12676,Kovai Express,MGSJ,1002,1002,1,9
+12676,Kovai Express,KPPR,1004,1004,1,10
+12676,Kovai Express,TNT,1011,1011,1,11
+12676,Kovai Express,DSPT,1016,1016,1,12
+12676,Kovai Express,LCR,1022,1022,1,13
+12676,Kovai Express,BQI,1029,1029,1,14
+12676,Kovai Express,BDY,1035,1035,1,15
+12676,Kovai Express,TNGR,1040,1040,1,16
+12676,Kovai Express,MAP,1043,1045,1,17
+12676,Kovai Express,DPI,1053,1053,1,18
+12676,Kovai Express,DST,1061,1061,1,19
+12676,Kovai Express,SLY,1071,1071,1,20
+12676,Kovai Express,KNNT,1077,1077,1,21
+12676,Kovai Express,KEY,1084,1084,1,22
+12676,Kovai Express,TPT,1095,1095,1,23
+12676,Kovai Express,JTJ,1103,1105,1,24
+06006,Kollam-Chennai Central SF Special,ED,195,200,2,0
+06006,Kollam-Chennai Central SF Special,CV,205,205,2,1
+06006,Kollam-Chennai Central SF Special,ANU,214,214,2,2
+06006,Kollam-Chennai Central SF Special,SGE,221,221,2,3
+06006,Kollam-Chennai Central SF Special,MVPM,226,226,2,4
+06006,Kollam-Chennai Central SF Special,DC,237,237,2,5
+06006,Kollam-Chennai Central SF Special,VRPD,247,247,2,6
+06006,Kollam-Chennai Central SF Special,NEA,250,250,2,7
+06006,Kollam-Chennai Central SF Special,SA,257,260,2,8
+06006,Kollam-Chennai Central SF Special,MGSJ,263,263,2,9
+06006,Kollam-Chennai Central SF Special,KPPR,267,267,2,10
+06006,Kollam-Chennai Central SF Special,TNT,277,277,2,11
+06006,Kollam-Chennai Central SF Special,DSPT,284,284,2,12
+06006,Kollam-Chennai Central SF Special,LCR,294,294,2,13
+06006,Kollam-Chennai Central SF Special,BQI,305,305,2,14
+06006,Kollam-Chennai Central SF Special,BDY,315,315,2,15
+06006,Kollam-Chennai Central SF Special,TNGR,322,322,2,16
+06006,Kollam-Chennai Central SF Special,MAP,328,328,2,17
+06006,Kollam-Chennai Central SF Special,DPI,336,336,2,18
+06006,Kollam-Chennai Central SF Special,DST,344,344,2,19
+06006,Kollam-Chennai Central SF Special,SLY,353,353,2,20
+06006,Kollam-Chennai Central SF Special,KNNT,360,360,2,21
+06006,Kollam-Chennai Central SF Special,KEY,366,366,2,22
+06006,Kollam-Chennai Central SF Special,TPT,378,378,2,23
+06006,Kollam-Chennai Central SF Special,JTJ,385,400,2,24
+16628,West Coast Express,ED,505,515,2,0
+16628,West Coast Express,CV,521,521,2,1
+16628,West Coast Express,ANU,533,533,2,2
+16628,West Coast Express,SGE,539,540,2,3
+16628,West Coast Express,MVPM,544,544,2,4
+16628,West Coast Express,DC,555,555,2,5
+16628,West Coast Express,VRPD,564,564,2,6
+16628,West Coast Express,NEA,566,566,2,7
+16628,West Coast Express,SA,575,580,2,8
+16628,West Coast Express,MGSJ,583,583,2,9
+16628,West Coast Express,KPPR,585,585,2,10
+16628,West Coast Express,TNT,593,593,2,11
+16628,West Coast Express,DSPT,599,599,2,12
+16628,West Coast Express,LCR,606,606,2,13
+16628,West Coast Express,BQI,614,615,2,14
+16628,West Coast Express,BDY,623,623,2,15
+16628,West Coast Express,TNGR,628,628,2,16
+16628,West Coast Express,MAP,633,635,2,17
+16628,West Coast Express,DPI,641,641,2,18
+16628,West Coast Express,DST,648,648,2,19
+16628,West Coast Express,SLY,655,655,2,20
+16628,West Coast Express,KNNT,660,660,2,21
+16628,West Coast Express,KEY,665,665,2,22
+16628,West Coast Express,TPT,673,675,2,23
+16628,West Coast Express,JTJ,698,700,2,24
+12671,Nilgiri (Blue Mountain) Express,JTJ,1436,1436,1,0
+12671,Nilgiri (Blue Mountain) Express,TPT,2,2,2,1
+12671,Nilgiri (Blue Mountain) Express,KEY,10,10,2,2
+12671,Nilgiri (Blue Mountain) Express,KNNT,15,15,2,3
+12671,Nilgiri (Blue Mountain) Express,SLY,20,20,2,4
+12671,Nilgiri (Blue Mountain) Express,DST,27,27,2,5
+12671,Nilgiri (Blue Mountain) Express,DPI,33,33,2,6
+12671,Nilgiri (Blue Mountain) Express,MAP,39,39,2,7
+12671,Nilgiri (Blue Mountain) Express,TNGR,44,44,2,8
+12671,Nilgiri (Blue Mountain) Express,BDY,49,49,2,9
+12671,Nilgiri (Blue Mountain) Express,BQI,57,57,2,10
+12671,Nilgiri (Blue Mountain) Express,LCR,64,64,2,11
+12671,Nilgiri (Blue Mountain) Express,DSPT,72,72,2,12
+12671,Nilgiri (Blue Mountain) Express,TNT,77,77,2,13
+12671,Nilgiri (Blue Mountain) Express,KPPR,85,85,2,14
+12671,Nilgiri (Blue Mountain) Express,MGSJ,88,88,2,15
+12671,Nilgiri (Blue Mountain) Express,SA,90,95,2,16
+12671,Nilgiri (Blue Mountain) Express,NEA,102,102,2,17
+12671,Nilgiri (Blue Mountain) Express,VRPD,104,104,2,18
+12671,Nilgiri (Blue Mountain) Express,DC,114,114,2,19
+12671,Nilgiri (Blue Mountain) Express,MVPM,125,125,2,20
+12671,Nilgiri (Blue Mountain) Express,SGE,129,129,2,21
+12671,Nilgiri (Blue Mountain) Express,ANU,136,136,2,22
+12671,Nilgiri (Blue Mountain) Express,CV,145,145,2,23
+12671,Nilgiri (Blue Mountain) Express,ED,150,155,2,24
+12757,Tirupati-Coimbatore Intercity Express,JTJ,1086,1086,1,0
+12757,Tirupati-Coimbatore Intercity Express,TPT,1092,1092,1,1
+12757,Tirupati-Coimbatore Intercity Express,KEY,1100,1100,1,2
+12757,Tirupati-Coimbatore Intercity Express,KNNT,1104,1104,1,3
+12757,Tirupati-Coimbatore Intercity Express,SLY,1109,1109,1,4
+12757,Tirupati-Coimbatore Intercity Express,DST,1116,1116,1,5
+12757,Tirupati-Coimbatore Intercity Express,DPI,1122,1122,1,6
+12757,Tirupati-Coimbatore Intercity Express,MAP,1127,1127,1,7
+12757,Tirupati-Coimbatore Intercity Express,TNGR,1132,1132,1,8
+12757,Tirupati-Coimbatore Intercity Express,BDY,1137,1137,1,9
+12757,Tirupati-Coimbatore Intercity Express,BQI,1144,1144,1,10
+12757,Tirupati-Coimbatore Intercity Express,LCR,1152,1152,1,11
+12757,Tirupati-Coimbatore Intercity Express,DSPT,1159,1159,1,12
+12757,Tirupati-Coimbatore Intercity Express,TNT,1165,1165,1,13
+12757,Tirupati-Coimbatore Intercity Express,KPPR,1172,1172,1,14
+12757,Tirupati-Coimbatore Intercity Express,MGSJ,1175,1175,1,15
+12757,Tirupati-Coimbatore Intercity Express,SA,1175,1180,1,16
+12757,Tirupati-Coimbatore Intercity Express,NEA,1187,1187,1,17
+12757,Tirupati-Coimbatore Intercity Express,VRPD,1189,1189,1,18
+12757,Tirupati-Coimbatore Intercity Express,DC,1199,1199,1,19
+12757,Tirupati-Coimbatore Intercity Express,MVPM,1210,1210,1,20
+12757,Tirupati-Coimbatore Intercity Express,SGE,1215,1215,1,21
+12757,Tirupati-Coimbatore Intercity Express,ANU,1222,1222,1,22
+12757,Tirupati-Coimbatore Intercity Express,CV,1231,1231,1,23
+12757,Tirupati-Coimbatore Intercity Express,ED,1235,1240,1,24
+16687,Navyug Express,ED,165,185,2,0
+16687,Navyug Express,CV,189,189,2,1
+16687,Navyug Express,ANU,198,198,2,2
+16687,Navyug Express,SGE,205,205,2,3
+16687,Navyug Express,MVPM,210,210,2,4
+16687,Navyug Express,DC,221,221,2,5
+16687,Navyug Express,VRPD,230,230,2,6
+16687,Navyug Express,NEA,233,233,2,7
+16687,Navyug Express,SA,240,245,2,8
+16687,Navyug Express,MGSJ,248,248,2,9
+16687,Navyug Express,KPPR,251,251,2,10
+16687,Navyug Express,TNT,260,260,2,11
+16687,Navyug Express,DSPT,267,267,2,12
+16687,Navyug Express,LCR,275,275,2,13
+16687,Navyug Express,BQI,285,285,2,14
+16687,Navyug Express,BDY,294,294,2,15
+16687,Navyug Express,TNGR,300,300,2,16
+16687,Navyug Express,MAP,306,306,2,17
+16687,Navyug Express,DPI,312,312,2,18
+16687,Navyug Express,DST,320,320,2,19
+16687,Navyug Express,SLY,328,328,2,20
+16687,Navyug Express,KNNT,334,334,2,21
+16687,Navyug Express,KEY,339,339,2,22
+16687,Navyug Express,TPT,349,349,2,23
+16687,Navyug Express,JTJ,355,360,2,24
+12680,Coimbatore-Chennai Central InterCity SF Express,ED,460,465,1,0
+12680,Coimbatore-Chennai Central InterCity SF Express,CV,469,469,1,1
+12680,Coimbatore-Chennai Central InterCity SF Express,ANU,478,478,1,2
+12680,Coimbatore-Chennai Central InterCity SF Express,SGE,484,484,1,3
+12680,Coimbatore-Chennai Central InterCity SF Express,MVPM,488,488,1,4
+12680,Coimbatore-Chennai Central InterCity SF Express,DC,499,499,1,5
+12680,Coimbatore-Chennai Central InterCity SF Express,VRPD,508,508,1,6
+12680,Coimbatore-Chennai Central InterCity SF Express,NEA,510,510,1,7
+12680,Coimbatore-Chennai Central InterCity SF Express,SA,517,520,1,8
+12680,Coimbatore-Chennai Central InterCity SF Express,MGSJ,523,523,1,9
+12680,Coimbatore-Chennai Central InterCity SF Express,KPPR,525,525,1,10
+12680,Coimbatore-Chennai Central InterCity SF Express,TNT,533,533,1,11
+12680,Coimbatore-Chennai Central InterCity SF Express,DSPT,539,539,1,12
+12680,Coimbatore-Chennai Central InterCity SF Express,LCR,546,546,1,13
+12680,Coimbatore-Chennai Central InterCity SF Express,BQI,554,555,1,14
+12680,Coimbatore-Chennai Central InterCity SF Express,BDY,561,561,1,15
+12680,Coimbatore-Chennai Central InterCity SF Express,TNGR,566,566,1,16
+12680,Coimbatore-Chennai Central InterCity SF Express,MAP,569,570,1,17
+12680,Coimbatore-Chennai Central InterCity SF Express,DPI,576,576,1,18
+12680,Coimbatore-Chennai Central InterCity SF Express,DST,584,584,1,19
+12680,Coimbatore-Chennai Central InterCity SF Express,SLY,591,591,1,20
+12680,Coimbatore-Chennai Central InterCity SF Express,KNNT,597,597,1,21
+12680,Coimbatore-Chennai Central InterCity SF Express,KEY,602,602,1,22
+12680,Coimbatore-Chennai Central InterCity SF Express,TPT,612,612,1,23
+12680,Coimbatore-Chennai Central InterCity SF Express,JTJ,618,620,1,24
+16669,Yercaud Express,JTJ,178,180,2,0
+16669,Yercaud Express,TPT,191,192,2,1
+16669,Yercaud Express,KEY,200,200,2,2
+16669,Yercaud Express,KNNT,204,204,2,3
+16669,Yercaud Express,SLY,208,208,2,4
+16669,Yercaud Express,DST,214,214,2,5
+16669,Yercaud Express,DPI,219,219,2,6
+16669,Yercaud Express,MAP,224,225,2,7
+16669,Yercaud Express,TNGR,232,232,2,8
+16669,Yercaud Express,BDY,239,240,2,9
+16669,Yercaud Express,BQI,254,255,2,10
+16669,Yercaud Express,LCR,264,264,2,11
+16669,Yercaud Express,DSPT,273,273,2,12
+16669,Yercaud Express,TNT,279,279,2,13
+16669,Yercaud Express,KPPR,289,289,2,14
+16669,Yercaud Express,MGSJ,292,292,2,15
+16669,Yercaud Express,SA,295,300,2,16
+16669,Yercaud Express,NEA,307,307,2,17
+16669,Yercaud Express,VRPD,310,310,2,18
+16669,Yercaud Express,DC,320,320,2,19
+16669,Yercaud Express,MVPM,332,332,2,20
+16669,Yercaud Express,SGE,339,340,2,21
+16669,Yercaud Express,ANU,357,357,2,22
+16669,Yercaud Express,CV,379,379,2,23
+16669,Yercaud Express,ED,385,,2,24
+56840,Erode Jolarpettai Passenger,ED,,380,1,0
+56840,Erode Jolarpettai Passenger,CV,387,388,1,1
+56840,Erode Jolarpettai Passenger,ANU,397,398,1,2
+56840,Erode Jolarpettai Passenger,SGE,404,406,1,3
+56840,Erode Jolarpettai Passenger,MVPM,411,413,1,4
+56840,Erode Jolarpettai Passenger,DC,421,423,1,5
+56840,Erode Jolarpettai Passenger,VRPD,433,435,1,6
+56840,Erode Jolarpettai Passenger,NEA,438,440,1,7
+56840,Erode Jolarpettai Passenger,SA,460,465,1,8
+56840,Erode Jolarpettai Passenger,MGSJ,470,470,1,9
+56840,Erode Jolarpettai Passenger,KPPR,475,477,1,10
+56840,Erode Jolarpettai Passenger,TNT,485,487,1,11
+56840,Erode Jolarpettai Passenger,DSPT,493,495,1,12
+56840,Erode Jolarpettai Passenger,LCR,504,506,1,13
+56840,Erode Jolarpettai Passenger,BQI,513,515,1,14
+56840,Erode Jolarpettai Passenger,BDY,524,526,1,15
+56840,Erode Jolarpettai Passenger,TNGR,530,532,1,16
+56840,Erode Jolarpettai Passenger,MAP,538,540,1,17
+56840,Erode Jolarpettai Passenger,DPI,546,548,1,18
+56840,Erode Jolarpettai Passenger,DST,556,558,1,19
+56840,Erode Jolarpettai Passenger,SLY,566,568,1,20
+56840,Erode Jolarpettai Passenger,KNNT,572,574,1,21
+56840,Erode Jolarpettai Passenger,KEY,580,582,1,22
+56840,Erode Jolarpettai Passenger,TPT,603,605,1,23
+56840,Erode Jolarpettai Passenger,JTJ,685,,1,24
+12626,Kerala Express,JTJ,40,45,3,0
+12626,Kerala Express,TPT,50,50,3,1
+12626,Kerala Express,KEY,58,58,3,2
+12626,Kerala Express,KNNT,62,62,3,3
+12626,Kerala Express,SLY,67,67,3,4
+12626,Kerala Express,DST,73,73,3,5
+12626,Kerala Express,DPI,79,79,3,6
+12626,Kerala Express,MAP,84,84,3,7
+12626,Kerala Express,TNGR,88,88,3,8
+12626,Kerala Express,BDY,93,93,3,9
+12626,Kerala Express,BQI,100,100,3,10
+12626,Kerala Express,LCR,107,107,3,11
+12626,Kerala Express,DSPT,113,113,3,12
+12626,Kerala Express,TNT,118,118,3,13
+12626,Kerala Express,KPPR,126,126,3,14
+12626,Kerala Express,MGSJ,128,128,3,15
+12626,Kerala Express,SA,130,135,3,16
+12626,Kerala Express,NEA,143,143,3,17
+12626,Kerala Express,VRPD,147,147,3,18
+12626,Kerala Express,DC,158,158,3,19
+12626,Kerala Express,MVPM,172,172,3,20
+12626,Kerala Express,SGE,178,178,3,21
+12626,Kerala Express,ANU,187,187,3,22
+12626,Kerala Express,CV,198,198,3,23
+12626,Kerala Express,ED,205,210,3,24
+12243,Chennai Central-Coimbatore AC Duronto Express,JTJ,583,583,1,0
+12243,Chennai Central-Coimbatore AC Duronto Express,TPT,589,589,1,1
+12243,Chennai Central-Coimbatore AC Duronto Express,KEY,598,598,1,2
+12243,Chennai Central-Coimbatore AC Duronto Express,KNNT,603,603,1,3
+12243,Chennai Central-Coimbatore AC Duronto Express,SLY,608,608,1,4
+12243,Chennai Central-Coimbatore AC Duronto Express,DST,615,615,1,5
+12243,Chennai Central-Coimbatore AC Duronto Express,DPI,621,621,1,6
+12243,Chennai Central-Coimbatore AC Duronto Express,MAP,627,627,1,7
+12243,Chennai Central-Coimbatore AC Duronto Express,TNGR,632,632,1,8
+12243,Chennai Central-Coimbatore AC Duronto Express,BDY,638,638,1,9
+12243,Chennai Central-Coimbatore AC Duronto Express,BQI,646,646,1,10
+12243,Chennai Central-Coimbatore AC Duronto Express,LCR,654,654,1,11
+12243,Chennai Central-Coimbatore AC Duronto Express,DSPT,662,662,1,12
+12243,Chennai Central-Coimbatore AC Duronto Express,TNT,667,667,1,13
+12243,Chennai Central-Coimbatore AC Duronto Express,KPPR,675,675,1,14
+12243,Chennai Central-Coimbatore AC Duronto Express,MGSJ,678,678,1,15
+12243,Chennai Central-Coimbatore AC Duronto Express,SA,681,681,1,16
+12243,Chennai Central-Coimbatore AC Duronto Express,NEA,687,687,1,17
+12243,Chennai Central-Coimbatore AC Duronto Express,VRPD,689,689,1,18
+12243,Chennai Central-Coimbatore AC Duronto Express,DC,698,698,1,19
+12243,Chennai Central-Coimbatore AC Duronto Express,MVPM,708,708,1,20
+12243,Chennai Central-Coimbatore AC Duronto Express,SGE,712,712,1,21
+12243,Chennai Central-Coimbatore AC Duronto Express,ANU,719,719,1,22
+12243,Chennai Central-Coimbatore AC Duronto Express,CV,727,727,1,23
+12243,Chennai Central-Coimbatore AC Duronto Express,ED,731,731,1,24
+12644,Swarna Jayanti Express,JTJ,1238,1238,2,0
+12644,Swarna Jayanti Express,TPT,1243,1243,2,1
+12644,Swarna Jayanti Express,KEY,1252,1252,2,2
+12644,Swarna Jayanti Express,KNNT,1256,1256,2,3
+12644,Swarna Jayanti Express,SLY,1261,1261,2,4
+12644,Swarna Jayanti Express,DST,1267,1267,2,5
+12644,Swarna Jayanti Express,DPI,1273,1273,2,6
+12644,Swarna Jayanti Express,MAP,1279,1279,2,7
+12644,Swarna Jayanti Express,TNGR,1283,1283,2,8
+12644,Swarna Jayanti Express,BDY,1288,1288,2,9
+12644,Swarna Jayanti Express,BQI,1296,1296,2,10
+12644,Swarna Jayanti Express,LCR,1303,1303,2,11
+12644,Swarna Jayanti Express,DSPT,1310,1310,2,12
+12644,Swarna Jayanti Express,TNT,1315,1315,2,13
+12644,Swarna Jayanti Express,KPPR,1323,1323,2,14
+12644,Swarna Jayanti Express,MGSJ,1325,1325,2,15
+12644,Swarna Jayanti Express,SA,1325,1330,2,16
+12644,Swarna Jayanti Express,NEA,1338,1338,2,17
+12644,Swarna Jayanti Express,VRPD,1342,1342,2,18
+12644,Swarna Jayanti Express,DC,1354,1354,2,19
+12644,Swarna Jayanti Express,MVPM,1368,1368,2,20
+12644,Swarna Jayanti Express,SGE,1374,1374,2,21
+12644,Swarna Jayanti Express,ANU,1382,1382,2,22
+12644,Swarna Jayanti Express,CV,1394,1394,2,23
+12644,Swarna Jayanti Express,ED,1400,1405,2,24
+12690,NAGERCOIL - CHENNAI SF Exp,ED,350,360,2,0
+12690,NAGERCOIL - CHENNAI SF Exp,CV,364,364,2,1
+12690,NAGERCOIL - CHENNAI SF Exp,ANU,372,372,2,2
+12690,NAGERCOIL - CHENNAI SF Exp,SGE,379,379,2,3
+12690,NAGERCOIL - CHENNAI SF Exp,MVPM,383,383,2,4
+12690,NAGERCOIL - CHENNAI SF Exp,DC,393,393,2,5
+12690,NAGERCOIL - CHENNAI SF Exp,DVBH,,,1,6
+12690,NAGERCOIL - CHENNAI SF Exp,VRPD,402,402,2,7
+12690,NAGERCOIL - CHENNAI SF Exp,NEA,404,404,2,8
+12690,NAGERCOIL - CHENNAI SF Exp,SA,410,415,2,9
+12690,NAGERCOIL - CHENNAI SF Exp,MGSJ,417,417,2,10
+12690,NAGERCOIL - CHENNAI SF Exp,KPPR,420,420,2,11
+12690,NAGERCOIL - CHENNAI SF Exp,TNT,427,427,2,12
+12690,NAGERCOIL - CHENNAI SF Exp,DSPT,433,433,2,13
+12690,NAGERCOIL - CHENNAI SF Exp,LCR,440,440,2,14
+12690,NAGERCOIL - CHENNAI SF Exp,BQI,447,447,2,15
+12690,NAGERCOIL - CHENNAI SF Exp,BDY,455,455,2,16
+12690,NAGERCOIL - CHENNAI SF Exp,TNGR,460,460,2,17
+12690,NAGERCOIL - CHENNAI SF Exp,MAP,464,465,2,18
+12690,NAGERCOIL - CHENNAI SF Exp,DPI,471,471,2,19
+12690,NAGERCOIL - CHENNAI SF Exp,DST,478,478,2,20
+12690,NAGERCOIL - CHENNAI SF Exp,SLY,485,485,2,21
+12690,NAGERCOIL - CHENNAI SF Exp,KNNT,490,490,2,22
+12690,NAGERCOIL - CHENNAI SF Exp,KEY,495,495,2,23
+12690,NAGERCOIL - CHENNAI SF Exp,MOLK,,,1,24
+12690,NAGERCOIL - CHENNAI SF Exp,TPT,504,505,2,25
+12690,NAGERCOIL - CHENNAI SF Exp,JTJ,528,530,2,26
+12675,Kovai Express,JTJ,558,560,1,0
+12675,Kovai Express,TPT,566,566,1,1
+12675,Kovai Express,KEY,575,575,1,2
+12675,Kovai Express,KNNT,580,580,1,3
+12675,Kovai Express,SLY,585,585,1,4
+12675,Kovai Express,DST,592,592,1,5
+12675,Kovai Express,DPI,599,599,1,6
+12675,Kovai Express,MAP,604,605,1,7
+12675,Kovai Express,TNGR,610,610,1,8
+12675,Kovai Express,BDY,615,615,1,9
+12675,Kovai Express,BQI,622,622,1,10
+12675,Kovai Express,LCR,630,630,1,11
+12675,Kovai Express,DSPT,637,637,1,12
+12675,Kovai Express,TNT,643,643,1,13
+12675,Kovai Express,KPPR,650,650,1,14
+12675,Kovai Express,MGSJ,653,653,1,15
+12675,Kovai Express,SA,655,660,1,16
+12675,Kovai Express,NEA,667,667,1,17
+12675,Kovai Express,VRPD,669,669,1,18
+12675,Kovai Express,DC,679,679,1,19
+12675,Kovai Express,MVPM,690,690,1,20
+12675,Kovai Express,SGE,695,695,1,21
+12675,Kovai Express,ANU,702,702,1,22
+12675,Kovai Express,CV,711,711,1,23
+12675,Kovai Express,ED,715,720,1,24
+12698,Thiruvananthapuram Central Chennai Central weekly express,ED,355,360,2,0
+12698,Thiruvananthapuram Central Chennai Central weekly express,CV,364,364,2,1
+12698,Thiruvananthapuram Central Chennai Central weekly express,ANU,372,372,2,2
+12698,Thiruvananthapuram Central Chennai Central weekly express,SGE,379,379,2,3
+12698,Thiruvananthapuram Central Chennai Central weekly express,MVPM,383,383,2,4
+12698,Thiruvananthapuram Central Chennai Central weekly express,DC,393,393,2,5
+12698,Thiruvananthapuram Central Chennai Central weekly express,VRPD,402,402,2,6
+12698,Thiruvananthapuram Central Chennai Central weekly express,NEA,404,404,2,7
+12698,Thiruvananthapuram Central Chennai Central weekly express,SA,410,415,2,8
+12698,Thiruvananthapuram Central Chennai Central weekly express,MGSJ,418,418,2,9
+12698,Thiruvananthapuram Central Chennai Central weekly express,KPPR,421,421,2,10
+12698,Thiruvananthapuram Central Chennai Central weekly express,TNT,431,431,2,11
+12698,Thiruvananthapuram Central Chennai Central weekly express,DSPT,437,437,2,12
+12698,Thiruvananthapuram Central Chennai Central weekly express,LCR,446,446,2,13
+12698,Thiruvananthapuram Central Chennai Central weekly express,BQI,456,456,2,14
+12698,Thiruvananthapuram Central Chennai Central weekly express,BDY,465,465,2,15
+12698,Thiruvananthapuram Central Chennai Central weekly express,TNGR,472,472,2,16
+12698,Thiruvananthapuram Central Chennai Central weekly express,MAP,477,477,2,17
+12698,Thiruvananthapuram Central Chennai Central weekly express,DPI,484,484,2,18
+12698,Thiruvananthapuram Central Chennai Central weekly express,DST,492,492,2,19
+12698,Thiruvananthapuram Central Chennai Central weekly express,SLY,500,500,2,20
+12698,Thiruvananthapuram Central Chennai Central weekly express,KNNT,506,506,2,21
+12698,Thiruvananthapuram Central Chennai Central weekly express,KEY,512,512,2,22
+12698,Thiruvananthapuram Central Chennai Central weekly express,TPT,522,522,2,23
+12698,Thiruvananthapuram Central Chennai Central weekly express,JTJ,528,530,2,24
+12602,Chennai Mail,ED,1385,1390,1,0
+12602,Chennai Mail,CV,1394,1394,1,1
+12602,Chennai Mail,ANU,1403,1403,1,2
+12602,Chennai Mail,SGE,1410,1410,1,3
+12602,Chennai Mail,MVPM,1415,1415,1,4
+12602,Chennai Mail,DC,1425,1425,1,5
+12602,Chennai Mail,VRPD,1435,1435,1,6
+12602,Chennai Mail,NEA,1437,1437,1,7
+12602,Chennai Mail,SA,5,10,2,8
+12602,Chennai Mail,MGSJ,13,13,2,9
+12602,Chennai Mail,KPPR,15,15,2,10
+12602,Chennai Mail,TNT,24,24,2,11
+12602,Chennai Mail,DSPT,30,30,2,12
+12602,Chennai Mail,LCR,38,38,2,13
+12602,Chennai Mail,BQI,47,47,2,14
+12602,Chennai Mail,BDY,55,55,2,15
+12602,Chennai Mail,TNGR,61,61,2,16
+12602,Chennai Mail,MAP,66,66,2,17
+12602,Chennai Mail,DPI,73,73,2,18
+12602,Chennai Mail,DST,80,80,2,19
+12602,Chennai Mail,SLY,87,87,2,20
+12602,Chennai Mail,KNNT,92,92,2,21
+12602,Chennai Mail,KEY,97,97,2,22
+12602,Chennai Mail,TPT,107,107,2,23
+12602,Chennai Mail,JTJ,113,115,2,24
+12969,Coimbatore-Jaipur Express,ED,645,650,1,0
+12969,Coimbatore-Jaipur Express,CV,654,654,1,1
+12969,Coimbatore-Jaipur Express,ANU,663,663,1,2
+12969,Coimbatore-Jaipur Express,SGE,670,670,1,3
+12969,Coimbatore-Jaipur Express,MVPM,675,675,1,4
+12969,Coimbatore-Jaipur Express,DC,686,686,1,5
+12969,Coimbatore-Jaipur Express,VRPD,695,695,1,6
+12969,Coimbatore-Jaipur Express,NEA,698,698,1,7
+12969,Coimbatore-Jaipur Express,SA,705,710,1,8
+12969,Coimbatore-Jaipur Express,MGSJ,713,713,1,9
+12969,Coimbatore-Jaipur Express,KPPR,716,716,1,10
+12969,Coimbatore-Jaipur Express,TNT,725,725,1,11
+12969,Coimbatore-Jaipur Express,DSPT,731,731,1,12
+12969,Coimbatore-Jaipur Express,LCR,740,740,1,13
+12969,Coimbatore-Jaipur Express,BQI,749,749,1,14
+12969,Coimbatore-Jaipur Express,BDY,758,758,1,15
+12969,Coimbatore-Jaipur Express,TNGR,764,764,1,16
+12969,Coimbatore-Jaipur Express,MAP,770,770,1,17
+12969,Coimbatore-Jaipur Express,DPI,776,776,1,18
+12969,Coimbatore-Jaipur Express,DST,784,784,1,19
+12969,Coimbatore-Jaipur Express,SLY,791,791,1,20
+12969,Coimbatore-Jaipur Express,KNNT,797,797,1,21
+12969,Coimbatore-Jaipur Express,KEY,803,803,1,22
+12969,Coimbatore-Jaipur Express,TPT,813,813,1,23
+12969,Coimbatore-Jaipur Express,JTJ,818,820,1,24
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,ED,840,850,1,0
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,CV,854,854,1,1
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,ANU,862,862,1,2
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,SGE,868,868,1,3
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,MVPM,872,872,1,4
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,DC,882,882,1,5
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,VRPD,891,891,1,6
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,NEA,893,893,1,7
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,SA,900,905,1,8
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,MGSJ,907,907,1,9
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,KPPR,910,910,1,10
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,TNT,918,918,1,11
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,DSPT,924,924,1,12
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,LCR,931,931,1,13
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,BQI,939,940,1,14
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,BDY,947,947,1,15
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,TNGR,952,952,1,16
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,MAP,957,957,1,17
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,DPI,962,962,1,18
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,DST,968,968,1,19
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,SLY,974,975,1,20
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,KNNT,981,981,1,21
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,KEY,987,987,1,22
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,TPT,999,1000,1,23
+13352-Slip,Alappuzha Dhanbad Tatanagar Express Slip,JTJ,1025,1030,1,24
+12788,Tirunelveli Bilaspur SF Express,ED,900,910,1,0
+12788,Tirunelveli Bilaspur SF Express,CV,914,914,1,1
+12788,Tirunelveli Bilaspur SF Express,ANU,922,922,1,2
+12788,Tirunelveli Bilaspur SF Express,SGE,929,929,1,3
+12788,Tirunelveli Bilaspur SF Express,MVPM,933,933,1,4
+12788,Tirunelveli Bilaspur SF Express,DC,943,943,1,5
+12788,Tirunelveli Bilaspur SF Express,VRPD,952,952,1,6
+12788,Tirunelveli Bilaspur SF Express,NEA,954,954,1,7
+12788,Tirunelveli Bilaspur SF Express,SA,960,965,1,8
+12788,Tirunelveli Bilaspur SF Express,MGSJ,968,968,1,9
+12788,Tirunelveli Bilaspur SF Express,KPPR,970,970,1,10
+12788,Tirunelveli Bilaspur SF Express,TNT,979,979,1,11
+12788,Tirunelveli Bilaspur SF Express,DSPT,985,985,1,12
+12788,Tirunelveli Bilaspur SF Express,LCR,992,992,1,13
+12788,Tirunelveli Bilaspur SF Express,BQI,1001,1001,1,14
+12788,Tirunelveli Bilaspur SF Express,BDY,1009,1009,1,15
+12788,Tirunelveli Bilaspur SF Express,TNGR,1014,1014,1,16
+12788,Tirunelveli Bilaspur SF Express,MAP,1020,1020,1,17
+12788,Tirunelveli Bilaspur SF Express,DPI,1026,1026,1,18
+12788,Tirunelveli Bilaspur SF Express,DST,1032,1032,1,19
+12788,Tirunelveli Bilaspur SF Express,SLY,1039,1039,1,20
+12788,Tirunelveli Bilaspur SF Express,KNNT,1045,1045,1,21
+12788,Tirunelveli Bilaspur SF Express,KEY,1050,1050,1,22
+12788,Tirunelveli Bilaspur SF Express,TPT,1059,1059,1,23
+12788,Tirunelveli Bilaspur SF Express,JTJ,1065,1065,1,24
+12623,Chennai Tiruvananthapuram SF Mail,JTJ,1354,1354,1,0
+12623,Chennai Tiruvananthapuram SF Mail,TPT,1360,1360,1,1
+12623,Chennai Tiruvananthapuram SF Mail,KEY,1368,1368,1,2
+12623,Chennai Tiruvananthapuram SF Mail,KNNT,1373,1373,1,3
+12623,Chennai Tiruvananthapuram SF Mail,SLY,1377,1377,1,4
+12623,Chennai Tiruvananthapuram SF Mail,DST,1384,1384,1,5
+12623,Chennai Tiruvananthapuram SF Mail,DPI,1390,1390,1,6
+12623,Chennai Tiruvananthapuram SF Mail,MAP,1396,1396,1,7
+12623,Chennai Tiruvananthapuram SF Mail,TNGR,1401,1401,1,8
+12623,Chennai Tiruvananthapuram SF Mail,BDY,1406,1406,1,9
+12623,Chennai Tiruvananthapuram SF Mail,BQI,1413,1413,1,10
+12623,Chennai Tiruvananthapuram SF Mail,LCR,1421,1421,1,11
+12623,Chennai Tiruvananthapuram SF Mail,DSPT,1428,1428,1,12
+12623,Chennai Tiruvananthapuram SF Mail,TNT,1434,1434,1,13
+12623,Chennai Tiruvananthapuram SF Mail,KPPR,1,1,2,14
+12623,Chennai Tiruvananthapuram SF Mail,MGSJ,4,4,2,15
+12623,Chennai Tiruvananthapuram SF Mail,SA,5,10,2,16
+12623,Chennai Tiruvananthapuram SF Mail,NEA,17,17,2,17
+12623,Chennai Tiruvananthapuram SF Mail,VRPD,19,19,2,18
+12623,Chennai Tiruvananthapuram SF Mail,DC,29,29,2,19
+12623,Chennai Tiruvananthapuram SF Mail,MVPM,40,40,2,20
+12623,Chennai Tiruvananthapuram SF Mail,SGE,45,45,2,21
+12623,Chennai Tiruvananthapuram SF Mail,ANU,52,52,2,22
+12623,Chennai Tiruvananthapuram SF Mail,CV,61,61,2,23
+12623,Chennai Tiruvananthapuram SF Mail,ED,65,70,2,24
+12522,Raptisagar Express,ED,1020,1030,1,0
+12522,Raptisagar Express,CV,1034,1034,1,1
+12522,Raptisagar Express,ANU,1044,1044,1,2
+12522,Raptisagar Express,SGE,1051,1051,1,3
+12522,Raptisagar Express,MVPM,1055,1055,1,4
+12522,Raptisagar Express,DC,1066,1066,1,5
+12522,Raptisagar Express,VRPD,1076,1076,1,6
+12522,Raptisagar Express,NEA,1079,1079,1,7
+12522,Raptisagar Express,SA,1085,1090,1,8
+12522,Raptisagar Express,MGSJ,1093,1093,1,9
+12522,Raptisagar Express,KPPR,1095,1095,1,10
+12522,Raptisagar Express,TNT,1104,1104,1,11
+12522,Raptisagar Express,DSPT,1109,1109,1,12
+12522,Raptisagar Express,LCR,1117,1117,1,13
+12522,Raptisagar Express,BQI,1125,1125,1,14
+12522,Raptisagar Express,BDY,1134,1134,1,15
+12522,Raptisagar Express,TNGR,1139,1139,1,16
+12522,Raptisagar Express,MAP,1144,1144,1,17
+12522,Raptisagar Express,DPI,1150,1150,1,18
+12522,Raptisagar Express,DST,1157,1157,1,19
+12522,Raptisagar Express,SLY,1164,1164,1,20
+12522,Raptisagar Express,KNNT,1169,1169,1,21
+12522,Raptisagar Express,KEY,1174,1174,1,22
+12522,Raptisagar Express,TPT,1183,1183,1,23
+12522,Raptisagar Express,JTJ,1188,1190,1,24
+16318-Slip,Himsagar Express Slip,JTJ,303,305,4,0
+16318-Slip,Himsagar Express Slip,TPT,311,311,4,1
+16318-Slip,Himsagar Express Slip,KEY,319,319,4,2
+16318-Slip,Himsagar Express Slip,KNNT,323,323,4,3
+16318-Slip,Himsagar Express Slip,SLY,328,328,4,4
+16318-Slip,Himsagar Express Slip,DST,335,335,4,5
+16318-Slip,Himsagar Express Slip,DPI,341,341,4,6
+16318-Slip,Himsagar Express Slip,MAP,346,346,4,7
+16318-Slip,Himsagar Express Slip,TNGR,351,351,4,8
+16318-Slip,Himsagar Express Slip,BDY,356,356,4,9
+16318-Slip,Himsagar Express Slip,BQI,363,363,4,10
+16318-Slip,Himsagar Express Slip,LCR,371,371,4,11
+16318-Slip,Himsagar Express Slip,DSPT,378,378,4,12
+16318-Slip,Himsagar Express Slip,TNT,384,384,4,13
+16318-Slip,Himsagar Express Slip,KPPR,391,391,4,14
+16318-Slip,Himsagar Express Slip,MGSJ,394,394,4,15
+16318-Slip,Himsagar Express Slip,SA,395,400,4,16
+16318-Slip,Himsagar Express Slip,NEA,408,408,4,17
+16318-Slip,Himsagar Express Slip,VRPD,412,412,4,18
+16318-Slip,Himsagar Express Slip,DC,424,424,4,19
+16318-Slip,Himsagar Express Slip,MVPM,438,438,4,20
+16318-Slip,Himsagar Express Slip,SGE,444,444,4,21
+16318-Slip,Himsagar Express Slip,ANU,452,452,4,22
+16318-Slip,Himsagar Express Slip,CV,464,464,4,23
+16318-Slip,Himsagar Express Slip,ED,470,530,4,24
+12512,Rapti Sagar Expres,ED,1020,1030,1,0
+12512,Rapti Sagar Expres,CV,1034,1034,1,1
+12512,Rapti Sagar Expres,ANU,1043,1043,1,2
+12512,Rapti Sagar Expres,SGE,1050,1050,1,3
+12512,Rapti Sagar Expres,MVPM,1055,1055,1,4
+12512,Rapti Sagar Expres,DC,1066,1066,1,5
+12512,Rapti Sagar Expres,VRPD,1075,1075,1,6
+12512,Rapti Sagar Expres,NEA,1078,1078,1,7
+12512,Rapti Sagar Expres,SA,1085,1090,1,8
+12512,Rapti Sagar Expres,MGSJ,1093,1093,1,9
+12512,Rapti Sagar Expres,KPPR,1095,1095,1,10
+12512,Rapti Sagar Expres,TNT,1104,1104,1,11
+12512,Rapti Sagar Expres,DSPT,1109,1109,1,12
+12512,Rapti Sagar Expres,LCR,1117,1117,1,13
+12512,Rapti Sagar Expres,BQI,1125,1125,1,14
+12512,Rapti Sagar Expres,BDY,1134,1134,1,15
+12512,Rapti Sagar Expres,TNGR,1139,1139,1,16
+12512,Rapti Sagar Expres,MAP,1144,1144,1,17
+12512,Rapti Sagar Expres,DPI,1150,1150,1,18
+12512,Rapti Sagar Expres,DST,1157,1157,1,19
+12512,Rapti Sagar Expres,SLY,1164,1164,1,20
+12512,Rapti Sagar Expres,KNNT,1169,1169,1,21
+12512,Rapti Sagar Expres,KEY,1174,1174,1,22
+12512,Rapti Sagar Expres,TPT,1183,1183,1,23
+12512,Rapti Sagar Expres,JTJ,1188,1190,1,24
+12659,Gurudev Express,ED,165,185,2,0
+12659,Gurudev Express,CV,189,189,2,1
+12659,Gurudev Express,ANU,199,199,2,2
+12659,Gurudev Express,SGE,206,206,2,3
+12659,Gurudev Express,MVPM,210,210,2,4
+12659,Gurudev Express,DC,221,221,2,5
+12659,Gurudev Express,VRPD,231,231,2,6
+12659,Gurudev Express,NEA,234,234,2,7
+12659,Gurudev Express,SA,240,245,2,8
+12659,Gurudev Express,MGSJ,248,248,2,9
+12659,Gurudev Express,KPPR,251,251,2,10
+12659,Gurudev Express,TNT,260,260,2,11
+12659,Gurudev Express,DSPT,267,267,2,12
+12659,Gurudev Express,LCR,275,275,2,13
+12659,Gurudev Express,BQI,285,285,2,14
+12659,Gurudev Express,BDY,294,294,2,15
+12659,Gurudev Express,TNGR,300,300,2,16
+12659,Gurudev Express,MAP,306,306,2,17
+12659,Gurudev Express,DPI,312,312,2,18
+12659,Gurudev Express,DST,320,320,2,19
+12659,Gurudev Express,SLY,328,328,2,20
+12659,Gurudev Express,KNNT,334,334,2,21
+12659,Gurudev Express,KEY,339,339,2,22
+12659,Gurudev Express,TPT,349,349,2,23
+12659,Gurudev Express,JTJ,355,360,2,24
+16688,Navyug Express,JTJ,303,305,4,0
+16688,Navyug Express,TPT,311,311,4,1
+16688,Navyug Express,KEY,319,319,4,2
+16688,Navyug Express,KNNT,323,323,4,3
+16688,Navyug Express,SLY,328,328,4,4
+16688,Navyug Express,DST,335,335,4,5
+16688,Navyug Express,DPI,341,341,4,6
+16688,Navyug Express,MAP,346,346,4,7
+16688,Navyug Express,TNGR,351,351,4,8
+16688,Navyug Express,BDY,356,356,4,9
+16688,Navyug Express,BQI,363,363,4,10
+16688,Navyug Express,LCR,371,371,4,11
+16688,Navyug Express,DSPT,378,378,4,12
+16688,Navyug Express,TNT,384,384,4,13
+16688,Navyug Express,KPPR,391,391,4,14
+16688,Navyug Express,MGSJ,394,394,4,15
+16688,Navyug Express,SA,395,400,4,16
+16688,Navyug Express,NEA,408,408,4,17
+16688,Navyug Express,VRPD,412,412,4,18
+16688,Navyug Express,DC,424,424,4,19
+16688,Navyug Express,MVPM,438,438,4,20
+16688,Navyug Express,SGE,444,444,4,21
+16688,Navyug Express,ANU,452,452,4,22
+16688,Navyug Express,CV,464,464,4,23
+16688,Navyug Express,ED,470,500,4,24
+12645,Millennium Expres,ED,75,80,2,0
+12645,Millennium Expres,CV,84,84,2,1
+12645,Millennium Expres,ANU,94,94,2,2
+12645,Millennium Expres,SGE,101,101,2,3
+12645,Millennium Expres,MVPM,105,105,2,4
+12645,Millennium Expres,DC,116,116,2,5
+12645,Millennium Expres,VRPD,126,126,2,6
+12645,Millennium Expres,NEA,129,129,2,7
+12645,Millennium Expres,SA,135,140,2,8
+12645,Millennium Expres,MGSJ,143,143,2,9
+12645,Millennium Expres,KPPR,146,146,2,10
+12645,Millennium Expres,TNT,154,154,2,11
+12645,Millennium Expres,DSPT,160,160,2,12
+12645,Millennium Expres,LCR,169,169,2,13
+12645,Millennium Expres,BQI,177,177,2,14
+12645,Millennium Expres,BDY,186,186,2,15
+12645,Millennium Expres,TNGR,192,192,2,16
+12645,Millennium Expres,MAP,197,197,2,17
+12645,Millennium Expres,DPI,203,203,2,18
+12645,Millennium Expres,DST,210,210,2,19
+12645,Millennium Expres,SLY,218,218,2,20
+12645,Millennium Expres,KNNT,223,223,2,21
+12645,Millennium Expres,KEY,228,228,2,22
+12645,Millennium Expres,TPT,238,238,2,23
+12645,Millennium Expres,JTJ,243,245,2,24
+16324,Shalimar Tiruvananthapuram Express,JTJ,455,460,3,0
+16324,Shalimar Tiruvananthapuram Express,TPT,466,466,3,1
+16324,Shalimar Tiruvananthapuram Express,KEY,475,475,3,2
+16324,Shalimar Tiruvananthapuram Express,KNNT,479,479,3,3
+16324,Shalimar Tiruvananthapuram Express,SLY,484,484,3,4
+16324,Shalimar Tiruvananthapuram Express,DST,491,491,3,5
+16324,Shalimar Tiruvananthapuram Express,DPI,498,498,3,6
+16324,Shalimar Tiruvananthapuram Express,MAP,504,504,3,7
+16324,Shalimar Tiruvananthapuram Express,TNGR,509,509,3,8
+16324,Shalimar Tiruvananthapuram Express,BDY,514,514,3,9
+16324,Shalimar Tiruvananthapuram Express,BQI,522,522,3,10
+16324,Shalimar Tiruvananthapuram Express,LCR,530,530,3,11
+16324,Shalimar Tiruvananthapuram Express,DSPT,537,537,3,12
+16324,Shalimar Tiruvananthapuram Express,TNT,543,543,3,13
+16324,Shalimar Tiruvananthapuram Express,KPPR,551,551,3,14
+16324,Shalimar Tiruvananthapuram Express,MGSJ,554,554,3,15
+16324,Shalimar Tiruvananthapuram Express,SA,555,560,3,16
+16324,Shalimar Tiruvananthapuram Express,NEA,569,569,3,17
+16324,Shalimar Tiruvananthapuram Express,VRPD,572,572,3,18
+16324,Shalimar Tiruvananthapuram Express,DC,585,585,3,19
+16324,Shalimar Tiruvananthapuram Express,MVPM,601,601,3,20
+16324,Shalimar Tiruvananthapuram Express,SGE,607,607,3,21
+16324,Shalimar Tiruvananthapuram Express,ANU,616,616,3,22
+16324,Shalimar Tiruvananthapuram Express,CV,628,628,3,23
+16324,Shalimar Tiruvananthapuram Express,ED,635,645,3,24
+12643,Swarna Jayanthi Express,ED,75,80,2,0
+12643,Swarna Jayanthi Express,CV,84,84,2,1
+12643,Swarna Jayanthi Express,ANU,93,93,2,2
+12643,Swarna Jayanthi Express,SGE,100,100,2,3
+12643,Swarna Jayanthi Express,MVPM,105,105,2,4
+12643,Swarna Jayanthi Express,DC,116,116,2,5
+12643,Swarna Jayanthi Express,VRPD,125,125,2,6
+12643,Swarna Jayanthi Express,NEA,128,128,2,7
+12643,Swarna Jayanthi Express,SA,135,140,2,8
+12643,Swarna Jayanthi Express,MGSJ,143,143,2,9
+12643,Swarna Jayanthi Express,KPPR,146,146,2,10
+12643,Swarna Jayanthi Express,TNT,155,155,2,11
+12643,Swarna Jayanthi Express,DSPT,162,162,2,12
+12643,Swarna Jayanthi Express,LCR,171,171,2,13
+12643,Swarna Jayanthi Express,BQI,180,180,2,14
+12643,Swarna Jayanthi Express,BDY,190,190,2,15
+12643,Swarna Jayanthi Express,TNGR,196,196,2,16
+12643,Swarna Jayanthi Express,MAP,201,201,2,17
+12643,Swarna Jayanthi Express,DPI,208,208,2,18
+12643,Swarna Jayanthi Express,DST,216,216,2,19
+12643,Swarna Jayanthi Express,SLY,224,224,2,20
+12643,Swarna Jayanthi Express,KNNT,230,230,2,21
+12643,Swarna Jayanthi Express,KEY,235,235,2,22
+12643,Swarna Jayanthi Express,TPT,246,246,2,23
+12643,Swarna Jayanthi Express,JTJ,252,252,2,24
+12624,Tiruvananthapuram Chennai SF Mail,ED,45,50,2,0
+12624,Tiruvananthapuram Chennai SF Mail,CV,54,54,2,1
+12624,Tiruvananthapuram Chennai SF Mail,ANU,62,62,2,2
+12624,Tiruvananthapuram Chennai SF Mail,SGE,69,69,2,3
+12624,Tiruvananthapuram Chennai SF Mail,MVPM,73,73,2,4
+12624,Tiruvananthapuram Chennai SF Mail,DC,83,83,2,5
+12624,Tiruvananthapuram Chennai SF Mail,VRPD,91,91,2,6
+12624,Tiruvananthapuram Chennai SF Mail,NEA,94,94,2,7
+12624,Tiruvananthapuram Chennai SF Mail,SA,100,105,2,8
+12624,Tiruvananthapuram Chennai SF Mail,MGSJ,108,108,2,9
+12624,Tiruvananthapuram Chennai SF Mail,KPPR,110,110,2,10
+12624,Tiruvananthapuram Chennai SF Mail,TNT,119,119,2,11
+12624,Tiruvananthapuram Chennai SF Mail,DSPT,124,124,2,12
+12624,Tiruvananthapuram Chennai SF Mail,LCR,132,132,2,13
+12624,Tiruvananthapuram Chennai SF Mail,BQI,140,140,2,14
+12624,Tiruvananthapuram Chennai SF Mail,BDY,149,149,2,15
+12624,Tiruvananthapuram Chennai SF Mail,TNGR,154,154,2,16
+12624,Tiruvananthapuram Chennai SF Mail,MAP,159,159,2,17
+12624,Tiruvananthapuram Chennai SF Mail,DPI,165,165,2,18
+12624,Tiruvananthapuram Chennai SF Mail,DST,172,172,2,19
+12624,Tiruvananthapuram Chennai SF Mail,SLY,179,179,2,20
+12624,Tiruvananthapuram Chennai SF Mail,KNNT,184,184,2,21
+12624,Tiruvananthapuram Chennai SF Mail,KEY,189,189,2,22
+12624,Tiruvananthapuram Chennai SF Mail,TPT,198,198,2,23
+12624,Tiruvananthapuram Chennai SF Mail,JTJ,204,204,2,24
+22816,Ernakulam-Bilaspur Express,ED,915,920,1,0
+22816,Ernakulam-Bilaspur Express,CV,924,924,1,1
+22816,Ernakulam-Bilaspur Express,ANU,934,934,1,2
+22816,Ernakulam-Bilaspur Express,SGE,941,941,1,3
+22816,Ernakulam-Bilaspur Express,MVPM,945,945,1,4
+22816,Ernakulam-Bilaspur Express,DC,956,956,1,5
+22816,Ernakulam-Bilaspur Express,VRPD,966,966,1,6
+22816,Ernakulam-Bilaspur Express,NEA,969,969,1,7
+22816,Ernakulam-Bilaspur Express,SA,975,980,1,8
+22816,Ernakulam-Bilaspur Express,MGSJ,982,982,1,9
+22816,Ernakulam-Bilaspur Express,KPPR,985,985,1,10
+22816,Ernakulam-Bilaspur Express,TNT,993,993,1,11
+22816,Ernakulam-Bilaspur Express,DSPT,998,998,1,12
+22816,Ernakulam-Bilaspur Express,LCR,1006,1006,1,13
+22816,Ernakulam-Bilaspur Express,BQI,1014,1014,1,14
+22816,Ernakulam-Bilaspur Express,BDY,1021,1021,1,15
+22816,Ernakulam-Bilaspur Express,TNGR,1027,1027,1,16
+22816,Ernakulam-Bilaspur Express,MAP,1031,1031,1,17
+22816,Ernakulam-Bilaspur Express,DPI,1037,1037,1,18
+22816,Ernakulam-Bilaspur Express,DST,1043,1043,1,19
+22816,Ernakulam-Bilaspur Express,SLY,1050,1050,1,20
+22816,Ernakulam-Bilaspur Express,KNNT,1055,1055,1,21
+22816,Ernakulam-Bilaspur Express,KEY,1060,1060,1,22
+22816,Ernakulam-Bilaspur Express,TPT,1068,1068,1,23
+22816,Ernakulam-Bilaspur Express,JTJ,1073,1075,1,24
+06003,Chennai Central-Kollam Special,JTJ,1428,1430,1,0
+06003,Chennai Central-Kollam Special,TPT,1435,1435,1,1
+06003,Chennai Central-Kollam Special,KEY,3,3,2,2
+06003,Chennai Central-Kollam Special,KNNT,7,7,2,3
+06003,Chennai Central-Kollam Special,SLY,12,12,2,4
+06003,Chennai Central-Kollam Special,DST,18,18,2,5
+06003,Chennai Central-Kollam Special,DPI,24,24,2,6
+06003,Chennai Central-Kollam Special,MAP,29,29,2,7
+06003,Chennai Central-Kollam Special,TNGR,33,33,2,8
+06003,Chennai Central-Kollam Special,BDY,38,38,2,9
+06003,Chennai Central-Kollam Special,BQI,45,45,2,10
+06003,Chennai Central-Kollam Special,LCR,52,52,2,11
+06003,Chennai Central-Kollam Special,DSPT,58,58,2,12
+06003,Chennai Central-Kollam Special,TNT,63,63,2,13
+06003,Chennai Central-Kollam Special,KPPR,71,71,2,14
+06003,Chennai Central-Kollam Special,MGSJ,73,73,2,15
+06003,Chennai Central-Kollam Special,SA,75,80,2,16
+06003,Chennai Central-Kollam Special,NEA,87,87,2,17
+06003,Chennai Central-Kollam Special,VRPD,89,89,2,18
+06003,Chennai Central-Kollam Special,DC,99,99,2,19
+06003,Chennai Central-Kollam Special,MVPM,110,110,2,20
+06003,Chennai Central-Kollam Special,SGE,114,114,2,21
+06003,Chennai Central-Kollam Special,ANU,121,121,2,22
+06003,Chennai Central-Kollam Special,CV,130,130,2,23
+06003,Chennai Central-Kollam Special,ED,135,140,2,24
+06622,Yesvantpur-Coimbatore SF Special,JTJ,1004,1004,1,0
+06622,Yesvantpur-Coimbatore SF Special,TPT,1013,1015,1,1
+06622,Yesvantpur-Coimbatore SF Special,KEY,1023,1023,1,2
+06622,Yesvantpur-Coimbatore SF Special,KNNT,1027,1027,1,3
+06622,Yesvantpur-Coimbatore SF Special,SLY,1032,1032,1,4
+06622,Yesvantpur-Coimbatore SF Special,DST,1038,1038,1,5
+06622,Yesvantpur-Coimbatore SF Special,DPI,1044,1044,1,6
+06622,Yesvantpur-Coimbatore SF Special,MAP,1048,1050,1,7
+06622,Yesvantpur-Coimbatore SF Special,TNGR,1055,1055,1,8
+06622,Yesvantpur-Coimbatore SF Special,BDY,1060,1060,1,9
+06622,Yesvantpur-Coimbatore SF Special,BQI,1067,1067,1,10
+06622,Yesvantpur-Coimbatore SF Special,LCR,1075,1075,1,11
+06622,Yesvantpur-Coimbatore SF Special,DSPT,1082,1082,1,12
+06622,Yesvantpur-Coimbatore SF Special,TNT,1088,1088,1,13
+06622,Yesvantpur-Coimbatore SF Special,KPPR,1095,1095,1,14
+06622,Yesvantpur-Coimbatore SF Special,MGSJ,1098,1098,1,15
+06622,Yesvantpur-Coimbatore SF Special,SA,1100,1105,1,16
+06622,Yesvantpur-Coimbatore SF Special,NEA,1112,1112,1,17
+06622,Yesvantpur-Coimbatore SF Special,VRPD,1115,1115,1,18
+06622,Yesvantpur-Coimbatore SF Special,DC,1125,1125,1,19
+06622,Yesvantpur-Coimbatore SF Special,MVPM,1137,1137,1,20
+06622,Yesvantpur-Coimbatore SF Special,SGE,1142,1142,1,21
+06622,Yesvantpur-Coimbatore SF Special,ANU,1150,1150,1,22
+06622,Yesvantpur-Coimbatore SF Special,CV,1160,1160,1,23
+06622,Yesvantpur-Coimbatore SF Special,ED,1165,1170,1,24
+16327,Korba Tiruvananthapuram Express,JTJ,195,200,3,0
+16327,Korba Tiruvananthapuram Express,TPT,205,205,3,1
+16327,Korba Tiruvananthapuram Express,KEY,213,213,3,2
+16327,Korba Tiruvananthapuram Express,KNNT,217,217,3,3
+16327,Korba Tiruvananthapuram Express,SLY,222,222,3,4
+16327,Korba Tiruvananthapuram Express,DST,228,228,3,5
+16327,Korba Tiruvananthapuram Express,DPI,234,234,3,6
+16327,Korba Tiruvananthapuram Express,MAP,239,239,3,7
+16327,Korba Tiruvananthapuram Express,TNGR,243,243,3,8
+16327,Korba Tiruvananthapuram Express,BDY,248,248,3,9
+16327,Korba Tiruvananthapuram Express,BQI,255,255,3,10
+16327,Korba Tiruvananthapuram Express,LCR,262,262,3,11
+16327,Korba Tiruvananthapuram Express,DSPT,269,269,3,12
+16327,Korba Tiruvananthapuram Express,TNT,274,274,3,13
+16327,Korba Tiruvananthapuram Express,KPPR,281,281,3,14
+16327,Korba Tiruvananthapuram Express,MGSJ,284,284,3,15
+16327,Korba Tiruvananthapuram Express,SA,285,290,3,16
+16327,Korba Tiruvananthapuram Express,NEA,299,299,3,17
+16327,Korba Tiruvananthapuram Express,VRPD,303,303,3,18
+16327,Korba Tiruvananthapuram Express,DC,316,316,3,19
+16327,Korba Tiruvananthapuram Express,MVPM,331,331,3,20
+16327,Korba Tiruvananthapuram Express,SGE,337,337,3,21
+16327,Korba Tiruvananthapuram Express,ANU,347,347,3,22
+16327,Korba Tiruvananthapuram Express,CV,359,359,3,23
+16327,Korba Tiruvananthapuram Express,ED,365,375,3,24
+12507,TRIVANDRUM - GUWAHATI SF Exp,ED,180,185,2,0
+12507,TRIVANDRUM - GUWAHATI SF Exp,CV,189,189,2,1
+12507,TRIVANDRUM - GUWAHATI SF Exp,ANU,199,199,2,2
+12507,TRIVANDRUM - GUWAHATI SF Exp,SGE,206,206,2,3
+12507,TRIVANDRUM - GUWAHATI SF Exp,MVPM,210,210,2,4
+12507,TRIVANDRUM - GUWAHATI SF Exp,DC,221,221,2,5
+12507,TRIVANDRUM - GUWAHATI SF Exp,DVBH,,,1,6
+12507,TRIVANDRUM - GUWAHATI SF Exp,VRPD,231,231,2,7
+12507,TRIVANDRUM - GUWAHATI SF Exp,NEA,234,234,2,8
+12507,TRIVANDRUM - GUWAHATI SF Exp,SA,240,245,2,9
+12507,TRIVANDRUM - GUWAHATI SF Exp,MGSJ,248,248,2,10
+12507,TRIVANDRUM - GUWAHATI SF Exp,KPPR,251,251,2,11
+12507,TRIVANDRUM - GUWAHATI SF Exp,TNT,260,260,2,12
+12507,TRIVANDRUM - GUWAHATI SF Exp,DSPT,267,267,2,13
+12507,TRIVANDRUM - GUWAHATI SF Exp,LCR,275,275,2,14
+12507,TRIVANDRUM - GUWAHATI SF Exp,BQI,285,285,2,15
+12507,TRIVANDRUM - GUWAHATI SF Exp,BDY,294,294,2,16
+12507,TRIVANDRUM - GUWAHATI SF Exp,TNGR,300,300,2,17
+12507,TRIVANDRUM - GUWAHATI SF Exp,MAP,306,306,2,18
+12507,TRIVANDRUM - GUWAHATI SF Exp,DPI,312,312,2,19
+12507,TRIVANDRUM - GUWAHATI SF Exp,DST,320,320,2,20
+12507,TRIVANDRUM - GUWAHATI SF Exp,SLY,328,328,2,21
+12507,TRIVANDRUM - GUWAHATI SF Exp,KNNT,334,334,2,22
+12507,TRIVANDRUM - GUWAHATI SF Exp,KEY,339,339,2,23
+12507,TRIVANDRUM - GUWAHATI SF Exp,MOLK,,,1,24
+12507,TRIVANDRUM - GUWAHATI SF Exp,TPT,349,349,2,25
+12507,TRIVANDRUM - GUWAHATI SF Exp,JTJ,355,360,2,26
+18189,Tatanagar- Alappuzha (Alleppey) Express,JTJ,438,440,3,0
+18189,Tatanagar- Alappuzha (Alleppey) Express,TPT,451,452,3,1
+18189,Tatanagar- Alappuzha (Alleppey) Express,MOLK,,,1,2
+18189,Tatanagar- Alappuzha (Alleppey) Express,KEY,460,460,3,3
+18189,Tatanagar- Alappuzha (Alleppey) Express,KNNT,465,465,3,4
+18189,Tatanagar- Alappuzha (Alleppey) Express,SLY,470,470,3,5
+18189,Tatanagar- Alappuzha (Alleppey) Express,DST,476,476,3,6
+18189,Tatanagar- Alappuzha (Alleppey) Express,DPI,482,482,3,7
+18189,Tatanagar- Alappuzha (Alleppey) Express,MAP,488,488,3,8
+18189,Tatanagar- Alappuzha (Alleppey) Express,TNGR,493,493,3,9
+18189,Tatanagar- Alappuzha (Alleppey) Express,BDY,498,498,3,10
+18189,Tatanagar- Alappuzha (Alleppey) Express,BQI,504,505,3,11
+18189,Tatanagar- Alappuzha (Alleppey) Express,LCR,513,513,3,12
+18189,Tatanagar- Alappuzha (Alleppey) Express,DSPT,521,521,3,13
+18189,Tatanagar- Alappuzha (Alleppey) Express,TNT,527,527,3,14
+18189,Tatanagar- Alappuzha (Alleppey) Express,KPPR,535,535,3,15
+18189,Tatanagar- Alappuzha (Alleppey) Express,MGSJ,538,538,3,16
+18189,Tatanagar- Alappuzha (Alleppey) Express,SA,540,545,3,17
+18189,Tatanagar- Alappuzha (Alleppey) Express,NEA,553,553,3,18
+18189,Tatanagar- Alappuzha (Alleppey) Express,VRPD,557,557,3,19
+18189,Tatanagar- Alappuzha (Alleppey) Express,DVBH,,,1,20
+18189,Tatanagar- Alappuzha (Alleppey) Express,DC,569,569,3,21
+18189,Tatanagar- Alappuzha (Alleppey) Express,MVPM,583,583,3,22
+18189,Tatanagar- Alappuzha (Alleppey) Express,SGE,589,589,3,23
+18189,Tatanagar- Alappuzha (Alleppey) Express,ANU,597,597,3,24
+18189,Tatanagar- Alappuzha (Alleppey) Express,CV,609,609,3,25
+18189,Tatanagar- Alappuzha (Alleppey) Express,ED,615,625,3,26
+06009,Chennai CentralKollam SF Special,JTJ,153,155,2,0
+06009,Chennai CentralKollam SF Special,TPT,160,160,2,1
+06009,Chennai CentralKollam SF Special,KEY,169,169,2,2
+06009,Chennai CentralKollam SF Special,KNNT,173,173,2,3
+06009,Chennai CentralKollam SF Special,SLY,178,178,2,4
+06009,Chennai CentralKollam SF Special,DST,184,184,2,5
+06009,Chennai CentralKollam SF Special,DPI,190,190,2,6
+06009,Chennai CentralKollam SF Special,MAP,196,196,2,7
+06009,Chennai CentralKollam SF Special,TNGR,201,201,2,8
+06009,Chennai CentralKollam SF Special,BDY,205,205,2,9
+06009,Chennai CentralKollam SF Special,BQI,213,213,2,10
+06009,Chennai CentralKollam SF Special,LCR,220,220,2,11
+06009,Chennai CentralKollam SF Special,DSPT,227,227,2,12
+06009,Chennai CentralKollam SF Special,TNT,233,233,2,13
+06009,Chennai CentralKollam SF Special,KPPR,240,240,2,14
+06009,Chennai CentralKollam SF Special,MGSJ,243,243,2,15
+06009,Chennai CentralKollam SF Special,SA,245,250,2,16
+06009,Chennai CentralKollam SF Special,NEA,257,257,2,17
+06009,Chennai CentralKollam SF Special,VRPD,259,259,2,18
+06009,Chennai CentralKollam SF Special,DC,269,269,2,19
+06009,Chennai CentralKollam SF Special,MVPM,280,280,2,20
+06009,Chennai CentralKollam SF Special,SGE,284,284,2,21
+06009,Chennai CentralKollam SF Special,ANU,291,291,2,22
+06009,Chennai CentralKollam SF Special,CV,300,300,2,23
+06009,Chennai CentralKollam SF Special,ED,305,310,2,24
+16688-Slip,Navyug Express Slip,JTJ,303,305,4,0
+16688-Slip,Navyug Express Slip,TPT,311,311,4,1
+16688-Slip,Navyug Express Slip,KEY,319,319,4,2
+16688-Slip,Navyug Express Slip,KNNT,324,324,4,3
+16688-Slip,Navyug Express Slip,SLY,328,328,4,4
+16688-Slip,Navyug Express Slip,DST,335,335,4,5
+16688-Slip,Navyug Express Slip,DPI,341,341,4,6
+16688-Slip,Navyug Express Slip,MAP,347,347,4,7
+16688-Slip,Navyug Express Slip,TNGR,351,351,4,8
+16688-Slip,Navyug Express Slip,BDY,356,356,4,9
+16688-Slip,Navyug Express Slip,BQI,364,364,4,10
+16688-Slip,Navyug Express Slip,LCR,372,372,4,11
+16688-Slip,Navyug Express Slip,DSPT,379,379,4,12
+16688-Slip,Navyug Express Slip,TNT,384,384,4,13
+16688-Slip,Navyug Express Slip,KPPR,392,392,4,14
+16688-Slip,Navyug Express Slip,MGSJ,394,394,4,15
+16688-Slip,Navyug Express Slip,SA,395,400,4,16
+16688-Slip,Navyug Express Slip,NEA,409,409,4,17
+16688-Slip,Navyug Express Slip,VRPD,412,412,4,18
+16688-Slip,Navyug Express Slip,DC,424,424,4,19
+16688-Slip,Navyug Express Slip,MVPM,439,439,4,20
+16688-Slip,Navyug Express Slip,SGE,445,445,4,21
+16688-Slip,Navyug Express Slip,ANU,454,454,4,22
+16688-Slip,Navyug Express Slip,CV,466,466,4,23
+16688-Slip,Navyug Express Slip,ED,470,530,4,24
+12646,Millennium Express,JTJ,1238,1238,2,0
+12646,Millennium Express,TPT,1243,1243,2,1
+12646,Millennium Express,KEY,1252,1252,2,2
+12646,Millennium Express,KNNT,1256,1256,2,3
+12646,Millennium Express,SLY,1261,1261,2,4
+12646,Millennium Express,DST,1267,1267,2,5
+12646,Millennium Express,DPI,1273,1273,2,6
+12646,Millennium Express,MAP,1279,1279,2,7
+12646,Millennium Express,TNGR,1283,1283,2,8
+12646,Millennium Express,BDY,1288,1288,2,9
+12646,Millennium Express,BQI,1296,1296,2,10
+12646,Millennium Express,LCR,1303,1303,2,11
+12646,Millennium Express,DSPT,1310,1310,2,12
+12646,Millennium Express,TNT,1315,1315,2,13
+12646,Millennium Express,KPPR,1323,1323,2,14
+12646,Millennium Express,MGSJ,1325,1325,2,15
+12646,Millennium Express,SA,1325,1330,2,16
+12646,Millennium Express,NEA,1338,1338,2,17
+12646,Millennium Express,VRPD,1342,1342,2,18
+12646,Millennium Express,DC,1354,1354,2,19
+12646,Millennium Express,MVPM,1368,1368,2,20
+12646,Millennium Express,SGE,1374,1374,2,21
+12646,Millennium Express,ANU,1382,1382,2,22
+12646,Millennium Express,CV,1394,1394,2,23
+12646,Millennium Express,ED,1400,1405,2,24
+06005,Chennai Central-Kollam SF Special,JTJ,1428,1430,1,0
+06005,Chennai Central-Kollam SF Special,TPT,1435,1435,1,1
+06005,Chennai Central-Kollam SF Special,KEY,3,3,2,2
+06005,Chennai Central-Kollam SF Special,KNNT,7,7,2,3
+06005,Chennai Central-Kollam SF Special,SLY,12,12,2,4
+06005,Chennai Central-Kollam SF Special,DST,18,18,2,5
+06005,Chennai Central-Kollam SF Special,DPI,24,24,2,6
+06005,Chennai Central-Kollam SF Special,MAP,29,29,2,7
+06005,Chennai Central-Kollam SF Special,TNGR,33,33,2,8
+06005,Chennai Central-Kollam SF Special,BDY,38,38,2,9
+06005,Chennai Central-Kollam SF Special,BQI,45,45,2,10
+06005,Chennai Central-Kollam SF Special,LCR,52,52,2,11
+06005,Chennai Central-Kollam SF Special,DSPT,58,58,2,12
+06005,Chennai Central-Kollam SF Special,TNT,63,63,2,13
+06005,Chennai Central-Kollam SF Special,KPPR,71,71,2,14
+06005,Chennai Central-Kollam SF Special,MGSJ,73,73,2,15
+06005,Chennai Central-Kollam SF Special,SA,75,80,2,16
+06005,Chennai Central-Kollam SF Special,NEA,87,87,2,17
+06005,Chennai Central-Kollam SF Special,VRPD,89,89,2,18
+06005,Chennai Central-Kollam SF Special,DC,99,99,2,19
+06005,Chennai Central-Kollam SF Special,MVPM,110,110,2,20
+06005,Chennai Central-Kollam SF Special,SGE,114,114,2,21
+06005,Chennai Central-Kollam SF Special,ANU,121,121,2,22
+06005,Chennai Central-Kollam SF Special,CV,130,130,2,23
+06005,Chennai Central-Kollam SF Special,ED,135,140,2,24
+06002,Kollam-Chennai Central SF Special,ED,1280,1285,1,0
+06002,Kollam-Chennai Central SF Special,CV,1289,1289,1,1
+06002,Kollam-Chennai Central SF Special,ANU,1298,1298,1,2
+06002,Kollam-Chennai Central SF Special,SGE,1305,1305,1,3
+06002,Kollam-Chennai Central SF Special,MVPM,1310,1310,1,4
+06002,Kollam-Chennai Central SF Special,DC,1320,1320,1,5
+06002,Kollam-Chennai Central SF Special,VRPD,1330,1330,1,6
+06002,Kollam-Chennai Central SF Special,NEA,1332,1332,1,7
+06002,Kollam-Chennai Central SF Special,SA,1340,1345,1,8
+06002,Kollam-Chennai Central SF Special,MGSJ,1347,1347,1,9
+06002,Kollam-Chennai Central SF Special,KPPR,1350,1350,1,10
+06002,Kollam-Chennai Central SF Special,TNT,1357,1357,1,11
+06002,Kollam-Chennai Central SF Special,DSPT,1362,1362,1,12
+06002,Kollam-Chennai Central SF Special,LCR,1369,1369,1,13
+06002,Kollam-Chennai Central SF Special,BQI,1377,1377,1,14
+06002,Kollam-Chennai Central SF Special,BDY,1384,1384,1,15
+06002,Kollam-Chennai Central SF Special,TNGR,1389,1389,1,16
+06002,Kollam-Chennai Central SF Special,MAP,1393,1393,1,17
+06002,Kollam-Chennai Central SF Special,DPI,1398,1398,1,18
+06002,Kollam-Chennai Central SF Special,DST,1404,1404,1,19
+06002,Kollam-Chennai Central SF Special,SLY,1411,1411,1,20
+06002,Kollam-Chennai Central SF Special,KNNT,1415,1415,1,21
+06002,Kollam-Chennai Central SF Special,KEY,1420,1420,1,22
+06002,Kollam-Chennai Central SF Special,TPT,1428,1428,1,23
+06002,Kollam-Chennai Central SF Special,JTJ,1433,1435,1,24
+16359,ERNAKULAM - PATNA Exp,ED,300,305,2,0
+16359,ERNAKULAM - PATNA Exp,CV,309,309,2,1
+16359,ERNAKULAM - PATNA Exp,ANU,319,319,2,2
+16359,ERNAKULAM - PATNA Exp,SGE,326,326,2,3
+16359,ERNAKULAM - PATNA Exp,MVPM,330,330,2,4
+16359,ERNAKULAM - PATNA Exp,DC,341,341,2,5
+16359,ERNAKULAM - PATNA Exp,DVBH,,,1,6
+16359,ERNAKULAM - PATNA Exp,VRPD,351,351,2,7
+16359,ERNAKULAM - PATNA Exp,NEA,354,354,2,8
+16359,ERNAKULAM - PATNA Exp,SA,360,365,2,9
+16359,ERNAKULAM - PATNA Exp,MGSJ,368,368,2,10
+16359,ERNAKULAM - PATNA Exp,KPPR,371,371,2,11
+16359,ERNAKULAM - PATNA Exp,TNT,380,380,2,12
+16359,ERNAKULAM - PATNA Exp,DSPT,386,386,2,13
+16359,ERNAKULAM - PATNA Exp,LCR,394,394,2,14
+16359,ERNAKULAM - PATNA Exp,BQI,403,403,2,15
+16359,ERNAKULAM - PATNA Exp,BDY,412,412,2,16
+16359,ERNAKULAM - PATNA Exp,TNGR,418,418,2,17
+16359,ERNAKULAM - PATNA Exp,MAP,423,423,2,18
+16359,ERNAKULAM - PATNA Exp,DPI,429,429,2,19
+16359,ERNAKULAM - PATNA Exp,DST,437,437,2,20
+16359,ERNAKULAM - PATNA Exp,SLY,444,444,2,21
+16359,ERNAKULAM - PATNA Exp,KNNT,450,450,2,22
+16359,ERNAKULAM - PATNA Exp,KEY,455,455,2,23
+16359,ERNAKULAM - PATNA Exp,MOLK,,,1,24
+16359,ERNAKULAM - PATNA Exp,TPT,465,465,2,25
+16359,ERNAKULAM - PATNA Exp,JTJ,470,475,2,26
+12244,Coimbatore-Chennai Central AC Duronto Express,ED,1000,1000,1,0
+12244,Coimbatore-Chennai Central AC Duronto Express,CV,1004,1004,1,1
+12244,Coimbatore-Chennai Central AC Duronto Express,ANU,1013,1013,1,2
+12244,Coimbatore-Chennai Central AC Duronto Express,SGE,1019,1019,1,3
+12244,Coimbatore-Chennai Central AC Duronto Express,MVPM,1023,1023,1,4
+12244,Coimbatore-Chennai Central AC Duronto Express,DC,1034,1034,1,5
+12244,Coimbatore-Chennai Central AC Duronto Express,VRPD,1042,1042,1,6
+12244,Coimbatore-Chennai Central AC Duronto Express,NEA,1045,1045,1,7
+12244,Coimbatore-Chennai Central AC Duronto Express,SA,1051,1051,1,8
+12244,Coimbatore-Chennai Central AC Duronto Express,MGSJ,1053,1053,1,9
+12244,Coimbatore-Chennai Central AC Duronto Express,KPPR,1056,1056,1,10
+12244,Coimbatore-Chennai Central AC Duronto Express,TNT,1064,1064,1,11
+12244,Coimbatore-Chennai Central AC Duronto Express,DSPT,1070,1070,1,12
+12244,Coimbatore-Chennai Central AC Duronto Express,LCR,1078,1078,1,13
+12244,Coimbatore-Chennai Central AC Duronto Express,BQI,1086,1086,1,14
+12244,Coimbatore-Chennai Central AC Duronto Express,BDY,1095,1095,1,15
+12244,Coimbatore-Chennai Central AC Duronto Express,TNGR,1100,1100,1,16
+12244,Coimbatore-Chennai Central AC Duronto Express,MAP,1105,1105,1,17
+12244,Coimbatore-Chennai Central AC Duronto Express,DPI,1111,1111,1,18
+12244,Coimbatore-Chennai Central AC Duronto Express,DST,1118,1118,1,19
+12244,Coimbatore-Chennai Central AC Duronto Express,SLY,1125,1125,1,20
+12244,Coimbatore-Chennai Central AC Duronto Express,KNNT,1130,1130,1,21
+12244,Coimbatore-Chennai Central AC Duronto Express,KEY,1135,1135,1,22
+12244,Coimbatore-Chennai Central AC Duronto Express,TPT,1144,1144,1,23
+12244,Coimbatore-Chennai Central AC Duronto Express,JTJ,1150,1150,1,24
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,JTJ,1070,1075,4,0
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,TPT,1081,1081,4,1
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,MOLK,,,1,2
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,KEY,1090,1090,4,3
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,KNNT,1095,1095,4,4
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,SLY,1101,1101,4,5
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,DST,1108,1108,4,6
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,DPI,1115,1115,4,7
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,MAP,1121,1121,4,8
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,TNGR,1126,1126,4,9
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,BDY,1132,1132,4,10
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,BQI,1140,1140,4,11
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,LCR,1148,1148,4,12
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,DSPT,1156,1156,4,13
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,TNT,1162,1162,4,14
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,KPPR,1171,1171,4,15
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,MGSJ,1173,1173,4,16
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,SA,1175,1180,4,17
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,NEA,1186,1186,4,18
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,VRPD,1189,1189,4,19
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,DVBH,,,1,20
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,DC,1199,1199,4,21
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,MVPM,1210,1210,4,22
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,SGE,1214,1214,4,23
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,ANU,1221,1221,4,24
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,CV,1230,1230,4,25
+15906,DIBRUGARH - KANNIYAKUMARI Vivek Exp,ED,1235,1240,4,26
+12682,Coimbatore-Chennai Express,ED,75,80,2,0
+12682,Coimbatore-Chennai Express,CV,84,84,2,1
+12682,Coimbatore-Chennai Express,ANU,93,93,2,2
+12682,Coimbatore-Chennai Express,SGE,100,100,2,3
+12682,Coimbatore-Chennai Express,MVPM,105,105,2,4
+12682,Coimbatore-Chennai Express,DC,116,116,2,5
+12682,Coimbatore-Chennai Express,VRPD,125,125,2,6
+12682,Coimbatore-Chennai Express,NEA,128,128,2,7
+12682,Coimbatore-Chennai Express,SA,135,140,2,8
+12682,Coimbatore-Chennai Express,MGSJ,143,143,2,9
+12682,Coimbatore-Chennai Express,KPPR,146,146,2,10
+12682,Coimbatore-Chennai Express,TNT,155,155,2,11
+12682,Coimbatore-Chennai Express,DSPT,161,161,2,12
+12682,Coimbatore-Chennai Express,LCR,169,169,2,13
+12682,Coimbatore-Chennai Express,BQI,178,178,2,14
+12682,Coimbatore-Chennai Express,BDY,187,187,2,15
+12682,Coimbatore-Chennai Express,TNGR,193,193,2,16
+12682,Coimbatore-Chennai Express,MAP,198,198,2,17
+12682,Coimbatore-Chennai Express,DPI,205,205,2,18
+12682,Coimbatore-Chennai Express,DST,212,212,2,19
+12682,Coimbatore-Chennai Express,SLY,219,219,2,20
+12682,Coimbatore-Chennai Express,KNNT,225,225,2,21
+12682,Coimbatore-Chennai Express,KEY,230,230,2,22
+12682,Coimbatore-Chennai Express,TPT,240,240,2,23
+12682,Coimbatore-Chennai Express,JTJ,246,246,2,24
+16309,Ernakulam-Patna Express,ED,1400,1405,1,0
+16309,Ernakulam-Patna Express,CV,1409,1409,1,1
+16309,Ernakulam-Patna Express,ANU,1419,1419,1,2
+16309,Ernakulam-Patna Express,SGE,1426,1426,1,3
+16309,Ernakulam-Patna Express,MVPM,1430,1430,1,4
+16309,Ernakulam-Patna Express,DC,1,1,2,5
+16309,Ernakulam-Patna Express,VRPD,11,11,2,6
+16309,Ernakulam-Patna Express,NEA,14,14,2,7
+16309,Ernakulam-Patna Express,SA,20,25,2,8
+16309,Ernakulam-Patna Express,MGSJ,28,28,2,9
+16309,Ernakulam-Patna Express,KPPR,31,31,2,10
+16309,Ernakulam-Patna Express,TNT,39,39,2,11
+16309,Ernakulam-Patna Express,DSPT,45,45,2,12
+16309,Ernakulam-Patna Express,LCR,54,54,2,13
+16309,Ernakulam-Patna Express,BQI,62,62,2,14
+16309,Ernakulam-Patna Express,BDY,71,71,2,15
+16309,Ernakulam-Patna Express,TNGR,77,77,2,16
+16309,Ernakulam-Patna Express,MAP,82,82,2,17
+16309,Ernakulam-Patna Express,DPI,88,88,2,18
+16309,Ernakulam-Patna Express,DST,95,95,2,19
+16309,Ernakulam-Patna Express,SLY,103,103,2,20
+16309,Ernakulam-Patna Express,KNNT,108,108,2,21
+16309,Ernakulam-Patna Express,KEY,113,113,2,22
+16309,Ernakulam-Patna Express,TPT,123,123,2,23
+16309,Ernakulam-Patna Express,JTJ,128,130,2,24
+16360,PATNA - ERNAKULAM Express,JTJ,835,840,3,0
+16360,PATNA - ERNAKULAM Express,TPT,845,845,3,1
+16360,PATNA - ERNAKULAM Express,MOLK,,,1,2
+16360,PATNA - ERNAKULAM Express,KEY,853,853,3,3
+16360,PATNA - ERNAKULAM Express,KNNT,857,857,3,4
+16360,PATNA - ERNAKULAM Express,SLY,862,862,3,5
+16360,PATNA - ERNAKULAM Express,DST,868,868,3,6
+16360,PATNA - ERNAKULAM Express,DPI,874,874,3,7
+16360,PATNA - ERNAKULAM Express,MAP,879,879,3,8
+16360,PATNA - ERNAKULAM Express,TNGR,883,883,3,9
+16360,PATNA - ERNAKULAM Express,BDY,888,888,3,10
+16360,PATNA - ERNAKULAM Express,BQI,895,895,3,11
+16360,PATNA - ERNAKULAM Express,LCR,902,902,3,12
+16360,PATNA - ERNAKULAM Express,DSPT,909,909,3,13
+16360,PATNA - ERNAKULAM Express,TNT,914,914,3,14
+16360,PATNA - ERNAKULAM Express,KPPR,921,921,3,15
+16360,PATNA - ERNAKULAM Express,MGSJ,924,924,3,16
+16360,PATNA - ERNAKULAM Express,SA,925,930,3,17
+16360,PATNA - ERNAKULAM Express,NEA,938,938,3,18
+16360,PATNA - ERNAKULAM Express,VRPD,942,942,3,19
+16360,PATNA - ERNAKULAM Express,DVBH,,,1,20
+16360,PATNA - ERNAKULAM Express,DC,954,954,3,21
+16360,PATNA - ERNAKULAM Express,MVPM,968,968,3,22
+16360,PATNA - ERNAKULAM Express,SGE,974,974,3,23
+16360,PATNA - ERNAKULAM Express,ANU,983,983,3,24
+16360,PATNA - ERNAKULAM Express,CV,995,995,3,25
+16360,PATNA - ERNAKULAM Express,ED,1000,1010,3,26
+12508,GUWAHATI - TRIVANDRUM SF Exp,JTJ,508,510,3,0
+12508,GUWAHATI - TRIVANDRUM SF Exp,TPT,515,515,3,1
+12508,GUWAHATI - TRIVANDRUM SF Exp,MOLK,,,1,2
+12508,GUWAHATI - TRIVANDRUM SF Exp,KEY,522,522,3,3
+12508,GUWAHATI - TRIVANDRUM SF Exp,KNNT,526,526,3,4
+12508,GUWAHATI - TRIVANDRUM SF Exp,SLY,531,531,3,5
+12508,GUWAHATI - TRIVANDRUM SF Exp,DST,536,536,3,6
+12508,GUWAHATI - TRIVANDRUM SF Exp,DPI,542,542,3,7
+12508,GUWAHATI - TRIVANDRUM SF Exp,MAP,547,547,3,8
+12508,GUWAHATI - TRIVANDRUM SF Exp,TNGR,551,551,3,9
+12508,GUWAHATI - TRIVANDRUM SF Exp,BDY,555,555,3,10
+12508,GUWAHATI - TRIVANDRUM SF Exp,BQI,562,562,3,11
+12508,GUWAHATI - TRIVANDRUM SF Exp,LCR,569,569,3,12
+12508,GUWAHATI - TRIVANDRUM SF Exp,DSPT,575,575,3,13
+12508,GUWAHATI - TRIVANDRUM SF Exp,TNT,580,580,3,14
+12508,GUWAHATI - TRIVANDRUM SF Exp,KPPR,587,587,3,15
+12508,GUWAHATI - TRIVANDRUM SF Exp,MGSJ,589,589,3,16
+12508,GUWAHATI - TRIVANDRUM SF Exp,SA,590,595,3,17
+12508,GUWAHATI - TRIVANDRUM SF Exp,NEA,603,603,3,18
+12508,GUWAHATI - TRIVANDRUM SF Exp,VRPD,607,607,3,19
+12508,GUWAHATI - TRIVANDRUM SF Exp,DVBH,,,1,20
+12508,GUWAHATI - TRIVANDRUM SF Exp,DC,619,619,3,21
+12508,GUWAHATI - TRIVANDRUM SF Exp,MVPM,633,633,3,22
+12508,GUWAHATI - TRIVANDRUM SF Exp,SGE,639,639,3,23
+12508,GUWAHATI - TRIVANDRUM SF Exp,ANU,648,648,3,24
+12508,GUWAHATI - TRIVANDRUM SF Exp,CV,660,660,3,25
+12508,GUWAHATI - TRIVANDRUM SF Exp,ED,665,675,3,26
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,ED,195,200,2,0
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,CV,205,205,2,1
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,ANU,214,214,2,2
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,SGE,221,221,2,3
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,MVPM,226,226,2,4
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,DC,237,237,2,5
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,DVBH,,,1,6
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,VRPD,247,247,2,7
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,NEA,250,250,2,8
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,SA,257,260,2,9
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,MGSJ,263,263,2,10
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,KPPR,266,266,2,11
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,TNT,275,275,2,12
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,DSPT,281,281,2,13
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,LCR,289,289,2,14
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,BQI,298,298,2,15
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,BDY,307,307,2,16
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,TNGR,313,313,2,17
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,MAP,318,318,2,18
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,DPI,324,324,2,19
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,DST,332,332,2,20
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,SLY,339,339,2,21
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,KNNT,345,345,2,22
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,KEY,350,350,2,23
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,MOLK,,,1,24
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,TPT,360,360,2,25
+15905,KANNIYAKUMARI - DIBRUGARH Vivek Exp,JTJ,365,370,2,26
+12515,RIVANDRUM - GUWAHATI Exp,ED,1400,1405,1,0
+12515,RIVANDRUM - GUWAHATI Exp,CV,1409,1409,1,1
+12515,RIVANDRUM - GUWAHATI Exp,ANU,1419,1419,1,2
+12515,RIVANDRUM - GUWAHATI Exp,SGE,1426,1426,1,3
+12515,RIVANDRUM - GUWAHATI Exp,MVPM,1430,1430,1,4
+12515,RIVANDRUM - GUWAHATI Exp,DC,1,1,2,5
+12515,RIVANDRUM - GUWAHATI Exp,DVBH,,,1,6
+12515,RIVANDRUM - GUWAHATI Exp,VRPD,11,11,2,7
+12515,RIVANDRUM - GUWAHATI Exp,NEA,14,14,2,8
+12515,RIVANDRUM - GUWAHATI Exp,SA,20,25,2,9
+12515,RIVANDRUM - GUWAHATI Exp,MGSJ,28,28,2,10
+12515,RIVANDRUM - GUWAHATI Exp,KPPR,31,31,2,11
+12515,RIVANDRUM - GUWAHATI Exp,TNT,39,39,2,12
+12515,RIVANDRUM - GUWAHATI Exp,DSPT,45,45,2,13
+12515,RIVANDRUM - GUWAHATI Exp,LCR,54,54,2,14
+12515,RIVANDRUM - GUWAHATI Exp,BQI,62,62,2,15
+12515,RIVANDRUM - GUWAHATI Exp,BDY,71,71,2,16
+12515,RIVANDRUM - GUWAHATI Exp,TNGR,77,77,2,17
+12515,RIVANDRUM - GUWAHATI Exp,MAP,82,82,2,18
+12515,RIVANDRUM - GUWAHATI Exp,DPI,88,88,2,19
+12515,RIVANDRUM - GUWAHATI Exp,DST,95,95,2,20
+12515,RIVANDRUM - GUWAHATI Exp,SLY,103,103,2,21
+12515,RIVANDRUM - GUWAHATI Exp,KNNT,108,108,2,22
+12515,RIVANDRUM - GUWAHATI Exp,KEY,113,113,2,23
+12515,RIVANDRUM - GUWAHATI Exp,MOLK,,,1,24
+12515,RIVANDRUM - GUWAHATI Exp,TPT,123,123,2,25
+12515,RIVANDRUM - GUWAHATI Exp,JTJ,128,130,2,26
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,ED,830,840,1,0
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,CV,844,844,1,1
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,ANU,853,853,1,2
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,SGE,860,860,1,3
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,MVPM,865,865,1,4
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,DC,876,876,1,5
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,DVBH,,,1,6
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,VRPD,885,885,1,7
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,NEA,888,888,1,8
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,SA,895,900,1,9
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,MGSJ,903,903,1,10
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,KPPR,905,905,1,11
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,TNT,913,913,1,12
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,DSPT,919,919,1,13
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,LCR,926,926,1,14
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,BQI,934,935,1,15
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,BDY,942,942,1,16
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,TNGR,947,947,1,17
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,MAP,952,952,1,18
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,DPI,957,957,1,19
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,DST,963,963,1,20
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,SLY,969,970,1,21
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,KNNT,978,978,1,22
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,KEY,985,985,1,23
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,MOLK,,,1,24
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,TPT,999,1000,1,25
+13352,ALAPPUZHA - DHANBAD (Bokaro) Express,JTJ,1025,1030,1,26
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,JTJ,1070,1070,1,0
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,TPT,1077,1077,1,1
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,MOLK,,,1,2
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,KEY,1087,1087,1,3
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,KNNT,1093,1093,1,4
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,SLY,1099,1099,1,5
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,DST,1107,1107,1,6
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,DPI,1115,1115,1,7
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,MAP,1122,1122,1,8
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,TNGR,1127,1127,1,9
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,BDY,1133,1133,1,10
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,BQI,1143,1143,1,11
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,LCR,1152,1152,1,12
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,DSPT,1161,1161,1,13
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,TNT,1168,1168,1,14
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,KPPR,1177,1177,1,15
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,MGSJ,1180,1180,1,16
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,SA,1185,1190,1,17
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,NEA,1197,1197,1,18
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,VRPD,1199,1199,1,19
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,DVBH,,,1,20
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,DC,1209,1209,1,21
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,MVPM,1220,1220,1,22
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,SGE,1225,1225,1,23
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,ANU,1232,1232,1,24
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,CV,1241,1241,1,25
+12777,HUBLI - TRIVANDRUM KOCHUVELI SF Exp,ED,1245,1250,1,26
+16323,Trivandrum Shalimar Biweekly Express,ED,180,185,2,0
+16323,Trivandrum Shalimar Biweekly Express,CV,189,189,2,1
+16323,Trivandrum Shalimar Biweekly Express,ANU,198,198,2,2
+16323,Trivandrum Shalimar Biweekly Express,SGE,205,205,2,3
+16323,Trivandrum Shalimar Biweekly Express,MVPM,210,210,2,4
+16323,Trivandrum Shalimar Biweekly Express,DC,220,220,2,5
+16323,Trivandrum Shalimar Biweekly Express,VRPD,230,230,2,6
+16323,Trivandrum Shalimar Biweekly Express,NEA,232,232,2,7
+16323,Trivandrum Shalimar Biweekly Express,SA,240,245,2,8
+16323,Trivandrum Shalimar Biweekly Express,MGSJ,248,248,2,9
+16323,Trivandrum Shalimar Biweekly Express,KPPR,251,251,2,10
+16323,Trivandrum Shalimar Biweekly Express,TNT,260,260,2,11
+16323,Trivandrum Shalimar Biweekly Express,DSPT,267,267,2,12
+16323,Trivandrum Shalimar Biweekly Express,LCR,275,275,2,13
+16323,Trivandrum Shalimar Biweekly Express,BQI,284,284,2,14
+16323,Trivandrum Shalimar Biweekly Express,BDY,294,294,2,15
+16323,Trivandrum Shalimar Biweekly Express,TNGR,299,299,2,16
+16323,Trivandrum Shalimar Biweekly Express,MAP,305,305,2,17
+16323,Trivandrum Shalimar Biweekly Express,DPI,312,312,2,18
+16323,Trivandrum Shalimar Biweekly Express,DST,319,319,2,19
+16323,Trivandrum Shalimar Biweekly Express,SLY,327,327,2,20
+16323,Trivandrum Shalimar Biweekly Express,KNNT,333,333,2,21
+16323,Trivandrum Shalimar Biweekly Express,KEY,338,338,2,22
+16323,Trivandrum Shalimar Biweekly Express,TPT,348,348,2,23
+16323,Trivandrum Shalimar Biweekly Express,JTJ,355,360,2,24
+56846,Erode Jolarpettai Passenger,ED,,980,1,0
+56846,Erode Jolarpettai Passenger,CV,985,987,1,1
+56846,Erode Jolarpettai Passenger,ANU,995,997,1,2
+56846,Erode Jolarpettai Passenger,SGE,1005,1007,1,3
+56846,Erode Jolarpettai Passenger,MVPM,1013,1015,1,4
+56846,Erode Jolarpettai Passenger,DC,1028,1030,1,5
+56846,Erode Jolarpettai Passenger,VRPD,1038,1040,1,6
+56846,Erode Jolarpettai Passenger,NEA,1044,1046,1,7
+56846,Erode Jolarpettai Passenger,SA,1055,1060,1,8
+56846,Erode Jolarpettai Passenger,MGSJ,1066,1066,1,9
+56846,Erode Jolarpettai Passenger,KPPR,1071,1072,1,10
+56846,Erode Jolarpettai Passenger,TNT,1081,1082,1,11
+56846,Erode Jolarpettai Passenger,DSPT,1091,1092,1,12
+56846,Erode Jolarpettai Passenger,LCR,1101,1102,1,13
+56846,Erode Jolarpettai Passenger,BQI,1111,1112,1,14
+56846,Erode Jolarpettai Passenger,BDY,1120,1121,1,15
+56846,Erode Jolarpettai Passenger,TNGR,1126,1127,1,16
+56846,Erode Jolarpettai Passenger,MAP,1133,1134,1,17
+56846,Erode Jolarpettai Passenger,DPI,1141,1142,1,18
+56846,Erode Jolarpettai Passenger,DST,1151,1152,1,19
+56846,Erode Jolarpettai Passenger,SLY,1161,1162,1,20
+56846,Erode Jolarpettai Passenger,KNNT,1167,1168,1,21
+56846,Erode Jolarpettai Passenger,KEY,1174,1175,1,22
+56846,Erode Jolarpettai Passenger,TPT,1189,1190,1,23
+56846,Erode Jolarpettai Passenger,JTJ,1275,,1,24
+16310,Patna - Ernakulam Express,JTJ,455,460,3,0
+16310,Patna - Ernakulam Express,TPT,466,466,3,1
+16310,Patna - Ernakulam Express,KEY,475,475,3,2
+16310,Patna - Ernakulam Express,KNNT,479,479,3,3
+16310,Patna - Ernakulam Express,SLY,484,484,3,4
+16310,Patna - Ernakulam Express,DST,491,491,3,5
+16310,Patna - Ernakulam Express,DPI,498,498,3,6
+16310,Patna - Ernakulam Express,MAP,504,504,3,7
+16310,Patna - Ernakulam Express,TNGR,509,509,3,8
+16310,Patna - Ernakulam Express,BDY,514,514,3,9
+16310,Patna - Ernakulam Express,BQI,522,522,3,10
+16310,Patna - Ernakulam Express,LCR,530,530,3,11
+16310,Patna - Ernakulam Express,DSPT,537,537,3,12
+16310,Patna - Ernakulam Express,TNT,543,543,3,13
+16310,Patna - Ernakulam Express,KPPR,551,551,3,14
+16310,Patna - Ernakulam Express,MGSJ,554,554,3,15
+16310,Patna - Ernakulam Express,SA,555,560,3,16
+16310,Patna - Ernakulam Express,NEA,569,569,3,17
+16310,Patna - Ernakulam Express,VRPD,572,572,3,18
+16310,Patna - Ernakulam Express,DC,585,585,3,19
+16310,Patna - Ernakulam Express,MVPM,601,601,3,20
+16310,Patna - Ernakulam Express,SGE,607,607,3,21
+16310,Patna - Ernakulam Express,ANU,616,616,3,22
+16310,Patna - Ernakulam Express,CV,628,628,3,23
+16310,Patna - Ernakulam Express,ED,635,645,3,24
+16733,Rameswaram-Okha Express,ED,295,305,2,0
+16733,Rameswaram-Okha Express,CV,309,309,2,1
+16733,Rameswaram-Okha Express,ANU,319,319,2,2
+16733,Rameswaram-Okha Express,SGE,326,326,2,3
+16733,Rameswaram-Okha Express,MVPM,330,330,2,4
+16733,Rameswaram-Okha Express,DC,341,341,2,5
+16733,Rameswaram-Okha Express,VRPD,351,351,2,6
+16733,Rameswaram-Okha Express,NEA,354,354,2,7
+16733,Rameswaram-Okha Express,SA,360,365,2,8
+16733,Rameswaram-Okha Express,MGSJ,368,368,2,9
+16733,Rameswaram-Okha Express,KPPR,371,371,2,10
+16733,Rameswaram-Okha Express,TNT,380,380,2,11
+16733,Rameswaram-Okha Express,DSPT,386,386,2,12
+16733,Rameswaram-Okha Express,LCR,394,394,2,13
+16733,Rameswaram-Okha Express,BQI,403,403,2,14
+16733,Rameswaram-Okha Express,BDY,412,412,2,15
+16733,Rameswaram-Okha Express,TNGR,418,418,2,16
+16733,Rameswaram-Okha Express,MAP,423,423,2,17
+16733,Rameswaram-Okha Express,DPI,429,429,2,18
+16733,Rameswaram-Okha Express,DST,437,437,2,19
+16733,Rameswaram-Okha Express,SLY,444,444,2,20
+16733,Rameswaram-Okha Express,KNNT,450,450,2,21
+16733,Rameswaram-Okha Express,KEY,455,455,2,22
+16733,Rameswaram-Okha Express,TPT,465,465,2,23
+16733,Rameswaram-Okha Express,JTJ,470,475,2,24
+16318,Himsagar Express,JTJ,303,305,4,0
+16318,Himsagar Express,TPT,311,311,4,1
+16318,Himsagar Express,KEY,319,319,4,2
+16318,Himsagar Express,KNNT,323,323,4,3
+16318,Himsagar Express,SLY,328,328,4,4
+16318,Himsagar Express,DST,335,335,4,5
+16318,Himsagar Express,DPI,341,341,4,6
+16318,Himsagar Express,MAP,346,346,4,7
+16318,Himsagar Express,TNGR,351,351,4,8
+16318,Himsagar Express,BDY,356,356,4,9
+16318,Himsagar Express,BQI,363,363,4,10
+16318,Himsagar Express,LCR,371,371,4,11
+16318,Himsagar Express,DSPT,378,378,4,12
+16318,Himsagar Express,TNT,384,384,4,13
+16318,Himsagar Express,KPPR,391,391,4,14
+16318,Himsagar Express,MGSJ,394,394,4,15
+16318,Himsagar Express,SA,395,400,4,16
+16318,Himsagar Express,NEA,408,408,4,17
+16318,Himsagar Express,VRPD,412,412,4,18
+16318,Himsagar Express,DC,424,424,4,19
+16318,Himsagar Express,MVPM,438,438,4,20
+16318,Himsagar Express,SGE,444,444,4,21
+16318,Himsagar Express,ANU,452,452,4,22
+16318,Himsagar Express,CV,464,464,4,23
+16318,Himsagar Express,ED,470,500,4,24
+22815,Bilaspur-Ernakulam Express,JTJ,768,770,2,0
+22815,Bilaspur-Ernakulam Express,TPT,775,775,2,1
+22815,Bilaspur-Ernakulam Express,KEY,783,783,2,2
+22815,Bilaspur-Ernakulam Express,KNNT,787,787,2,3
+22815,Bilaspur-Ernakulam Express,SLY,792,792,2,4
+22815,Bilaspur-Ernakulam Express,DST,798,798,2,5
+22815,Bilaspur-Ernakulam Express,DPI,804,804,2,6
+22815,Bilaspur-Ernakulam Express,MAP,809,809,2,7
+22815,Bilaspur-Ernakulam Express,TNGR,813,813,2,8
+22815,Bilaspur-Ernakulam Express,BDY,818,818,2,9
+22815,Bilaspur-Ernakulam Express,BQI,825,825,2,10
+22815,Bilaspur-Ernakulam Express,LCR,832,832,2,11
+22815,Bilaspur-Ernakulam Express,DSPT,839,839,2,12
+22815,Bilaspur-Ernakulam Express,TNT,844,844,2,13
+22815,Bilaspur-Ernakulam Express,KPPR,851,851,2,14
+22815,Bilaspur-Ernakulam Express,MGSJ,854,854,2,15
+22815,Bilaspur-Ernakulam Express,SA,855,860,2,16
+22815,Bilaspur-Ernakulam Express,NEA,869,869,2,17
+22815,Bilaspur-Ernakulam Express,VRPD,872,872,2,18
+22815,Bilaspur-Ernakulam Express,DC,885,885,2,19
+22815,Bilaspur-Ernakulam Express,MVPM,901,901,2,20
+22815,Bilaspur-Ernakulam Express,SGE,907,907,2,21
+22815,Bilaspur-Ernakulam Express,ANU,916,916,2,22
+22815,Bilaspur-Ernakulam Express,CV,928,928,2,23
+22815,Bilaspur-Ernakulam Express,ED,935,940,2,24
+12521,Raptisagar Express,JTJ,195,200,4,0
+12521,Raptisagar Express,TPT,205,205,4,1
+12521,Raptisagar Express,KEY,213,213,4,2
+12521,Raptisagar Express,KNNT,217,217,4,3
+12521,Raptisagar Express,SLY,222,222,4,4
+12521,Raptisagar Express,DST,228,228,4,5
+12521,Raptisagar Express,DPI,234,234,4,6
+12521,Raptisagar Express,MAP,239,239,4,7
+12521,Raptisagar Express,TNGR,243,243,4,8
+12521,Raptisagar Express,BDY,248,248,4,9
+12521,Raptisagar Express,BQI,255,255,4,10
+12521,Raptisagar Express,LCR,262,262,4,11
+12521,Raptisagar Express,DSPT,269,269,4,12
+12521,Raptisagar Express,TNT,274,274,4,13
+12521,Raptisagar Express,KPPR,281,281,4,14
+12521,Raptisagar Express,MGSJ,284,284,4,15
+12521,Raptisagar Express,SA,285,290,4,16
+12521,Raptisagar Express,NEA,299,299,4,17
+12521,Raptisagar Express,VRPD,302,302,4,18
+12521,Raptisagar Express,DC,315,315,4,19
+12521,Raptisagar Express,MVPM,331,331,4,20
+12521,Raptisagar Express,SGE,337,337,4,21
+12521,Raptisagar Express,ANU,346,346,4,22
+12521,Raptisagar Express,CV,358,358,4,23
+12521,Raptisagar Express,ED,365,375,4,24
+12673,Cheran Express,JTJ,78,80,2,0
+12673,Cheran Express,TPT,85,85,2,1
+12673,Cheran Express,KEY,93,93,2,2
+12673,Cheran Express,KNNT,97,97,2,3
+12673,Cheran Express,SLY,102,102,2,4
+12673,Cheran Express,DST,108,108,2,5
+12673,Cheran Express,DPI,114,114,2,6
+12673,Cheran Express,MAP,119,119,2,7
+12673,Cheran Express,TNGR,123,123,2,8
+12673,Cheran Express,BDY,128,128,2,9
+12673,Cheran Express,BQI,135,135,2,10
+12673,Cheran Express,LCR,142,142,2,11
+12673,Cheran Express,DSPT,149,149,2,12
+12673,Cheran Express,TNT,154,154,2,13
+12673,Cheran Express,KPPR,161,161,2,14
+12673,Cheran Express,MGSJ,164,164,2,15
+12673,Cheran Express,SA,165,170,2,16
+12673,Cheran Express,NEA,177,177,2,17
+12673,Cheran Express,VRPD,180,180,2,18
+12673,Cheran Express,DC,191,191,2,19
+12673,Cheran Express,MVPM,203,203,2,20
+12673,Cheran Express,SGE,208,208,2,21
+12673,Cheran Express,ANU,216,216,2,22
+12673,Cheran Express,CV,225,225,2,23
+12673,Cheran Express,ED,230,235,2,24
+12674,Cheran Express,ED,1,5,2,0
+12674,Cheran Express,CV,9,9,2,1
+12674,Cheran Express,ANU,17,17,2,2
+12674,Cheran Express,SGE,23,23,2,3
+12674,Cheran Express,MVPM,27,27,2,4
+12674,Cheran Express,DC,38,38,2,5
+12674,Cheran Express,VRPD,46,46,2,6
+12674,Cheran Express,NEA,49,49,2,7
+12674,Cheran Express,SA,55,60,2,8
+12674,Cheran Express,MGSJ,63,63,2,9
+12674,Cheran Express,KPPR,66,66,2,10
+12674,Cheran Express,TNT,75,75,2,11
+12674,Cheran Express,DSPT,81,81,2,12
+12674,Cheran Express,LCR,90,90,2,13
+12674,Cheran Express,BQI,99,99,2,14
+12674,Cheran Express,BDY,108,108,2,15
+12674,Cheran Express,TNGR,114,114,2,16
+12674,Cheran Express,MAP,120,120,2,17
+12674,Cheran Express,DPI,126,126,2,18
+12674,Cheran Express,DST,134,134,2,19
+12674,Cheran Express,SLY,141,141,2,20
+12674,Cheran Express,KNNT,147,147,2,21
+12674,Cheran Express,KEY,153,153,2,22
+12674,Cheran Express,TPT,163,163,2,23
+12674,Cheran Express,JTJ,168,170,2,24
+16041,Chennai- Alapuzha Alleppey Express,JTJ,18,20,2,0
+16041,Chennai- Alapuzha Alleppey Express,TPT,25,25,2,1
+16041,Chennai- Alapuzha Alleppey Express,KEY,33,33,2,2
+16041,Chennai- Alapuzha Alleppey Express,KNNT,37,37,2,3
+16041,Chennai- Alapuzha Alleppey Express,SLY,42,42,2,4
+16041,Chennai- Alapuzha Alleppey Express,DST,48,48,2,5
+16041,Chennai- Alapuzha Alleppey Express,DPI,54,54,2,6
+16041,Chennai- Alapuzha Alleppey Express,MAP,59,59,2,7
+16041,Chennai- Alapuzha Alleppey Express,TNGR,63,63,2,8
+16041,Chennai- Alapuzha Alleppey Express,BDY,68,68,2,9
+16041,Chennai- Alapuzha Alleppey Express,BQI,75,75,2,10
+16041,Chennai- Alapuzha Alleppey Express,LCR,82,82,2,11
+16041,Chennai- Alapuzha Alleppey Express,DSPT,89,89,2,12
+16041,Chennai- Alapuzha Alleppey Express,TNT,94,94,2,13
+16041,Chennai- Alapuzha Alleppey Express,KPPR,101,101,2,14
+16041,Chennai- Alapuzha Alleppey Express,MGSJ,104,104,2,15
+16041,Chennai- Alapuzha Alleppey Express,SA,105,110,2,16
+16041,Chennai- Alapuzha Alleppey Express,NEA,117,117,2,17
+16041,Chennai- Alapuzha Alleppey Express,VRPD,120,120,2,18
+16041,Chennai- Alapuzha Alleppey Express,DC,131,131,2,19
+16041,Chennai- Alapuzha Alleppey Express,MVPM,143,143,2,20
+16041,Chennai- Alapuzha Alleppey Express,SGE,148,148,2,21
+16041,Chennai- Alapuzha Alleppey Express,ANU,156,156,2,22
+16041,Chennai- Alapuzha Alleppey Express,CV,165,165,2,23
+16041,Chennai- Alapuzha Alleppey Express,ED,170,175,2,24
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,ED,1360,1365,1,0
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,CV,1369,1369,1,1
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,ANU,1377,1377,1,2
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,SGE,1383,1383,1,3
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,MVPM,1387,1387,1,4
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,DC,1398,1398,1,5
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,DVBH,,,1,6
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,VRPD,1406,1406,1,7
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,NEA,1409,1409,1,8
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,SA,1415,1420,1,9
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,MGSJ,1423,1423,1,10
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,KPPR,1426,1426,1,11
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,TNT,1435,1435,1,12
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,DSPT,1,1,2,13
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,LCR,10,10,2,14
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,BQI,19,19,2,15
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,BDY,28,28,2,16
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,TNGR,34,34,2,17
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,MAP,40,40,2,18
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,DPI,46,46,2,19
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,DST,54,54,2,20
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,SLY,61,61,2,21
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,KNNT,67,67,2,22
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,KEY,72,72,2,23
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,MOLK,,,1,24
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,TPT,82,82,2,25
+12778,TRIVANDRUM KOCHUVELI - HUBLI SF Exp,JTJ,89,89,2,26
+16042,Alappuzha-Chennai Express,ED,1410,1415,1,0
+16042,Alappuzha-Chennai Express,CV,1419,1419,1,1
+16042,Alappuzha-Chennai Express,ANU,1428,1428,1,2
+16042,Alappuzha-Chennai Express,SGE,1435,1435,1,3
+16042,Alappuzha-Chennai Express,MVPM,0,0,2,4
+16042,Alappuzha-Chennai Express,DC,11,11,2,5
+16042,Alappuzha-Chennai Express,VRPD,20,20,2,6
+16042,Alappuzha-Chennai Express,NEA,23,23,2,7
+16042,Alappuzha-Chennai Express,SA,30,35,2,8
+16042,Alappuzha-Chennai Express,MGSJ,38,38,2,9
+16042,Alappuzha-Chennai Express,KPPR,41,41,2,10
+16042,Alappuzha-Chennai Express,TNT,50,50,2,11
+16042,Alappuzha-Chennai Express,DSPT,56,56,2,12
+16042,Alappuzha-Chennai Express,LCR,65,65,2,13
+16042,Alappuzha-Chennai Express,BQI,74,74,2,14
+16042,Alappuzha-Chennai Express,BDY,83,83,2,15
+16042,Alappuzha-Chennai Express,TNGR,89,89,2,16
+16042,Alappuzha-Chennai Express,MAP,95,95,2,17
+16042,Alappuzha-Chennai Express,DPI,101,101,2,18
+16042,Alappuzha-Chennai Express,DST,109,109,2,19
+16042,Alappuzha-Chennai Express,SLY,116,116,2,20
+16042,Alappuzha-Chennai Express,KNNT,122,122,2,21
+16042,Alappuzha-Chennai Express,KEY,128,128,2,22
+16042,Alappuzha-Chennai Express,TPT,138,138,2,23
+16042,Alappuzha-Chennai Express,JTJ,143,145,2,24
+13351,DHANBAD - ALAPPUZHA Exp,JTJ,438,440,3,0
+13351,DHANBAD - ALAPPUZHA Exp,TPT,451,452,3,1
+13351,DHANBAD - ALAPPUZHA Exp,MOLK,,,1,2
+13351,DHANBAD - ALAPPUZHA Exp,KEY,458,458,3,3
+13351,DHANBAD - ALAPPUZHA Exp,KNNT,461,461,3,4
+13351,DHANBAD - ALAPPUZHA Exp,SLY,464,465,3,5
+13351,DHANBAD - ALAPPUZHA Exp,DST,472,472,3,6
+13351,DHANBAD - ALAPPUZHA Exp,DPI,479,479,3,7
+13351,DHANBAD - ALAPPUZHA Exp,MAP,486,486,3,8
+13351,DHANBAD - ALAPPUZHA Exp,TNGR,491,491,3,9
+13351,DHANBAD - ALAPPUZHA Exp,BDY,496,496,3,10
+13351,DHANBAD - ALAPPUZHA Exp,BQI,504,505,3,11
+13351,DHANBAD - ALAPPUZHA Exp,LCR,513,513,3,12
+13351,DHANBAD - ALAPPUZHA Exp,DSPT,521,521,3,13
+13351,DHANBAD - ALAPPUZHA Exp,TNT,527,527,3,14
+13351,DHANBAD - ALAPPUZHA Exp,KPPR,535,535,3,15
+13351,DHANBAD - ALAPPUZHA Exp,MGSJ,538,538,3,16
+13351,DHANBAD - ALAPPUZHA Exp,SA,540,545,3,17
+13351,DHANBAD - ALAPPUZHA Exp,NEA,553,553,3,18
+13351,DHANBAD - ALAPPUZHA Exp,VRPD,557,557,3,19
+13351,DHANBAD - ALAPPUZHA Exp,DVBH,,,1,20
+13351,DHANBAD - ALAPPUZHA Exp,DC,569,569,3,21
+13351,DHANBAD - ALAPPUZHA Exp,MVPM,583,583,3,22
+13351,DHANBAD - ALAPPUZHA Exp,SGE,589,589,3,23
+13351,DHANBAD - ALAPPUZHA Exp,ANU,597,597,3,24
+13351,DHANBAD - ALAPPUZHA Exp,CV,609,609,3,25
+13351,DHANBAD - ALAPPUZHA Exp,ED,615,625,3,26
+06007,Chennai Central-Kollam SF Special,JTJ,1098,1100,1,0
+06007,Chennai Central-Kollam SF Special,TPT,1105,1105,1,1
+06007,Chennai Central-Kollam SF Special,KEY,1114,1114,1,2
+06007,Chennai Central-Kollam SF Special,KNNT,1118,1118,1,3
+06007,Chennai Central-Kollam SF Special,SLY,1123,1123,1,4
+06007,Chennai Central-Kollam SF Special,DST,1129,1129,1,5
+06007,Chennai Central-Kollam SF Special,DPI,1135,1135,1,6
+06007,Chennai Central-Kollam SF Special,MAP,1141,1141,1,7
+06007,Chennai Central-Kollam SF Special,TNGR,1146,1146,1,8
+06007,Chennai Central-Kollam SF Special,BDY,1150,1150,1,9
+06007,Chennai Central-Kollam SF Special,BQI,1158,1158,1,10
+06007,Chennai Central-Kollam SF Special,LCR,1165,1165,1,11
+06007,Chennai Central-Kollam SF Special,DSPT,1172,1172,1,12
+06007,Chennai Central-Kollam SF Special,TNT,1178,1178,1,13
+06007,Chennai Central-Kollam SF Special,KPPR,1185,1185,1,14
+06007,Chennai Central-Kollam SF Special,MGSJ,1188,1188,1,15
+06007,Chennai Central-Kollam SF Special,SA,1190,1195,1,16
+06007,Chennai Central-Kollam SF Special,NEA,1202,1202,1,17
+06007,Chennai Central-Kollam SF Special,VRPD,1204,1204,1,18
+06007,Chennai Central-Kollam SF Special,DC,1214,1214,1,19
+06007,Chennai Central-Kollam SF Special,MVPM,1225,1225,1,20
+06007,Chennai Central-Kollam SF Special,SGE,1229,1229,1,21
+06007,Chennai Central-Kollam SF Special,ANU,1236,1236,1,22
+06007,Chennai Central-Kollam SF Special,CV,1245,1245,1,23
+06007,Chennai Central-Kollam SF Special,ED,1250,1255,1,24
+12697,Chennai-Thiruvananthapuram Express,JTJ,1098,1100,1,0
+12697,Chennai-Thiruvananthapuram Express,TPT,1105,1105,1,1
+12697,Chennai-Thiruvananthapuram Express,KEY,1113,1113,1,2
+12697,Chennai-Thiruvananthapuram Express,KNNT,1117,1117,1,3
+12697,Chennai-Thiruvananthapuram Express,SLY,1122,1122,1,4
+12697,Chennai-Thiruvananthapuram Express,DST,1128,1128,1,5
+12697,Chennai-Thiruvananthapuram Express,DPI,1134,1134,1,6
+12697,Chennai-Thiruvananthapuram Express,MAP,1139,1139,1,7
+12697,Chennai-Thiruvananthapuram Express,TNGR,1143,1143,1,8
+12697,Chennai-Thiruvananthapuram Express,BDY,1148,1148,1,9
+12697,Chennai-Thiruvananthapuram Express,BQI,1155,1155,1,10
+12697,Chennai-Thiruvananthapuram Express,LCR,1162,1162,1,11
+12697,Chennai-Thiruvananthapuram Express,DSPT,1168,1168,1,12
+12697,Chennai-Thiruvananthapuram Express,TNT,1173,1173,1,13
+12697,Chennai-Thiruvananthapuram Express,KPPR,1181,1181,1,14
+12697,Chennai-Thiruvananthapuram Express,MGSJ,1183,1183,1,15
+12697,Chennai-Thiruvananthapuram Express,SA,1185,1190,1,16
+12697,Chennai-Thiruvananthapuram Express,NEA,1197,1197,1,17
+12697,Chennai-Thiruvananthapuram Express,VRPD,1199,1199,1,18
+12697,Chennai-Thiruvananthapuram Express,DC,1209,1209,1,19
+12697,Chennai-Thiruvananthapuram Express,MVPM,1220,1220,1,20
+12697,Chennai-Thiruvananthapuram Express,SGE,1224,1224,1,21
+12697,Chennai-Thiruvananthapuram Express,ANU,1231,1231,1,22
+12697,Chennai-Thiruvananthapuram Express,CV,1240,1240,1,23
+12697,Chennai-Thiruvananthapuram Express,ED,1245,1250,1,24
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,JTJ,1283,1285,1,0
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,TPT,1299,1300,1,1
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,MOLK,,,1,2
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,KEY,1307,1307,1,3
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,KNNT,1311,1311,1,4
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,SLY,1315,1315,1,5
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,DST,1320,1320,1,6
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,DPI,1325,1325,1,7
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,MAP,1329,1330,1,8
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,TNGR,1336,1336,1,9
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,BDY,1342,1342,1,10
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,BQI,1351,1351,1,11
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,LCR,1360,1360,1,12
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,DSPT,1369,1369,1,13
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,TNT,1375,1375,1,14
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,KPPR,1384,1384,1,15
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,MGSJ,1387,1387,1,16
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,SA,1390,1395,1,17
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,NEA,1403,1403,1,18
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,VRPD,1406,1406,1,19
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,DVBH,,,1,20
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,DC,1417,1417,1,21
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,MVPM,1431,1431,1,22
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,SGE,1436,1436,1,23
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,ANU,4,4,2,24
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,CV,15,15,2,25
+12689,CHENNAI CENTRAL - NAGERCOIL SF Exp,ED,20,30,2,26
+16382,Kanniyakumari-Mumbai CST Express,ED,1195,1205,1,0
+16382,Kanniyakumari-Mumbai CST Express,CV,1209,1209,1,1
+16382,Kanniyakumari-Mumbai CST Express,ANU,1218,1218,1,2
+16382,Kanniyakumari-Mumbai CST Express,SGE,1225,1225,1,3
+16382,Kanniyakumari-Mumbai CST Express,MVPM,1230,1230,1,4
+16382,Kanniyakumari-Mumbai CST Express,DC,1241,1241,1,5
+16382,Kanniyakumari-Mumbai CST Express,VRPD,1250,1250,1,6
+16382,Kanniyakumari-Mumbai CST Express,NEA,1253,1253,1,7
+16382,Kanniyakumari-Mumbai CST Express,SA,1260,1265,1,8
+16382,Kanniyakumari-Mumbai CST Express,MGSJ,1268,1268,1,9
+16382,Kanniyakumari-Mumbai CST Express,KPPR,1272,1272,1,10
+16382,Kanniyakumari-Mumbai CST Express,TNT,1283,1283,1,11
+16382,Kanniyakumari-Mumbai CST Express,DSPT,1291,1291,1,12
+16382,Kanniyakumari-Mumbai CST Express,LCR,1301,1301,1,13
+16382,Kanniyakumari-Mumbai CST Express,BQI,1312,1312,1,14
+16382,Kanniyakumari-Mumbai CST Express,BDY,1323,1323,1,15
+16382,Kanniyakumari-Mumbai CST Express,TNGR,1330,1330,1,16
+16382,Kanniyakumari-Mumbai CST Express,MAP,1337,1337,1,17
+16382,Kanniyakumari-Mumbai CST Express,DPI,1345,1345,1,18
+16382,Kanniyakumari-Mumbai CST Express,DST,1354,1354,1,19
+16382,Kanniyakumari-Mumbai CST Express,SLY,1363,1363,1,20
+16382,Kanniyakumari-Mumbai CST Express,KNNT,1370,1370,1,21
+16382,Kanniyakumari-Mumbai CST Express,KEY,1376,1376,1,22
+16382,Kanniyakumari-Mumbai CST Express,TPT,1388,1388,1,23
+16382,Kanniyakumari-Mumbai CST Express,JTJ,1395,1400,1,24
+06001,Chennai Central-Kollam SF Special,JTJ,1098,1100,1,0
+06001,Chennai Central-Kollam SF Special,TPT,1105,1105,1,1
+06001,Chennai Central-Kollam SF Special,KEY,1114,1114,1,2
+06001,Chennai Central-Kollam SF Special,KNNT,1118,1118,1,3
+06001,Chennai Central-Kollam SF Special,SLY,1123,1123,1,4
+06001,Chennai Central-Kollam SF Special,DST,1129,1129,1,5
+06001,Chennai Central-Kollam SF Special,DPI,1135,1135,1,6
+06001,Chennai Central-Kollam SF Special,MAP,1141,1141,1,7
+06001,Chennai Central-Kollam SF Special,TNGR,1146,1146,1,8
+06001,Chennai Central-Kollam SF Special,BDY,1150,1150,1,9
+06001,Chennai Central-Kollam SF Special,BQI,1158,1158,1,10
+06001,Chennai Central-Kollam SF Special,LCR,1165,1165,1,11
+06001,Chennai Central-Kollam SF Special,DSPT,1172,1172,1,12
+06001,Chennai Central-Kollam SF Special,TNT,1178,1178,1,13
+06001,Chennai Central-Kollam SF Special,KPPR,1185,1185,1,14
+06001,Chennai Central-Kollam SF Special,MGSJ,1188,1188,1,15
+06001,Chennai Central-Kollam SF Special,SA,1190,1195,1,16
+06001,Chennai Central-Kollam SF Special,NEA,1202,1202,1,17
+06001,Chennai Central-Kollam SF Special,VRPD,1204,1204,1,18
+06001,Chennai Central-Kollam SF Special,DC,1214,1214,1,19
+06001,Chennai Central-Kollam SF Special,MVPM,1225,1225,1,20
+06001,Chennai Central-Kollam SF Special,SGE,1229,1229,1,21
+06001,Chennai Central-Kollam SF Special,ANU,1236,1236,1,22
+06001,Chennai Central-Kollam SF Special,CV,1245,1245,1,23
+06001,Chennai Central-Kollam SF Special,ED,1250,1255,1,24
+12660,Shalimar-Nagercoil Gurudev Express,JTJ,413,415,3,0
+12660,Shalimar-Nagercoil Gurudev Express,TPT,421,421,3,1
+12660,Shalimar-Nagercoil Gurudev Express,KEY,429,429,3,2
+12660,Shalimar-Nagercoil Gurudev Express,KNNT,433,433,3,3
+12660,Shalimar-Nagercoil Gurudev Express,SLY,438,438,3,4
+12660,Shalimar-Nagercoil Gurudev Express,DST,445,445,3,5
+12660,Shalimar-Nagercoil Gurudev Express,DPI,451,451,3,6
+12660,Shalimar-Nagercoil Gurudev Express,MAP,456,456,3,7
+12660,Shalimar-Nagercoil Gurudev Express,TNGR,461,461,3,8
+12660,Shalimar-Nagercoil Gurudev Express,BDY,466,466,3,9
+12660,Shalimar-Nagercoil Gurudev Express,BQI,473,473,3,10
+12660,Shalimar-Nagercoil Gurudev Express,LCR,481,481,3,11
+12660,Shalimar-Nagercoil Gurudev Express,DSPT,488,488,3,12
+12660,Shalimar-Nagercoil Gurudev Express,TNT,494,494,3,13
+12660,Shalimar-Nagercoil Gurudev Express,KPPR,501,501,3,14
+12660,Shalimar-Nagercoil Gurudev Express,MGSJ,504,504,3,15
+12660,Shalimar-Nagercoil Gurudev Express,SA,505,510,3,16
+12660,Shalimar-Nagercoil Gurudev Express,NEA,518,518,3,17
+12660,Shalimar-Nagercoil Gurudev Express,VRPD,522,522,3,18
+12660,Shalimar-Nagercoil Gurudev Express,DC,534,534,3,19
+12660,Shalimar-Nagercoil Gurudev Express,MVPM,548,548,3,20
+12660,Shalimar-Nagercoil Gurudev Express,SGE,554,554,3,21
+12660,Shalimar-Nagercoil Gurudev Express,ANU,563,563,3,22
+12660,Shalimar-Nagercoil Gurudev Express,CV,575,575,3,23
+12660,Shalimar-Nagercoil Gurudev Express,ED,580,590,3,24
+16326,Ahilyanagari Express,ED,1020,1030,1,0
+16326,Ahilyanagari Express,CV,1034,1034,1,1
+16326,Ahilyanagari Express,ANU,1043,1043,1,2
+16326,Ahilyanagari Express,SGE,1050,1050,1,3
+16326,Ahilyanagari Express,MVPM,1055,1055,1,4
+16326,Ahilyanagari Express,DC,1066,1066,1,5
+16326,Ahilyanagari Express,VRPD,1075,1075,1,6
+16326,Ahilyanagari Express,NEA,1078,1078,1,7
+16326,Ahilyanagari Express,SA,1085,1090,1,8
+16326,Ahilyanagari Express,MGSJ,1093,1093,1,9
+16326,Ahilyanagari Express,KPPR,1095,1095,1,10
+16326,Ahilyanagari Express,TNT,1104,1104,1,11
+16326,Ahilyanagari Express,DSPT,1109,1109,1,12
+16326,Ahilyanagari Express,LCR,1117,1117,1,13
+16326,Ahilyanagari Express,BQI,1125,1125,1,14
+16326,Ahilyanagari Express,BDY,1134,1134,1,15
+16326,Ahilyanagari Express,TNGR,1139,1139,1,16
+16326,Ahilyanagari Express,MAP,1144,1144,1,17
+16326,Ahilyanagari Express,DPI,1150,1150,1,18
+16326,Ahilyanagari Express,DST,1157,1157,1,19
+16326,Ahilyanagari Express,SLY,1164,1164,1,20
+16326,Ahilyanagari Express,KNNT,1169,1169,1,21
+16326,Ahilyanagari Express,KEY,1174,1174,1,22
+16326,Ahilyanagari Express,TPT,1183,1183,1,23
+16326,Ahilyanagari Express,JTJ,1188,1190,1,24
+56845,Jolarpettai Erode Passenger,JTJ,,340,1,0
+56845,Jolarpettai Erode Passenger,TPT,349,351,1,1
+56845,Jolarpettai Erode Passenger,KEY,363,365,1,2
+56845,Jolarpettai Erode Passenger,KNNT,368,370,1,3
+56845,Jolarpettai Erode Passenger,SLY,376,378,1,4
+56845,Jolarpettai Erode Passenger,DST,386,388,1,5
+56845,Jolarpettai Erode Passenger,DPI,396,398,1,6
+56845,Jolarpettai Erode Passenger,MAP,405,407,1,7
+56845,Jolarpettai Erode Passenger,TNGR,412,414,1,8
+56845,Jolarpettai Erode Passenger,BDY,420,422,1,9
+56845,Jolarpettai Erode Passenger,BQI,432,434,1,10
+56845,Jolarpettai Erode Passenger,LCR,441,443,1,11
+56845,Jolarpettai Erode Passenger,DSPT,450,452,1,12
+56845,Jolarpettai Erode Passenger,TNT,458,460,1,13
+56845,Jolarpettai Erode Passenger,KPPR,468,470,1,14
+56845,Jolarpettai Erode Passenger,MGSJ,481,481,1,15
+56845,Jolarpettai Erode Passenger,SA,490,495,1,16
+56845,Jolarpettai Erode Passenger,NEA,499,500,1,17
+56845,Jolarpettai Erode Passenger,VRPD,506,508,1,18
+56845,Jolarpettai Erode Passenger,DC,518,520,1,19
+56845,Jolarpettai Erode Passenger,MVPM,533,535,1,20
+56845,Jolarpettai Erode Passenger,SGE,544,545,1,21
+56845,Jolarpettai Erode Passenger,ANU,554,555,1,22
+56845,Jolarpettai Erode Passenger,CV,564,565,1,23
+56845,Jolarpettai Erode Passenger,ED,600,,1,24
+12672,Nilgiri (Blue Mountain) Express,ED,1345,1350,1,0
+12672,Nilgiri (Blue Mountain) Express,CV,1354,1354,1,1
+12672,Nilgiri (Blue Mountain) Express,ANU,1364,1364,1,2
+12672,Nilgiri (Blue Mountain) Express,SGE,1371,1371,1,3
+12672,Nilgiri (Blue Mountain) Express,MVPM,1375,1375,1,4
+12672,Nilgiri (Blue Mountain) Express,DC,1386,1386,1,5
+12672,Nilgiri (Blue Mountain) Express,VRPD,1396,1396,1,6
+12672,Nilgiri (Blue Mountain) Express,NEA,1399,1399,1,7
+12672,Nilgiri (Blue Mountain) Express,SA,1405,1410,1,8
+12672,Nilgiri (Blue Mountain) Express,MGSJ,1413,1413,1,9
+12672,Nilgiri (Blue Mountain) Express,KPPR,1415,1415,1,10
+12672,Nilgiri (Blue Mountain) Express,TNT,1424,1424,1,11
+12672,Nilgiri (Blue Mountain) Express,DSPT,1430,1430,1,12
+12672,Nilgiri (Blue Mountain) Express,LCR,1438,1438,1,13
+12672,Nilgiri (Blue Mountain) Express,BQI,7,7,2,14
+12672,Nilgiri (Blue Mountain) Express,BDY,15,15,2,15
+12672,Nilgiri (Blue Mountain) Express,TNGR,21,21,2,16
+12672,Nilgiri (Blue Mountain) Express,MAP,26,26,2,17
+12672,Nilgiri (Blue Mountain) Express,DPI,32,32,2,18
+12672,Nilgiri (Blue Mountain) Express,DST,39,39,2,19
+12672,Nilgiri (Blue Mountain) Express,SLY,47,47,2,20
+12672,Nilgiri (Blue Mountain) Express,KNNT,52,52,2,21
+12672,Nilgiri (Blue Mountain) Express,KEY,57,57,2,22
+12672,Nilgiri (Blue Mountain) Express,TPT,67,67,2,23
+12672,Nilgiri (Blue Mountain) Express,JTJ,73,73,2,24
+16317,Himsagar Express,ED,165,185,2,0
+16317,Himsagar Express,CV,189,189,2,1
+16317,Himsagar Express,ANU,198,198,2,2
+16317,Himsagar Express,SGE,205,205,2,3
+16317,Himsagar Express,MVPM,210,210,2,4
+16317,Himsagar Express,DC,221,221,2,5
+16317,Himsagar Express,VRPD,230,230,2,6
+16317,Himsagar Express,NEA,233,233,2,7
+16317,Himsagar Express,SA,240,245,2,8
+16317,Himsagar Express,MGSJ,248,248,2,9
+16317,Himsagar Express,KPPR,251,251,2,10
+16317,Himsagar Express,TNT,260,260,2,11
+16317,Himsagar Express,DSPT,267,267,2,12
+16317,Himsagar Express,LCR,275,275,2,13
+16317,Himsagar Express,BQI,285,285,2,14
+16317,Himsagar Express,BDY,294,294,2,15
+16317,Himsagar Express,TNGR,300,300,2,16
+16317,Himsagar Express,MAP,306,306,2,17
+16317,Himsagar Express,DPI,312,312,2,18
+16317,Himsagar Express,DST,320,320,2,19
+16317,Himsagar Express,SLY,328,328,2,20
+16317,Himsagar Express,KNNT,334,334,2,21
+16317,Himsagar Express,KEY,339,339,2,22
+16317,Himsagar Express,TPT,349,349,2,23
+16317,Himsagar Express,JTJ,355,360,2,24
+16328,Trivandrum-Korba Express,ED,1020,1030,1,0
+16328,Trivandrum-Korba Express,CV,1034,1034,1,1
+16328,Trivandrum-Korba Express,ANU,1043,1043,1,2
+16328,Trivandrum-Korba Express,SGE,1050,1050,1,3
+16328,Trivandrum-Korba Express,MVPM,1055,1055,1,4
+16328,Trivandrum-Korba Express,DC,1066,1066,1,5
+16328,Trivandrum-Korba Express,VRPD,1076,1076,1,6
+16328,Trivandrum-Korba Express,NEA,1078,1078,1,7
+16328,Trivandrum-Korba Express,SA,1085,1090,1,8
+16328,Trivandrum-Korba Express,MGSJ,1093,1093,1,9
+16328,Trivandrum-Korba Express,KPPR,1095,1095,1,10
+16328,Trivandrum-Korba Express,TNT,1103,1103,1,11
+16328,Trivandrum-Korba Express,DSPT,1109,1109,1,12
+16328,Trivandrum-Korba Express,LCR,1117,1117,1,13
+16328,Trivandrum-Korba Express,BQI,1125,1125,1,14
+16328,Trivandrum-Korba Express,BDY,1133,1133,1,15
+16328,Trivandrum-Korba Express,TNGR,1139,1139,1,16
+16328,Trivandrum-Korba Express,MAP,1144,1144,1,17
+16328,Trivandrum-Korba Express,DPI,1149,1149,1,18
+16328,Trivandrum-Korba Express,DST,1156,1156,1,19
+16328,Trivandrum-Korba Express,SLY,1163,1163,1,20
+16328,Trivandrum-Korba Express,KNNT,1168,1168,1,21
+16328,Trivandrum-Korba Express,KEY,1173,1173,1,22
+16328,Trivandrum-Korba Express,TPT,1182,1182,1,23
+16328,Trivandrum-Korba Express,JTJ,1188,1190,1,24
+06010,KollamChennai Central SF Special,ED,400,410,2,0
+06010,KollamChennai Central SF Special,CV,414,414,2,1
+06010,KollamChennai Central SF Special,ANU,423,423,2,2
+06010,KollamChennai Central SF Special,SGE,430,430,2,3
+06010,KollamChennai Central SF Special,MVPM,435,435,2,4
+06010,KollamChennai Central SF Special,DC,445,445,2,5
+06010,KollamChennai Central SF Special,VRPD,455,455,2,6
+06010,KollamChennai Central SF Special,NEA,457,457,2,7
+06010,KollamChennai Central SF Special,SA,465,470,2,8
+06010,KollamChennai Central SF Special,MGSJ,472,472,2,9
+06010,KollamChennai Central SF Special,KPPR,475,475,2,10
+06010,KollamChennai Central SF Special,TNT,483,483,2,11
+06010,KollamChennai Central SF Special,DSPT,488,488,2,12
+06010,KollamChennai Central SF Special,LCR,495,495,2,13
+06010,KollamChennai Central SF Special,BQI,503,503,2,14
+06010,KollamChennai Central SF Special,BDY,511,511,2,15
+06010,KollamChennai Central SF Special,TNGR,516,516,2,16
+06010,KollamChennai Central SF Special,MAP,521,521,2,17
+06010,KollamChennai Central SF Special,DPI,526,526,2,18
+06010,KollamChennai Central SF Special,DST,533,533,2,19
+06010,KollamChennai Central SF Special,SLY,539,539,2,20
+06010,KollamChennai Central SF Special,KNNT,544,544,2,21
+06010,KollamChennai Central SF Special,KEY,549,549,2,22
+06010,KollamChennai Central SF Special,TPT,557,557,2,23
+06010,KollamChennai Central SF Special,JTJ,563,565,2,24
+06004,Kollam-Chennai Central Special,ED,195,200,2,0
+06004,Kollam-Chennai Central Special,CV,205,205,2,1
+06004,Kollam-Chennai Central Special,ANU,214,214,2,2
+06004,Kollam-Chennai Central Special,SGE,221,221,2,3
+06004,Kollam-Chennai Central Special,MVPM,226,226,2,4
+06004,Kollam-Chennai Central Special,DC,237,237,2,5
+06004,Kollam-Chennai Central Special,VRPD,247,247,2,6
+06004,Kollam-Chennai Central Special,NEA,250,250,2,7
+06004,Kollam-Chennai Central Special,SA,257,260,2,8
+06004,Kollam-Chennai Central Special,MGSJ,263,263,2,9
+06004,Kollam-Chennai Central Special,KPPR,267,267,2,10
+06004,Kollam-Chennai Central Special,TNT,277,277,2,11
+06004,Kollam-Chennai Central Special,DSPT,284,284,2,12
+06004,Kollam-Chennai Central Special,LCR,294,294,2,13
+06004,Kollam-Chennai Central Special,BQI,305,305,2,14
+06004,Kollam-Chennai Central Special,BDY,315,315,2,15
+06004,Kollam-Chennai Central Special,TNGR,322,322,2,16
+06004,Kollam-Chennai Central Special,MAP,328,328,2,17
+06004,Kollam-Chennai Central Special,DPI,336,336,2,18
+06004,Kollam-Chennai Central Special,DST,344,344,2,19
+06004,Kollam-Chennai Central Special,SLY,353,353,2,20
+06004,Kollam-Chennai Central Special,KNNT,360,360,2,21
+06004,Kollam-Chennai Central Special,KEY,366,366,2,22
+06004,Kollam-Chennai Central Special,TPT,378,378,2,23
+06004,Kollam-Chennai Central Special,JTJ,385,400,2,24
+06011,Chennai Central Kollam (Weekly) SF Special,JTJ,1098,1100,1,0
+06011,Chennai Central Kollam (Weekly) SF Special,TPT,1105,1105,1,1
+06011,Chennai Central Kollam (Weekly) SF Special,KEY,1114,1114,1,2
+06011,Chennai Central Kollam (Weekly) SF Special,KNNT,1118,1118,1,3
+06011,Chennai Central Kollam (Weekly) SF Special,SLY,1123,1123,1,4
+06011,Chennai Central Kollam (Weekly) SF Special,DST,1129,1129,1,5
+06011,Chennai Central Kollam (Weekly) SF Special,DPI,1135,1135,1,6
+06011,Chennai Central Kollam (Weekly) SF Special,MAP,1141,1141,1,7
+06011,Chennai Central Kollam (Weekly) SF Special,TNGR,1146,1146,1,8
+06011,Chennai Central Kollam (Weekly) SF Special,BDY,1150,1150,1,9
+06011,Chennai Central Kollam (Weekly) SF Special,BQI,1158,1158,1,10
+06011,Chennai Central Kollam (Weekly) SF Special,LCR,1165,1165,1,11
+06011,Chennai Central Kollam (Weekly) SF Special,DSPT,1172,1172,1,12
+06011,Chennai Central Kollam (Weekly) SF Special,TNT,1178,1178,1,13
+06011,Chennai Central Kollam (Weekly) SF Special,KPPR,1185,1185,1,14
+06011,Chennai Central Kollam (Weekly) SF Special,MGSJ,1188,1188,1,15
+06011,Chennai Central Kollam (Weekly) SF Special,SA,1190,1195,1,16
+06011,Chennai Central Kollam (Weekly) SF Special,NEA,1202,1202,1,17
+06011,Chennai Central Kollam (Weekly) SF Special,VRPD,1204,1204,1,18
+06011,Chennai Central Kollam (Weekly) SF Special,DC,1214,1214,1,19
+06011,Chennai Central Kollam (Weekly) SF Special,MVPM,1225,1225,1,20
+06011,Chennai Central Kollam (Weekly) SF Special,SGE,1229,1229,1,21
+06011,Chennai Central Kollam (Weekly) SF Special,ANU,1236,1236,1,22
+06011,Chennai Central Kollam (Weekly) SF Special,CV,1245,1245,1,23
+06011,Chennai Central Kollam (Weekly) SF Special,ED,1250,1255,1,24
+06008,KollamChennai Central SF Special,ED,1280,1285,1,0
+06008,KollamChennai Central SF Special,CV,1289,1289,1,1
+06008,KollamChennai Central SF Special,ANU,1298,1298,1,2
+06008,KollamChennai Central SF Special,SGE,1305,1305,1,3
+06008,KollamChennai Central SF Special,MVPM,1310,1310,1,4
+06008,KollamChennai Central SF Special,DC,1320,1320,1,5
+06008,KollamChennai Central SF Special,VRPD,1330,1330,1,6
+06008,KollamChennai Central SF Special,NEA,1332,1332,1,7
+06008,KollamChennai Central SF Special,SA,1340,1345,1,8
+06008,KollamChennai Central SF Special,MGSJ,1347,1347,1,9
+06008,KollamChennai Central SF Special,KPPR,1350,1350,1,10
+06008,KollamChennai Central SF Special,TNT,1357,1357,1,11
+06008,KollamChennai Central SF Special,DSPT,1362,1362,1,12
+06008,KollamChennai Central SF Special,LCR,1369,1369,1,13
+06008,KollamChennai Central SF Special,BQI,1377,1377,1,14
+06008,KollamChennai Central SF Special,BDY,1384,1384,1,15
+06008,KollamChennai Central SF Special,TNGR,1389,1389,1,16
+06008,KollamChennai Central SF Special,MAP,1393,1393,1,17
+06008,KollamChennai Central SF Special,DPI,1398,1398,1,18
+06008,KollamChennai Central SF Special,DST,1404,1404,1,19
+06008,KollamChennai Central SF Special,SLY,1411,1411,1,20
+06008,KollamChennai Central SF Special,KNNT,1415,1415,1,21
+06008,KollamChennai Central SF Special,KEY,1420,1420,1,22
+06008,KollamChennai Central SF Special,TPT,1428,1428,1,23
+06008,KollamChennai Central SF Special,JTJ,1433,1435,1,24

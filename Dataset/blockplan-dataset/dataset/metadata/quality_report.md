@@ -1,0 +1,39 @@
+# Dataset quality report
+
+- **study_area**: Jolarpettai - Salem - Erode corridor
+- **source_mode**: datameet
+- **source_hashes**: {'stations.json': '9bd5e1da3a859e53', 'trains.json': 'e434d9c56016ccdf', 'schedules.json': '105d63816acb177e'}
+- **seed**: 42
+- **horizon_days**: 14
+- **n_stations**: 27
+- **n_junctions**: 4
+- **n_physical_sections**: 26
+- **n_section_lines**: 52
+- **route_km**: 182.0
+- **published_distance_km**: 182.0
+- **distance_scale_factor**: 1.0351
+- **track_source_counts**: {'declared': 52}
+- **n_real_trains**: 107
+- **n_synthetic_freight_paths**: 410
+- **real_movements_per_day**: 2568
+- **synthetic_movements_per_day**: 410
+- **busiest_section_line_movements**: 69
+- **peak_hour**: 3
+- **peak_hour_movements**: 206
+- **quietest_hour**: 12
+- **mean_headway_min**: 4.8
+- **n_jobs**: 175
+- **jobs_by_dept**: {'TRD': 47, 'ENGG': 79, 'SNT': 49}
+- **jobs_by_activity**: {'TRACK_GEOMETRY_CORRECTION': 38, 'THROUGH_TAMPING': 22, 'OHE_INSPECTION': 19, 'SIGNAL_EQUIPMENT_MAINTENANCE': 14, 'OHE_MEASUREMENT_UNDER_LOAD': 12, 'POINT_MACHINE_OVERHAUL': 12, 'TRACK_CIRCUIT_MAINTENANCE': 11, 'TRACK_CIRCUIT_SHUNT_CHECK': 9, 'WELDING_REPAIR': 7, 'TURNOUT_TAMPING': 7, 'OHE_HEIGHT_ADJUSTMENT': 5, 'INSULATOR_REPLACEMENT': 4, 'RAIL_RENEWAL': 4, 'DROPPER_WORK': 4, 'TRACTION_BONDING': 3, 'SIGNALLING_CABLE_WORK': 2, 'INTERLOCKING_ALTERATION': 1, 'DEEP_SCREENING': 1}
+- **jobs_by_protection**: {'NONE': 21, 'T': 82, 'TD': 40, 'TP': 32}
+- **jobs_by_priority**: {'URGENT': 20, 'NORMAL': 116, 'HIGH': 39}
+- **jobs_by_uncertainty**: {'MEDIUM': 118, 'HIGH': 55, 'LOW': 2}
+- **sections_with_jobs**: 46
+- **class_d_jobs**: 21
+- **duration_min_mean_p50_p95_max**: [18.1, 45.5, 42.6, 73.8, 197.5]
+- **due_day_min_p50_max**: [0, 7, 14]
+- **overdue_jobs**: 0
+- **n_pairing_rules**: 6
+- **n_scenarios**: 8
+- **n_block_requests**: 175
+- **n_execution_rows**: 5250

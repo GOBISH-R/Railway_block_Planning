@@ -1,0 +1,77 @@
+table,field,classification,source,source_url,derivation_method,generation_method,assumption,validation_method,confidence
+stations,station_code,A,DataMeet Indian Railways stations.json (CC0),https://github.com/datameet/railways,,,,"non-empty, unique, matches source",1.0
+stations,station_name,A,DataMeet stations.json property `name`,https://github.com/datameet/railways,,,,non-empty,1.0
+stations,latitude,A,DataMeet stations.json Point geometry,https://github.com/datameet/railways,,,,6 < lat < 38 (India bounds),1.0
+stations,longitude,A,DataMeet stations.json Point geometry,https://github.com/datameet/railways,,,,68 < lon < 98 (India bounds),1.0
+stations,zone,A,DataMeet stations.json property `zone`,https://github.com/datameet/railways,,,,,1.0
+stations,state,A,DataMeet stations.json property `state`,https://github.com/datameet/railways,,,,,1.0
+stations,is_junction,B,Derived from corridor topology,https://github.com/datameet/railways,"degree > 2 in the corridor graph, or name contains 'Junction'",,,,1.0
+stations,seq,B,Position along the corridor,https://github.com/datameet/railways,order of appearance in the supported station sequence,,,,1.0
+sections,section_id,B,Derived,https://github.com/datameet/railways,'{from_code}-{to_code}-{line}',,,,1.0
+sections,from_station_code,A,DataMeet schedules.json,https://github.com/datameet/railways,,,,,1.0
+sections,to_station_code,A,DataMeet schedules.json,https://github.com/datameet/railways,,,,,1.0
+sections,line,B,Track configuration,https://www.openstreetmap.org,"UP/DN for a double line, SINGLE for a single line",,,,1.0
+sections,length_km,B,Derived from real station coordinates,https://github.com/datameet/railways,"haversine between consecutive station coordinates, then scaled so the corridor total matches the published route distance from trains.json where available",,,> 0; corridor total within 15% of published distance,1.0
+sections,tracks,A/E,"OpenStreetMap `tracks` where mapped, else config fallback",https://www.openstreetmap.org,,,where OSM has no `tracks` tag the configured fallback is used and the row is flagged,,1.0
+sections,electrified,A/E,"OpenStreetMap `electrified=contact_line`, else config",https://www.openstreetmap.org,,,Salem division is publicly stated to be entirely electrified on broad gauge,,1.0
+sections,headway_min,B/E,Derived from the real timetable,https://github.com/datameet/railways,5th percentile of observed gaps between consecutive real trains on the section-line; falls back to the configured default when too few movements are observed,,,,0.6
+sections,degraded_factor,E,Modelling assumption,,,,headway multiplier when one line of a double line is blocked,,1.0
+sections,support_trains,B,Evidence count,https://github.com/datameet/railways,number of distinct real trains traversing this station pair,,,,1.0
+trains,train_number,A,DataMeet schedules.json `train_number`,https://github.com/datameet/railways,,,,matches a real train in the source,1.0
+trains,train_name,A,DataMeet schedules.json `train_name`,https://github.com/datameet/railways,,,,,1.0
+trains,train_class,B,Classified from the real train name,https://github.com/datameet/railways,keyword match on the published train name and trains.json `type`,,,,0.75
+trains,is_synthetic,D,Freight generator flag,,,true only for generated freight paths; false for every real train,,,1.0
+train_stops,arrival_min,A,DataMeet schedules.json `arrival`,https://github.com/datameet/railways,,,,parses as HH:MM:SS; arrival <= departure at a stop,1.0
+train_stops,departure_min,A,DataMeet schedules.json `departure`,https://github.com/datameet/railways,,,,,1.0
+train_stops,day,A,DataMeet schedules.json `day`,https://github.com/datameet/railways,,,,,1.0
+train_stops,stop_seq,B,Order within the train's real stop list,https://github.com/datameet/railways,,,,,1.0
+movements,section_id,B,Real train mapped onto a derived section,https://github.com/datameet/railways,consecutive real stops define the section traversed,,,,1.0
+movements,enter_min,A/B,Real departure time from the first station,https://github.com/datameet/railways,,,,,1.0
+movements,direction,B,Derived,https://github.com/datameet/railways,ascending or descending corridor sequence,,,,1.0
+activities,protection_T/P/D,C,Indian Railways manuals,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/ACTraction-II-P-I/ACTractionIIPartICh6.htm,per-activity protection regime; see config/activities.yaml for the source on each row,,,,0.88
+activities,min_block_min,C/E,"IRTMM where published, else assumption",https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,,,"only DEEP_SCREENING has a published minimum (four hours, IRTMM Ch.3); all others are assumptions",,0.88
+activities,duration_mean/sd,E,Modelling assumption,,,,no per-activity working times were found in public sources,,1.0
+activities,periodicity_days,E,Modelling assumption,,,,no public per-activity periodicity table was obtainable,,1.0
+jobs,job_id,D,Generated,,,"sequential, seed-stable",,,1.0
+jobs,dept,C,Department that owns the activity,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,from the activity catalogue; never set independently of it,,,must equal activities.dept for the job's activity,1.0
+jobs,activity,D,Sampled from the activity catalogue,,,Poisson arrivals with rate = assets x horizon / periodicity,,,1.0
+jobs,section_id,D,Placed on a REAL section,https://github.com/datameet/railways,,"uniform over asset instances of the right type; the section itself is real, the placement is synthetic",,,1.0
+jobs,location_desc,B,Human-readable location,https://github.com/datameet/railways,real station codes plus the synthetic km offset,,,,1.0
+jobs,km_from/km_to,D,Generated within a real section,,,"uniform start, footprint length from the activity catalogue",,0 <= km_from < km_to <= section length,1.0
+jobs,needs_T/needs_P/needs_D,C,Protection regime from the catalogue,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/ACTraction-II-P-I/ACTractionIIPartICh6.htm,copied from activities.csv so two jobs of the same activity can never disagree,,,must equal the catalogue row,0.88
+jobs,needs_train_movements/needs_live_ohe,C,Class D negations from the catalogue,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/ACTraction-II-P-I/ACTractionIIPartICh6.htm,work that requires the opposite of a block,,,,0.9
+jobs,duration_mean_min/duration_sd_min,D/E,Sampled around the catalogue values,,,per-job jitter around the activity mean; the catalogue value itself is an assumption,,,1.0
+jobs,duration_min_min/duration_max_min,E,Catalogue bounds,,,,plausible working-time bounds per activity,,1.0
+jobs,min_block_min,C/E,Catalogue minimum block,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,,,only DEEP_SCREENING has a published minimum (four hours),,1.0
+jobs,due_day,D,Steady-state maintenance phase,,,"Poisson arrivals are uniform in the window, so due dates are uniform by construction; an overdue tail is added in proportion to the backlog multiplier",,,1.0
+jobs,criticality,D/E,Activity base times a defect draw,,,,the activity base criticality is an assumption,,1.0
+jobs,priority,B,Banded from criticality and due date,,URGENT if overdue or criticality >= 2.0; HIGH if >= 1.4,,,,1.0
+jobs,uncertainty_level,B,Banded from the coefficient of variation,,"HIGH if sd/mean > 0.28, LOW if < 0.15",,,,1.0
+jobs,resources,C/E,"Resource class from the catalogue, fleet size assumed",,,,fleet counts per division are an assumption,,1.0
+jobs,provenance,D,Self-describing tag,,,records the generation model used for the row,,,1.0
+pairing_rules,compelled_dept,C,Indian Railways manuals,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,see config/rules.yaml; every row carries its own source and confidence,,,,0.82
+block_requests,*,D,Synthesised from maintenance demand,,,"one request per job, with a preferred window drawn from the department's declared preference; we do NOT have BDMS data and do not claim to",,,1.0
+execution,actual_duration_min,D,Stochastic realisation,,,"lognormal draw per job per realisation, used ONLY for evaluation and never visible to the planner",,,1.0
+activities,activity_id/label/asset/resource_class,C/E,Activity catalogue,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,activity taxonomy follows the departmental split in the manuals; the asset class and resource class are ours,,,,1.0
+activities,dept,C,Department owning the activity,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,P-Way / S&T / TRD split as used in the manuals,,,,1.0
+activities,needs_T/needs_P/needs_D,C,Protection regime,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/ACTraction-II-P-I/ACTractionIIPartICh6.htm,per-activity; see protection_source on each row,,,,0.88
+activities,needs_train_movements/needs_live_ohe,C,Class D negation flags,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/ACTraction-II-P-I/ACTractionIIPartICh6.htm,,,,,0.9
+activities,duration_mean_min/duration_sd_min,E,Modelling assumption,,,,no per-activity working times were found in public sources,,1.0
+activities,criticality_base,E,Modelling assumption,,,,relative consequence of deferring this activity,,1.0
+activities,min_block_provenance,C/E,Self-describing tag,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,"C where a published minimum exists, E otherwise",,,,1.0
+activities,protection_source,C,Citation carried in the row,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/ACTraction-II-P-I/ACTractionIIPartICh6.htm,,,,,1.0
+pairing_rules,activity/companion_activity,C,Mandatory association from the manuals,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,,,,,0.82
+pairing_rules,duration_mean_min/duration_sd_min,E,Modelling assumption,,,,the companion task's working time,,1.0
+pairing_rules,must_follow_parent/precedes_parent,C,Sequencing implied by the rule,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,e.g. OHE re-adjustment must follow track lifting; cable clearance must precede deep screening,,,,1.0
+pairing_rules,source/confidence,C,Citation and our confidence in it,https://indianrailways.gov.in/railwayboard/uploads/codesmanual/IRTMM-RDSO/,,,,,1.0
+sections,is_single/track_source,B,Derived from the track configuration,https://www.openstreetmap.org,is_single = tracks < 2; track_source records whether the row came from OSM or from the declared fallback,,,,1.0
+trains,direction,B,Derived from the real stop order,https://github.com/datameet/railways,,,,,1.0
+train_stops,train_number/train_name/station_code,A,DataMeet schedules.json,https://github.com/datameet/railways,,,,,1.0
+movements,train_number/train_class/from_code/to_code,A/B,Real train mapped onto a derived section,https://github.com/datameet/railways,,,,,1.0
+movements,is_synthetic,D,Generated-freight flag,,,true only for generated freight paths,,,1.0
+execution,realisation/job_id,D,Realisation index and key,,,one row per job per stochastic realisation,,,1.0
+resources,resource_class/fleet_size/provenance,E,Modelling assumption,,,,fleet counts available to the division over the horizon,,1.0
+scenarios,*,E,Scenario multipliers,,,,scenario definitions are ours; the infrastructure and the real timetable are identical across every scenario,,1.0
+config,kappa/lambda_close,E,Modelling assumption,,,,the entire quantitative content of 'more departments means more risk',,1.0
+config,train_weight,E,Modelling assumption,,,,relative train priority weights; not railway policy,,1.0
+config,block_envelope,C,Corridor block norm,https://cag.gov.in/uploads/download_audit_report/2018/Chapter_3_Utilisation_of_resources_and_infrastructure_for_track_maintenance_of_Report_No.45_of_2018_%E2%80%93_Compli_1.pdf,single 240-min block or two of 150 min,,,,0.9
