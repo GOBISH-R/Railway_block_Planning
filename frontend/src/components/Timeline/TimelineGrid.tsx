@@ -6,6 +6,7 @@ import {
   HEADER_HEIGHT,
   LABEL_COLUMN_WIDTH,
   MINUTES_PER_DAY,
+  MIN_WIDTH_FOR_RELIABILITY_LABEL,
   ROW_HEIGHT,
   durationToWidth,
   minutesToX,
@@ -177,7 +178,15 @@ export function TimelineGrid({
                   const x = minutesToX(block.day, block.start_min);
                   const w = durationToWidth(block.length);
                   const isSelected = block.block_id === selectedBlockId;
-                  const stripeW = w / block.dept_mix.length;
+                  // Departments are stacked as full-width horizontal bands
+                  // rather than side-by-side vertical stripes. Vertical
+                  // stripes subdivided the block's width -- the axis already
+                  // carrying 14 days of time -- so a three-department bar
+                  // became three ~6px slivers that read as three separate
+                  // narrow blocks, which is the opposite of what the bundle
+                  // means. Banding gives every department the block's full
+                  // width and keeps the bar reading as one object.
+                  const bandH = BLOCK_BAR_HEIGHT / block.dept_mix.length;
                   return (
                     <g
                       key={block.block_id}
@@ -197,10 +206,10 @@ export function TimelineGrid({
                       {block.dept_mix.map((dept, si) => (
                         <rect
                           key={dept}
-                          x={x + si * stripeW}
-                          y={y}
-                          width={stripeW}
-                          height={BLOCK_BAR_HEIGHT}
+                          x={x}
+                          y={y + si * bandH}
+                          width={w}
+                          height={bandH}
                           fill={DEPT_VAR[dept] ?? "var(--ink-2)"}
                         />
                       ))}
@@ -212,8 +221,14 @@ export function TimelineGrid({
                         className={`tgrid__block-outline ${isSelected ? "tgrid__block-outline--selected" : ""}`}
                         fill="none"
                       />
-                      {w > 30 && (
-                        <text x={x + 4} y={y + BLOCK_BAR_HEIGHT - 4} className="tgrid__block-label">
+                      {w >= MIN_WIDTH_FOR_RELIABILITY_LABEL && (
+                        <text
+                          x={x + w / 2}
+                          y={y + BLOCK_BAR_HEIGHT / 2}
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          className="tgrid__block-label"
+                        >
                           {block.reliability.toFixed(2)}
                         </text>
                       )}

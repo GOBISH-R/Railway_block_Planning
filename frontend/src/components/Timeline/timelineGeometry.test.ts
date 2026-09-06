@@ -1,14 +1,21 @@
 import { describe, expect, it } from "vitest";
 import type { SectionMeta } from "../../api/types";
 import {
+  BLOCK_BAR_HEIGHT,
   DAY_WIDTH,
   MINUTES_PER_DAY,
+  MIN_WIDTH_FOR_RELIABILITY_LABEL,
   PX_PER_MIN,
+  ROW_HEIGHT,
   dayLeft,
   durationToWidth,
   minutesToX,
   orderSections,
 } from "./timelineGeometry";
+
+/** The only two block lengths the optimiser ever produces, across every scenario. */
+const SHORT_BLOCK_MIN = 150;
+const LONG_BLOCK_MIN = 240;
 
 function section(overrides: Partial<SectionMeta>): SectionMeta {
   return {
@@ -28,6 +35,47 @@ function section(overrides: Partial<SectionMeta>): SectionMeta {
 describe("geometry constants", () => {
   it("DAY_WIDTH is derived from MINUTES_PER_DAY and PX_PER_MIN, not a separate magic number", () => {
     expect(DAY_WIDTH).toBeCloseTo(MINUTES_PER_DAY * PX_PER_MIN, 6);
+  });
+
+  /**
+   * Regression: the reliability label was gated on `w > 30` while the widest
+   * block the optimiser can produce was 27.6px, so the label never rendered on
+   * any block in any scenario -- a dead branch, and a dead information channel
+   * on the timeline. This fails if a future scale change makes it unreachable
+   * again.
+   */
+  it("a 240-minute block is wide enough to carry its reliability label", () => {
+    expect(durationToWidth(LONG_BLOCK_MIN)).toBeGreaterThanOrEqual(
+      MIN_WIDTH_FOR_RELIABILITY_LABEL
+    );
+  });
+
+  it("the label threshold leaves real padding rather than running edge to edge", () => {
+    // "0.99" at the 9px label size is ~20px wide.
+    const APPROX_LABEL_TEXT_WIDTH = 20;
+    expect(MIN_WIDTH_FOR_RELIABILITY_LABEL).toBeGreaterThan(APPROX_LABEL_TEXT_WIDTH + 8);
+  });
+
+  it("splits the bar height evenly for every bundle size that occurs", () => {
+    // 1, 2 and 3 departments are the only bundle sizes in any scenario.
+    expect(BLOCK_BAR_HEIGHT % 3).toBe(0);
+    expect(BLOCK_BAR_HEIGHT / 3).toBeGreaterThanOrEqual(6);
+  });
+
+  it("leaves the bar clear of the row separators above and below", () => {
+    expect(ROW_HEIGHT).toBeGreaterThan(BLOCK_BAR_HEIGHT);
+    expect((ROW_HEIGHT - BLOCK_BAR_HEIGHT) / 2).toBeGreaterThanOrEqual(2);
+  });
+
+  /**
+   * Two blocks on the same section and day never overlap in time, and x is a
+   * linear map of time, so no scale can make their bars overlap. Pins the
+   * linearity that guarantee rests on.
+   */
+  it("maps time to x linearly, so non-overlapping blocks can never be drawn overlapping", () => {
+    const firstEnds = minutesToX(3, 300) + durationToWidth(SHORT_BLOCK_MIN);
+    const secondStarts = minutesToX(3, 300 + SHORT_BLOCK_MIN);
+    expect(firstEnds).toBeCloseTo(secondStarts, 6);
   });
 });
 
