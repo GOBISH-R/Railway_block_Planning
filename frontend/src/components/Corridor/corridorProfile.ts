@@ -64,3 +64,24 @@ export function placeJobs(jobs: DemandJob[], stations: StationPoint[]): JobPoint
 export function totalCorridorKm(stations: StationPoint[]): number {
   return stations.length ? stations[stations.length - 1].km : 0;
 }
+
+/**
+ * Station labels alternate between two baselines below the corridor line.
+ *
+ * Centred on a single baseline, the real station spacing put KPPR/MGSJ and
+ * NEA/VRPD into each other -- 3.0 and 3.1 user units of overlap at the
+ * measured label widths. Those two pairs sit 20.9 and 19.6 units apart, and no
+ * single-baseline layout fits two four-letter codes into that.
+ *
+ * Alternating halves the label density on each baseline: same-baseline
+ * neighbours become station i and station i+2, whose tightest real pair
+ * (NEA -> DVBH) has 2.28x the room its two labels need. Every station keeps
+ * its own tick at its true km position; the lower row gets a leader down to it
+ * so the label stays attached to the right tick.
+ */
+export const STATION_LABEL_BASELINE_DY = [20, 37];
+
+/** Which of the two baselines a station's label sits on. */
+export function stationLabelRow(index: number): number {
+  return index % STATION_LABEL_BASELINE_DY.length;
+}

@@ -30,8 +30,23 @@
   stroke-width: 2;
 }
 
+/* Leader from a lower-row label up to its own tick, so a staggered label is
+   never read against the wrong station. */
+.corridor-strip__leader {
+  stroke: var(--hairline-strong);
+  stroke-width: 1;
+}
+
+/* 14px in a 1180-wide viewBox, not 9px.
+   The strip is width:100% over a fixed viewBox, so labels render at
+   font-size x (container / 1180) -- at 9px that was 5.0-8.2 effective px
+   across the widths this has to work at, which is not readable. The
+   two-baseline stagger leaves 2.28x the room its labels need, and spending
+   part of that on size brings the rendered text to 7.8-12.8px while still
+   leaving ~1.5x clearance. Raising it further is what would reintroduce
+   overlap -- CorridorStrip.test.tsx pins the limit. */
 .corridor-strip__station-label {
-  font-size: 9px;
+  font-size: 14px;
   fill: var(--ink-1);
   font-weight: 600;
 }
