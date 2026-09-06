@@ -104,14 +104,54 @@ class UnknownScenarioError(KeyError):
     """Raised for a scenario name the frozen dataset does not contain (-> 404)."""
 
 
+class UnknownPlanError(KeyError):
+    """Raised for a plan id not in the cache (-> 404)."""
+
+
+@dataclass(frozen=True)
+class PlanInternals:
+    """The pipeline artefacts behind one plan, retained for explanation.
+
+    Explaining a block or a refusal needs the jobs, columns, windows and solve
+    result that produced the plan. Recomputing them per explanation request
+    would cost a full column build, and re-solving to answer "why is this block
+    here" would be worse still. They are retained here instead, deliberately
+    OUTSIDE the response DTO: nothing in this object is serialised to a client.
+
+    Bounded by PlanningService._max_internals so a long-lived process cannot
+    accumulate column sets without limit (~16.7k columns per plan).
+    """
+
+    request: "PlanRequest"
+    jobs: tuple[Any, ...]
+    bundles: tuple[Any, ...]
+    columns: tuple[Any, ...]
+    windows: tuple[Any, ...]
+    blocks_by_id: Mapping[str, Any]
+    deferred_job_ids: tuple[str, ...]
+    objective: float
+    status: str
+    rng_state: Mapping[str, Any]
+
+    def job(self, job_id: str):
+        for j in self.jobs:
+            if j.id == job_id:
+                return j
+        raise KeyError(job_id)
+
+
 class PlanningService:
     """Owns the context, the window cache, the plan cache and the lock."""
 
     def __init__(self, context: PlanningContext | None = None,
-                 window_cache: WindowCache | None = None) -> None:
+                 window_cache: WindowCache | None = None,
+                 max_internals: int = 4) -> None:
         self.context = context if context is not None else PlanningContext.load()
         self.windows = window_cache if window_cache is not None else WindowCache()
         self._plans: dict[str, dict[str, Any]] = {}
+        self._internals: dict[str, PlanInternals] = {}
+        self._internals_order: list[str] = []
+        self._max_internals = max_internals
         self._plan_lock = threading.Lock()
 
     # -- plan cache --------------------------------------------------------
@@ -125,6 +165,28 @@ class PlanningService:
     def cached_plan_ids(self) -> tuple[str, ...]:
         with self._plan_lock:
             return tuple(self._plans.keys())
+
+    def internals(self, plan_id: str) -> PlanInternals:
+        """Pipeline artefacts for a plan. Raises UnknownPlanError if evicted."""
+        with self._plan_lock:
+            found = self._internals.get(plan_id)
+        if found is None:
+            raise UnknownPlanError(plan_id)
+        return found
+
+    def has_internals(self, plan_id: str) -> bool:
+        with self._plan_lock:
+            return plan_id in self._internals
+
+    def _store_internals(self, plan_id: str, internals: PlanInternals) -> None:
+        with self._plan_lock:
+            if plan_id in self._internals:
+                self._internals_order.remove(plan_id)
+            self._internals[plan_id] = internals
+            self._internals_order.append(plan_id)
+            while len(self._internals_order) > self._max_internals:
+                evicted = self._internals_order.pop(0)
+                self._internals.pop(evicted, None)
 
     # -- the planning entry point -----------------------------------------
 
@@ -243,12 +305,40 @@ class PlanningService:
                 timings=timings,
             )
 
+            # Retained for explanation. Built inside the lock from the same
+            # objects the DTO was shaped from, so a block id always refers to
+            # the same column in both.
+            internals = PlanInternals(
+                request=request,
+                jobs=tuple(jobs),
+                bundles=tuple(bundles),
+                columns=tuple(columns),
+                windows=tuple(window_set.windows),
+                blocks_by_id=block_id_map(result["blocks"]),
+                deferred_job_ids=tuple(result["deferred"]),
+                objective=result["objective"],
+                status=result["status"],
+                rng_state=self.context.fresh_rng_state(request.seed),
+            )
+
+        self._store_internals(plan_id, internals)
         with self._plan_lock:
             self._plans[plan_id] = copy.deepcopy(payload)
         return payload
 
 
 # -- DTO shaping -----------------------------------------------------------
+
+def block_id_map(blocks) -> dict[str, Any]:
+    """Assign the stable block ids the API exposes.
+
+    core.solve() already returns its chosen columns sorted by (day, start_min),
+    so this numbering is stable for a given plan. Defined once and used by both
+    the response DTO and the retained internals so the two can never disagree
+    about which column "B0007" means.
+    """
+    return {f"B{n:04d}": column for n, column in enumerate(blocks, start=1)}
+
 
 def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
                         columns, window_set, result: Mapping[str, Any],
@@ -263,12 +353,12 @@ def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
     index = {j.id: j for j in jobs}
 
     blocks = []
-    for n, column in enumerate(result["blocks"], start=1):
+    for block_id, column in block_id_map(result["blocks"]).items():
         window = column.window
         depts = sorted({index[jid].dept for jid in column.job_ids})
         blocks.append(
             {
-                "block_id": f"B{n:04d}",
+                "block_id": block_id,
                 "section_id": window.section_id,
                 "day": window.day,
                 "start_min": window.start_min,

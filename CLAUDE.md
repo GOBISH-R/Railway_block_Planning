@@ -165,6 +165,40 @@ section above for how wide that actually is. Quote objective, traffic cost and
 reliability with confidence; do not present block count or cross-department
 share as reproducible across machines or solver settings.
 
+### Observation: Class D jobs are scheduled, not refused
+
+**Found during Phase 2. Not changed — reported for a decision.**
+
+The project memory (§2.2) says Class D negations "can never be bundled into a
+block". Observed behaviour on NORMAL_TRAFFIC is narrower than that sentence
+implies: all 21 Class D jobs are placed in the plan, none is deferred.
+
+Two distinct things are going on, and only the first matches the prose:
+
+1. `pairwise_compatible` does reject any pair where either job needs train
+   movements — so such a job is never bundled *with another job*. But a
+   single-job bundle never reaches a pairwise test, so it can still take a
+   block of its own. Most Class D jobs here end up alone in a block whose
+   protection regime is empty (no T, no P, no D) — a "block" in which nothing
+   is actually withdrawn from traffic. Several still carry a traffic cost
+   (up to 8.0 weighted train-minutes) because the window was priced as though
+   a block were taken.
+2. `needs_live_ohe` conflicts only with `needs_P`, not with `needs_T`. So an
+   OHE-measurement-under-load job legitimately shares a traffic block with
+   other work — e.g. block B0013 holds J00002 + J00004 + J00006 under a T
+   regime. That is consistent with the coded rule, though it is not what
+   "can never be bundled into a block" suggests.
+
+Whether this is a defect depends on an operational question this repository
+cannot answer: should work needing no protection consume a block window and be
+priced as one? If yes, current behaviour is right and only the memory
+document's wording is loose. If no, Class D jobs should be excluded from
+column construction — which would change every benchmark number and must not
+be done casually.
+
+Do not "fix" this without an explicit decision. It is flagged so nobody
+discovers it from a judge.
+
 ### Measured timing on this machine (differs from the memory document)
 
 The memory document records `solve` at 3.91 s and a warm re-plan at ~4.5 s.

@@ -17,6 +17,7 @@ It contains no planning logic and no optimisation logic.
 from __future__ import annotations
 
 import copy
+import csv
 from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import Any, Mapping
@@ -39,6 +40,62 @@ from blockplan_adapter import (  # noqa: E402  (existing loaders, reused verbati
 DEFAULT_HORIZON_DAYS = 14
 
 
+def _load_section_meta() -> Mapping[str, Mapping[str, Any]]:
+    """Corridor geography per section-line, straight from the frozen CSV.
+
+    core.Section deliberately carries only what the optimiser needs (id, line,
+    is_single, headway, degraded_factor). Explaining a block to a controller
+    also needs to say WHERE it is -- which two stations, how long the
+    section-line is. That is in sections.csv and nowhere else, so it is read
+    here rather than parsed back out of the section id string.
+    """
+    meta: dict[str, Mapping[str, Any]] = {}
+    with open(paths.SECTIONS_CSV, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            meta[row["section_id"]] = MappingProxyType({
+                "section_id": row["section_id"],
+                "from_station_code": row["from_station_code"],
+                "to_station_code": row["to_station_code"],
+                "line": row["line"],
+                "length_km": float(row["length_km"]),
+                "tracks": int(row["tracks"]),
+                "electrified": row["electrified"] == "1",
+                "is_single": row["is_single"] == "1",
+                "headway_min": int(row["headway_min"]),
+                "track_source": row["track_source"],
+            })
+    return MappingProxyType(meta)
+
+
+def _load_pairing_rule_rows() -> Mapping[str, tuple[Mapping[str, Any], ...]]:
+    """The mandatory-pairing rules WITH their manual citations.
+
+    core.load_pairing_rules() keeps only the five fields the optimiser uses and
+    drops `source` and `confidence`. Those two are exactly what makes a
+    cross-department explanation defensible -- "ACTM Ch.17 requires it" rather
+    than "the system decided to" -- so the CSV is read again here for the
+    citation text. The rule VALUES the optimiser uses still come solely from
+    core; this is presentation metadata only.
+    """
+    by_activity: dict[str, list[Mapping[str, Any]]] = {}
+    with open(paths.PAIRING_RULES_CSV, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            by_activity.setdefault(row["activity"], []).append(MappingProxyType({
+                "activity": row["activity"],
+                "compelled_dept": row["compelled_dept"],
+                "companion_activity": row["companion_activity"],
+                "duration_mean_min": float(row["duration_mean_min"]),
+                "duration_sd_min": float(row["duration_sd_min"]),
+                "must_follow_parent": row["must_follow_parent"] == "1",
+                "precedes_parent": row["precedes_parent"] == "1",
+                "source": row["source"],
+                "confidence": float(row["confidence"]),
+            }))
+    return MappingProxyType(
+        {k: tuple(v) for k, v in by_activity.items()}
+    )
+
+
 @dataclass(frozen=True)
 class PlanningContext:
     """Immutable snapshot of the frozen dataset.
@@ -55,6 +112,8 @@ class PlanningContext:
     pristine_rng_state: Mapping[str, Any]
     config_applied: Mapping[str, Any]
     pairing_rule_count: int
+    section_meta: Mapping[str, Mapping[str, Any]]
+    pairing_rules: Mapping[str, tuple[Mapping[str, Any], ...]]
     _scenario_jobs: Mapping[str, tuple[Any, ...]] = field(repr=False)
 
     # -- construction ------------------------------------------------------
@@ -99,6 +158,8 @@ class PlanningContext:
             ),
             config_applied=MappingProxyType(dict(config_applied)),
             pairing_rule_count=rule_count,
+            section_meta=_load_section_meta(),
+            pairing_rules=_load_pairing_rule_rows(),
             _scenario_jobs=MappingProxyType(scenario_jobs),
         )
 

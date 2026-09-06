@@ -354,6 +354,72 @@ is an explanatory view, not a re-solve.
 
 **404** if `plan_id` or `block_id` is unknown.
 
+**Implemented in Phase 2 as a superset of the above.** Every field shown above
+is still present and unchanged. The response additionally carries:
+
+```json
+{
+  "scenario": "NORMAL_TRAFFIC",
+  "decision_status": "SCHEDULED",
+  "reason_code": "SCHEDULED_IN_COST_OPTIMAL_PLAN",
+  "end_min": 690,
+  "section": {
+    "section_id": "KEY-KNNT-UP", "from_station_code": "KEY",
+    "to_station_code": "KNNT", "line": "UP", "length_km": 6.157,
+    "tracks": 2, "electrified": true, "is_single": false,
+    "headway_min": 4, "track_source": "declared"
+  },
+  "departments": [
+    { "dept": "ENGG", "job_count": 1, "work_minutes": 61.9,
+      "closing_chain_mean_min": 12.0, "closing_chain_sd_min": 4.0 }
+  ],
+  "departmental_chains": [
+    { "dept": "ENGG", "mean_min": 97.4, "sd_min": 12.9, "z": 3.94, "phi": 1.0 }
+  ],
+  "envelope": {
+    "allowed_block_lengths": [150, 240], "exceptional_length": 120,
+    "selected_length": 240, "is_exceptional_length": false,
+    "work_minutes": 101.9, "utilisation": 0.425,
+    "protection_regimes": ["D", "P", "T"]
+  },
+  "constraints": {
+    "applied_theta": 0.90, "meets_theta": true,
+    "max_span_km": 8.0, "bundle_span_km": 2.047,
+    "mandatory_pairings": [
+      { "parent_job_id": "J00016", "parent_activity": "THROUGH_TAMPING",
+        "companion_job_id": "J00016c0", "compelled_dept": "TRD",
+        "companion_activity": "OHE_HEIGHT_ADJUSTMENT",
+        "must_follow_parent": true, "source": "ACTM Ch.17 - …",
+        "confidence": 0.9, "provenance": "C_RULE" }
+    ],
+    "pairwise": [
+      { "job_a": "J00016", "job_b": "J00016c0", "compatible": true,
+        "same_section_line": true, "footprints_overlap": true,
+        "rule_paired": true, "shared_exclusive_resource": [],
+        "incompatibility_reason": null }
+    ]
+  },
+  "objective": {
+    "traffic_cost": 41.2, "expected_overrun_cost": 3.1,
+    "column_total_cost": 44.3, "plan_objective": 337.4,
+    "units": "weighted train-minutes"
+  },
+  "evidence": [
+    { "code": "HANDBACK_IS_MAX_OF_CHAINS", "statement": "…",
+      "source": "core.reliability_closed_form structure",
+      "provenance": "E_ASSUMPTION" }
+  ],
+  "provenance": { "maintenance_demand": "D_SYNTHETIC", "notice": "…" },
+  "computation": { "solver_calls": 0, "rng_consumed": false }
+}
+```
+
+`departmental_chains` decomposes `core.reliability_closed_form` into its
+per-department factors; the product of `phi` across the three reproduces that
+function's value exactly, and a test asserts it. `computation.solver_calls` is
+always 0 here: explaining a block re-uses the reliability the optimiser already
+computed and consumes no RNG.
+
 ---
 
 ## 8. `POST /plan/{plan_id}/explain/{job_id}`
@@ -410,6 +476,77 @@ in sync.
 described**, so the frontend can show a spinner only for `OUTBID` (§8 of the
 memory document is explicit that conflating the two costs is a UX mistake,
 not just a backend one).
+
+**Implemented in Phase 2 as a superset of the above.** The documented fields
+are unchanged. Added to both branches:
+
+```json
+{
+  "decision_status": "DEFERRED",
+  "reason_code": "OUTBID_DEFERRAL_CHEAPER_THAN_INSERTION",
+  "applied_theta": 0.90,
+  "detail": "Admissible placements exist, but inserting this job would …",
+  "job": { "job_id": "J00059", "dept": "ENGG", "…": "…" },
+  "evidence": [ { "code": "PRICED_FORCED_INSERTION", "statement": "…",
+                  "source": "core.explain_refusal (OUTBID branch, re-solve)",
+                  "provenance": "E_ASSUMPTION" } ],
+  "provenance": { "maintenance_demand": "D_SYNTHETIC", "notice": "…" },
+  "computation": {
+    "solver_calls": 1, "resolve_required": true,
+    "lever_mc_samples": 4000, "rng_reset_before_call": true, "seconds": 3.35
+  }
+}
+```
+
+**This endpoint also answers for jobs that were NOT refused.** Asking about a
+scheduled job returns `decision_status: "SCHEDULED"` rather than an error, so
+the Why panel can use one call for any job the user clicks:
+
+```json
+{
+  "decision_status": "SCHEDULED",
+  "reason_code": "SCHEDULED_IN_COST_OPTIMAL_PLAN",
+  "applied_theta": 0.90,
+  "scheduled_in": {
+    "block_id": "B0003", "section_id": "KEY-KNNT-UP", "day": 3,
+    "start_min": 540, "length": 240, "reliability": 0.972,
+    "shares_block_with": ["J00016c0", "J00016c1"],
+    "departments_in_block": ["ENGG", "SNT", "TRD"]
+  },
+  "objective": { "deferral_penalty_avoided": 175.1, "…": "…" },
+  "alternative_optima_exist": true,
+  "caveat": "The plan as a whole is cost-optimal. Because many distinct plans …"
+}
+```
+
+`alternative_optima_exist` and `caveat` are not boilerplate. This instance is
+degenerate — the optimal face spans 118–153 blocks at the identical objective —
+so a claim that this job *had* to be placed here would be false. The response
+says what is true (the plan is cost-optimal, this placement is part of it) and
+declines to claim more.
+
+`reason_code` values: `INFEASIBLE_REQUIRES_TRAIN_MOVEMENTS`,
+`INFEASIBLE_REQUIRES_LIVE_OHE`, `INFEASIBLE_RELIABILITY_BELOW_THETA`,
+`INFEASIBLE_NO_ADMISSIBLE_COLUMN`, `OUTBID_DEFERRAL_CHEAPER_THAN_INSERTION`,
+`INFEASIBLE_WHEN_FORCED`. The Class D codes are read back from
+`explain_refusal`'s own lever text rather than re-derived from the job's flags.
+
+**`newly_displaced` vs `displaced`.** `displaced` is `explain_refusal`'s raw
+field: every job deferred in the forced re-solve, which includes all the jobs
+that were already deferred in the baseline plan. On a contended scenario that
+is 46 jobs where 46 were already deferred anyway — presenting it as the cost of
+the insertion would materially mislead. `newly_displaced` is the subset that
+was scheduled in the baseline and is not in the forced plan, i.e. the work this
+insertion would actually push out. Show `newly_displaced`.
+
+Also note `computation.lever_mc_samples`: the INFEASIBLE levers are Monte Carlo
+estimates at `core.reliability_mc`'s own default sample count, which is not
+necessarily the `mc_samples` the plan was solved with. The field is returned so
+a reader is not misled into comparing the two directly.
+
+An explanation is deterministic for a given plan: the RNG is reset to the
+plan's own starting state before `explain_refusal` is called, because its
+INFEASIBLE branch draws Monte Carlo samples.
 
 ---
 

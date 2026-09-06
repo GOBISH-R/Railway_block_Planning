@@ -1,7 +1,6 @@
-# BlockPlan backend — Phase 1
+# BlockPlan backend
 
-Planning service around the frozen analytical core. No HTTP layer yet; that is
-Phase 2.
+Planning and explanation services around the frozen analytical core.
 
 ## What is here
 
@@ -11,9 +10,22 @@ blockplan_service/
     context.py    PlanningContext -- frozen CSVs read once, held immutably
     windows.py    WindowCache -- the ~13.5 s generate_windows step, cached per scenario
     planner.py    PlanningService -- THE PLANNING LOCK, plan cache, pipeline, DTO shaping
-tests/            context / cache / lock / API-contract / frozen-artifact tests
+    explain.py    ExplanationService -- why a block exists, why a job was refused
+blockplan_api/
+    app.py        FastAPI routes: /plan, /plan/{id}, block + explain endpoints
+    schemas.py    Pydantic v2 request/response models
+tests/            context / cache / lock / explain / API / frozen-artifact tests
 requirements.txt  pinned dependency versions
 ```
+
+Run the API:
+
+```
+uvicorn blockplan_api.app:app --port 8000
+```
+
+Startup loads the frozen dataset once. The first plan per scenario pays window
+generation (~20 s); after that the cache serves it.
 
 Nothing here reimplements optimisation logic. The service orchestrates
 `blockplan/core.py` (frozen, imported, never edited) and reuses the existing

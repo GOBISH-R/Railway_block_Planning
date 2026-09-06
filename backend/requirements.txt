@@ -1,4 +1,4 @@
-# BlockPlan -- pinned runtime dependencies (Phase 1)
+# BlockPlan -- pinned runtime dependencies
 #
 # Pinned to the versions actually verified working on this machine, not
 # to whatever `pip install` resolves today. The frozen benchmark artefacts
@@ -11,5 +11,11 @@ numpy==2.5.2
 ortools==9.15.6755
 PyYAML==6.0.3
 
+# HTTP layer (Phase 2)
+fastapi==0.141.1
+pydantic==2.13.5
+starlette==1.6.0
+
 # Test tooling
+httpx==0.28.1
 pytest==9.1.1
