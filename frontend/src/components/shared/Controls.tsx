@@ -77,22 +77,33 @@ export function SliderField({
   formatValue?: (value: number) => string;
   disabled?: boolean;
 }) {
+  // How far along the track the thumb sits. Used only to size the filled part
+  // of the track, which is painted by a sibling element rather than by a
+  // background gradient on the input.
+  const fraction = max > min ? (value - min) / (max - min) : 0;
+
   return (
     <label className="field field--slider">
       <span className="field__label">
         {label}
         <span className="field__value">{formatValue ? formatValue(value) : value}</span>
       </span>
-      <input
-        type="range"
-        className="field__slider"
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        disabled={disabled}
-        onChange={(e) => onChange(Number(e.target.value))}
-      />
+      <span className="field__slider-wrap">
+        <span
+          className="field__slider-fill"
+          style={{ width: `calc(${fraction} * (100% - var(--slider-thumb)))` }}
+        />
+        <input
+          type="range"
+          className="field__slider"
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          disabled={disabled}
+          onChange={(e) => onChange(Number(e.target.value))}
+        />
+      </span>
     </label>
   );
 }

@@ -78,8 +78,100 @@
   width: 84px;
 }
 
-.field__slider {
-  width: 100%;
-  accent-color: var(--accent-9);
+/* The reliability floor was the one native control left in the interface --
+   an OS-drawn track and thumb sitting beside 32px controls with hairline
+   borders and the accent fill. It is now drawn to match them.
+   The track and its filled portion are painted by the wrapper and a sibling
+   span, not by a background on the input, so the fill is a flat colour rather
+   than a gradient. */
+.field__slider-wrap {
+  --slider-thumb: 14px;
+  --slider-track: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
   height: 28px;
+}
+
+/* Unfilled track. Inset by half a thumb at each end so it starts and stops
+   under the thumb's centre at the extremes. */
+.field__slider-wrap::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--slider-thumb) / 2);
+  right: calc(var(--slider-thumb) / 2);
+  height: var(--slider-track);
+  border-radius: calc(var(--slider-track) / 2);
+  background: var(--hairline-strong);
+}
+
+.field__slider-fill {
+  position: absolute;
+  left: calc(var(--slider-thumb) / 2);
+  height: var(--slider-track);
+  border-radius: calc(var(--slider-track) / 2);
+  background: var(--accent-9);
+  pointer-events: none;
+}
+
+.field__slider {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.field__slider:disabled {
+  cursor: default;
+}
+
+.field__slider::-webkit-slider-runnable-track {
+  height: var(--slider-track);
+  background: transparent;
+}
+.field__slider::-moz-range-track {
+  height: var(--slider-track);
+  background: transparent;
+}
+
+.field__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: var(--slider-thumb);
+  height: var(--slider-thumb);
+  margin-top: calc((var(--slider-track) - var(--slider-thumb)) / 2);
+  border-radius: 50%;
+  background: var(--accent-9);
+  border: 2px solid var(--paper-1);
+  box-shadow: 0 0 0 1px var(--hairline-strong);
+}
+.field__slider::-moz-range-thumb {
+  width: var(--slider-thumb);
+  height: var(--slider-thumb);
+  border-radius: 50%;
+  background: var(--accent-9);
+  border: 2px solid var(--paper-1);
+  box-shadow: 0 0 0 1px var(--hairline-strong);
+}
+
+.field__slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--accent-3);
+}
+.field__slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px var(--accent-3);
+}
+
+.field__slider:disabled::-webkit-slider-thumb {
+  background: var(--hairline-strong);
+}
+.field__slider:disabled::-moz-range-thumb {
+  background: var(--hairline-strong);
+}
+
+.field--slider:has(.field__slider:disabled) .field__slider-fill {
+  background: var(--hairline-strong);
 }
