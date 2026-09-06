@@ -4,6 +4,12 @@ import { StatusBadge } from "../shared/StatusBadge";
 import { EvidenceList, Section } from "./shared";
 import "./JobExplanationView.css";
 
+function formatMinutes(totalMinutes: number): string {
+  const h = Math.floor(totalMinutes / 60) % 24;
+  const m = totalMinutes % 60;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
 export function JobExplanationView({
   explanation,
   onSelectBlock,
@@ -112,6 +118,14 @@ function DeferredBody({ explanation: e }: { explanation: JobExplanation }) {
               <dd>{e.candidate_columns}</dd>
             </div>
           </dl>
+          {e.would_go_in && (
+            <p className="job-why__note">
+              Would go in: day {e.would_go_in.day}, {formatMinutes(e.would_go_in.start)}
+              {" "}({e.would_go_in.length} min), reliability{" "}
+              {e.would_go_in.reliability.toFixed(2)}
+              {e.would_go_in.with.length > 0 && <> &middot; with {e.would_go_in.with.join(", ")}</>}
+            </p>
+          )}
           {e.newly_displaced && e.newly_displaced.length > 0 && (
             <p className="job-why__note">
               Would push out: {e.newly_displaced.join(", ")}
