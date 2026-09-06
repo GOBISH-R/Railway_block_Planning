@@ -1,0 +1,15 @@
+# BlockPlan -- pinned runtime dependencies (Phase 1)
+#
+# Pinned to the versions actually verified working on this machine, not
+# to whatever `pip install` resolves today. The frozen benchmark artefacts
+# were generated before any lockfile existed and their original library
+# versions were never recorded, so these pins are the reproducibility
+# baseline going forward -- not a reconstruction of the original ones.
+#
+# Verified on Python 3.14.6, Windows.
+numpy==2.5.2
+ortools==9.15.6755
+PyYAML==6.0.3
+
+# Test tooling
+pytest==9.1.1

@@ -110,20 +110,74 @@ for both B4 and OURS, matching the B0–B3 pattern.
   checked-in CSV for this reason, and must not overwrite these files without
   an explicit decision to re-baseline.
 
+### Why the residual B4 gap is NOT a defect: solution degeneracy
+
+**Investigated and settled 2026-09-06.** After the reset correction above, B4
+reproduces the memory document's `traffic_cost = 259.8` and
+`exp_overrun_cost = 79.9` exactly, but still shows 141 blocks against the
+document's 142, and 37.6% cross-department against 35.9%. That residual gap was
+probed directly and it is not a bug, a version problem, an RNG problem, or a
+documentation error.
+
+The model was re-solved with the objective pinned at its proven optimum and the
+block count then minimised and maximised. Both solves returned OPTIMAL:
+
+| method | optimal objective | blocks at that objective | traffic cost | cross-dept share |
+|---|---|---|---|---|
+| B4   | 339.3 | **119 – 153** | 259.8 throughout | 52.9% – 27.5% |
+| OURS | 337.4 | **118 – 153** | 299.2 throughout | 55.1% – 27.5% |
+
+Demonstrated a second way: solving the identical instance with
+`num_workers=8` instead of the deterministic single worker returns **142**
+blocks where deterministic mode returns **140** — same columns, same objective
+337.4.
+
+**What this means, and it matters for what we claim:**
+
+- **Invariant across the optimal face, safe to quote:** objective value,
+  traffic cost, expected overrun, jobs done/deferred, reliability figures.
+- **NOT determined by the model, chosen by solver tie-breaking:** block count,
+  cross-department share, block utilisation.
+
+So the specific figure "cross-department share 36.4%" is one arbitrary point in
+a range of equally optimal answers spanning roughly 27% to 55%. The same is
+true of every `Cross%` column in the scenario benchmark. Comparing
+cross-department share *between methods* is comparing tie-breaks, not methods.
+
+This does not damage the core argument — the reliability and traffic-cost
+results, which is where the B0→B1→OURS story actually lives, are invariant. But
+"cross-department share rose from 18.8% to 36.4%" should not be presented as a
+measured effect of the method, and a judge who probes it would be right to.
+
+Making these figures well-defined would need a deterministic secondary
+objective (a lexicographic tie-break, e.g. minimise block count subject to
+optimal cost). That would change `core.py` and every benchmark number, so it is
+**not** to be done without an explicit decision.
+
 ### Reproducibility caveat (separate from the above)
 
 There is no dependency lockfile in this project. Verified working versions as
 of 2026-09-06: `numpy 2.5.2`, `ortools 9.15.6755`, `PyYAML 6.0.3`, Python
 3.14.6. The versions that produced the frozen artifacts were never recorded.
 
-Independently of the RNG ordering, this instance is highly degenerate — many
-distinct plans share exactly the same optimal objective — so tiny
-floating-point differences between library versions can flip CP-SAT's choice
-among tied optima. Observed effect is about one block: block count can move by
-one, and which specific block is cross-department can change, while objective,
-traffic cost and reliability hold. Quote objective/traffic/reliability figures
-with confidence; do not claim bit-identical cross-department block attribution
-across machines.
+Independently of the RNG ordering, this instance is highly degenerate — see the
+section above for how wide that actually is. Quote objective, traffic cost and
+reliability with confidence; do not present block count or cross-department
+share as reproducible across machines or solver settings.
+
+### Measured timing on this machine (differs from the memory document)
+
+The memory document records `solve` at 3.91 s and a warm re-plan at ~4.5 s.
+Measured here: `solve` ≈ 11–13 s, warm re-plan ≈ 12 s, cold ≈ 32 s. The window
+cache is working correctly — this is not the cache regression §11 warns about.
+CP-SAT reports `deterministic_time ≈ 2.04` against its budget of 60, so the
+solver is nowhere near its limit; this machine is simply about three times
+slower at CP-SAT than the one that produced the documented figures.
+
+Consequence for the demo script: the "let the four seconds run" beat is closer
+to twelve seconds on this hardware. Either rehearse to that, precompute the
+plans shown (Phase 8 already plans to), or present from a faster machine —
+but measure on the actual presentation laptop first.
 
 ## Where things are right now
 

@@ -262,8 +262,9 @@ rejects `theta` outside `(0, 1)`, `horizon_days < 1`, or an unknown
 
 - `blocks[].job_ids` and `dept_mix` are derived from the `Column`/`Job`
   objects (`Column.job_ids`, plus each job's `dept`), not new concepts.
-- `summary` is `core.evaluate()`'s return dict, renamed `blocks`→`blocks`,
-  `jobs_done`→`jobs_done`, etc. — direct passthrough, not reshaped.
+- `summary` is `core.evaluate()`'s return dict, field-for-field with no
+  renaming, minus its `method` key (the label `evaluate()` was called with,
+  constant at `"OURS"` for every plan and therefore noise on the wire).
 - `deferred` only lists job id + dept here; the *reason* is deliberately not
   duplicated into this response — that is what `/explain` is for, and
   computing it costs ~4s per job (the OUTBID branch), so `/plan` must not pay
