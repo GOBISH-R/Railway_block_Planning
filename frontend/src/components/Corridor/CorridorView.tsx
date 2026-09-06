@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api, ApiError } from "../../api/client";
 import type { CorridorResponse, DemandJob, ScenarioRow } from "../../api/types";
 import { Select } from "../shared/Controls";
+import { scenarioLabel } from "../shared/scenarioLabel";
 import { ErrorState, LoadingState } from "../shared/ViewStates";
 import { buildStationProfile } from "./corridorProfile";
 import { CorridorStrip } from "./CorridorStrip";
@@ -56,7 +57,7 @@ export function CorridorView({
           label="Scenario"
           value={scenario}
           onChange={onScenarioChange}
-          options={scenarios.map((s) => ({ value: s.name, label: s.name }))}
+          options={scenarios.map((s) => ({ value: s.name, label: scenarioLabel(s.name) }))}
         />
         <div className="corridor-view__dept-filter" role="group" aria-label="Filter by department">
           <button

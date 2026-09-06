@@ -1,5 +1,6 @@
 import type { ScenarioRow } from "../../api/types";
 import { Button, NumberField, Select, SliderField } from "../shared/Controls";
+import { scenarioLabel } from "../shared/scenarioLabel";
 import "./ControlsBar.css";
 
 export function ControlsBar({
@@ -32,7 +33,7 @@ export function ControlsBar({
         value={scenario}
         onChange={onScenarioChange}
         disabled={isPlanning}
-        options={scenarios.map((s) => ({ value: s.name, label: formatScenarioName(s.name) }))}
+        options={scenarios.map((s) => ({ value: s.name, label: scenarioLabel(s.name) }))}
       />
 
       <SliderField
@@ -66,12 +67,4 @@ export function ControlsBar({
       )}
     </div>
   );
-}
-
-function formatScenarioName(name: string): string {
-  return name
-    .toLowerCase()
-    .split("_")
-    .map((w) => w[0].toUpperCase() + w.slice(1))
-    .join(" ");
 }
