@@ -1,5 +1,10 @@
+/* Capped so it stays an inset. In the 260px aside it never reaches this, but
+   when the layout stacks the aside becomes a full-width row and an uncapped
+   100% blew the map up to 782x569 -- larger than the corridor strip it is
+   meant to sit beside as context. */
 .map-inset {
   width: 100%;
+  max-width: 260px;
   height: auto;
   background: var(--paper-2);
   border-radius: var(--radius-md);

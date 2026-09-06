@@ -81,8 +81,31 @@
   line-height: var(--leading-normal);
 }
 
+/* Stacked, the aside used to fall after the whole main column -- which means
+   after a 175-row demand table. The map landed 8,184px down the page and was
+   effectively invisible.
+   `display: contents` lifts the two panels inside main into the grid so the
+   three blocks can be ordered independently, putting Geography directly under
+   the corridor strip it explains and leaving the long table last. The layout's
+   own gap then spaces all three, which is why main's flex gap is not missed. */
 @media (max-width: 1000px) {
   .corridor-view__layout {
     grid-template-columns: 1fr;
+  }
+
+  .corridor-view__main {
+    display: contents;
+  }
+
+  .corridor-view__main > .corridor-view__panel:nth-child(1) {
+    order: 1; /* corridor strip */
+  }
+
+  .corridor-view__aside {
+    order: 2; /* geography, while the strip is still on screen */
+  }
+
+  .corridor-view__main > .corridor-view__panel:nth-child(2) {
+    order: 3; /* maintenance demand -- 175 rows, so last */
   }
 }
