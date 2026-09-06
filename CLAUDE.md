@@ -213,12 +213,58 @@ to twelve seconds on this hardware. Either rehearse to that, precompute the
 plans shown (Phase 8 already plans to), or present from a faster machine —
 but measure on the actual presentation laptop first.
 
+## Packaging (Phase 8): one process, one port, no network
+
+`python run.py` at the repo root builds the frontend if needed and starts
+`uvicorn` serving both the API and the built static files from
+`frontend/dist/` on a single port (default 8000). This is what "one command,
+no internet" means in practice — not that installation needs no network (it
+does, once, ahead of time: `npm install` and `pip install -r
+backend/requirements.txt`), but that nothing from that point on touches the
+network.
+
+Two things had to be got right for this to actually work, not just look like
+it does:
+
+1. **The frontend's API base URL is environment-conditional**
+   (`frontend/src/api/client.ts`): `/api` in dev (Vite's proxy strips it and
+   forwards to the backend on a different port), empty in a production build
+   (same origin, no prefix — the real routes are `/corridor`, `/plan`, not
+   `/api/corridor`). Get this backwards and the packaged app 404s on every API
+   call while looking fine in `npm run dev`, which is a much worse failure
+   mode to discover than one that fails loudly.
+2. **The static mount must be registered last.** FastAPI checks routes in
+   registration order; `app.mount("/", StaticFiles(...))` in
+   `blockplan_api/app.py` is the final line for exactly that reason, so it
+   never shadows `/corridor`, `/plan`, etc. Tested directly
+   (`test_packaging.py::TestStaticServingDoesNotShadowTheApi`), not assumed.
+
+**Startup warmup is opt-in**, via `BLOCKPLAN_WARM_ON_STARTUP=1` (`run.py` sets
+it; plain `uvicorn blockplan_api.app:app` does not). Precomputing all eight
+scenarios' windows and default plans takes a few minutes — right for "once
+before the demo," wrong for a test suite that spins up a fresh `TestClient`
+across ten-plus test files. Un-gated, that would have multiplied the ~5-minute
+suite by however many files touch the `app` fixture.
+
+**What "tested" actually means here:** verified in-browser against the real
+packaged server on this machine (`python run.py`, then `python run.py
+--no-warm` for faster iteration) — root serves the built app, all four views
+work identically to the dev-server version, `/health` reports cached plans and
+window sets after warmup. What was **not** done, and cannot be done from this
+environment: physically disconnecting the network and rebooting the actual
+presentation laptop. That specific test — the one the original roadmap's Phase
+8 explicitly calls for — still needs to happen on that machine before the
+demo, not just here.
+
 ## Where things are right now
 
 Phase 0 (contract), Phase 1 (planning service: context, window cache, lock),
-Phase 2 (explanation service + API), and Phase 3 (frontend: Plan/Timeline,
-Corridor & Demand, Why panel, Evidence) are built. See `API_CONTRACT.md` for
-the endpoint reference, `backend/README.md` and `frontend/README.md` for how
-each half is structured and run. No database exists and none is planned (§10).
-Phase 4 onward (per the original roadmap this project's phase numbering has
-since compressed relative to) is not started.
+Phase 2 (explanation service + API), Phase 3 (frontend: Plan/Timeline,
+Corridor & Demand, Why panel, Evidence), and Phase 8 (packaging: one process,
+one port, startup warmup) are built. See `API_CONTRACT.md` for the endpoint
+reference, `backend/README.md` and `frontend/README.md` for how each half is
+structured and run, and `python run.py` at the repo root to start the whole
+packaged system. No database exists and none is planned (§10). Demo rehearsal
+(the original roadmap's Phase 9) has not happened yet — including the one
+test that must happen on the actual presentation laptop, not here: disconnect
+networking, reboot, cold-start, run the full demo.

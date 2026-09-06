@@ -12,13 +12,13 @@ blockplan_service/
     planner.py    PlanningService -- THE PLANNING LOCK, plan cache, pipeline, DTO shaping
     explain.py    ExplanationService -- why a block exists, why a job was refused
 blockplan_api/
-    app.py        FastAPI routes: /plan, /plan/{id}, block + explain endpoints
+    app.py        FastAPI routes for all nine endpoints; serves frontend/dist/ if built
     schemas.py    Pydantic v2 request/response models
-tests/            context / cache / lock / explain / API / frozen-artifact tests
+tests/            context / cache / lock / explain / API / packaging / frozen-artifact tests
 requirements.txt  pinned dependency versions
 ```
 
-Run the API:
+Run the API alone (dev, against a separately-running Vite dev server):
 
 ```
 uvicorn blockplan_api.app:app --port 8000
@@ -26,6 +26,14 @@ uvicorn blockplan_api.app:app --port 8000
 
 Startup loads the frozen dataset once. The first plan per scenario pays window
 generation (~20 s); after that the cache serves it.
+
+**For the packaged app (API + built frontend, one port, no network), use
+`python run.py` at the repo root instead** -- see the root `CLAUDE.md`'s
+packaging section. `BLOCKPLAN_WARM_ON_STARTUP=1` (which `run.py` sets)
+precomputes all eight scenarios before the server starts accepting requests;
+plain `uvicorn` above does not set it, so scenario switching pays its full
+cold cost on each new scenario's first request -- fine for backend
+development, wrong for a demo.
 
 Nothing here reimplements optimisation logic. The service orchestrates
 `blockplan/core.py` (frozen, imported, never edited) and reuses the existing

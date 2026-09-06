@@ -11,6 +11,12 @@ import sys
 # backend/blockplan_service/paths.py -> backend/blockplan_service -> backend -> repo root
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# The built frontend (Phase 8 packaging). Not required to exist: the backend
+# and its test suite must keep working standalone (e.g. in CI, or a backend
+# developer who has never run `npm install`) whether or not anyone has built
+# the frontend yet.
+FRONTEND_DIST = os.path.join(REPO_ROOT, "frontend", "dist")
+
 DATASET_TREE = os.path.join(REPO_ROOT, "Dataset")
 CORE_DIR = os.path.join(DATASET_TREE, "blockplan")
 DATASET_ROOT = os.path.join(DATASET_TREE, "blockplan-dataset")

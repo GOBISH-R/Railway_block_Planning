@@ -22,8 +22,19 @@ export function SummaryStrip({ plan }: { plan: PlanResponse }) {
       <Metric label="Min reliability" value={s.min_reliability.toFixed(2)} tone={s.min_reliability < plan.theta ? "error" : undefined} />
       <Metric label="Objective" value={plan.objective.toFixed(1)} unit="wtm" />
 
-      <span className="summary-strip__timing" title="Wall-clock time for this plan">
-        {formatSeconds(plan.stage_timings_s.total)} to plan
+      <span
+        className="summary-strip__timing"
+        title={
+          plan.cache_hit
+            ? "Served from cache. The time shown is how long this scenario took the first time it was computed, not this request's latency."
+            : "Wall-clock time for this plan"
+        }
+      >
+        {plan.cache_hit ? (
+          <>cached &middot; {formatSeconds(plan.stage_timings_s.total)} to originally compute</>
+        ) : (
+          <>{formatSeconds(plan.stage_timings_s.total)} to plan</>
+        )}
       </span>
     </div>
   );

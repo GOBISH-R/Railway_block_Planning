@@ -222,6 +222,7 @@ rejects `theta` outside `(0, 1)`, `horizon_days < 1`, or an unknown
   "scenario": "NORMAL_TRAFFIC",
   "horizon_days": 14,
   "theta": 0.90,
+  "cache_hit": false,
   "status": "OPTIMAL",
   "objective": 337.8,
   "blocks": [
@@ -282,6 +283,18 @@ rejects `theta` outside `(0, 1)`, `horizon_days < 1`, or an unknown
   the objective is the all-deferral cost) still `OPTIMAL` with an empty
   `blocks` list and `200` — this is a **valid answer**, not a failure (see
   Errors below).
+- **`cache_hit`** (added Phase 8): `true` when this response came from the
+  plan cache rather than a fresh solve. When `true`, `stage_timings_s` still
+  shows how long the ORIGINAL computation took (useful evidence — "this
+  scenario takes ~9s to solve") but is **not** this request's latency, which
+  was near-instant. A client must not present `stage_timings_s.total` as this
+  request's response time without checking `cache_hit` first — conflating the
+  two is exactly the kind of small dishonesty that undermines an otherwise
+  precise tool. This surfaced in practice: Phase 8's startup warmup precomputes
+  every scenario's default plan, and without `cache_hit`, switching scenarios
+  in the UI displayed each scenario's original (sometimes 8-12s) compute time
+  as if the switch itself had taken that long, when the actual request
+  returned in under 0.1s.
 
 ---
 

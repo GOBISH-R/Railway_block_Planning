@@ -141,6 +141,7 @@ export interface PlanResponse {
   horizon_days: number;
   theta: number;
   status: "OPTIMAL" | "FEASIBLE" | string;
+  cache_hit: boolean;
   objective: number;
   blocks: PlanBlock[];
   deferred: DeferredEntry[];

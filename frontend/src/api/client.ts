@@ -11,9 +11,14 @@ import type {
   ApiErrorBody,
 } from "./types";
 
-// In dev, Vite's proxy (vite.config.ts) forwards /api/* to the backend, so no
-// CORS round-trip is needed and no base URL is hard-coded into the bundle.
-const BASE = "/api";
+// In dev, Vite's proxy (vite.config.ts) forwards /api/* to the backend on a
+// different port, so calls are prefixed to reach it. In a production build,
+// FastAPI serves both the API and these static files from the same origin
+// (Phase 8 packaging), so the prefix must disappear -- the real routes are
+// at /corridor, /plan, etc., not /api/corridor. Getting this wrong doesn't
+// fail loudly: it 404s silently in production while working fine in `npm run
+// dev`, so it is not a detail to get away with hard-coding.
+const BASE = import.meta.env.DEV ? "/api" : "";
 
 export class ApiError extends Error {
   status: number;

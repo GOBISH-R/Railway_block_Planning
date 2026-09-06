@@ -54,6 +54,30 @@ def test_plan_cache_returns_the_same_plan(service: PlanningService):
     assert service.cached_plan(plan["plan_id"]) is not None
 
 
+def test_cache_hit_is_flagged_and_a_miss_is_not(service: PlanningService):
+    """Phase 8 finding: a cache hit must say so.
+
+    Without this flag, a client (the frontend's summary strip) has no way to
+    tell a near-instant cache hit from a fresh multi-second solve, because
+    stage_timings_s on a hit is whatever the ORIGINAL computation measured --
+    not this request's latency. A unique theta is used so this test cannot be
+    accidentally satisfied by another test's cache entry left over from
+    earlier in the session (the `service` fixture is session-scoped).
+    """
+    request = PlanRequest(scenario="NORMAL_TRAFFIC", horizon_days=14, theta=0.87,
+                          max_bundle_size=5, mc_samples=1500)
+    first = service.plan(request)
+    assert first["cache_hit"] is False
+
+    second = service.plan(request)
+    assert second["cache_hit"] is True
+    assert second["plan_id"] == first["plan_id"]
+    # The historical timing is preserved on a hit -- it's evidence, not noise --
+    # but it must be the SAME (original) number both times, proving the hit
+    # path truly skipped re-solving rather than quietly recomputing it.
+    assert second["stage_timings_s"] == first["stage_timings_s"]
+
+
 def test_cache_key_reflects_every_solve_affecting_parameter():
     base = BENCHMARK_REQUEST.cache_key()
     assert PlanRequest(scenario="PEAK_TRAFFIC").cache_key() != base

@@ -212,6 +212,16 @@ class PlanningService:
         if use_cache:
             hit = self.cached_plan(plan_id)
             if hit is not None:
+                # `hit` is already a deep copy (cached_plan() makes one), so
+                # this cannot mutate the stored entry. Marked explicitly rather
+                # than left implicit: `stage_timings_s` below is still whatever
+                # the ORIGINAL computation measured (useful evidence -- "this
+                # scenario takes ~9s to solve"), and without cache_hit a caller
+                # has no way to know that number is not this request's actual
+                # latency. Silently reusing stale timings as if they were live
+                # is exactly the kind of small dishonesty this project has
+                # avoided everywhere else.
+                hit["cache_hit"] = True
                 return hit
 
         # ---- everything below runs under the lock ------------------------
@@ -389,6 +399,11 @@ def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
         "scenario": request.scenario,
         "horizon_days": request.horizon_days,
         "theta": request.theta,
+        # Always False here: this function runs only on the fresh-compute
+        # path. A cache hit never reaches it -- plan() returns straight from
+        # cached_plan() before shape_plan_response is called -- and sets this
+        # to True itself on the dict it returns instead.
+        "cache_hit": False,
         "status": result["status"],
         "objective": round(result["objective"], 1),
         "blocks": blocks,

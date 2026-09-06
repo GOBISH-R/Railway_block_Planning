@@ -17,22 +17,29 @@ the tool working correctly and saying so. The five data-serving endpoints
 contain no optimisation logic either: they read PlanningContext or the frozen
 CSVs directly and shape the result, reusing the existing blockplan_adapter
 loaders and reference_data.py rather than duplicating any of it.
+
+Packaging (Phase 8): when frontend/dist/ exists, this same app also serves it
+as static files, so the whole system is one process on one port with no
+network dependency at demo time. See BLOCKPLAN_WARM_ON_STARTUP below for how
+cold-start latency is avoided without slowing down the test suite.
 """
 from __future__ import annotations
 
 import os
 import sys
+import time
 from contextlib import asynccontextmanager
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Path, Query, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if BACKEND_DIR not in sys.path:
     sys.path.insert(0, BACKEND_DIR)
 
-from blockplan_service import PlanningService, PlanRequest  # noqa: E402
+from blockplan_service import PlanningService, PlanRequest, paths  # noqa: E402
 from blockplan_service.explain import (  # noqa: E402
     ExplanationService,
     ExplanationUnavailableError,
@@ -51,6 +58,20 @@ from .schemas import (  # noqa: E402
 
 _state: dict[str, Any] = {}
 
+# Precomputing all eight scenarios' plans at startup takes a few minutes (each
+# pays a cold window-generation cost the first time it is touched). That is
+# exactly right for "start once before the demo, offline from then on" --
+# and exactly wrong for a test suite that constructs a fresh TestClient (and
+# therefore a fresh lifespan) many times across ~10 test files. Gating it
+# behind an environment variable keeps `pytest` at its current ~5 minutes for
+# 96 tests instead of multiplying that by however many test files touch the
+# app fixture.
+def _env_flag(name: str) -> bool:
+    return os.environ.get(name, "").strip().lower() in ("1", "true", "yes")
+
+
+WARM_ON_STARTUP = _env_flag("BLOCKPLAN_WARM_ON_STARTUP")
+
 
 def get_planning_service() -> PlanningService:
     return _state["planning"]
@@ -60,12 +81,42 @@ def get_explanation_service() -> ExplanationService:
     return _state["explanation"]
 
 
+def _warm_all_scenarios(planning: PlanningService) -> None:
+    """Precompute every scenario's windows and default-parameter plan.
+
+    core.py's own project memory is explicit about why this matters: window
+    generation is ~75% of a cold plan and depends only on
+    (sections, trains, horizon) -- never on theta, bundle size or mc_samples --
+    so there are exactly eight window sets in the whole system. Computing all
+    eight, and the default plan built from each, once at startup is what makes
+    every subsequent scenario switch in the UI instant instead of paying that
+    cost live in front of a judge.
+
+    PlanRequest()'s own defaults (theta=0.90, horizon=14, max_bundle_size=5,
+    mc_samples=1500) are deliberately identical to the frontend's initial
+    state, so the plan precomputed here is exactly the one the UI requests
+    the first time a user selects that scenario.
+    """
+    names = planning.context.scenario_names
+    print(f"[warmup] precomputing {len(names)} scenarios...", flush=True)
+    for name in names:
+        started = time.perf_counter()
+        planning.plan(PlanRequest(scenario=name))
+        print(f"[warmup]   {name}: {time.perf_counter() - started:.1f}s", flush=True)
+    print("[warmup] done -- every scenario's default plan is cached.", flush=True)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Load the frozen dataset once, at startup, not per request."""
-    planning = PlanningService()
+    # 12, not 8: the eight precomputed scenario plans plus headroom for a few
+    # live re-plans (a controller dragging theta during the demo) before the
+    # oldest internals are evicted. Still bounded, not unlimited growth.
+    planning = PlanningService(max_internals=12)
     _state["planning"] = planning
     _state["explanation"] = ExplanationService(planning)
+    if WARM_ON_STARTUP:
+        _warm_all_scenarios(planning)
     yield
     _state.clear()
 
@@ -80,10 +131,12 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# The frontend is a Vite dev server on a different origin during development
-# (Phase 5 wires a dev proxy so this becomes same-origin; until then CORS is
-# needed to develop against a live backend at all). No credentials are used,
-# so an open origin list carries no session/cookie exposure.
+# Needed only for `npm run dev` (Vite on a different port talking to this
+# backend directly, bypassing its own dev proxy if opened without it). The
+# packaged app (frontend/dist served by this same process, below) is
+# same-origin and does not need CORS at all -- this middleware is harmless
+# there, not load-bearing. No credentials are used, so an open origin list
+# carries no session/cookie exposure either way.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -221,4 +274,16 @@ def health() -> dict[str, Any]:
         "scenarios": len(service.context.scenario_names),
         "sections": len(service.context.sections),
         "window_sets_cached": service.windows.size,
+        "cached_plans": len(service.cached_plan_ids),
     }
+
+
+# Static frontend, mounted LAST so it never shadows an API route above: FastAPI
+# checks routes in registration order, and every /corridor, /plan, /comparison
+# etc. route was already registered by the time this mount is added, so a
+# request for one of them matches its explicit route and never reaches this
+# catch-all. Guarded on the directory existing so `pytest` and a bare backend
+# checkout (no `npm install`/`npm run build` yet) keep working without it --
+# this is packaging, not a hard dependency of the API.
+if os.path.isdir(paths.FRONTEND_DIST):
+    app.mount("/", StaticFiles(directory=paths.FRONTEND_DIST, html=True), name="frontend")

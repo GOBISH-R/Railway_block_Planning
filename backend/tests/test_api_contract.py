@@ -46,12 +46,13 @@ def test_response_carries_every_contract_field(plan):
 
 
 def test_no_undocumented_top_level_fields(plan):
-    """`instance` is an addition; everything else must be in the contract.
+    """`instance` and `cache_hit` are additions; everything else must be in
+    the contract.
 
     Additive fields are a compatible change, but they must be deliberate --
     this test fails if a third one appears without the contract being updated.
     """
-    assert set(plan) - PLAN_FIELDS == {"instance"}
+    assert set(plan) - PLAN_FIELDS == {"instance", "cache_hit"}
 
 
 def test_block_shape(plan):
