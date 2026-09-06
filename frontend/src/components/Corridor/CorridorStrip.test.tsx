@@ -169,6 +169,61 @@ describe("CorridorStrip ticks and leaders", () => {
   });
 });
 
+describe("CorridorStrip station guides", () => {
+  it("drops a guide from every station to the corridor spine", () => {
+    const container = renderStrip();
+    const guides = Array.from(container.querySelectorAll(".corridor-strip__guide"));
+    expect(guides).toHaveLength(27);
+  });
+
+  /**
+   * The point of the guides: the job lanes and the corridor share one km axis,
+   * and this is what makes that visible. A guide that did not line up with its
+   * station's tick would be worse than none.
+   */
+  it("aligns each guide with its own station tick", () => {
+    const container = renderStrip();
+    const guideXs = Array.from(container.querySelectorAll(".corridor-strip__guide")).map((g) =>
+      Number(g.getAttribute("x1"))
+    );
+    const tickXs = Array.from(container.querySelectorAll(".corridor-strip__tick")).map((t) =>
+      Number(t.getAttribute("x1"))
+    );
+    expect(guideXs).toEqual(tickXs);
+  });
+
+  it("keeps each guide vertical and stops it at the spine", () => {
+    const container = renderStrip();
+    const spineY = Number(
+      container.querySelector(".corridor-strip__line")!.getAttribute("y1")
+    );
+    for (const g of container.querySelectorAll(".corridor-strip__guide")) {
+      expect(g.getAttribute("x1")).toBe(g.getAttribute("x2"));
+      expect(Number(g.getAttribute("y1"))).toBe(0);
+      expect(Number(g.getAttribute("y2"))).toBe(spineY);
+    }
+  });
+
+  it("draws guides before the lane labels so text is never crossed by one", () => {
+    const container = renderStrip();
+    const svg = container.querySelector("svg")!;
+    const children = Array.from(svg.children);
+    const lastGuide = children.map((c) => c.classList.contains("corridor-strip__guide")).lastIndexOf(true);
+    const firstLaneLabel = children.findIndex((c) =>
+      c.classList.contains("corridor-strip__lane-label")
+    );
+    expect(lastGuide).toBeGreaterThanOrEqual(0);
+    expect(firstLaneLabel).toBeGreaterThan(lastGuide);
+  });
+
+  it("leaves the station labels and ticks untouched", () => {
+    const container = renderStrip();
+    expect(container.querySelectorAll(".corridor-strip__station-label")).toHaveLength(27);
+    expect(container.querySelectorAll(".corridor-strip__tick")).toHaveLength(27);
+    expect(container.querySelectorAll(".corridor-strip__tick--junction")).toHaveLength(4);
+  });
+});
+
 describe("stationLabelRow", () => {
   it("alternates so no two neighbours share a baseline", () => {
     expect(stationLabelRow(0)).toBe(0);

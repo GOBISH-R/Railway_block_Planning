@@ -56,6 +56,21 @@ export function CorridorStrip({
     <div className="corridor-strip">
       <svg viewBox={`0 0 ${width} ${height}`} className="corridor-strip__svg" role="img"
            aria-label="Linear corridor diagram with pending maintenance jobs by department">
+        {/* Station guides, drawn first so everything else paints over them.
+            The job lanes and the corridor share one km axis, but nothing said
+            so: 175 dots sat above a line they had no visible relationship to,
+            which is what made the strip read as a scatter rather than as work
+            positioned along a corridor. A hairline dropped from each station
+            to the spine is enough to tie the two together. */}
+        {stations.map((s) => (
+          <line
+            key={`guide-${s.station_code}`}
+            x1={kmToX(s.km)} x2={kmToX(s.km)}
+            y1={0} y2={stripY}
+            className="corridor-strip__guide"
+          />
+        ))}
+
         {(["ENGG", "SNT", "TRD"] as const).map((dept) => (
           <text key={dept} x={2} y={DEPT_LANE[dept] * laneHeight + 14} className="corridor-strip__lane-label">
             {dept}

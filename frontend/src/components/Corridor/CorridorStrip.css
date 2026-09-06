@@ -15,8 +15,16 @@
   fill: var(--ink-2);
 }
 
+/* Behind everything: reads as a chart's gridlines, not as track. */
+.corridor-strip__guide {
+  stroke: var(--hairline);
+  stroke-width: 1;
+}
+
+/* The corridor spine. A step darker than the guides so the hierarchy reads
+   line > ticks > guides rather than three greys of the same weight. */
 .corridor-strip__line {
-  stroke: var(--hairline-strong);
+  stroke: var(--ink-2);
   stroke-width: 2;
 }
 
