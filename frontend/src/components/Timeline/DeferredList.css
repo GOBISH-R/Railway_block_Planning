@@ -8,17 +8,27 @@
   min-height: 0;
 }
 
-.deferred-list--empty {
-  width: 220px;
-  padding: var(--space-4);
-  font-size: var(--text-sm);
+/* The empty state now reuses .deferred-list itself, so the panel keeps one
+   definition of its width, border and layout instead of a modifier that had
+   to repeat them. */
+.deferred-list__empty {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-xs);
+  line-height: 1.5;
   color: var(--ink-2);
-  border-left: 1px solid var(--hairline);
+}
+
+.deferred-list__empty-headline {
+  display: block;
+  margin-bottom: 2px;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-1);
 }
 
 @media (max-width: 640px) {
-  .deferred-list,
-  .deferred-list--empty {
+  .deferred-list {
     width: 100%;
     max-height: 40vh;
     border-left: none;
