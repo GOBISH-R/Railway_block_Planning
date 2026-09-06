@@ -1,0 +1,141 @@
+.block-why__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.block-why__location {
+  font-size: var(--text-lg);
+  font-weight: 700;
+}
+
+.block-why__line {
+  font-weight: 400;
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+
+.block-why__time {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-1);
+}
+
+.block-why__length {
+  font-family: var(--font-ui);
+  color: var(--ink-2);
+}
+
+.block-why__reliability-line {
+  font-size: var(--text-sm);
+  color: var(--ink-1);
+}
+
+.block-why__envelope-table {
+  font-size: var(--text-xs);
+  margin-top: var(--space-2);
+}
+
+.block-why__envelope-table th {
+  text-align: left;
+  color: var(--ink-2);
+  font-weight: 600;
+  padding: 3px 8px 3px 0;
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+.block-why__envelope-table td {
+  padding: 3px 8px 3px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.block-why__envelope-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.block-why__meets-yes {
+  color: var(--success-9);
+  font-weight: 700;
+}
+.block-why__meets-no {
+  color: var(--error-9);
+  font-weight: 700;
+}
+
+.block-why__jobs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.block-why__job {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-size: var(--text-xs);
+}
+.block-why__job:hover {
+  background: var(--paper-2);
+  border-color: var(--hairline-strong);
+}
+
+.block-why__job-id {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--ink-0);
+}
+
+.block-why__job-activity {
+  flex: 1;
+  color: var(--ink-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.block-why__job-duration {
+  font-family: var(--font-mono);
+  color: var(--ink-2);
+  flex: none;
+}
+
+.block-why__objective {
+  display: flex;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.block-why__objective dt {
+  font-size: var(--text-2xs);
+  color: var(--ink-2);
+}
+
+.block-why__objective dd {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: var(--text-md);
+}
+
+.block-why__units {
+  font-size: var(--text-2xs);
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+.block-why__provenance-notice {
+  font-size: var(--text-2xs);
+  color: var(--ink-2);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--hairline);
+}

@@ -1,0 +1,19 @@
+.dept-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--ink-1);
+}
+
+.dept-tag__swatch {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.dept-tag--ENGG .dept-tag__swatch { background: var(--dept-engg); }
+.dept-tag--SNT .dept-tag__swatch  { background: var(--dept-snt); }
+.dept-tag--TRD .dept-tag__swatch  { background: var(--dept-trd); }

@@ -1,0 +1,24 @@
+.controls-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-6);
+  padding: var(--space-3) var(--space-5);
+  background: var(--paper-1);
+  border-bottom: 1px solid var(--hairline);
+  flex-wrap: wrap;
+}
+
+.controls-bar__note {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  max-width: 36ch;
+  text-align: right;
+  align-self: center;
+}
+
+@media (max-width: 900px) {
+  .controls-bar__note {
+    display: none;
+  }
+}

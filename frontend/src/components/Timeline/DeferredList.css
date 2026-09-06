@@ -1,0 +1,79 @@
+.deferred-list {
+  flex: none;
+  width: 220px;
+  border-left: 1px solid var(--hairline);
+  background: var(--paper-1);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.deferred-list--empty {
+  width: 220px;
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  border-left: 1px solid var(--hairline);
+}
+
+@media (max-width: 640px) {
+  .deferred-list,
+  .deferred-list--empty {
+    width: 100%;
+    max-height: 40vh;
+    border-left: none;
+    border-top: 1px solid var(--hairline);
+  }
+}
+
+.deferred-list__title {
+  padding: var(--space-3) var(--space-4) var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-1);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.deferred-list__hint {
+  font-size: var(--text-2xs);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--ink-2);
+}
+
+.deferred-list__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.deferred-list__item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  text-align: left;
+  font-size: var(--text-xs);
+}
+
+.deferred-list__item:hover {
+  background: var(--paper-2);
+}
+
+.deferred-list__job-id {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--ink-0);
+}

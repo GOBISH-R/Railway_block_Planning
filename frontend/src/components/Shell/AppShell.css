@@ -1,0 +1,98 @@
+.shell {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.shell__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  height: 56px;
+  padding: 0 var(--space-5);
+  background: var(--paper-1);
+  border-bottom: 1px solid var(--hairline);
+  flex: none;
+}
+
+.shell__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex: none;
+}
+
+.shell__brand-mark {
+  width: 10px;
+  height: 28px;
+  border-radius: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--dept-engg) 0 33%,
+    var(--dept-snt) 33% 66%,
+    var(--dept-trd) 66% 100%
+  );
+  flex: none;
+}
+
+.shell__brand-name {
+  font-size: var(--text-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.shell__brand-sub {
+  font-size: var(--text-2xs);
+  color: var(--ink-2);
+  line-height: 1.2;
+}
+
+.shell__nav {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+.shell__nav-item {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink-1);
+}
+
+.shell__nav-item:hover {
+  color: var(--ink-0);
+}
+
+.shell__nav-item--active {
+  color: var(--accent-9);
+  border-bottom-color: var(--accent-9);
+}
+
+.shell__header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.shell__main {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+@media (max-width: 900px) {
+  .shell__brand-sub {
+    display: none;
+  }
+  .shell__header {
+    gap: var(--space-4);
+  }
+}

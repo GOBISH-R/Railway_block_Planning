@@ -24,15 +24,22 @@ SCENARIOS_DIR = os.path.join(DATASET_DIR, "scenarios")
 CORE_PY = os.path.join(CORE_DIR, "core.py")
 PAIRING_RULES_CSV = os.path.join(PROCESSED_DIR, "pairing_rules.csv")
 SECTIONS_CSV = os.path.join(PROCESSED_DIR, "sections.csv")
+STATIONS_CSV = os.path.join(PROCESSED_DIR, "stations.csv")
 MOVEMENTS_CSV = os.path.join(PROCESSED_DIR, "movements.csv")
 SCENARIOS_CSV = os.path.join(SCENARIOS_DIR, "scenarios.csv")
+SCENARIO_JOBS_DIR = os.path.join(SCENARIOS_DIR, "jobs")
 METHOD_COMPARISON_CSV = os.path.join(SCENARIOS_DIR, "method_comparison.csv")
 BENCHMARK_RESULTS_CSV = os.path.join(SCENARIOS_DIR, "benchmark_results.csv")
+EXECUTION_SCORING_SUMMARY_CSV = os.path.join(SCENARIOS_DIR, "execution_scoring_summary.csv")
 
 # core.py's frozen identity. CLAUDE.md and the project memory both cite these;
 # the tests assert against them so an accidental edit fails loudly.
 CORE_PY_BYTES = 44044
 CORE_PY_SHA256 = "20a240cc4979a8231b5405cbfecb84a57a957e2bcbff19166c48c88ef2d5d054"
+
+
+def scenario_jobs_csv(scenario_name: str) -> str:
+    return os.path.join(SCENARIO_JOBS_DIR, f"jobs_{scenario_name}.csv")
 
 
 def ensure_import_paths() -> None:

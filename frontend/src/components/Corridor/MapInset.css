@@ -1,0 +1,26 @@
+.map-inset {
+  width: 100%;
+  height: auto;
+  background: var(--paper-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--hairline);
+}
+
+.map-inset__route {
+  stroke: var(--ink-2);
+  stroke-width: 1.5;
+}
+
+.map-inset__station {
+  fill: var(--ink-1);
+}
+
+.map-inset__station--junction {
+  fill: var(--accent-9);
+}
+
+.map-inset__label {
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--ink-1);
+}

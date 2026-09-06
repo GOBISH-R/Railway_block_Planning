@@ -1,0 +1,112 @@
+/*
+  Design tokens.
+
+  Palette rationale: this is an operations decision-support tool for railway
+  block planning, not a marketing surface. Colour is reserved for meaning:
+
+    - status/semantic colours (success/warning/error/info) are drawn from
+      railway SIGNAL aspects -- green/amber/red is a vocabulary a controller
+      already reads correctly, not a generic UI-kit convention.
+    - the one "brand" accent is a desaturated slate-blue used ONLY for
+      interactive elements (links, active tab, primary button, focus ring),
+      never as decoration. It is deliberately not the saturated
+      electric-blue-on-white that reads as "generic AI dashboard".
+    - the base palette is warm-neutral paper/ink, not cool grey, so long
+      reading sessions over dense tables do not feel clinical.
+*/
+
+:root {
+  /* ---- neutrals (warm paper/ink, not cool grey) ---- */
+  --paper-0: #faf9f7;   /* app background */
+  --paper-1: #ffffff;   /* surface (cards, panels, table rows) */
+  --paper-2: #f2f0ec;   /* sunken surface (page header band, disabled fill) */
+  --hairline: #e4e1da;  /* borders, separators */
+  --hairline-strong: #cfcabf;
+
+  --ink-0: #1c1b19;     /* primary text */
+  --ink-1: #4a473f;     /* secondary text */
+  --ink-2: #78746a;     /* tertiary / metadata / placeholder */
+  --ink-inverse: #faf9f7;
+
+  /* ---- accent (interactive only) ---- */
+  --accent-9: #33506b;     /* primary button, active tab underline */
+  --accent-8: #3d5f80;
+  --accent-7: #4a7095;     /* hover state */
+  --accent-3: #dde6ec;     /* selected-row tint, focus fill */
+  --accent-2: #eef2f5;
+
+  /* ---- semantic (signal-derived) ---- */
+  --success-9: #1e6b3d;
+  --success-6: #2f8a52;
+  --success-3: #dcefe1;
+  --success-2: #eef7f0;
+
+  --warning-9: #8a5a10;
+  --warning-6: #b3791c;
+  --warning-3: #f6e6c6;
+  --warning-2: #fbf1de;
+
+  --error-9: #a3271f;
+  --error-6: #c2392f;
+  --error-3: #f6dad7;
+  --error-2: #fbeceb;
+
+  --info-9: #385b78;
+  --info-3: #dfe8ee;
+
+  --neutral-status-9: #55524a;   /* "planned / inactive" -- deliberately NOT grey-as-disabled */
+  --neutral-status-3: #eae7e0;
+
+  /* department colours -- used ONLY as small identity marks (chips, legend
+     swatches, bar stripes), never as large fills. Kept low-saturation so a
+     department mix inside a block reads as texture, not confetti. */
+  --dept-engg: #6b4a2f;   /* permanent way -- earth/timber tone */
+  --dept-snt:  #3d5f80;   /* signal & telecom -- signal-blue tone */
+  --dept-trd:  #7a5a8a;   /* traction distribution -- overhead-wire violet tone */
+
+  /* ---- typography ---- */
+  --font-ui: -apple-system, "Segoe UI", "Inter", Roboto, system-ui, sans-serif;
+  --font-mono: "SF Mono", "Cascadia Mono", "Consolas", ui-monospace, monospace;
+
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 19px;
+  --text-2xl: 23px;
+
+  --leading-tight: 1.2;
+  --leading-normal: 1.45;
+
+  /* ---- spacing scale (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ---- shape ---- */
+  --radius-sm: 3px;
+  --radius-md: 5px;
+  --radius-lg: 7px;
+
+  /* ---- elevation: one subtle level only, for floating surfaces (panel, menu) ---- */
+  --shadow-panel: 0 4px 16px -4px rgba(28, 27, 25, 0.18), 0 1px 2px rgba(28, 27, 25, 0.08);
+
+  /* ---- motion: state changes only, always fast ---- */
+  --motion-fast: 110ms;
+  --motion-base: 160ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  color-scheme: light;
+}
+
+/* This project deliberately ships one theme (memory doc §15: "Pick one theme
+   and make it good. Projector contrast is the only display consideration
+   that matters -- favour light with strong contrast."). No dark-mode block
+   is defined; the app renders identically regardless of OS theme. */

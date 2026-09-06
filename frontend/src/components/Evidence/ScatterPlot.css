@@ -1,0 +1,41 @@
+.scatter-plot {
+  width: 100%;
+  height: auto;
+}
+
+.scatter-plot__axis {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+}
+
+.scatter-plot__grid {
+  stroke: var(--hairline);
+  stroke-width: 1;
+}
+
+.scatter-plot__tick {
+  font-size: 9px;
+  fill: var(--ink-2);
+}
+
+.scatter-plot__axis-label {
+  font-size: 9px;
+  fill: var(--ink-1);
+  font-weight: 600;
+}
+
+.scatter-plot__point {
+  fill: var(--ink-2);
+  stroke: var(--paper-1);
+  stroke-width: 1;
+}
+
+.scatter-plot__point--ours {
+  fill: var(--accent-9);
+}
+
+.scatter-plot__label {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--ink-1);
+}

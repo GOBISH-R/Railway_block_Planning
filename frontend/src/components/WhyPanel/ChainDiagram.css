@@ -1,0 +1,33 @@
+.chain-diagram {
+  width: 100%;
+  height: auto;
+}
+
+.chain-diagram__envelope {
+  stroke: var(--error-6);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 2;
+}
+
+.chain-diagram__envelope-label {
+  font-size: 9px;
+  fill: var(--error-9);
+  font-weight: 600;
+}
+
+.chain-diagram__dept-label {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--ink-1);
+}
+
+.chain-diagram__mean-tick {
+  stroke: var(--ink-0);
+  stroke-width: 1.5;
+}
+
+.chain-diagram__phi-label {
+  font-size: 9px;
+  fill: var(--ink-2);
+  font-family: var(--font-mono);
+}

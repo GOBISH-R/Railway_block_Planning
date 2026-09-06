@@ -215,7 +215,10 @@ but measure on the actual presentation laptop first.
 
 ## Where things are right now
 
-No backend, no frontend, no database, no API implementation exists yet. Do
-not assume any of them do. Current phase: Phase 0 (freeze guard + API
-contract). See `API_CONTRACT.md` and `plan.json` at this same root for the
-other two Phase 0 deliverables.
+Phase 0 (contract), Phase 1 (planning service: context, window cache, lock),
+Phase 2 (explanation service + API), and Phase 3 (frontend: Plan/Timeline,
+Corridor & Demand, Why panel, Evidence) are built. See `API_CONTRACT.md` for
+the endpoint reference, `backend/README.md` and `frontend/README.md` for how
+each half is structured and run. No database exists and none is planned (§10).
+Phase 4 onward (per the original roadmap this project's phase numbering has
+since compressed relative to) is not started.

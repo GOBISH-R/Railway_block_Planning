@@ -1,0 +1,58 @@
+.corridor-strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.corridor-strip__svg {
+  width: 100%;
+  height: auto;
+}
+
+.corridor-strip__lane-label {
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--ink-2);
+}
+
+.corridor-strip__line {
+  stroke: var(--hairline-strong);
+  stroke-width: 2;
+}
+
+.corridor-strip__tick {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+}
+
+.corridor-strip__tick--junction {
+  stroke: var(--ink-0);
+  stroke-width: 2;
+}
+
+.corridor-strip__station-label {
+  font-size: 9px;
+  fill: var(--ink-1);
+  font-weight: 600;
+}
+
+.corridor-strip__job {
+  cursor: pointer;
+  stroke: var(--paper-1);
+  stroke-width: 1;
+}
+.corridor-strip__job:hover,
+.corridor-strip__job:focus-visible {
+  r: 6;
+  stroke: var(--ink-0);
+}
+
+.corridor-strip__tooltip-slot {
+  min-height: 20px;
+  padding: 0 var(--space-2);
+}
+
+.corridor-strip__tooltip {
+  font-size: var(--text-xs);
+  color: var(--ink-1);
+}

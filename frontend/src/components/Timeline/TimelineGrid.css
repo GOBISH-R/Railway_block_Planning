@@ -1,0 +1,147 @@
+.tgrid {
+  flex: 1;
+  /* Without this, a flex item's default min-width is `auto`, which lets it
+     grow to its content's full intrinsic width (the 2000px+ SVG body) instead
+     of shrinking to the space flex:1 actually gives it -- pushing the
+     deferred-jobs list off-screen and forcing the whole page to scroll
+     horizontally instead of just this pane's own internal scroll area. */
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-1);
+}
+
+.tgrid__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.tgrid__grid {
+  display: grid;
+  position: relative;
+}
+
+.tgrid__corner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: var(--paper-2);
+  border-right: 1px solid var(--hairline-strong);
+  border-bottom: 1px solid var(--hairline-strong);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+.tgrid__header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+.tgrid__day-label {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--ink-1);
+}
+
+.tgrid__hour-label {
+  font-size: 9px;
+  fill: var(--ink-2);
+}
+
+.tgrid__day-boundary {
+  stroke: var(--hairline-strong);
+  stroke-width: 1;
+}
+
+.tgrid__day-boundary--body {
+  stroke: var(--hairline);
+}
+
+.tgrid__labels {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--paper-1);
+  border-right: 1px solid var(--hairline-strong);
+}
+
+.tgrid__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-2) 0 var(--space-3);
+  border-bottom: 1px solid var(--hairline);
+  font-size: 10px;
+}
+
+.tgrid__label-row:nth-child(odd) {
+  background: var(--paper-2);
+}
+
+.tgrid__label-text {
+  color: var(--ink-0);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tgrid__label-line {
+  color: var(--ink-2);
+  font-size: 9px;
+  font-weight: 700;
+  flex: none;
+  margin-left: 4px;
+}
+
+.tgrid__row-line {
+  stroke: var(--hairline);
+  stroke-width: 1;
+}
+
+.tgrid__density {
+  fill: var(--info-9);
+  pointer-events: none;
+}
+
+.tgrid__block {
+  cursor: pointer;
+}
+
+.tgrid__block-outline {
+  stroke: var(--paper-1);
+  stroke-width: 1;
+}
+
+.tgrid__block-outline--selected {
+  stroke: var(--accent-9);
+  stroke-width: 2;
+}
+
+.tgrid__block:focus-visible .tgrid__block-outline,
+.tgrid__block:hover .tgrid__block-outline {
+  stroke: var(--accent-9);
+  stroke-width: 2;
+}
+
+.tgrid__block-label {
+  font-size: 9px;
+  font-weight: 700;
+  fill: var(--ink-inverse);
+  paint-order: stroke;
+  stroke: rgba(0, 0, 0, 0.35);
+  stroke-width: 2px;
+  pointer-events: none;
+}

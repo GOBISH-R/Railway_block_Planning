@@ -67,6 +67,29 @@ def _load_section_meta() -> Mapping[str, Mapping[str, Any]]:
     return MappingProxyType(meta)
 
 
+def _load_stations() -> tuple[Mapping[str, Any], ...]:
+    """The 27 real stations, in corridor sequence.
+
+    core.py has no concept of a station -- Section carries only what the
+    optimiser needs. This is presentation geography, for the /corridor
+    endpoint and the frontend's linear strip diagram, read straight from the
+    frozen stations.csv.
+    """
+    stations: list[Mapping[str, Any]] = []
+    with open(paths.STATIONS_CSV, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            stations.append(MappingProxyType({
+                "station_code": row["station_code"],
+                "station_name": row["station_name"],
+                "latitude": float(row["latitude"]),
+                "longitude": float(row["longitude"]),
+                "seq": int(row["seq"]),
+                "is_junction": row["is_junction"] == "1",
+            }))
+    stations.sort(key=lambda s: s["seq"])
+    return tuple(stations)
+
+
 def _load_pairing_rule_rows() -> Mapping[str, tuple[Mapping[str, Any], ...]]:
     """The mandatory-pairing rules WITH their manual citations.
 
@@ -114,6 +137,7 @@ class PlanningContext:
     pairing_rule_count: int
     section_meta: Mapping[str, Mapping[str, Any]]
     pairing_rules: Mapping[str, tuple[Mapping[str, Any], ...]]
+    stations: tuple[Mapping[str, Any], ...]
     _scenario_jobs: Mapping[str, tuple[Any, ...]] = field(repr=False)
 
     # -- construction ------------------------------------------------------
@@ -160,6 +184,7 @@ class PlanningContext:
             pairing_rule_count=rule_count,
             section_meta=_load_section_meta(),
             pairing_rules=_load_pairing_rule_rows(),
+            stations=_load_stations(),
             _scenario_jobs=MappingProxyType(scenario_jobs),
         )
 

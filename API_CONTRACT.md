@@ -1,9 +1,10 @@
-# BlockPlan API contract — Phase 0 draft
+# BlockPlan API contract
 
-Status: DRAFT for review. Nothing here is implemented. This document is the
-Phase 0 deliverable — the agreed JSON shape of all nine endpoints — so the
-frontend can be built against `plan.json` while the backend does not yet
-exist, per the project roadmap.
+Status: all nine endpoints implemented as of Phase 3. This document is still
+the authoritative wire-format reference — the frontend and backend are built
+against it, not against each other's source. Where an endpoint's response
+extends the shape originally drafted in Phase 0, that is noted inline as a
+superset; no previously-documented field has been renamed or removed.
 
 Nine endpoints, no more, per the frozen decision. Field names below are taken
 directly from the real column headers in
@@ -24,6 +25,8 @@ All responses are `application/json`. All errors follow the shape:
 ---
 
 ## 1. `GET /corridor`
+
+**Implemented in Phase 3.** Response shape as documented above; reads `PlanningContext.stations` (added in Phase 3, from the frozen `stations.csv`) and `section_meta`.
 
 Static corridor geography. Computes nothing; reads `context/` once at
 startup.
@@ -69,6 +72,8 @@ direct passthrough of the CSV column of the same name.
 
 ## 2. `GET /scenarios`
 
+**Implemented in Phase 3.** `realised_job_count` comes from `PlanningContext.base_job_count()`, itself the length of the scenario's own generated job CSV.
+
 The eight scenarios and their declared parameters. Reads
 `dataset/scenarios/scenarios.csv` and `scenario_jobs_manifest.csv`.
 
@@ -100,6 +105,8 @@ demand is Poisson-realised, not fixed.
 ---
 
 ## 3. `GET /demand`
+
+**Implemented in Phase 3.** Reads `jobs_<SCENARIO>.csv` directly rather than through `PlanningContext.jobs_for()`, since `priority` and `uncertainty_level` are UI-only labels `core.Job` does not carry.
 
 Maintenance job demand for one scenario. Reads
 `dataset/scenarios/jobs/jobs_<SCENARIO>.csv`.
@@ -146,6 +153,8 @@ otherwise.
 ---
 
 ## 4. `GET /traffic`
+
+**Implemented in Phase 3.** Real movements are read from `movements.csv`; PEAK_TRAFFIC's synthetic additions reuse the existing `add_peak_passenger_traffic()` and are converted back to display rows.
 
 Train movements for the timeline's traffic-density background. Reads
 `dataset/processed/movements.csv`, filtered by scenario-specific adjustments
@@ -552,6 +561,8 @@ INFEASIBLE branch draws Monte Carlo samples.
 
 ## 9. `GET /comparison`
 
+**Implemented in Phase 3.** A reader, not a runner, per the original design intent -- `_read_csv_numeric()` parses all three frozen CSVs generically with no reshaping.
+
 Serves the three frozen benchmark artefacts as-is. No computation — this
 endpoint is a reader, not a runner.
 
@@ -645,8 +656,11 @@ deferred at `theta = 0.99` is the tool working correctly, and must return
 2. Plan cache key: proposed as a hash of the six request fields
    (`scenario`, `horizon_days`, `theta`, `max_bundle_size`, `mc_samples`,
    `seed`). Two identical requests should hit the cache, not re-solve.
-3. `dept_mix` and `job_ids` on `/plan`'s `blocks[]` — confirm this is enough
-   for the timeline's first pass, or whether the timeline needs per-job
-   `activity` names inline too (would avoid a second round-trip to
-   `/plan/{id}/block/{id}` just to label a bar, at the cost of a heavier
-   `/plan` response).
+3. **Resolved in Phase 3.** `dept_mix` and `job_ids` on `/plan`'s `blocks[]`
+   were enough for the timeline's first pass — the SVG bars are coloured and
+   striped from `dept_mix` alone, and `reliability` is drawn directly on wide
+   bars. No second round-trip per bar was needed; the Why panel (a single
+   `GET /plan/{id}/block/{id}` call, on click, not on render) supplies the
+   per-job `activity` names when a controller actually asks for one block's
+   detail. Keeping `/plan` light was the right call: a 140-block plan would
+   have carried ~240 largely-unused job names on every replan otherwise.

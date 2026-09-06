@@ -1,22 +1,22 @@
-"""FastAPI application — Phase 2, explanation endpoints.
+"""FastAPI application — the nine-endpoint surface in API_CONTRACT.md.
 
-Scope note. The nine-endpoint surface in API_CONTRACT.md is not all built here.
-Phase 2's brief is the explainability capability, so this app exposes the four
-endpoints that capability needs:
-
-    POST /plan                                  create a plan to explain
-    GET  /plan/{plan_id}                        re-serve it
-    GET  /plan/{plan_id}/block/{block_id}       why this block           <- Phase 2
-    POST /plan/{plan_id}/explain/{job_id}       why this job             <- Phase 2
-
-The remaining five (/corridor, /scenarios, /demand, /traffic, /comparison) are
-data-serving endpoints with no explanation content; they are left for the phase
-that needs them and their contract is unchanged.
+    GET  /corridor                               static corridor geography
+    GET  /scenarios                               the eight scenarios
+    GET  /demand                                  maintenance demand for one scenario
+    GET  /traffic                                 train movements for one scenario
+    POST /plan                                    create a plan
+    GET  /plan/{plan_id}                          re-serve it
+    GET  /plan/{plan_id}/block/{block_id}         why this block
+    POST /plan/{plan_id}/explain/{job_id}         why this job
+    GET  /comparison                              the frozen benchmark artefacts
 
 This layer contains no planning logic. It routes, validates and maps errors.
 Per the frozen error semantics, "no feasible plan" is a 200 with an empty block
 list, never a 500 -- a plan in which everything is deferred at theta = 0.99 is
-the tool working correctly and saying so.
+the tool working correctly and saying so. The five data-serving endpoints
+contain no optimisation logic either: they read PlanningContext or the frozen
+CSVs directly and shape the result, reusing the existing blockplan_adapter
+loaders and reference_data.py rather than duplicating any of it.
 """
 from __future__ import annotations
 
@@ -25,7 +25,8 @@ import sys
 from contextlib import asynccontextmanager
 from typing import Any
 
-from fastapi import FastAPI, HTTPException, Path, status
+from fastapi import FastAPI, HTTPException, Path, Query, status
+from fastapi.middleware.cors import CORSMiddleware
 
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if BACKEND_DIR not in sys.path:
@@ -39,6 +40,7 @@ from blockplan_service.explain import (  # noqa: E402
     UnknownJobError,
 )
 from blockplan_service.planner import UnknownPlanError, UnknownScenarioError  # noqa: E402
+from blockplan_service import reference_data  # noqa: E402
 
 from .schemas import (  # noqa: E402
     BlockExplanation,
@@ -70,7 +72,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="BlockPlan",
-    version="0.2.0",
+    version="0.3.0",
     summary=(
         "Constraint-optimisation and stochastic-simulation decision support for "
         "railway block planning."
@@ -78,8 +80,57 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# The frontend is a Vite dev server on a different origin during development
+# (Phase 5 wires a dev proxy so this becomes same-origin; until then CORS is
+# needed to develop against a live backend at all). No credentials are used,
+# so an open origin list carries no session/cookie exposure.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
+
 _ERRORS = {404: {"model": ErrorResponse}}
 _EXPLAIN_ERRORS = {404: {"model": ErrorResponse}, 409: {"model": ErrorResponse}}
+
+
+# -- data-serving endpoints (no planning logic) -----------------------------
+
+@app.get("/corridor")
+def get_corridor() -> dict[str, Any]:
+    return reference_data.corridor_payload(get_planning_service().context)
+
+
+@app.get("/scenarios")
+def get_scenarios() -> dict[str, Any]:
+    return reference_data.scenarios_payload(get_planning_service().context)
+
+
+@app.get("/demand", responses=_ERRORS)
+def get_demand(scenario: str = Query(..., min_length=1)) -> dict[str, Any]:
+    try:
+        return reference_data.demand_payload(get_planning_service().context, scenario)
+    except KeyError as exc:
+        raise HTTPException(status.HTTP_404_NOT_FOUND,
+                            f"unknown scenario: {scenario}") from exc
+
+
+@app.get("/traffic", responses=_ERRORS)
+def get_traffic(scenario: str = Query(..., min_length=1),
+               section_id: str | None = Query(None)) -> dict[str, Any]:
+    try:
+        return reference_data.traffic_payload(
+            get_planning_service().context, scenario, section_id
+        )
+    except KeyError as exc:
+        raise HTTPException(status.HTTP_404_NOT_FOUND,
+                            f"unknown scenario: {scenario}") from exc
+
+
+@app.get("/comparison")
+def get_comparison() -> dict[str, Any]:
+    return reference_data.comparison_payload()
 
 
 @app.post("/plan", responses=_ERRORS)
