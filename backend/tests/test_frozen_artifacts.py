@@ -73,12 +73,14 @@ def test_no_frozen_file_is_modified_in_the_working_tree():
 
 
 def test_benchmark_csv_still_holds_the_authoritative_b4_row():
-    """The restored B4 row, kept deliberately despite the adapter correction.
+    """The B4 row of record, kept deliberately despite the adapter correction.
 
-    The corrected adapter now reproduces the project memory's B4 figures
-    (traffic 259.8, overrun 79.9) rather than this row's (272.8 / 69.0). The CSV
-    is NOT regenerated: it remains the authoritative frozen artefact until a
-    re-baselining decision is taken explicitly.
+    Settled 2026-09-06: this CSV row is authoritative, and the documentation
+    was corrected to match it rather than the CSV being regenerated. The
+    project memory's §22.1 B4 figures (142 / 259.8 / 79.9 / 35.9%) are
+    superseded. Re-running the corrected adapter yields different B4 numbers
+    (259.8 / 79.9) -- that divergence is known and accepted, not a reason to
+    overwrite this file. See CLAUDE.md.
     """
     with open(paths.METHOD_COMPARISON_CSV, encoding="utf-8") as f:
         text = f.read()

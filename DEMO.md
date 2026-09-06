@@ -259,17 +259,19 @@ from our own table.
 - [x] 106 backend tests, 28 frontend tests passing
 - [x] Runs from one command on one port with no network calls at runtime
 
+### Resolved
+
+- [x] **B4 row disagreement — settled: the frozen CSV is authoritative.** The
+      CSV was not regenerated and no benchmark was re-run. Quote B4 as
+      **138 blocks / 175 done / 0 deferred / 272.8 traffic / 69.0 overrun /
+      39.1% cross-dept / 0.99 mean R / 0.74 min R** — these are what the
+      Evidence screen serves and therefore what a judge sees. The project
+      memory §22.1's B4 row (142 / 259.8 / 79.9 / 35.9%) is **superseded; do
+      not quote it.** The other five rows agree with §22.1 exactly. Full
+      reasoning in `CLAUDE.md`.
+
 ### Needs a decision before submission — not a code change
 
-- [ ] **B4 row disagreement.** The Evidence screen (from the frozen CSV) shows
-      B4 = 138 blocks / 272.8 traffic / 69.0 overrun / 39.1% cross. The project
-      memory §22.1 states 142 / 259.8 / 79.9 / 35.9%. The other five rows agree
-      exactly. Cause is understood (an RNG-reset ordering bug in the adapter,
-      since fixed, meant the checked-in CSV came from already-regressed code).
-      **If your written report quotes §22.1's B4 numbers, they will not match
-      the screen.** Either regenerate `method_comparison.csv` with the
-      corrected adapter, or correct the report's B4 row to the CSV's values.
-      Pick one before submitting.
 - [ ] **Cross-department share is tie-break dependent.** Do not present 36.4%
       as a measured property of the method. Prepared answer is in §2.
 
