@@ -264,7 +264,14 @@ Corridor & Demand, Why panel, Evidence), and Phase 8 (packaging: one process,
 one port, startup warmup) are built. See `API_CONTRACT.md` for the endpoint
 reference, `backend/README.md` and `frontend/README.md` for how each half is
 structured and run, and `python run.py` at the repo root to start the whole
-packaged system. No database exists and none is planned (§10). Demo rehearsal
-(the original roadmap's Phase 9) has not happened yet — including the one
-test that must happen on the actual presentation laptop, not here: disconnect
+packaged system. No database exists and none is planned (§10).
+
+Demo rehearsal (Phase 9) has been done against the running packaged app and
+is written up in `DEMO.md` — flow, judge Q&A, the optimisation explanation,
+provenance, and a readiness checklist. Two things in that checklist need a
+human decision rather than a code change: the B4 row disagreement between
+`method_comparison.csv` and the project memory's §22.1, and the fact that
+cross-department share is tie-break dependent and should not be presented as
+a measured property. Still outstanding, and it must happen on the actual
+presentation laptop, not here: disconnect
 networking, reboot, cold-start, run the full demo.
