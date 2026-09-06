@@ -18,7 +18,12 @@
   font-weight: 700;
   color: var(--ink-1);
   border-bottom: 1px solid var(--hairline-strong);
-  white-space: nowrap;
+  /* Headers wrap; cells below still do not. `white-space: nowrap` here forced
+     the table to the full width of its longest header ("Max overrun (min)",
+     "Observed on-time"), which pushed the execution-scoring table to 763px
+     inside a half-width panel and hid real columns behind a scrollbar. Letting
+     the words break costs a second header line and recovers the columns. */
+  vertical-align: bottom;
 }
 
 .comparison-table tbody td {

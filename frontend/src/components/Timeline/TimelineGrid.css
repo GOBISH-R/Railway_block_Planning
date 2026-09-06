@@ -111,8 +111,17 @@
   stroke-width: 1;
 }
 
+/* Traffic density is context, not content.
+   Each bucket's rect already carries an `opacity` attribute of
+   (count / max) * 0.35, which is what encodes the density. `fill-opacity`
+   multiplies with that rather than replacing it, so halving it here scales the
+   whole layer down uniformly -- the relative light-to-dark reading across the
+   day is untouched, only its weight against the blocks drawn on top. Setting
+   `opacity` here instead would flatten every bucket to one value and destroy
+   the information. */
 .tgrid__density {
   fill: var(--info-9);
+  fill-opacity: 0.5;
   pointer-events: none;
 }
 

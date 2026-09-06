@@ -1,5 +1,9 @@
+/* Capped so the plot does not balloon when its panel is full width (below
+   1100px the two half-panels stack, handing this one ~939px). Six labelled
+   points do not get more readable at 939px wide, only larger. */
 .scatter-plot {
   width: 100%;
+  max-width: 680px;
   height: auto;
 }
 
