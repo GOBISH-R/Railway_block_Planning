@@ -26,7 +26,13 @@
   --ink-0: #1c1b19;     /* primary text */
   --ink-1: #4a473f;     /* secondary text */
   --ink-2: #78746a;     /* tertiary / metadata / placeholder */
+  /* ink for text sitting ON a saturated or department fill. It flips with the
+     theme for the same reason the fills do: in light the fills are dark inks
+     and this is pale; in dark the fills are pale and this is dark. */
   --ink-inverse: #faf9f7;
+  /* Halo behind such a label (paint-order stroke), so a reliability figure
+     stays legible wherever it lands on a department band. */
+  --label-halo: rgba(0, 0, 0, 0.35);
 
   /* ---- accent (interactive only) ---- */
   --accent-9: #33506b;     /* primary button, active tab underline */
@@ -64,6 +70,23 @@
   --dept-snt:  #3d5f80;   /* signal & telecom -- signal-blue tone */
   --dept-trd:  #7a5a8a;   /* traction distribution -- overhead-wire violet tone */
 
+  /* ---- visualisation roles ----
+     Named by what they MEAN, not by the neutral they happen to equal, because
+     the two overview marks must swap places between themes rather than invert.
+     "single" is the quiet one and "multi" the loud one in both themes; if these
+     read --hairline-strong and --ink-0 directly, dark mode would silently
+     reverse which is which. */
+  --overview-single: #cfcabf;
+  --overview-multi: #1c1b19;
+
+  /* Traffic density: context behind the blocks, never competing with them.
+     Separate from --info-9 (which also colours info badges) so the two can be
+     tuned independently per theme. The per-bucket opacity attribute set in
+     TimelineGrid.tsx multiplies with --density-opacity; only the multiplier
+     changes by theme, so the density information itself is untouched. */
+  --density-ink: #385b78;
+  --density-opacity: 0.5;
+
   /* ---- typography ---- */
   --font-ui: -apple-system, "Segoe UI", "Inter", Roboto, system-ui, sans-serif;
   --font-mono: "SF Mono", "Cascadia Mono", "Consolas", ui-monospace, monospace;
@@ -98,15 +121,119 @@
   /* ---- elevation: one subtle level only, for floating surfaces (panel, menu) ---- */
   --shadow-panel: 0 4px 16px -4px rgba(28, 27, 25, 0.18), 0 1px 2px rgba(28, 27, 25, 0.08);
 
+  /* Translucent overlays. Both must be theme-aware: a paper-coloured veil over
+     a dark app would flash white, and a near-black scrim over a dark app would
+     not separate the panel from the page at all. */
+  --veil: rgba(250, 249, 247, 0.72);   /* covers the plan while re-planning */
+  --scrim: rgba(28, 27, 25, 0.28);     /* behind the Why panel */
+
   /* ---- motion: state changes only, always fast ---- */
   --motion-fast: 110ms;
   --motion-base: 160ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
-  color-scheme: light;
+  /* Both, deliberately -- see the dark block below. This also stops the
+     browser substituting its own inversion. */
+  color-scheme: light dark;
 }
 
-/* This project deliberately ships one theme (memory doc §15: "Pick one theme
-   and make it good. Projector contrast is the only display consideration
-   that matters -- favour light with strong contrast."). No dark-mode block
-   is defined; the app renders identically regardless of OS theme. */
+/*
+  DARK THEME
+
+  This supersedes the earlier single-theme decision (memory doc §15: "Pick one
+  theme and make it good. Projector contrast is the only display consideration
+  that matters -- favour light with strong contrast."). That reasoning still
+  holds for the projector, and light remains the presentation theme and the
+  default on any display whose OS is not set to dark.
+
+  What changed is the failure mode. Declaring `color-scheme: light` did not
+  make the app render light on a dark-mode machine -- it left the browser free
+  to force its own inversion, and the result destroyed the one thing the
+  timeline exists to show: every department fill is a dark ink, so inverting
+  lightness turned ENGG brown, SNT blue and TRD violet into three
+  indistinguishable creams. Measured against a dark ground the original fills
+  sit at 2.2, 2.7 and 3.1:1, all below the 3:1 a graphical object needs.
+  Shipping a real dark theme is what stops that, and `color-scheme: light dark`
+  is what tells the browser to stand down.
+
+  Only VALUES are redefined here. Every component keeps reading the same
+  semantic names, so light mode is byte-identical to what it was and no
+  component gained a theme branch.
+
+  Department hues are preserved, not re-picked: lightness is raised for a dark
+  ground while hue drifts 0 deg (ENGG), 2 deg (SNT), 0 deg (TRD). They stay the
+  same warm brown, steel blue and muted violet, at 5.4-6.5:1 against the
+  surface. As in light mode they are told apart by hue rather than by
+  luminance, which is why their contrast against each other stays low in both.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Neutrals keep their light-mode ORDERING: paper-2 sunken, paper-0 the app
+       ground, paper-1 the raised surface. Warm-tinted like the light palette,
+       so the product still reads as warm paper/ink rather than cold slate. */
+    --paper-0: #1a1816;
+    --paper-1: #221f1c;
+    --paper-2: #141311;
+    /* Hairlines are LIGHTER than their surface here, where in light mode they
+       are darker. Kept low so the grid stays readable without becoming a wall
+       of bright lines. */
+    --hairline: #33302b;
+    --hairline-strong: #4a453e;
+
+    --ink-0: #e8e6e1;   /* 14.3:1 on --paper-0 */
+    --ink-1: #b6b2a9;   /*  8.4:1 -- secondary, clearly quieter */
+    --ink-2: #8a867c;   /*  4.9:1 -- tertiary, still passes body text */
+    --ink-inverse: #1a1816;
+    --label-halo: rgba(255, 255, 255, 0.28);
+
+    /* Interactive. The 9/8/7 steps lighten so a dark --ink-inverse reads on
+       them; the 3/2 tints darken so a selected row is a tint, not a slab. */
+    --accent-9: #6d9dc7;
+    --accent-8: #5c8cb8;
+    --accent-7: #8ab4d8;
+    --accent-3: #24313d;
+    --accent-2: #1e2833;
+
+    /* Status: same signal vocabulary, re-pitched. The -2/-3 tints become dark
+       and desaturated (badge grounds); the -9 steps lighten (badge text). */
+    --success-9: #7ec89a;
+    --success-6: #4fae74;
+    --success-3: #1e2f25;
+    --success-2: #182420;
+
+    --warning-9: #e0ac5c;
+    --warning-6: #c8913f;
+    --warning-3: #2e2618;
+    --warning-2: #241e14;
+
+    --error-9: #e8887e;
+    --error-6: #d3695e;
+    --error-3: #331e1c;
+    --error-2: #281817;
+
+    --info-9: #7ba3c4;
+    --info-3: #1e2a33;
+
+    --neutral-status-9: #a8a399;
+    --neutral-status-3: #2a2723;
+
+    /* Hue held, lightness raised -- see the note above. */
+    --dept-engg: #c08a5e;
+    --dept-snt:  #7fa8cc;
+    --dept-trd:  #b795c8;
+
+    /* Swapped, not inverted: quiet stays quiet and loud stays loud, so the
+       overview's single/multi encoding keeps its meaning. */
+    --overview-single: #46413a;
+    --overview-multi: #e8e6e1;
+
+    /* Lighter than the ground but heavily desaturated, and the multiplier
+       drops so the wash cannot outweigh the blocks drawn over it. */
+    --density-ink: #7d9ab3;
+    --density-opacity: 0.3;
+
+    --shadow-panel: 0 4px 16px -4px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.4);
+    --veil: rgba(26, 24, 22, 0.72);
+    --scrim: rgba(0, 0, 0, 0.55);
+  }
+}

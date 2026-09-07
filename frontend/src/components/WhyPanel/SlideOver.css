@@ -1,7 +1,7 @@
 .slide-over-scrim {
   position: fixed;
   inset: 0;
-  background: rgba(28, 27, 25, 0.28);
+  background: var(--scrim);
   z-index: 40;
   display: flex;
   justify-content: flex-end;

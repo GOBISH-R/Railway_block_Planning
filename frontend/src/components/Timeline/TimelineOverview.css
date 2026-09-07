@@ -39,11 +39,11 @@
 }
 
 .toverview__swatch--single {
-  background: var(--hairline-strong);
+  background: var(--overview-single);
 }
 
 .toverview__swatch--multi {
-  background: var(--ink-0);
+  background: var(--overview-multi);
 }
 
 /* The meta line is the first thing to go when the pane gets narrow -- the
@@ -73,10 +73,10 @@
 
 /* Single-department work: present, but deliberately quiet. */
 .toverview__mark {
-  fill: var(--hairline-strong);
+  fill: var(--overview-single);
 }
 
 /* The blocks the plan exists to produce. */
 .toverview__mark--multi {
-  fill: var(--ink-0);
+  fill: var(--overview-multi);
 }

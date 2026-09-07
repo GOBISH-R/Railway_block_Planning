@@ -120,8 +120,8 @@
    `opacity` here instead would flatten every bucket to one value and destroy
    the information. */
 .tgrid__density {
-  fill: var(--info-9);
-  fill-opacity: 0.5;
+  fill: var(--density-ink);
+  fill-opacity: var(--density-opacity);
   pointer-events: none;
 }
 
@@ -150,7 +150,7 @@
   font-weight: 700;
   fill: var(--ink-inverse);
   paint-order: stroke;
-  stroke: rgba(0, 0, 0, 0.35);
+  stroke: var(--label-halo);
   stroke-width: 2px;
   pointer-events: none;
 }

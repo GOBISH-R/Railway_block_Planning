@@ -45,7 +45,7 @@
 .timeline-view__replanning-veil {
   position: absolute;
   inset: 0;
-  background: rgba(250, 249, 247, 0.72);
+  background: var(--veil);
   z-index: 5;
   display: flex;
   align-items: center;
