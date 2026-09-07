@@ -5,6 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlockPlan &mdash; Block Planning Decision Support</title>
+    <script>
+      // Resolve the theme before first paint. Without this the page renders in
+      // light for one frame on a dark-mode machine, and the whole timeline
+      // flashes. Mirrors resolveTheme() in src/state/useTheme.ts -- kept inline
+      // and dependency-free because it has to run before the bundle loads.
+      (function () {
+        try {
+          var stored = localStorage.getItem("blockplan-theme");
+          var pref = stored === "light" || stored === "dark" ? stored : "system";
+          var dark =
+            pref === "dark" ||
+            (pref === "system" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        } catch (e) {
+          // Private mode, blocked storage, no matchMedia: fall back to the
+          // presentation theme rather than leaving the attribute unset.
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

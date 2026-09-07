@@ -5,7 +5,9 @@ import { EvidenceView } from "./components/Evidence/EvidenceView";
 import { TimelineView } from "./components/Timeline/TimelineView";
 import { WhyPanel, type WhySelection } from "./components/WhyPanel/WhyPanel";
 import { ErrorState, LoadingState } from "./components/shared/ViewStates";
+import { ThemeToggle } from "./components/shared/ThemeToggle";
 import { usePlanningState } from "./state/usePlanningState";
+import { useTheme } from "./state/useTheme";
 
 export default function App() {
   const [view, setView] = useState<ViewKey>("timeline");
@@ -25,6 +27,9 @@ export default function App() {
     setHorizonDays,
     replan,
   } = usePlanningState();
+  // Called before the early returns below, so the control is available even
+  // while reference data is still loading or the service is unreachable.
+  const { preference, setPreference } = useTheme();
 
   if (isLoadingReference) {
     return <LoadingState label="Loading corridor data…" />;
@@ -37,7 +42,11 @@ export default function App() {
   }
 
   return (
-    <AppShell active={view} onNavigate={setView}>
+    <AppShell
+      active={view}
+      onNavigate={setView}
+      headerRight={<ThemeToggle preference={preference} onChange={setPreference} />}
+    >
       {view === "timeline" && (
         <TimelineView
           corridor={corridor}

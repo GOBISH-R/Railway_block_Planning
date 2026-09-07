@@ -1,0 +1,45 @@
+/* Sized to sit beside the nav without competing with it: this is a display
+   preference, not a planning control, so it stays quieter than the primary
+   button and the scenario select. */
+.theme-toggle {
+  display: inline-flex;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--paper-1);
+}
+
+.theme-toggle__option {
+  padding: 3px var(--space-2);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  color: var(--ink-2);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--hairline);
+  white-space: nowrap;
+  transition: background var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.theme-toggle__option:last-child {
+  border-right: none;
+}
+
+.theme-toggle__option:hover:not(.theme-toggle__option--active) {
+  background: var(--paper-2);
+  color: var(--ink-1);
+}
+
+.theme-toggle__option--active {
+  background: var(--accent-9);
+  color: var(--ink-inverse);
+}
+
+/* Below the width where the nav and the summary strip start to crowd, the
+   labels are the first thing that can go without losing the control. */
+@media (max-width: 900px) {
+  .theme-toggle {
+    display: none;
+  }
+}

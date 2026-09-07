@@ -133,8 +133,13 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
 
   /* Both, deliberately -- see the dark block below. This also stops the
-     browser substituting its own inversion. */
+     browser substituting its own inversion. The resolved theme narrows it
+     below, so native controls (select, number field, scrollbars) match. */
   color-scheme: light dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
 }
 
 /*
@@ -156,6 +161,16 @@
   Shipping a real dark theme is what stops that, and `color-scheme: light dark`
   is what tells the browser to stand down.
 
+  Selected by `data-theme` on <html>, not by a bare media query. The OS is
+  still what decides by default -- useTheme.ts reads prefers-color-scheme and
+  follows it while the preference is "system", and an inline script in
+  index.html resolves it before first paint so the page never flashes the
+  wrong theme. Routing it through the attribute is what lets an operator pin
+  a theme: on a projector the laptop's OS setting is not the right answer, and
+  light is the presentation theme regardless of what the machine is set to.
+  It also keeps the dark values in one place instead of duplicating them
+  across a media query and an attribute selector.
+
   Only VALUES are redefined here. Every component keeps reading the same
   semantic names, so light mode is byte-identical to what it was and no
   component gained a theme branch.
@@ -166,74 +181,74 @@
   surface. As in light mode they are told apart by hue rather than by
   luminance, which is why their contrast against each other stays low in both.
 */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Neutrals keep their light-mode ORDERING: paper-2 sunken, paper-0 the app
-       ground, paper-1 the raised surface. Warm-tinted like the light palette,
-       so the product still reads as warm paper/ink rather than cold slate. */
-    --paper-0: #1a1816;
-    --paper-1: #221f1c;
-    --paper-2: #141311;
-    /* Hairlines are LIGHTER than their surface here, where in light mode they
-       are darker. Kept low so the grid stays readable without becoming a wall
-       of bright lines. */
-    --hairline: #33302b;
-    --hairline-strong: #4a453e;
+:root[data-theme="dark"] {
+  /* Neutrals keep their light-mode ORDERING: paper-2 sunken, paper-0 the app
+     ground, paper-1 the raised surface. Warm-tinted like the light palette,
+     so the product still reads as warm paper/ink rather than cold slate. */
+  --paper-0: #1a1816;
+  --paper-1: #221f1c;
+  --paper-2: #141311;
+  /* Hairlines are LIGHTER than their surface here, where in light mode they
+     are darker. Kept low so the grid stays readable without becoming a wall
+     of bright lines. */
+  --hairline: #33302b;
+  --hairline-strong: #4a453e;
 
-    --ink-0: #e8e6e1;   /* 14.3:1 on --paper-0 */
-    --ink-1: #b6b2a9;   /*  8.4:1 -- secondary, clearly quieter */
-    --ink-2: #8a867c;   /*  4.9:1 -- tertiary, still passes body text */
-    --ink-inverse: #1a1816;
-    --label-halo: rgba(255, 255, 255, 0.28);
+  --ink-0: #e8e6e1;   /* 14.3:1 on --paper-0 */
+  --ink-1: #b6b2a9;   /*  8.4:1 -- secondary, clearly quieter */
+  --ink-2: #8a867c;   /*  4.9:1 -- tertiary, still passes body text */
+  --ink-inverse: #1a1816;
+  --label-halo: rgba(255, 255, 255, 0.28);
 
-    /* Interactive. The 9/8/7 steps lighten so a dark --ink-inverse reads on
-       them; the 3/2 tints darken so a selected row is a tint, not a slab. */
-    --accent-9: #6d9dc7;
-    --accent-8: #5c8cb8;
-    --accent-7: #8ab4d8;
-    --accent-3: #24313d;
-    --accent-2: #1e2833;
+  /* Interactive. The 9/8/7 steps lighten so a dark --ink-inverse reads on
+     them; the 3/2 tints darken so a selected row is a tint, not a slab. */
+  --accent-9: #6d9dc7;
+  --accent-8: #5c8cb8;
+  --accent-7: #8ab4d8;
+  --accent-3: #24313d;
+  --accent-2: #1e2833;
 
-    /* Status: same signal vocabulary, re-pitched. The -2/-3 tints become dark
-       and desaturated (badge grounds); the -9 steps lighten (badge text). */
-    --success-9: #7ec89a;
-    --success-6: #4fae74;
-    --success-3: #1e2f25;
-    --success-2: #182420;
+  /* Status: same signal vocabulary, re-pitched. The -2/-3 tints become dark
+     and desaturated (badge grounds); the -9 steps lighten (badge text). */
+  --success-9: #7ec89a;
+  --success-6: #4fae74;
+  --success-3: #1e2f25;
+  --success-2: #182420;
 
-    --warning-9: #e0ac5c;
-    --warning-6: #c8913f;
-    --warning-3: #2e2618;
-    --warning-2: #241e14;
+  --warning-9: #e0ac5c;
+  --warning-6: #c8913f;
+  --warning-3: #2e2618;
+  --warning-2: #241e14;
 
-    --error-9: #e8887e;
-    --error-6: #d3695e;
-    --error-3: #331e1c;
-    --error-2: #281817;
+  --error-9: #e8887e;
+  --error-6: #d3695e;
+  --error-3: #331e1c;
+  --error-2: #281817;
 
-    --info-9: #7ba3c4;
-    --info-3: #1e2a33;
+  --info-9: #7ba3c4;
+  --info-3: #1e2a33;
 
-    --neutral-status-9: #a8a399;
-    --neutral-status-3: #2a2723;
+  --neutral-status-9: #a8a399;
+  --neutral-status-3: #2a2723;
 
-    /* Hue held, lightness raised -- see the note above. */
-    --dept-engg: #c08a5e;
-    --dept-snt:  #7fa8cc;
-    --dept-trd:  #b795c8;
+  /* Hue held, lightness raised -- see the note above. */
+  --dept-engg: #c08a5e;
+  --dept-snt:  #7fa8cc;
+  --dept-trd:  #b795c8;
 
-    /* Swapped, not inverted: quiet stays quiet and loud stays loud, so the
-       overview's single/multi encoding keeps its meaning. */
-    --overview-single: #46413a;
-    --overview-multi: #e8e6e1;
+  /* Swapped, not inverted: quiet stays quiet and loud stays loud, so the
+     overview's single/multi encoding keeps its meaning. */
+  --overview-single: #46413a;
+  --overview-multi: #e8e6e1;
 
-    /* Lighter than the ground but heavily desaturated, and the multiplier
-       drops so the wash cannot outweigh the blocks drawn over it. */
-    --density-ink: #7d9ab3;
-    --density-opacity: 0.3;
+  /* Lighter than the ground but heavily desaturated, and the multiplier
+     drops so the wash cannot outweigh the blocks drawn over it. */
+  --density-ink: #7d9ab3;
+  --density-opacity: 0.3;
 
-    --shadow-panel: 0 4px 16px -4px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.4);
-    --veil: rgba(26, 24, 22, 0.72);
-    --scrim: rgba(0, 0, 0, 0.55);
-  }
+  --shadow-panel: 0 4px 16px -4px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --veil: rgba(26, 24, 22, 0.72);
+  --scrim: rgba(0, 0, 0, 0.55);
+
+  color-scheme: dark;
 }
