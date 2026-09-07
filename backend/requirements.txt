@@ -17,6 +17,12 @@ pydantic==2.13.5
 starlette==1.6.0
 uvicorn==0.52.4
 
+# PostgreSQL data layer (blockplan_db). OPTIONAL: the application reads its
+# planning inputs from the frozen CSVs and never imports this at startup, so a
+# checkout without it runs exactly as before. Needed to load, verify or query
+# the database.
+psycopg[binary]==3.3.5
+
 # Test tooling
 httpx==0.28.1
 pytest==9.1.1
