@@ -27,6 +27,25 @@
 --     characters. It also avoids a real trap: benchmark_results.enum_seconds
 --     holds 0.004162250999797834 -- eighteen decimal places -- which any
 --     fixed-scale NUMERIC(p,s) would silently truncate.
+--
+-- ROW ORDER. Every table carries row_no: its 1-based position in the source
+-- file. This is not decoration, and it is not for display. Row order is
+-- load-bearing in this pipeline and that was measured, not assumed:
+--
+--   * blockplan_adapter.load_trains() builds each Train id as
+--     f"{train_number}#{i}" from the row's file position, so movements.csv's
+--     order reaches the optimiser directly.
+--   * Reading the same 2,978 movements back in a different but deterministic
+--     order (sorted by train_number, enter_min, ...) reproduces every headline
+--     figure -- traffic cost 299.2, expected overrun 38.6, 16,746 columns --
+--     and still returns a DIFFERENT plan: objective 337.3 against 337.4, and
+--     138 blocks against 140.
+--
+-- So a faithful round trip needs the order as well as the values, and the
+-- order has to be a stored column. Ordering by ctid instead was tried and is
+-- wrong: it happened to reproduce the plan here, but it had already displaced
+-- 1,730 of the 2,978 movements rows by one position, and it is not stable
+-- across VACUUM FULL, CLUSTER or a dump/restore.
 
 -- ---------------------------------------------------------------------------
 -- Snapshots
@@ -55,6 +74,7 @@ CREATE TABLE IF NOT EXISTS dataset_snapshots (
 
 CREATE TABLE IF NOT EXISTS stations (
     snapshot_id   INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no        INTEGER NOT NULL,
     station_code  TEXT    NOT NULL,
     station_name  TEXT,
     latitude      DOUBLE PRECISION,
@@ -68,6 +88,7 @@ CREATE TABLE IF NOT EXISTS stations (
 
 CREATE TABLE IF NOT EXISTS sections (
     snapshot_id       INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no            INTEGER NOT NULL,
     section_id        TEXT    NOT NULL,
     from_station_code TEXT,
     to_station_code   TEXT,
@@ -85,6 +106,7 @@ CREATE TABLE IF NOT EXISTS sections (
 
 CREATE TABLE IF NOT EXISTS trains (
     snapshot_id  INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no       INTEGER NOT NULL,
     train_number TEXT    NOT NULL,
     train_name   TEXT,
     train_class  TEXT,
@@ -95,30 +117,38 @@ CREATE TABLE IF NOT EXISTS trains (
 
 -- No natural key: a train calls at a station once per stop_seq, but the CSV
 -- carries no uniqueness guarantee and inventing one could reject a valid row.
+-- row_no supplies one that cannot reject anything, since file position is
+-- unique by construction.
 CREATE TABLE IF NOT EXISTS train_stops (
     snapshot_id   INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no        INTEGER NOT NULL,
     train_number  TEXT,
     train_name    TEXT,
     station_code  TEXT,
     arrival_min   INTEGER,
     departure_min INTEGER,
     day           INTEGER,
-    stop_seq      INTEGER
+    stop_seq      INTEGER,
+    PRIMARY KEY (snapshot_id, row_no)
 );
 CREATE INDEX IF NOT EXISTS train_stops_by_train
     ON train_stops (snapshot_id, train_number, stop_seq);
 
+-- The table whose order matters most: load_trains() derives each Train id from
+-- the row's file position. Read this back in any order other than row_no and
+-- the plan changes. See the ROW ORDER note at the top of this file.
 CREATE TABLE IF NOT EXISTS movements (
     snapshot_id  INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no       INTEGER NOT NULL,
     train_number TEXT,
     train_class  TEXT,
     from_code    TEXT,
     to_code      TEXT,
     direction    TEXT,
     enter_min    INTEGER,
-    is_synthetic TEXT
+    is_synthetic TEXT,
+    PRIMARY KEY (snapshot_id, row_no)
 );
-CREATE INDEX IF NOT EXISTS movements_by_snapshot ON movements (snapshot_id);
 
 -- ---------------------------------------------------------------------------
 -- Rules and catalogue
@@ -126,6 +156,7 @@ CREATE INDEX IF NOT EXISTS movements_by_snapshot ON movements (snapshot_id);
 
 CREATE TABLE IF NOT EXISTS activities (
     snapshot_id           INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no                INTEGER NOT NULL,
     activity_id           TEXT    NOT NULL,
     dept                  TEXT,
     label                 TEXT,
@@ -149,6 +180,7 @@ CREATE TABLE IF NOT EXISTS activities (
 -- One activity can compel more than one companion, so the key includes both.
 CREATE TABLE IF NOT EXISTS pairing_rules (
     snapshot_id        INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no             INTEGER NOT NULL,
     activity           TEXT    NOT NULL,
     compelled_dept     TEXT,
     companion_activity TEXT    NOT NULL,
@@ -163,6 +195,7 @@ CREATE TABLE IF NOT EXISTS pairing_rules (
 
 CREATE TABLE IF NOT EXISTS resources (
     snapshot_id    INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no         INTEGER NOT NULL,
     resource_class TEXT    NOT NULL,
     fleet_size     INTEGER,
     provenance     TEXT,
@@ -175,6 +208,7 @@ CREATE TABLE IF NOT EXISTS resources (
 
 CREATE TABLE IF NOT EXISTS jobs (
     snapshot_id           INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no                INTEGER NOT NULL,
     job_id                TEXT    NOT NULL,
     dept                  TEXT,
     activity              TEXT,
@@ -205,6 +239,7 @@ CREATE TABLE IF NOT EXISTS jobs (
 -- the eight scenario files carry exactly jobs.csv's 23 columns.
 CREATE TABLE IF NOT EXISTS scenario_jobs (
     snapshot_id           INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no                INTEGER NOT NULL,   -- position within this scenario's file
     scenario              TEXT    NOT NULL,
     job_id                TEXT    NOT NULL,
     dept                  TEXT,
@@ -234,6 +269,7 @@ CREATE TABLE IF NOT EXISTS scenario_jobs (
 
 CREATE TABLE IF NOT EXISTS block_requests (
     snapshot_id                INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no                     INTEGER NOT NULL,
     request_id                 TEXT    NOT NULL,
     job_id                     TEXT,
     department                 TEXT,
@@ -251,6 +287,7 @@ CREATE TABLE IF NOT EXISTS block_requests (
 
 CREATE TABLE IF NOT EXISTS scenarios (
     snapshot_id            INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no                 INTEGER NOT NULL,
     scenario               TEXT    NOT NULL,
     demand_scale           DOUBLE PRECISION,
     freight_scale          DOUBLE PRECISION,
@@ -267,6 +304,7 @@ CREATE TABLE IF NOT EXISTS scenarios (
 
 CREATE TABLE IF NOT EXISTS scenario_jobs_manifest (
     snapshot_id        INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no             INTEGER NOT NULL,
     scenario           TEXT    NOT NULL,
     seed               INTEGER,
     target_jobs        INTEGER,
@@ -295,6 +333,7 @@ CREATE TABLE IF NOT EXISTS scenario_jobs_manifest (
 
 CREATE TABLE IF NOT EXISTS execution (
     snapshot_id         INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no              INTEGER NOT NULL,
     realisation         INTEGER NOT NULL,
     job_id              TEXT    NOT NULL,
     actual_duration_min DOUBLE PRECISION,
@@ -303,6 +342,7 @@ CREATE TABLE IF NOT EXISTS execution (
 
 CREATE TABLE IF NOT EXISTS execution_companions (
     snapshot_id         INTEGER NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    row_no              INTEGER NOT NULL,
     realisation         INTEGER NOT NULL,
     job_id              TEXT    NOT NULL,
     actual_duration_min DOUBLE PRECISION,

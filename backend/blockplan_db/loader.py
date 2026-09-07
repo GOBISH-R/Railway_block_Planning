@@ -30,7 +30,7 @@ import csv
 import json
 import os
 import sys
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Callable, Iterable, Sequence
 
 from blockplan_service import paths
@@ -76,12 +76,16 @@ class TableSpec:
     `columns` pairs the CSV header with the database column and its type. The
     two names differ where the CSV shouts (needs_T) and the schema does not
     (needs_t); listing both is what stops that mapping being guessed.
+
+    Every table also gets `row_no`, the row's 1-based position in its source
+    file. Row order is load-bearing -- load_trains() builds each Train id from
+    the row's position -- so the order has to be stored, not inferred from ctid
+    or from a natural key. See the ROW ORDER note in schema.sql.
     """
 
     table: str
     source: str                                   # path to the CSV
     columns: Sequence[tuple[str, str, str]]       # (csv_header, db_column, type)
-    extra: Sequence[str] = field(default_factory=tuple)   # db columns filled by the loader
 
 
 def _p(*parts: str) -> str:
@@ -240,7 +244,7 @@ TABLES: tuple[TableSpec, ...] = (
         ("cross_dept_share", "cross_dept_share", TEXT),
         ("mean_reliability", "mean_reliability", TEXT),
         ("min_reliability", "min_reliability", TEXT),
-        ("block_utilisation", "block_utilisation", TEXT)), extra=("row_no",)),
+        ("block_utilisation", "block_utilisation", TEXT))),
 )
 
 # Wide or metadata tables kept as JSONB of the original strings: a new CSV
@@ -283,12 +287,10 @@ def _build_typed(spec: TableSpec, snapshot_id: int) -> TableLoad:
         if missing:
             raise ValueError(f"{spec.table}: {spec.source} is missing {missing}")
 
-    db_cols = ["snapshot_id"] + list(spec.extra) + [db for _, db, _ in spec.columns]
+    db_cols = ["snapshot_id", "row_no"] + [db for _, db, _ in spec.columns]
     out = []
     for i, row in enumerate(rows_in, start=1):
-        values: list[Any] = [snapshot_id]
-        if "row_no" in spec.extra:
-            values.append(i)
+        values: list[Any] = [snapshot_id, i]
         for header, _, kind in spec.columns:
             values.append(CONVERT[kind](row[header]))
         out.append(tuple(values))
@@ -319,14 +321,17 @@ def _build_scenario_jobs(snapshot_id: int) -> TableLoad:
 
     Verified: each file carries exactly jobs.csv's 23 columns, so the shared
     column list is reused rather than restated.
+
+    row_no restarts at 1 for each scenario, because it records a position
+    within that scenario's own file -- which is the order the planner reads.
     """
     scenarios = [r["scenario"] for r in _read_csv(paths.SCENARIOS_CSV)]
-    db_cols = ["snapshot_id", "scenario"] + [db for _, db, _ in _JOB_COLUMNS]
+    db_cols = ["snapshot_id", "row_no", "scenario"] + [db for _, db, _ in _JOB_COLUMNS]
     out = []
     for scenario in scenarios:
         path = _p(paths.SCENARIO_JOBS_DIR, SCENARIO_JOB_FILES.format(scenario=scenario))
-        for row in _read_csv(path):
-            values: list[Any] = [snapshot_id, scenario]
+        for i, row in enumerate(_read_csv(path), start=1):
+            values: list[Any] = [snapshot_id, i, scenario]
             for header, _, kind in _JOB_COLUMNS:
                 values.append(CONVERT[kind](row[header]))
             out.append(tuple(values))

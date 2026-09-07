@@ -185,14 +185,30 @@ def test_json_tables_keep_every_field_of_the_original_row(loads):
             assert json.loads(row_out[idx]) == row_in, table
 
 
-def test_row_order_is_preserved_for_display(loads):
-    """row_no drives the order the Evidence screen renders. Off-by-one here
-    would reorder a published table."""
-    for table in ("method_comparison", "benchmark_results",
-                  "execution_scoring_summary"):
-        load = loads[table]
+def test_every_table_records_its_source_file_order(loads):
+    """row_no is what makes the file's order recoverable, and it is not
+    cosmetic: load_trains() derives each Train id from a row's position, so
+    reading movements back in any other order changes the plan. Verified
+    against the live database in test_db_verify.py; this only checks that the
+    numbering is dense and 1-based everywhere."""
+    for table, load in loads.items():
+        if table == "scenario_jobs":
+            continue        # restarts per scenario; checked separately
         idx = load.columns.index("row_no")
-        assert [r[idx] for r in load.rows] == list(range(1, load.row_count + 1))
+        assert [r[idx] for r in load.rows] == list(range(1, load.row_count + 1)), table
+
+
+def test_scenario_job_row_numbers_restart_for_each_scenario(loads):
+    """row_no records a position within one scenario's own file, because that
+    is the order the planner reads it in."""
+    load = loads["scenario_jobs"]
+    scen, no = load.columns.index("scenario"), load.columns.index("row_no")
+    seen: dict[str, list[int]] = {}
+    for row in load.rows:
+        seen.setdefault(row[scen], []).append(row[no])
+    assert len(seen) == 8
+    for scenario, numbers in seen.items():
+        assert numbers == list(range(1, len(numbers) + 1)), scenario
 
 
 # -- the snapshot record ----------------------------------------------------
