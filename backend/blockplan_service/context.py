@@ -1,18 +1,28 @@
-"""PlanningContext -- the frozen CSVs, read once, held immutably.
+"""PlanningContext -- the planning inputs, read once, held immutably.
 
 This is the layer the project memory names as the single future integration
-point: today it reads frozen CSVs; a division deploying this would point it at
-the control office application, BDMS and the WTT, and nothing above or below it
-would change.
+point: today it reads a dataset tree; a division deploying this would point it
+at the control office application, BDMS and the WTT, and nothing above or below
+it would change.
 
 Responsibilities (and their limits):
-  - load the frozen tables ONCE at startup, reusing the existing
-    blockplan_adapter loaders rather than reimplementing CSV handling
+  - load the tables ONCE at startup, reusing the existing blockplan_adapter
+    loaders rather than reimplementing CSV handling
   - hand out per-request COPIES of mutable domain objects so the context
     itself is never mutated after startup
   - remember the pristine RNG state so the planner can reset determinism
 
 It contains no planning logic and no optimisation logic.
+
+WHERE the tree comes from is decided above this layer, by a DataSource: the
+frozen CSVs by default, or a PostgreSQL snapshot materialised to a directory.
+This module takes a `DatasetTree` and cannot tell the difference -- which is
+the point, and is what makes the two provably interchangeable. The tree is
+carried on the context rather than read from module globals so that everything
+downstream (the planner's per-solve config reload, the corridor endpoint's
+movements) reads from the SAME source the context was built from. Reaching for
+`paths.SECTIONS_CSV` in one of those places would silently mix a database
+context with frozen files.
 """
 from __future__ import annotations
 
@@ -39,9 +49,30 @@ from blockplan_adapter import (  # noqa: E402  (existing loaders, reused verbati
 
 DEFAULT_HORIZON_DAYS = 14
 
+#: core.RNG's state before anything has drawn from it, captured once, here,
+#: immediately after core is imported.
+#:
+#: This used to be read inside load(), from whatever state core.RNG happened to
+#: be in at the time. That is right exactly once. core.RNG is a module global,
+#: and a solve draws from it (reliability_mc, inside build_columns), so the
+#: SECOND context built in a process was capturing a used stream and calling it
+#: pristine. Planning twice in one process from a byte-identical dataset gave
+#: 337.4 with 140 blocks, then 340.5 with 135 -- the same data, a different
+#: answer. It cost a wrong conclusion once already, in Phase 3, where the
+#: database was briefly blamed for it.
+#:
+#: In the running service there is one context, built at startup before any
+#: solve, so this changes nothing there: verified equal to what the first
+#: load() captured, and equal to np.random.default_rng(20260905) -- core.py's
+#: own seed -- because nothing between importing core and finishing a load
+#: draws from the RNG. What it fixes is every load after the first: tests, the
+#: verification tool, and anything that builds a CSV context and a database
+#: context side by side, which Phase 4 made possible.
+_PRISTINE_RNG_STATE = copy.deepcopy(core.RNG.bit_generator.state)
 
-def _load_section_meta() -> Mapping[str, Mapping[str, Any]]:
-    """Corridor geography per section-line, straight from the frozen CSV.
+
+def _load_section_meta(tree: paths.DatasetTree) -> Mapping[str, Mapping[str, Any]]:
+    """Corridor geography per section-line, straight from the CSV.
 
     core.Section deliberately carries only what the optimiser needs (id, line,
     is_single, headway, degraded_factor). Explaining a block to a controller
@@ -50,7 +81,7 @@ def _load_section_meta() -> Mapping[str, Mapping[str, Any]]:
     here rather than parsed back out of the section id string.
     """
     meta: dict[str, Mapping[str, Any]] = {}
-    with open(paths.SECTIONS_CSV, encoding="utf-8") as f:
+    with open(tree.sections_csv, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             meta[row["section_id"]] = MappingProxyType({
                 "section_id": row["section_id"],
@@ -67,7 +98,7 @@ def _load_section_meta() -> Mapping[str, Mapping[str, Any]]:
     return MappingProxyType(meta)
 
 
-def _load_stations() -> tuple[Mapping[str, Any], ...]:
+def _load_stations(tree: paths.DatasetTree) -> tuple[Mapping[str, Any], ...]:
     """The 27 real stations, in corridor sequence.
 
     core.py has no concept of a station -- Section carries only what the
@@ -76,7 +107,7 @@ def _load_stations() -> tuple[Mapping[str, Any], ...]:
     frozen stations.csv.
     """
     stations: list[Mapping[str, Any]] = []
-    with open(paths.STATIONS_CSV, encoding="utf-8") as f:
+    with open(tree.stations_csv, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             stations.append(MappingProxyType({
                 "station_code": row["station_code"],
@@ -90,7 +121,7 @@ def _load_stations() -> tuple[Mapping[str, Any], ...]:
     return tuple(stations)
 
 
-def _load_pairing_rule_rows() -> Mapping[str, tuple[Mapping[str, Any], ...]]:
+def _load_pairing_rule_rows(tree: paths.DatasetTree) -> Mapping[str, tuple[Mapping[str, Any], ...]]:
     """The mandatory-pairing rules WITH their manual citations.
 
     core.load_pairing_rules() keeps only the five fields the optimiser uses and
@@ -101,7 +132,7 @@ def _load_pairing_rule_rows() -> Mapping[str, tuple[Mapping[str, Any], ...]]:
     core; this is presentation metadata only.
     """
     by_activity: dict[str, list[Mapping[str, Any]]] = {}
-    with open(paths.PAIRING_RULES_CSV, encoding="utf-8") as f:
+    with open(tree.pairing_rules_csv, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             by_activity.setdefault(row["activity"], []).append(MappingProxyType({
                 "activity": row["activity"],
@@ -121,13 +152,15 @@ def _load_pairing_rule_rows() -> Mapping[str, tuple[Mapping[str, Any], ...]]:
 
 @dataclass(frozen=True)
 class PlanningContext:
-    """Immutable snapshot of the frozen dataset.
+    """Immutable snapshot of one dataset.
 
     Mutable domain objects (`core.Job`) are never handed out directly -- see
     `jobs_for()`. `core.Section`, `core.Train` and `core.Window` are all
     frozen dataclasses and are safe to share.
     """
 
+    tree: paths.DatasetTree
+    source_description: str
     sections: tuple[Any, ...]
     trains: tuple[Any, ...]
     section_ids: frozenset[str]
@@ -140,51 +173,82 @@ class PlanningContext:
     stations: tuple[Mapping[str, Any], ...]
     _scenario_jobs: Mapping[str, tuple[Any, ...]] = field(repr=False)
 
+    # The DataSource the tree came from, held for its LIFETIME, not for use.
+    # A DatabaseDataSource owns a TemporaryDirectory, and dropping the last
+    # reference to it lets the finaliser delete the materialised tree while
+    # this context is still pointing at it. Startup would survive that --
+    # sections, trains and jobs are already in memory -- and then the first
+    # lazily-read file would fail: /demand and /corridor read their CSVs per
+    # request. Found exactly that way, by driving the real API in both modes.
+    _source: Any = field(default=None, repr=False, compare=False)
+
     # -- construction ------------------------------------------------------
 
     @classmethod
-    def load(cls) -> "PlanningContext":
-        """Read every frozen table once. Called at startup, not per request."""
+    def load(cls, source: Any = None) -> "PlanningContext":
+        """Read every table once. Called at startup, not per request.
+
+        `source` is a DataSource (datasource.py). Omitted, it resolves from the
+        environment, which defaults to the frozen CSVs -- so `load()` with no
+        argument behaves exactly as it always has, and every existing caller
+        and test keeps its meaning.
+
+        A `DatasetTree` is also accepted directly, for tools that already know
+        which tree they want.
+        """
+        if source is None:
+            from .datasource import resolve
+
+            source = resolve()
+
+        if isinstance(source, paths.DatasetTree):
+            tree, description, owner = source, f"dataset tree at {source.root}", None
+        else:
+            tree, description, owner = source.open(), source.describe(), source
+
         config_applied = load_config_into_core(core, paths.CONFIG_DIR)
-        rules = load_pairing_rules_into_core(core, paths.PAIRING_RULES_CSV)
+        rules = load_pairing_rules_into_core(core, tree.pairing_rules_csv)
         rule_count = sum(len(v) for v in rules.values())
         if rule_count == 0:
             # core.expand_mandatory_pairings would raise later anyway; failing
             # here names the real cause instead of surfacing it mid-plan.
             raise RuntimeError(
-                f"no mandatory-pairing rules loaded from {paths.PAIRING_RULES_CSV}"
+                f"no mandatory-pairing rules loaded from {tree.pairing_rules_csv}"
             )
 
-        sections = load_sections(core, paths.SECTIONS_CSV)
+        sections = load_sections(core, tree.sections_csv)
         section_ids = frozenset(s.id for s in sections)
 
-        trains = [t for t in load_trains(core, paths.MOVEMENTS_CSV)
+        trains = [t for t in load_trains(core, tree.movements_csv)
                   if t.section_id in section_ids]
 
-        scenario_rows = load_scenarios(paths.SCENARIOS_CSV)
+        scenario_rows = load_scenarios(tree.scenarios_csv)
         scenarios: dict[str, Mapping[str, Any]] = {}
         scenario_jobs: dict[str, tuple[Any, ...]] = {}
         for row in scenario_rows:
             name = row["scenario"]
             scenarios[name] = MappingProxyType(dict(row))
             jobs, _skipped = load_scenario_jobs(
-                core, paths.DATASET_DIR, row, section_ids
+                core, tree.root, row, section_ids
             )
             scenario_jobs[name] = tuple(jobs)
 
         return cls(
+            tree=tree,
+            source_description=description,
+            _source=owner,
             sections=tuple(sections),
             trains=tuple(trains),
             section_ids=section_ids,
             scenarios=MappingProxyType(scenarios),
             pristine_rng_state=MappingProxyType(
-                copy.deepcopy(core.RNG.bit_generator.state)
+                copy.deepcopy(_PRISTINE_RNG_STATE)
             ),
             config_applied=MappingProxyType(dict(config_applied)),
             pairing_rule_count=rule_count,
-            section_meta=_load_section_meta(),
-            pairing_rules=_load_pairing_rule_rows(),
-            stations=_load_stations(),
+            section_meta=_load_section_meta(tree),
+            pairing_rules=_load_pairing_rule_rows(tree),
+            stations=_load_stations(tree),
             _scenario_jobs=MappingProxyType(scenario_jobs),
         )
 

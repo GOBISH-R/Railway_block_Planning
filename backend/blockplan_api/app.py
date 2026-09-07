@@ -271,6 +271,10 @@ def health() -> dict[str, Any]:
     service = get_planning_service()
     return {
         "status": "ok",
+        # Which tree the planner is actually reading. Worth surfacing: a
+        # database-backed process and a CSV-backed one are otherwise
+        # indistinguishable from the outside, by design.
+        "data_source": service.context.source_description,
         "scenarios": len(service.context.scenario_names),
         "sections": len(service.context.sections),
         "window_sets_cached": service.windows.size,

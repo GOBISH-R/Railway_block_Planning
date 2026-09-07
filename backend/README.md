@@ -6,15 +6,23 @@ Planning and explanation services around the frozen analytical core.
 
 ```
 blockplan_service/
-    paths.py      frozen-asset locations, sys.path wiring, core.py's frozen hash
-    context.py    PlanningContext -- frozen CSVs read once, held immutably
+    paths.py      asset locations, DatasetTree, sys.path wiring, core.py's frozen hash
+    datasource.py WHERE the planning inputs come from: frozen CSVs or PostgreSQL
+    context.py    PlanningContext -- the tables read once, held immutably
     windows.py    WindowCache -- the ~13.5 s generate_windows step, cached per scenario
     planner.py    PlanningService -- THE PLANNING LOCK, plan cache, pipeline, DTO shaping
     explain.py    ExplanationService -- why a block exists, why a job was refused
+blockplan_db/
+    schema.sql    snapshot-versioned tables; see its ROW ORDER note before editing
+    connection.py connection settings from the environment; never guesses a target
+    loader.py     the frozen CSVs -> snapshot 1 (write side)
+    repository.py a snapshot -> a DatasetTree (read side)
+    verify.py     proves the database reproduces the reference plan
 blockplan_api/
     app.py        FastAPI routes for all nine endpoints; serves frontend/dist/ if built
     schemas.py    Pydantic v2 request/response models
-tests/            context / cache / lock / explain / API / packaging / frozen-artifact tests
+tests/            context / cache / lock / explain / API / packaging / frozen-artifact
+                  / reference-plan / database tests
 requirements.txt  pinned dependency versions
 ```
 
@@ -38,6 +46,43 @@ development, wrong for a demo.
 Nothing here reimplements optimisation logic. The service orchestrates
 `blockplan/core.py` (frozen, imported, never edited) and reuses the existing
 `blockplan_adapter` loaders verbatim.
+
+## Where the data comes from
+
+The planner reads a **dataset tree**: a directory in the frozen layout. Two
+sources can supply one, and everything downstream is unaware of which did.
+
+```
+BLOCKPLAN_DATA_SOURCE=csv        the frozen dataset          (DEFAULT)
+BLOCKPLAN_DATA_SOURCE=postgres   snapshot 1 out of PostgreSQL
+BLOCKPLAN_SNAPSHOT_ID=2          which snapshot (postgres only, default 1)
+```
+
+`GET /health` reports which is in use. **CSV is the default and nothing needs a
+database**: `python run.py`, the demo and the whole test suite work on a machine
+that has never installed PostgreSQL, and in CSV mode `psycopg` is never even
+imported. The database path is opt-in until there is a reason for it not to be,
+and today there is not — snapshot 1 *is* the frozen dataset. It starts earning
+its keep when snapshots 2, 3, … hold live extracts.
+
+The two are interchangeable, and that is measured rather than asserted. Both
+produce plan `2db53586d84f`, objective 337.4, the same 140 blocks and the same
+block fingerprint (`tests/test_datasource.py`, `tests/test_db_verify.py`,
+`python -m blockplan_db.verify`).
+
+The database source **materialises**: it writes the snapshot to a temporary
+directory at startup and hands back that tree. That is deliberate — the
+`blockplan_adapter` loaders take file paths and must be reused verbatim, and one
+of them (`load_trains`) derives each train's id from its row's position in the
+file, so a reimplementation that missed row order would silently change the
+plan. See `blockplan_db/repository.py`.
+
+Loading the database in the first place:
+
+```
+python -m blockplan_db.loader           # frozen CSVs -> snapshot 1
+python -m blockplan_db.verify           # prove it rebuilds the reference plan
+```
 
 ## Setup
 

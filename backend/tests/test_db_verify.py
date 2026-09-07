@@ -21,7 +21,7 @@ import os
 
 import pytest
 
-from blockplan_db import verify
+from blockplan_db import repository, verify
 from blockplan_db.connection import is_configured
 from blockplan_service import paths
 
@@ -57,7 +57,7 @@ def rows(conn):
 def exported(conn, tmp_path_factory):
     """The snapshot written back out as a CSV tree, in source-file order."""
     dest = str(tmp_path_factory.mktemp("file-order"))
-    verify.export_snapshot(conn, dest, order=verify.FILE)
+    repository.materialise(conn, dest, order=repository.FILE)
     return dest
 
 
@@ -114,12 +114,19 @@ def test_scenario_job_files_come_back_intact(exported):
         assert _rows_of(got) == _rows_of(os.path.join(paths.SCENARIO_JOBS_DIR, name)), name
 
 
-def test_pointing_the_loaders_elsewhere_puts_every_path_back(tmp_path):
-    """dataset_root mutates module state. If it leaked, every later test in the
-    process would silently plan from a temporary directory."""
+def test_materialising_leaves_the_frozen_paths_alone(conn, tmp_path):
+    """Reading a snapshot must not disturb where the frozen tree is.
+
+    Before Phase 4 this was a real hazard: pointing the loaders elsewhere meant
+    swapping paths module constants and putting them back, and a leak would
+    have had every later test in the process planning from a temp directory.
+    The tree is now passed as an argument, so there is nothing to leak -- this
+    holds the line.
+    """
     before = {n: getattr(paths, n) for n in dir(paths) if n.isupper()}
-    with verify.dataset_root(str(tmp_path)):
-        assert paths.SECTIONS_CSV.startswith(str(tmp_path))
+    tree = repository.materialise(conn, str(tmp_path))
+    assert tree.root == str(tmp_path)
+    assert tree.missing() == []
     assert {n: getattr(paths, n) for n in dir(paths) if n.isupper()} == before
 
 

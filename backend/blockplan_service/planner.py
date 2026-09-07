@@ -262,7 +262,10 @@ class PlanningService:
             )
 
             load_config_into_core(core, paths.CONFIG_DIR)
-            load_pairing_rules_into_core(core, paths.PAIRING_RULES_CSV)
+            # The context's own tree, not the frozen constant: a context built
+            # from a database snapshot must not have frozen rules reloaded
+            # over the top of it before every solve.
+            load_pairing_rules_into_core(core, self.context.tree.pairing_rules_csv)
             core.THETA = float(request.theta)
             timings["load_config"] = time.perf_counter() - started
 

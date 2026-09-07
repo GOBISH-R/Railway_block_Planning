@@ -59,7 +59,7 @@ def demand_payload(context: PlanningContext, scenario: str) -> dict[str, Any]:
     """
     if not context.has_scenario(scenario):
         raise KeyError(scenario)
-    path = paths.scenario_jobs_csv(scenario)
+    path = context.tree.scenario_jobs_csv(scenario)
     jobs = []
     with open(path, encoding="utf-8") as f:
         for row in csv.DictReader(f):
@@ -105,7 +105,7 @@ def traffic_payload(context: PlanningContext, scenario: str,
         raise KeyError(scenario)
 
     movements: list[dict[str, Any]] = []
-    with open(paths.MOVEMENTS_CSV, encoding="utf-8") as f:
+    with open(context.tree.movements_csv, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             movements.append({
                 "train_number": row["train_number"],
