@@ -284,6 +284,7 @@ def health() -> dict[str, Any]:
         # database-backed process and a CSV-backed one are otherwise
         # indistinguishable from the outside, by design.
         "data_source": service.context.source_description,
+        "snapshot_id": service.snapshot_id,
         "plan_store": service.store.describe(),
         "scenarios": len(service.context.scenario_names),
         "sections": len(service.context.sections),

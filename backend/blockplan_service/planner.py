@@ -152,6 +152,13 @@ class PlanningService:
         self.windows = window_cache if window_cache is not None else WindowCache()
         # NullPlanStore by default, so every call site below is unconditional.
         self.store: PlanStore = store if store is not None else NullPlanStore()
+        # A plan is identified by (snapshot_id, plan_id). Resolved once, here,
+        # so a context that cannot be attributed to a snapshot fails at startup
+        # rather than after a 13 s solve. Only asked when something will
+        # actually be written: an unattributable tree is fine in memory.
+        self.snapshot_id: int | None = (
+            snapshot_id_for(self.context) if self.store.enabled
+            else self.context.snapshot_id)
         self._plans: dict[str, dict[str, Any]] = {}
         self._internals: dict[str, PlanInternals] = {}
         self._internals_order: list[str] = []
@@ -185,7 +192,9 @@ class PlanningService:
         found = self.cached_plan(plan_id)
         if found is not None:
             return found
-        restored = self.store.load_plan(plan_id)
+        if self.snapshot_id is None:
+            return None
+        restored = self.store.load_plan(plan_id, snapshot_id=self.snapshot_id)
         if restored is None:
             return None
         with self._plan_lock:
@@ -200,7 +209,9 @@ class PlanningService:
         in-memory entries win: anything this process computed is newer than
         anything it reads back.
         """
-        restored = self.store.recent_plans(limit)
+        if self.snapshot_id is None:
+            return 0
+        restored = self.store.recent_plans(limit, snapshot_id=self.snapshot_id)
         added = 0
         with self._plan_lock:
             for payload in restored:
@@ -411,9 +422,10 @@ class PlanningService:
         """
         if not self.store.enabled:
             return
+        assert self.snapshot_id is not None   # guaranteed by __init__
         self.store.save_plan(
             payload,
-            snapshot_id=snapshot_id_for(self.context),
+            snapshot_id=self.snapshot_id,
             raw=raw_plan_values(internals),
         )
 

@@ -51,8 +51,19 @@ class WindowCacheKey:
     Including the scenario name alone would be a bug if two scenarios shared a
     name but differed in parameters, so the three parameters that actually
     matter are carried explicitly.
+
+    snapshot_id is here because windows are generated from sections and
+    movements, which are snapshot data: two snapshots with the same scenario
+    name are not guaranteed to have the same timetable. None means the frozen
+    CSVs, which declare no snapshot of their own.
+
+    Today it never discriminates -- snapshot 1 IS the frozen dataset, and a
+    process holds one context for its lifetime, so a service never sees two.
+    It is in the key so the cache is correct by construction rather than by
+    that coincidence, which a second snapshot would end.
     """
 
+    snapshot_id: int | None
     scenario: str
     horizon_days: int
     keep_per_day: int
@@ -78,8 +89,10 @@ def _float_or(value: Any, default: float) -> float:
 
 
 def key_for(scenario_row: Mapping[str, Any], horizon_days: int,
-            keep_per_day: int = DEFAULT_KEEP_PER_DAY) -> WindowCacheKey:
+            keep_per_day: int = DEFAULT_KEEP_PER_DAY,
+            snapshot_id: int | None = None) -> WindowCacheKey:
     return WindowCacheKey(
+        snapshot_id=snapshot_id,
         scenario=scenario_row["scenario"],
         horizon_days=int(horizon_days),
         keep_per_day=int(keep_per_day),
@@ -135,7 +148,8 @@ class WindowCache:
         not that global.
         """
         scenario_row = context.scenario(scenario_name)
-        key = key_for(scenario_row, horizon_days, keep_per_day)
+        key = key_for(scenario_row, horizon_days, keep_per_day,
+                      getattr(context, "snapshot_id", None))
 
         with self._lock:
             cached = self._sets.get(key)

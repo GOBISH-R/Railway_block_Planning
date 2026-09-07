@@ -105,6 +105,22 @@ solve, recently created plans are restored into memory at startup, and
 `GET /plan/{id}` also falls back to the database for a plan this process never
 computed. Every plan records the `snapshot_id` it was built from.
 
+**A plan is identified by `(snapshot_id, plan_id)`, not by `plan_id` alone.**
+`plan_id` is the hash of the six request fields, so the same request against a
+different snapshot yields the same id — correct, since the id says *which
+request* — but it does not identify the plan. With `plan_id` as the sole
+primary key that was silent data loss: `save_plan` deletes before inserting, so
+persisting against snapshot 2 destroyed the snapshot 1 plan and its audit
+trail. Hashing the snapshot into `plan_id` was the alternative and was
+rejected — it changes every published plan id, `2db53586d84f` included, and
+conflates two things that are clearer apart. A serving process holds one
+context and therefore one snapshot, so `/plan/{plan_id}` stays unambiguous.
+
+The window cache key carries the snapshot for the same reason: windows are
+generated from sections and movements, which are snapshot data. Today it never
+discriminates — snapshot 1 *is* the frozen dataset — so it is there to make the
+cache correct by construction rather than by that coincidence.
+
 Two limits worth knowing:
 
 - **Costs are stored unrounded.** The response rounds (objective and costs to

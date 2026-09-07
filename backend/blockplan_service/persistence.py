@@ -73,21 +73,23 @@ class PlanStore(Protocol):
                   raw: RawPlanValues) -> None:
         """Write a plan, replacing any earlier one with the same id."""
 
-    def load_plan(self, plan_id: str) -> dict[str, Any] | None:
+    def load_plan(self, plan_id: str, *, snapshot_id: int) -> dict[str, Any] | None:
         """One plan, shaped exactly as POST /plan returned it, or None."""
 
-    def recent_plans(self, limit: int) -> list[dict[str, Any]]:
-        """The most recently created plans, newest first."""
+    def recent_plans(self, limit: int, *,
+                     snapshot_id: int) -> list[dict[str, Any]]:
+        """The most recently created plans for this snapshot, newest first."""
 
-    def plan_ids(self) -> tuple[str, ...]:
-        """Every persisted plan id."""
+    def plan_ids(self, *, snapshot_id: int) -> tuple[str, ...]:
+        """Every persisted plan id for this snapshot."""
 
     def record_approval(self, plan_id: str, block_id: str, decision: str,
-                        *, decided_by: str | None = None,
+                        *, snapshot_id: int, decided_by: str | None = None,
                         note: str | None = None) -> None:
         """Append a controller's decision on one block."""
 
-    def approvals_for(self, plan_id: str) -> list[dict[str, Any]]:
+    def approvals_for(self, plan_id: str, *,
+                      snapshot_id: int) -> list[dict[str, Any]]:
         """Every decision recorded against a plan, oldest first."""
 
 
@@ -108,21 +110,23 @@ class NullPlanStore:
                   raw: RawPlanValues) -> None:
         return None
 
-    def load_plan(self, plan_id: str) -> dict[str, Any] | None:
+    def load_plan(self, plan_id: str, *, snapshot_id: int) -> dict[str, Any] | None:
         return None
 
-    def recent_plans(self, limit: int) -> list[dict[str, Any]]:
+    def recent_plans(self, limit: int, *,
+                     snapshot_id: int) -> list[dict[str, Any]]:
         return []
 
-    def plan_ids(self) -> tuple[str, ...]:
+    def plan_ids(self, *, snapshot_id: int) -> tuple[str, ...]:
         return ()
 
     def record_approval(self, plan_id: str, block_id: str, decision: str,
-                        *, decided_by: str | None = None,
+                        *, snapshot_id: int, decided_by: str | None = None,
                         note: str | None = None) -> None:
         return None
 
-    def approvals_for(self, plan_id: str) -> list[dict[str, Any]]:
+    def approvals_for(self, plan_id: str, *,
+                      snapshot_id: int) -> list[dict[str, Any]]:
         return []
 
     def __repr__(self) -> str:
@@ -134,6 +138,10 @@ def snapshot_id_for(context: Any) -> int:
 
     Every persisted plan records the data it was produced from, so that an
     approved plan stays reproducible against exactly those rows.
+
+    A plan is identified by (snapshot_id, plan_id), not by plan_id alone -- see
+    the note above the plans table in schema.sql -- so this answer is part of
+    the plan's identity, not just a label attached to it.
 
     Two cases, and the second is the one that needs justifying:
 

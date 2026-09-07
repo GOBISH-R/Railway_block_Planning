@@ -32,6 +32,21 @@ def service(context: PlanningContext) -> PlanningService:
 
 
 @pytest.fixture(scope="session")
+def csv_context() -> PlanningContext:
+    """A context pinned to the frozen CSVs, whatever the environment says.
+
+    `context` above follows BLOCKPLAN_DATA_SOURCE, which is what most tests
+    want. A few assert properties of the CSV PATH specifically -- that it is
+    the frozen tree, that it declares no snapshot of its own -- and those must
+    not quietly start testing the database path instead when the suite is run
+    with BLOCKPLAN_DATA_SOURCE=postgres. They failed exactly that way once.
+    """
+    from blockplan_service.datasource import CsvDataSource
+
+    return PlanningContext.load(CsvDataSource())
+
+
+@pytest.fixture(scope="session")
 def core_module():
     from blockplan_service import paths
 

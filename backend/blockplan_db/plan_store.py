@@ -23,9 +23,14 @@ using planner.py's own constants rather than a second copy of the rule. Storing
 the rounded value would make the raw one unrecoverable and would quietly break
 the block fingerprint that tests/test_reference_plan.py pins.
 
-Every plan records its snapshot_id, so an approved plan stays attached to the
-exact data that produced it. Which snapshot that is, and when the question can
-be answered honestly at all, is decided in blockplan_service/persistence.py.
+IDENTITY IS (snapshot_id, plan_id). plan_id is the request hash, so the same
+request against a different snapshot yields the same id and a different plan.
+Every method here therefore takes the snapshot explicitly rather than defaulting
+to one -- a plan cannot be read, written or approved without saying which data
+it belongs to. See the note above the plans table in schema.sql for what went
+wrong when plan_id alone was the key. Which snapshot a context belongs to, and
+when that question can be answered honestly at all, is decided in
+blockplan_service/persistence.py.
 """
 from __future__ import annotations
 
@@ -42,14 +47,14 @@ from blockplan_service.planner import COST_DP, OBJECTIVE_DP, RELIABILITY_DP
 DEFAULT_RESTORE_LIMIT = 100
 
 _PLAN_COLUMNS = (
-    "plan_id", "snapshot_id", "scenario", "theta", "horizon_days",
+    "snapshot_id", "plan_id", "scenario", "theta", "horizon_days",
     "max_bundle_size", "mc_samples", "seed", "status", "objective",
     "summary", "instance", "stage_timings_s",
 )
 
 _BLOCK_COLUMNS = (
-    "plan_id", "block_id", "section_id", "day", "start_min", "end_min",
-    "length", "reliability", "traffic_cost", "exp_overrun_cost",
+    "snapshot_id", "plan_id", "block_id", "section_id", "day", "start_min",
+    "end_min", "length", "reliability", "traffic_cost", "exp_overrun_cost",
     "dept_mix", "job_ids",
 )
 
@@ -98,8 +103,8 @@ class PostgresPlanStore:
         instance = payload["instance"]
 
         plan_row = (
-            plan_id,
             snapshot_id,
+            plan_id,
             payload["scenario"],
             float(payload["theta"]),
             int(payload["horizon_days"]),
@@ -117,18 +122,21 @@ class PostgresPlanStore:
         for b in payload["blocks"]:
             reliability, traffic_cost, exp_overrun = raw.blocks[b["block_id"]]
             block_rows.append(
-                (plan_id, b["block_id"], b["section_id"], int(b["day"]),
+                (snapshot_id, plan_id, b["block_id"], b["section_id"], int(b["day"]),
                  int(b["start_min"]), int(b["end_min"]), int(b["length"]),
                  float(reliability), float(traffic_cost), float(exp_overrun),
                  list(b["dept_mix"]), list(b["job_ids"])))
         deferred_rows = [
-            (plan_id, seq, d["job_id"], d["dept"])
+            (snapshot_id, plan_id, seq, d["job_id"], d["dept"])
             for seq, d in enumerate(payload["deferred"], start=1)
         ]
 
         with self._connect() as conn:
             with conn.cursor() as cur:
-                cur.execute("DELETE FROM plans WHERE plan_id = %s", (plan_id,))
+                # Scoped by BOTH: deleting on plan_id alone would destroy the
+                # same request's plan under every other snapshot.
+                cur.execute("DELETE FROM plans WHERE snapshot_id = %s AND "
+                            "plan_id = %s", (snapshot_id, plan_id))
                 cur.execute(
                     f"INSERT INTO plans ({', '.join(_PLAN_COLUMNS)}) VALUES "
                     f"({', '.join(['%s'] * len(_PLAN_COLUMNS))})", plan_row)
@@ -139,65 +147,78 @@ class PostgresPlanStore:
                         block_rows)
                 if deferred_rows:
                     cur.executemany(
-                        "INSERT INTO plan_deferred (plan_id, seq, job_id, dept) "
-                        "VALUES (%s, %s, %s, %s)", deferred_rows)
+                        "INSERT INTO plan_deferred (snapshot_id, plan_id, seq, "
+                        "job_id, dept) VALUES (%s, %s, %s, %s, %s)", deferred_rows)
             conn.commit()
 
     def record_approval(self, plan_id: str, block_id: str, decision: str,
-                        *, decided_by: str | None = None,
+                        *, snapshot_id: int, decided_by: str | None = None,
                         note: str | None = None) -> None:
         """Append a decision. Append, not update: the table is an audit trail,
         and a controller reversing an earlier call is itself a fact worth
         keeping."""
         with self._connect() as conn:
             conn.execute(
-                "INSERT INTO approvals (plan_id, block_id, decision, decided_by, "
-                "note) VALUES (%s, %s, %s, %s, %s)",
-                (plan_id, block_id, decision, decided_by, note))
+                "INSERT INTO approvals (snapshot_id, plan_id, block_id, decision, "
+                "decided_by, note) VALUES (%s, %s, %s, %s, %s, %s)",
+                (snapshot_id, plan_id, block_id, decision, decided_by, note))
             conn.commit()
 
     # -- reading -----------------------------------------------------------
 
-    def load_plan(self, plan_id: str) -> dict[str, Any] | None:
+    def load_plan(self, plan_id: str, *, snapshot_id: int) -> dict[str, Any] | None:
         with self._connect() as conn:
             row = conn.execute(
-                f"SELECT {', '.join(_PLAN_COLUMNS)} FROM plans WHERE plan_id = %s",
-                (plan_id,)).fetchone()
+                f"SELECT {', '.join(_PLAN_COLUMNS)} FROM plans "
+                "WHERE snapshot_id = %s AND plan_id = %s",
+                (snapshot_id, plan_id)).fetchone()
             if row is None:
                 return None
             return self._assemble(conn, row)
 
-    def recent_plans(self, limit: int = DEFAULT_RESTORE_LIMIT) -> list[dict[str, Any]]:
+    def recent_plans(self, limit: int = DEFAULT_RESTORE_LIMIT, *,
+                     snapshot_id: int) -> list[dict[str, Any]]:
+        """Newest first, and only this snapshot's.
+
+        Restoring another snapshot's plans into a process serving this one would
+        put plans in memory that were computed from data it is not reading.
+        """
         with self._connect() as conn:
             rows = conn.execute(
                 f"SELECT {', '.join(_PLAN_COLUMNS)} FROM plans "
-                "ORDER BY created_at DESC, plan_id LIMIT %s", (limit,)).fetchall()
+                "WHERE snapshot_id = %s ORDER BY created_at DESC, plan_id "
+                "LIMIT %s", (snapshot_id, limit)).fetchall()
             return [self._assemble(conn, row) for row in rows]
 
-    def plan_ids(self) -> tuple[str, ...]:
+    def plan_ids(self, *, snapshot_id: int) -> tuple[str, ...]:
         with self._connect() as conn:
             return tuple(r[0] for r in conn.execute(
-                "SELECT plan_id FROM plans ORDER BY plan_id").fetchall())
+                "SELECT plan_id FROM plans WHERE snapshot_id = %s ORDER BY plan_id",
+                (snapshot_id,)).fetchall())
 
-    def approvals_for(self, plan_id: str) -> list[dict[str, Any]]:
+    def approvals_for(self, plan_id: str, *,
+                      snapshot_id: int) -> list[dict[str, Any]]:
         with self._connect() as conn:
             rows = conn.execute(
                 "SELECT block_id, decision, decided_by, decided_at, note "
-                "FROM approvals WHERE plan_id = %s ORDER BY decided_at, block_id",
-                (plan_id,)).fetchall()
+                "FROM approvals WHERE snapshot_id = %s AND plan_id = %s "
+                "ORDER BY decided_at, block_id", (snapshot_id, plan_id)).fetchall()
         return [
             {"block_id": b, "decision": d, "decided_by": by,
              "decided_at": at, "note": note}
             for b, d, by, at, note in rows
         ]
 
-    def snapshot_id_of(self, plan_id: str) -> int | None:
-        """The dataset a stored plan was computed from."""
+    def snapshots_holding(self, plan_id: str) -> tuple[int, ...]:
+        """Every snapshot this request has been planned against.
+
+        Plural by design: the same request planned against two snapshots is two
+        plans sharing one id, which is exactly what the composite key allows.
+        """
         with self._connect() as conn:
-            row = conn.execute(
-                "SELECT snapshot_id FROM plans WHERE plan_id = %s",
-                (plan_id,)).fetchone()
-        return None if row is None else row[0]
+            return tuple(r[0] for r in conn.execute(
+                "SELECT snapshot_id FROM plans WHERE plan_id = %s "
+                "ORDER BY snapshot_id", (plan_id,)).fetchall())
 
     # -- rebuilding the response -------------------------------------------
 
@@ -210,7 +231,7 @@ class PostgresPlanStore:
         so lexicographic order is the original order. Deferred jobs have no such
         id, which is why plan_deferred carries seq.
         """
-        (plan_id, _snapshot_id, scenario, theta, horizon_days,
+        (snapshot_id, plan_id, scenario, theta, horizon_days,
          _max_bundle, _mc, _seed, status, objective,
          summary, instance, timings) = row
 
@@ -232,15 +253,15 @@ class PostgresPlanStore:
                  traffic_cost, exp_overrun, dept_mix, job_ids) in conn.execute(
                 "SELECT block_id, section_id, day, start_min, end_min, length, "
                 "reliability, traffic_cost, exp_overrun_cost, dept_mix, job_ids "
-                "FROM plan_blocks WHERE plan_id = %s ORDER BY block_id",
-                (plan_id,)).fetchall()
+                "FROM plan_blocks WHERE snapshot_id = %s AND plan_id = %s "
+                "ORDER BY block_id", (snapshot_id, plan_id)).fetchall()
         ]
 
         deferred = [
             {"job_id": job_id, "dept": dept}
             for job_id, dept in conn.execute(
-                "SELECT job_id, dept FROM plan_deferred WHERE plan_id = %s "
-                "ORDER BY seq", (plan_id,)).fetchall()
+                "SELECT job_id, dept FROM plan_deferred WHERE snapshot_id = %s "
+                "AND plan_id = %s ORDER BY seq", (snapshot_id, plan_id)).fetchall()
         ]
 
         return {

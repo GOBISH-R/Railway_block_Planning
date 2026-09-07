@@ -88,11 +88,11 @@ def test_the_null_store_is_inert_but_complete():
     assert isinstance(store, PlanStore)
     store.save_plan({"plan_id": "x"}, snapshot_id=1,
                     raw=RawPlanValues(0.0, {}))
-    store.record_approval("x", "B0001", "APPROVED")
-    assert store.load_plan("x") is None
-    assert store.recent_plans(10) == []
-    assert store.plan_ids() == ()
-    assert store.approvals_for("x") == []
+    store.record_approval("x", "B0001", "APPROVED", snapshot_id=1)
+    assert store.load_plan("x", snapshot_id=1) is None
+    assert store.recent_plans(10, snapshot_id=1) == []
+    assert store.plan_ids(snapshot_id=1) == ()
+    assert store.approvals_for("x", snapshot_id=1) == []
     assert "not persisted" in store.describe()
 
 
@@ -104,11 +104,11 @@ def test_a_service_with_no_store_still_answers_everything(service):
 
 # -- which snapshot a plan belongs to ---------------------------------------
 
-def test_a_plan_from_the_frozen_tree_is_snapshot_one(context):
+def test_a_plan_from_the_frozen_tree_is_snapshot_one(csv_context):
     """blockplan_db.loader defines snapshot 1 as exactly these files, and
     Phase 3 measured the round trip as identical, so the attribution is true."""
-    assert context.tree == paths.FROZEN_TREE
-    assert snapshot_id_for(context) == FROZEN_SNAPSHOT_ID
+    assert csv_context.tree == paths.FROZEN_TREE
+    assert snapshot_id_for(csv_context) == FROZEN_SNAPSHOT_ID
 
 
 def test_a_plan_from_an_unattributable_tree_is_refused(tmp_path):
@@ -132,10 +132,10 @@ def test_a_declared_snapshot_wins():
     assert snapshot_id_for(_Ctx()) == 7
 
 
-def test_a_csv_context_declares_no_snapshot_of_its_own(context):
+def test_a_csv_context_declares_no_snapshot_of_its_own(csv_context):
     """Files, not a snapshot row. Turning that None into 1 is a provenance
     claim, and it is made in snapshot_id_for() where it can be refused."""
-    assert context.snapshot_id is None
+    assert csv_context.snapshot_id is None
 
 
 # ---------------------------------------------------------------------------
@@ -186,7 +186,7 @@ def test_a_restored_plan_is_identical_to_the_response_that_was_saved(saved, stor
     dropped a field or re-rounded differently fails here.
     """
     payload, _ = saved
-    restored = store.load_plan(payload["plan_id"])
+    restored = store.load_plan(payload["plan_id"], snapshot_id=FROZEN_SNAPSHOT_ID)
     assert restored == payload
 
 
@@ -350,7 +350,7 @@ def test_the_stored_values_still_round_to_the_displayed_ones(saved, store):
 @pytest.mark.slow
 def test_block_order_is_preserved(saved, store):
     payload, _ = saved
-    restored = store.load_plan(payload["plan_id"])
+    restored = store.load_plan(payload["plan_id"], snapshot_id=FROZEN_SNAPSHOT_ID)
     ids = [b["block_id"] for b in restored["blocks"]]
     assert ids == [b["block_id"] for b in payload["blocks"]]
     assert ids == [f"B{n:04d}" for n in range(1, len(ids) + 1)]
@@ -362,7 +362,7 @@ def test_deferred_jobs_keep_the_order_the_solver_returned(saved, store):
     """plan_deferred carries seq for this. There is no padded id to recover the
     order from, and the response reproduces the list positionally."""
     payload, _ = saved
-    restored = store.load_plan(payload["plan_id"])
+    restored = store.load_plan(payload["plan_id"], snapshot_id=FROZEN_SNAPSHOT_ID)
     assert restored["deferred"] == payload["deferred"]
 
 
@@ -370,7 +370,7 @@ def test_deferred_jobs_keep_the_order_the_solver_returned(saved, store):
 @pytest.mark.slow
 def test_the_plan_records_the_dataset_it_was_computed_from(saved, store):
     payload, _ = saved
-    assert store.snapshot_id_of(payload["plan_id"]) == FROZEN_SNAPSHOT_ID
+    assert store.snapshots_holding(payload["plan_id"]) == (FROZEN_SNAPSHOT_ID,)
 
 
 @requires_db
@@ -394,7 +394,8 @@ def test_saving_the_same_plan_twice_replaces_rather_than_duplicates(saved, store
             (payload["plan_id"],)).fetchone()
     assert plans == 1
     assert blocks == len(payload["blocks"])
-    assert store.load_plan(payload["plan_id"]) == payload
+    assert store.load_plan(payload["plan_id"],
+                           snapshot_id=FROZEN_SNAPSHOT_ID) == payload
 
 
 @requires_db
@@ -421,11 +422,13 @@ def test_approvals_are_recorded_against_a_plan(saved, store):
     plan_id = payload["plan_id"]
     first, second = payload["blocks"][0]["block_id"], payload["blocks"][1]["block_id"]
 
-    store.record_approval(plan_id, first, "APPROVED", decided_by="controller-1")
-    store.record_approval(plan_id, second, "REJECTED", decided_by="controller-1",
+    store.record_approval(plan_id, first, "APPROVED",
+                          snapshot_id=FROZEN_SNAPSHOT_ID, decided_by="controller-1")
+    store.record_approval(plan_id, second, "REJECTED",
+                          snapshot_id=FROZEN_SNAPSHOT_ID, decided_by="controller-1",
                           note="engineering block clashes with a special")
 
-    recorded = store.approvals_for(plan_id)
+    recorded = store.approvals_for(plan_id, snapshot_id=FROZEN_SNAPSHOT_ID)
     assert [(a["block_id"], a["decision"]) for a in recorded] == [
         (first, "APPROVED"), (second, "REJECTED")]
     assert recorded[1]["note"].startswith("engineering block")
@@ -441,11 +444,15 @@ def test_a_reversed_decision_is_appended_not_overwritten(saved, store):
     plan_id = payload["plan_id"]
     block_id = payload["blocks"][2]["block_id"]
 
-    store.record_approval(plan_id, block_id, "APPROVED", decided_by="controller-1")
-    store.record_approval(plan_id, block_id, "REJECTED", decided_by="controller-2",
+    store.record_approval(plan_id, block_id, "APPROVED",
+                          snapshot_id=FROZEN_SNAPSHOT_ID, decided_by="controller-1")
+    store.record_approval(plan_id, block_id, "REJECTED",
+                          snapshot_id=FROZEN_SNAPSHOT_ID, decided_by="controller-2",
                           note="withdrawn after the freight path was added")
 
-    for_block = [a for a in store.approvals_for(plan_id) if a["block_id"] == block_id]
+    for_block = [a for a in store.approvals_for(plan_id,
+                                                snapshot_id=FROZEN_SNAPSHOT_ID)
+                 if a["block_id"] == block_id]
     assert [a["decision"] for a in for_block] == ["APPROVED", "REJECTED"]
 
 
@@ -473,10 +480,10 @@ def test_a_database_backed_context_persists_against_its_own_snapshot():
 
 @requires_db
 def test_approvals_for_an_unknown_plan_are_empty_not_an_error(store):
-    assert store.approvals_for("nosuchplan") == []
+    assert store.approvals_for("nosuchplan", snapshot_id=FROZEN_SNAPSHOT_ID) == []
 
 
 @requires_db
 def test_an_unknown_plan_id_reads_back_as_none(store):
-    assert store.load_plan("nosuchplan") is None
-    assert store.snapshot_id_of("nosuchplan") is None
+    assert store.load_plan("nosuchplan", snapshot_id=FROZEN_SNAPSHOT_ID) is None
+    assert store.snapshots_holding("nosuchplan") == ()

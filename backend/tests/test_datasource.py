@@ -141,12 +141,15 @@ class _EmptySource:
 # The context carries its source
 # ---------------------------------------------------------------------------
 
-def test_the_context_knows_which_tree_it_was_built_from(context: PlanningContext):
-    """The session context is built by conftest with load(), i.e. the default.
-    Everything downstream reads context.tree, so if this were wrong the planner
-    would reload frozen pairing rules over a database context."""
-    assert context.tree == paths.FROZEN_TREE
-    assert paths.DATASET_DIR in context.source_description
+def test_the_context_knows_which_tree_it_was_built_from(csv_context: PlanningContext):
+    """Everything downstream reads context.tree, so if this were wrong the
+    planner would reload frozen pairing rules over a database context.
+
+    Pinned to the CSV source rather than the ambient one: this is a claim about
+    the CSV path, and the suite is also run with BLOCKPLAN_DATA_SOURCE=postgres.
+    """
+    assert csv_context.tree == paths.FROZEN_TREE
+    assert paths.DATASET_DIR in csv_context.source_description
 
 
 def test_loading_from_a_tree_directly_is_supported(context: PlanningContext):

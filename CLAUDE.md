@@ -282,7 +282,41 @@ Corridor & Demand, Why panel, Evidence), and Phase 8 (packaging: one process,
 one port, startup warmup) are built. See `API_CONTRACT.md` for the endpoint
 reference, `backend/README.md` and `frontend/README.md` for how each half is
 structured and run, and `python run.py` at the repo root to start the whole
-packaged system. No database exists and none is planned (§10).
+packaged system.
+
+### The PostgreSQL work is a SEPARATE phase numbering. Do not confuse the two.
+
+There are now two tracks that both number their phases from 0, and they mean
+different things — this document's Phase 2 is the explanation service, while
+the database track's Phase 2 was loading the dataset. When a phase number is
+used, say which track it belongs to.
+
+The database track (0–6) is built:
+
+- **0** `tests/test_reference_plan.py` — pins the plan the pipeline produces
+  (`2db53586d84f`, objective 337.4, a sha256 over all 140 blocks). Every later
+  phase is gated on it.
+- **1–2** `backend/blockplan_db/` — snapshot-versioned schema, environment-only
+  connection settings, and the loader. The frozen dataset is snapshot 1:
+  16,189 rows across 21 tables, loaded from exactly the frozen CSVs.
+- **3** `blockplan_db/verify.py` — proves the database rebuilds the reference
+  plan byte for byte. Found that **row order is load-bearing**
+  (`load_trains()` derives each Train id from the row's file position), so
+  every table carries `row_no`.
+- **4** `blockplan_service/datasource.py` — the planner reads either source.
+  `BLOCKPLAN_DATA_SOURCE=csv` (**default**) or `postgres`.
+- **5** `blockplan_db/plan_store.py` — plans, blocks, deferred jobs and
+  approvals persist, so a plan id survives a restart.
+  `BLOCKPLAN_PERSIST_PLANS=1`, **off by default**.
+- **6** plan identity is `(snapshot_id, plan_id)`, and the window cache key
+  carries the snapshot too.
+
+**This does not relax §10 or rule 6.** The dataset still lives in the frozen
+CSVs, they are still the default, and nothing requires PostgreSQL to start —
+`python run.py`, the demo and the full test suite all work on a machine that
+has never installed it. What the database adds is the one thing the CSVs
+genuinely cannot hold: plans and approvals, which previously died with the
+process. Redis/Celery/WebSockets/ML remain out, unchanged.
 
 Demo rehearsal (Phase 9) has been done against the running packaged app and
 is written up in `DEMO.md` — flow, judge Q&A, the optimisation explanation,

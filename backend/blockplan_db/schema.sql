@@ -440,9 +440,28 @@ CREATE TABLE IF NOT EXISTS data_provenance (
 -- against the live response is asserted in tests/test_plan_persistence.py.
 -- ---------------------------------------------------------------------------
 
+-- IDENTITY IS (snapshot_id, plan_id), NOT plan_id ALONE.
+--
+-- plan_id is the hash of the six request fields and nothing else, so the SAME
+-- request against a DIFFERENT snapshot produces the SAME id -- which is right:
+-- the id identifies the request. What it does not identify on its own is the
+-- plan, because the same request against different data is a different plan.
+--
+-- With plan_id as the sole primary key that was silent data loss, not a
+-- conflict. save_plan() deletes before inserting (re-solving the same request
+-- is the normal way to arrive twice), so persisting a plan against snapshot 2
+-- destroyed the snapshot 1 plan and the audit trail with it. Measured, then
+-- fixed here.
+--
+-- The alternative was to hash snapshot_id into plan_id. That was rejected: it
+-- would change every plan id, including 2db53586d84f which is pinned by
+-- tests/test_reference_plan.py and quoted in the docs, and it would conflate
+-- two things that are cleaner apart -- plan_id says WHICH REQUEST, the pair
+-- says WHICH PLAN. A serving process has exactly one context and therefore one
+-- snapshot, so /plan/{plan_id} stays unambiguous.
 CREATE TABLE IF NOT EXISTS plans (
-    plan_id         TEXT        PRIMARY KEY,   -- the request hash, unchanged
     snapshot_id     INTEGER     NOT NULL REFERENCES dataset_snapshots(snapshot_id),
+    plan_id         TEXT        NOT NULL,      -- the request hash, unchanged
     scenario        TEXT        NOT NULL,
     theta           DOUBLE PRECISION NOT NULL,
     horizon_days    INTEGER     NOT NULL,
@@ -454,11 +473,13 @@ CREATE TABLE IF NOT EXISTS plans (
     summary         JSONB,
     instance        JSONB,
     stage_timings_s JSONB,
-    created_at      TIMESTAMPTZ NOT NULL DEFAULT now()
+    created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+    PRIMARY KEY (snapshot_id, plan_id)
 );
 
 CREATE TABLE IF NOT EXISTS plan_blocks (
-    plan_id          TEXT    NOT NULL REFERENCES plans(plan_id) ON DELETE CASCADE,
+    snapshot_id      INTEGER NOT NULL,
+    plan_id          TEXT    NOT NULL,
     block_id         TEXT    NOT NULL,
     section_id       TEXT    NOT NULL,
     day              INTEGER NOT NULL,
@@ -470,7 +491,9 @@ CREATE TABLE IF NOT EXISTS plan_blocks (
     exp_overrun_cost DOUBLE PRECISION,
     dept_mix         TEXT[],
     job_ids          TEXT[],
-    PRIMARY KEY (plan_id, block_id)
+    PRIMARY KEY (snapshot_id, plan_id, block_id),
+    FOREIGN KEY (snapshot_id, plan_id)
+        REFERENCES plans(snapshot_id, plan_id) ON DELETE CASCADE
 );
 
 -- seq preserves the order core.solve() returned the deferred jobs in. The API
@@ -478,21 +501,27 @@ CREATE TABLE IF NOT EXISTS plan_blocks (
 -- not a display detail -- and unlike plan_blocks there is no zero-padded id
 -- here to recover it from.
 CREATE TABLE IF NOT EXISTS plan_deferred (
-    plan_id TEXT    NOT NULL REFERENCES plans(plan_id) ON DELETE CASCADE,
-    seq     INTEGER NOT NULL,
-    job_id  TEXT    NOT NULL,
-    dept    TEXT,
-    PRIMARY KEY (plan_id, job_id)
+    snapshot_id INTEGER NOT NULL,
+    plan_id     TEXT    NOT NULL,
+    seq         INTEGER NOT NULL,
+    job_id      TEXT    NOT NULL,
+    dept        TEXT,
+    PRIMARY KEY (snapshot_id, plan_id, job_id),
+    FOREIGN KEY (snapshot_id, plan_id)
+        REFERENCES plans(snapshot_id, plan_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS approvals (
-    plan_id    TEXT        NOT NULL REFERENCES plans(plan_id) ON DELETE CASCADE,
-    block_id   TEXT        NOT NULL,
-    decision   TEXT        NOT NULL,     -- APPROVED / REJECTED / AMENDED
-    decided_by TEXT,
-    decided_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    note       TEXT,
-    PRIMARY KEY (plan_id, block_id, decided_at)
+    snapshot_id INTEGER     NOT NULL,
+    plan_id     TEXT        NOT NULL,
+    block_id    TEXT        NOT NULL,
+    decision    TEXT        NOT NULL,     -- APPROVED / REJECTED / AMENDED
+    decided_by  TEXT,
+    decided_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+    note        TEXT,
+    PRIMARY KEY (snapshot_id, plan_id, block_id, decided_at),
+    FOREIGN KEY (snapshot_id, plan_id)
+        REFERENCES plans(snapshot_id, plan_id) ON DELETE CASCADE
 );
 
 -- Empty today, and deliberately so. This is where real hand-back times would
