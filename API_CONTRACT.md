@@ -295,6 +295,12 @@ rejects `theta` outside `(0, 1)`, `horizon_days < 1`, or an unknown
   in the UI displayed each scenario's original (sometimes 8-12s) compute time
   as if the switch itself had taken that long, when the actual request
   returned in under 0.1s.
+  A cached response is reused only while the planning artefacts behind it are
+  still held (those are bounded; plan responses are not). If they have been
+  evicted, the identical request is recomputed to restore them, and this field
+  is `false` — a solve really did run — while `plan_id` stays the same, because
+  the id is derived from the request parameters. So a repeat request is not
+  guaranteed to report `cache_hit: true`.
 
 ---
 
@@ -649,6 +655,7 @@ draft needs. Extending this later is additive, not a contract break.
 |---|---|
 | `theta` outside `(0,1)`, `horizon_days < 1`, unknown field, wrong type | `422` |
 | Unknown scenario name, unknown `plan_id`, unknown `block_id`/`job_id` | `404` |
+| Plan is cached but its planning artefacts are gone, so it cannot be explained | `409` |
 | No feasible plan — every job deferred | `200`, empty `blocks`, populated `deferred` |
 | Solver hits its time limit without proving optimality | `200`, `status: "FEASIBLE"` |
 | Malformed job row (`Job.__post_init__` raises) | `500`, exception message surfaced, not swallowed |

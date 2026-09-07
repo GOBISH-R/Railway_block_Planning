@@ -211,7 +211,24 @@ class PlanningService:
         plan_id = request.cache_key()
         if use_cache:
             hit = self.cached_plan(plan_id)
-            if hit is not None:
+            # A cached response is only usable while the artefacts that explain
+            # it survive. _plans is unbounded and _internals is not, so a plan
+            # outlives its internals routinely -- after which every Why request
+            # for it answered 409 forever, because this path returned the cached
+            # DTO without ever rebuilding them. Re-planning did not help either:
+            # the identical request produced this same cache key and hit here
+            # again. Requiring both halves lets a stale entry fall through to the
+            # compute path below, which restores internals under the same
+            # plan_id. Verified safe first: the same request reproduces the same
+            # concrete artefacts (block ids, job assignments, raw reliabilities)
+            # in this process, so the restored internals describe the plan the
+            # client is already displaying.
+            #
+            # The two reads take _plan_lock separately, which is deliberate --
+            # a concurrent eviction between them makes this fall through and
+            # recompute, which is the safe direction. Nothing here can hand back
+            # a plan whose internals are known to be gone.
+            if hit is not None and self.has_internals(plan_id):
                 # `hit` is already a deep copy (cached_plan() makes one), so
                 # this cannot mutate the stored entry. Marked explicitly rather
                 # than left implicit: `stage_timings_s` below is still whatever
