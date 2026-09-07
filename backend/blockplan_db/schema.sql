@@ -427,9 +427,17 @@ CREATE TABLE IF NOT EXISTS data_provenance (
 -- ---------------------------------------------------------------------------
 -- Outputs -- the part that genuinely needs a database
 --
--- Plans live in an in-memory dict today and die with the process. These tables
--- are what let an approved plan outlive a restart, and what an audit trail
--- needs. Written by the service, never by the loader.
+-- Plans lived in an in-memory dict and died with the process. These tables are
+-- what let an approved plan outlive a restart, and what an audit trail needs.
+-- Written by the service (blockplan_db/plan_store.py), never by the loader.
+--
+-- UNROUNDED VALUES. plans.objective and the three plan_blocks costs are stored
+-- raw, as the solver produced them; the API rounds on the way out (objective
+-- and the costs to 1 dp, reliability to 3). Storing the rounded figure instead
+-- would be lossy in one direction only -- the display can always be derived
+-- from the raw value, never the other way -- and would put a second, silently
+-- diverging copy of the rounding rule in the database. Round-trip equality
+-- against the live response is asserted in tests/test_plan_persistence.py.
 -- ---------------------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS plans (
@@ -465,9 +473,14 @@ CREATE TABLE IF NOT EXISTS plan_blocks (
     PRIMARY KEY (plan_id, block_id)
 );
 
+-- seq preserves the order core.solve() returned the deferred jobs in. The API
+-- response is reproduced from these rows, so the order is part of the value,
+-- not a display detail -- and unlike plan_blocks there is no zero-padded id
+-- here to recover it from.
 CREATE TABLE IF NOT EXISTS plan_deferred (
-    plan_id TEXT NOT NULL REFERENCES plans(plan_id) ON DELETE CASCADE,
-    job_id  TEXT NOT NULL,
+    plan_id TEXT    NOT NULL REFERENCES plans(plan_id) ON DELETE CASCADE,
+    seq     INTEGER NOT NULL,
+    job_id  TEXT    NOT NULL,
     dept    TEXT,
     PRIMARY KEY (plan_id, job_id)
 );

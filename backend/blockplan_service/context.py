@@ -255,6 +255,18 @@ class PlanningContext:
     # -- accessors ---------------------------------------------------------
 
     @property
+    def snapshot_id(self) -> int | None:
+        """The dataset snapshot this was built from, if the source declares one.
+
+        None for the frozen CSVs, which are files rather than a snapshot row.
+        Persistence turns that None into snapshot 1 -- but only for the frozen
+        tree, and it is persistence.snapshot_id_for() that decides so, not this
+        property, because that is a claim about provenance and belongs where it
+        can be refused.
+        """
+        return getattr(self._source, "snapshot_id", None)
+
+    @property
     def scenario_names(self) -> tuple[str, ...]:
         return tuple(self.scenarios.keys())
 

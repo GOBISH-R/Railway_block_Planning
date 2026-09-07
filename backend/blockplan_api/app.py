@@ -46,6 +46,7 @@ from blockplan_service.explain import (  # noqa: E402
     UnknownBlockError,
     UnknownJobError,
 )
+from blockplan_service.persistence import resolve as resolve_plan_store  # noqa: E402
 from blockplan_service.planner import UnknownPlanError, UnknownScenarioError  # noqa: E402
 from blockplan_service import reference_data  # noqa: E402
 
@@ -112,9 +113,15 @@ async def lifespan(app: FastAPI):
     # 12, not 8: the eight precomputed scenario plans plus headroom for a few
     # live re-plans (a controller dragging theta during the demo) before the
     # oldest internals are evicted. Still bounded, not unlimited growth.
-    planning = PlanningService(max_internals=12)
+    planning = PlanningService(max_internals=12, store=resolve_plan_store())
     _state["planning"] = planning
     _state["explanation"] = ExplanationService(planning)
+    if planning.store.enabled:
+        # Plans made before this process started. Without this the ids handed
+        # out by the previous run are 404 until something asks for one by name.
+        restored = planning.restore_plans()
+        print(f"[startup] {planning.store.describe()}; "
+              f"restored {restored} plan(s)", flush=True)
     if WARM_ON_STARTUP:
         _warm_all_scenarios(planning)
     yield
@@ -217,7 +224,9 @@ def create_plan(body: PlanRequestModel) -> dict[str, Any]:
 
 @app.get("/plan/{plan_id}", responses=_ERRORS)
 def get_plan(plan_id: str = Path(..., min_length=1)) -> dict[str, Any]:
-    plan = get_planning_service().cached_plan(plan_id)
+    # stored_plan, not cached_plan: a plan produced before a restart lives in
+    # PostgreSQL when persistence is on, and its id must keep working.
+    plan = get_planning_service().stored_plan(plan_id)
     if plan is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, f"unknown plan: {plan_id}")
     return plan
@@ -275,6 +284,7 @@ def health() -> dict[str, Any]:
         # database-backed process and a CSV-backed one are otherwise
         # indistinguishable from the outside, by design.
         "data_source": service.context.source_description,
+        "plan_store": service.store.describe(),
         "scenarios": len(service.context.scenario_names),
         "sections": len(service.context.sections),
         "window_sets_cached": service.windows.size,

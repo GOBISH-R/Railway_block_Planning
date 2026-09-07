@@ -6,6 +6,7 @@ Layers, per the project architecture:
     service/   planner.py  -- THE LOCK, plan cache, pipeline, DTO shaping
                explain.py  -- explanation service (blocks and refusals)
                windows.py  -- window cache
+               persistence.py -- whether plans are written anywhere
     context/   context.py     -- PlanningContext, the tables read once
                datasource.py  -- WHERE that tree comes from: CSVs or PostgreSQL
     core.py    FROZEN -- imported, never edited
@@ -20,6 +21,14 @@ from .datasource import (
     DataSource,
     DataSourceError,
     resolve as resolve_data_source,
+)
+from .persistence import (
+    NullPlanStore,
+    PersistenceError,
+    PlanStore,
+    RawPlanValues,
+    resolve as resolve_plan_store,
+    snapshot_id_for,
 )
 from .explain import (
     ExplanationService,
@@ -46,6 +55,12 @@ __all__ = [
     "DataSourceError",
     "DatabaseDataSource",
     "resolve_data_source",
+    "NullPlanStore",
+    "PersistenceError",
+    "PlanStore",
+    "RawPlanValues",
+    "resolve_plan_store",
+    "snapshot_id_for",
     "ExplanationService",
     "ExplanationUnavailableError",
     "PlanInternals",

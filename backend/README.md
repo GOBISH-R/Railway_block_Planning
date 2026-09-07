@@ -84,6 +84,42 @@ python -m blockplan_db.loader           # frozen CSVs -> snapshot 1
 python -m blockplan_db.verify           # prove it rebuilds the reference plan
 ```
 
+## Where plans go
+
+A plan is the one thing this system produces that the frozen CSVs cannot hold.
+Without persistence it lives in a dict and dies with the process: restart the
+server and every plan id already handed out becomes a 404.
+
+```
+BLOCKPLAN_PERSIST_PLANS=0    plans in memory only        (DEFAULT)
+BLOCKPLAN_PERSIST_PLANS=1    also written to PostgreSQL
+```
+
+Independent of `BLOCKPLAN_DATA_SOURCE` — reading the frozen CSVs while
+persisting plans is the obvious way to run this today, since snapshot 1 *is*
+the frozen dataset. Turning it on with no database configured raises at startup
+rather than quietly falling back to memory. `GET /health` reports which.
+
+With it on, `plans`, `plan_blocks` and `plan_deferred` are written after each
+solve, recently created plans are restored into memory at startup, and
+`GET /plan/{id}` also falls back to the database for a plan this process never
+computed. Every plan records the `snapshot_id` it was built from.
+
+Two limits worth knowing:
+
+- **Costs are stored unrounded.** The response rounds (objective and costs to
+  1 dp, reliability to 3) and rounding does not invert, so the database holds
+  what the solver produced and the API rounds on the way out.
+- **`PlanInternals` are not persisted** — 16,746 columns and 11,648 windows per
+  plan. A restored plan therefore behaves like one whose internals were
+  evicted: `GET /plan/{id}/block/{id}` answers 409 "re-run the plan to explain
+  it", and re-POSTing the identical request recomputes them under the same plan
+  id, after which Why works.
+
+The `approvals` table has a persistence layer (`record_approval`,
+`approvals_for`) and tests, but **no endpoint and no UI**. Wiring a controller
+decision through the API is a product decision that has not been made.
+
 ## Setup
 
 ```

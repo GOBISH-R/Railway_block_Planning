@@ -38,6 +38,7 @@ from typing import Any, Mapping
 
 from . import paths
 from .context import PlanningContext
+from .persistence import NullPlanStore, PlanStore, RawPlanValues, snapshot_id_for
 from .windows import DEFAULT_KEEP_PER_DAY, WindowCache
 
 paths.ensure_import_paths()
@@ -145,9 +146,12 @@ class PlanningService:
 
     def __init__(self, context: PlanningContext | None = None,
                  window_cache: WindowCache | None = None,
-                 max_internals: int = 4) -> None:
+                 max_internals: int = 4,
+                 store: PlanStore | None = None) -> None:
         self.context = context if context is not None else PlanningContext.load()
         self.windows = window_cache if window_cache is not None else WindowCache()
+        # NullPlanStore by default, so every call site below is unconditional.
+        self.store: PlanStore = store if store is not None else NullPlanStore()
         self._plans: dict[str, dict[str, Any]] = {}
         self._internals: dict[str, PlanInternals] = {}
         self._internals_order: list[str] = []
@@ -165,6 +169,45 @@ class PlanningService:
     def cached_plan_ids(self) -> tuple[str, ...]:
         with self._plan_lock:
             return tuple(self._plans.keys())
+
+    # -- persistence -------------------------------------------------------
+
+    def stored_plan(self, plan_id: str) -> dict[str, Any] | None:
+        """A plan from memory, or from the store if this process never made it.
+
+        This is what makes a plan id survive a restart. GET /plan/{id} uses it;
+        plan() deliberately does NOT, because a plan read back from the database
+        has no internals, and the compute path must run to rebuild them.
+
+        A hit from the store is put in memory, so the second request for a plan
+        costs nothing.
+        """
+        found = self.cached_plan(plan_id)
+        if found is not None:
+            return found
+        restored = self.store.load_plan(plan_id)
+        if restored is None:
+            return None
+        with self._plan_lock:
+            self._plans.setdefault(plan_id, copy.deepcopy(restored))
+        return restored
+
+    def restore_plans(self, limit: int = 100) -> int:
+        """Load recently persisted plans into memory. Returns how many.
+
+        Called at startup so /health and the plan list are honest immediately
+        rather than only after something asks for a specific id. Existing
+        in-memory entries win: anything this process computed is newer than
+        anything it reads back.
+        """
+        restored = self.store.recent_plans(limit)
+        added = 0
+        with self._plan_lock:
+            for payload in restored:
+                if payload["plan_id"] not in self._plans:
+                    self._plans[payload["plan_id"]] = payload
+                    added += 1
+        return added
 
     def internals(self, plan_id: str) -> PlanInternals:
         """Pipeline artefacts for a plan. Raises UnknownPlanError if evicted."""
@@ -354,10 +397,40 @@ class PlanningService:
         self._store_internals(plan_id, internals)
         with self._plan_lock:
             self._plans[plan_id] = copy.deepcopy(payload)
+        self._persist(payload, internals)
         return payload
+
+    def _persist(self, payload: Mapping[str, Any],
+                 internals: PlanInternals) -> None:
+        """Write the plan out, if a store is configured.
+
+        Outside the planning lock: it is I/O against a different system and has
+        no bearing on solver determinism, so holding the lock through it would
+        serialise every other request behind a database round trip for no
+        benefit.
+        """
+        if not self.store.enabled:
+            return
+        self.store.save_plan(
+            payload,
+            snapshot_id=snapshot_id_for(self.context),
+            raw=raw_plan_values(internals),
+        )
 
 
 # -- DTO shaping -----------------------------------------------------------
+
+# How many decimal places the response shows, per API_CONTRACT.md. Named rather
+# than inlined because a plan restored from the database is rebuilt from the
+# UNROUNDED values the solver produced, and applies these same rules on the way
+# out (blockplan_db/plan_store.py). Two hand-written copies of "round to 1" is
+# exactly the kind of thing that drifts silently; round-trip equality is
+# asserted in tests/test_plan_persistence.py as well.
+OBJECTIVE_DP = 1
+RELIABILITY_DP = 3
+COST_DP = 1
+
+
 
 def block_id_map(blocks) -> dict[str, Any]:
     """Assign the stable block ids the API exposes.
@@ -368,6 +441,24 @@ def block_id_map(blocks) -> dict[str, Any]:
     about which column "B0007" means.
     """
     return {f"B{n:04d}": column for n, column in enumerate(blocks, start=1)}
+
+
+def raw_plan_values(internals: PlanInternals) -> RawPlanValues:
+    """The unrounded figures behind a plan, for persistence.
+
+    Taken from the retained solver objects rather than from the response,
+    because the response has already rounded them and rounding does not
+    invert. What gets stored is therefore exactly what the block fingerprint in
+    tests/test_reference_plan.py is computed over.
+    """
+    return RawPlanValues(
+        objective=internals.objective,
+        blocks={
+            block_id: (column.reliability, column.window.traffic_cost,
+                       column.exp_overrun_cost)
+            for block_id, column in internals.blocks_by_id.items()
+        },
+    )
 
 
 def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
@@ -394,9 +485,9 @@ def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
                 "start_min": window.start_min,
                 "length": window.length,
                 "end_min": window.end_min,
-                "reliability": round(column.reliability, 3),
-                "traffic_cost": round(window.traffic_cost, 1),
-                "exp_overrun_cost": round(column.exp_overrun_cost, 1),
+                "reliability": round(column.reliability, RELIABILITY_DP),
+                "traffic_cost": round(window.traffic_cost, COST_DP),
+                "exp_overrun_cost": round(column.exp_overrun_cost, COST_DP),
                 "dept_mix": depts,
                 "job_ids": list(column.job_ids),
             }
@@ -425,7 +516,7 @@ def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
         # to True itself on the dict it returns instead.
         "cache_hit": False,
         "status": result["status"],
-        "objective": round(result["objective"], 1),
+        "objective": round(result["objective"], OBJECTIVE_DP),
         "blocks": blocks,
         "deferred": deferred,
         "summary": summary_out,
