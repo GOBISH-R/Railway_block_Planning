@@ -51,6 +51,18 @@ from test_reference_plan import REFERENCE_PLAN_ID, REFERENCE_REQUEST
 
 BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+#: Fields the STORE is responsible for. `availability` is not among them: it is
+#: derived from the planning context -- the corridor's section-lines and train
+#: population -- rather than from the plan, so it is recomputed wherever a plan
+#: is handed out instead of persisted and risked going stale against another
+#: snapshot. planner._attach_availability puts it back, which is why the tests
+#: that go through the service still compare whole payloads.
+DERIVED_ON_READ = ("availability",)
+
+
+def _stored_fields(payload: dict) -> dict:
+    return {k: v for k, v in payload.items() if k not in DERIVED_ON_READ}
+
 
 # ---------------------------------------------------------------------------
 # Whether anything is written -- no database needed
@@ -187,7 +199,28 @@ def test_a_restored_plan_is_identical_to_the_response_that_was_saved(saved, stor
     """
     payload, _ = saved
     restored = store.load_plan(payload["plan_id"], snapshot_id=FROZEN_SNAPSHOT_ID)
-    assert restored == payload
+    assert restored == _stored_fields(payload)
+
+
+@requires_db
+@pytest.mark.slow
+def test_availability_is_recomputed_on_read_not_stored(saved, context, store):
+    """The store keeps what the plan determines; the service adds what the
+    context determines.
+
+    A stored availability figure would be computed against whichever corridor
+    was loaded when the plan was saved, and served unchanged afterwards. Since
+    it depends on the section-line count and the train population, that is
+    exactly the kind of number that goes quietly wrong across a snapshot
+    change.
+    """
+    payload, _ = saved
+    raw = store.load_plan(payload["plan_id"], snapshot_id=FROZEN_SNAPSHOT_ID)
+    assert "availability" not in raw
+
+    after_restart = PlanningService(context=context, store=store)
+    served = after_restart.stored_plan(payload["plan_id"])
+    assert served["availability"] == payload["availability"]
 
 
 @requires_db
@@ -220,6 +253,39 @@ def test_startup_restores_plans_without_being_asked_for_one(saved, context, stor
 
     assert after_restart.restore_plans() >= 1
     assert payload["plan_id"] in after_restart.cached_plan_ids
+
+
+@requires_db
+def test_one_unreadable_stored_plan_does_not_stop_the_server_starting(context):
+    """restore_plans runs at startup. A row it cannot make sense of must be
+    skipped and reported, not allowed to take the process down -- and not
+    served without its documented availability field either.
+    """
+    class BrokenStore:
+        enabled = True
+
+        def describe(self):
+            return "broken"
+
+        def recent_plans(self, limit, *, snapshot_id):
+            return [{"plan_id": "broken01", "scenario": "NORMAL_TRAFFIC",
+                     "horizon_days": 14, "blocks": [],
+                     "summary": {}},          # no jobs_done: unusable
+                    {"plan_id": "fine0001", "scenario": "NORMAL_TRAFFIC",
+                     "horizon_days": 14, "blocks": [],
+                     "summary": {"jobs_done": 0, "jobs_deferred": 175,
+                                 "traffic_cost": 0.0}}]
+
+        def load_plan(self, plan_id, *, snapshot_id):
+            return None
+
+        def save_plan(self, payload, *, snapshot_id, raw):
+            return None
+
+    planning = PlanningService(context=context, store=BrokenStore())
+    assert planning.restore_plans() == 1
+    assert planning.cached_plan("broken01") is None
+    assert planning.cached_plan("fine0001")["availability"]["jobs_deferred"] == 175
 
 
 @requires_db
@@ -395,7 +461,7 @@ def test_saving_the_same_plan_twice_replaces_rather_than_duplicates(saved, store
     assert plans == 1
     assert blocks == len(payload["blocks"])
     assert store.load_plan(payload["plan_id"],
-                           snapshot_id=FROZEN_SNAPSHOT_ID) == payload
+                           snapshot_id=FROZEN_SNAPSHOT_ID) == _stored_fields(payload)
 
 
 @requires_db

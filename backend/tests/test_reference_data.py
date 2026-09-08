@@ -84,6 +84,29 @@ def test_traffic_filters_by_section(client):
     assert all(m["section_id"] == "JTJ-TPT-UP" for m in body["movements"])
 
 
+def test_derived_availability_agrees_with_the_frozen_rows_it_came_from(client):
+    """It is computed from method_comparison and execution_scoring_blocks, so
+    it cannot be allowed to disagree with them -- that is the whole reason it
+    is derived rather than stored as a fourth CSV."""
+    body = client.get("/comparison").json()
+    frozen = {row["method"]: row for row in body["method_comparison"]}
+
+    assert set(body["asset_availability"]) == set(frozen)
+    for method, report in body["asset_availability"].items():
+        assert report["jobs_done"] == int(frozen[method]["jobs_done"])
+        assert report["traffic_delay_minutes"] == float(frozen[method]["traffic_cost"])
+        # and the metric never travels without its work figure
+        assert str(report["jobs_done"]) in report["headline"]
+
+
+def test_the_improvement_is_reported_with_the_work_it_bought(client):
+    body = client.get("/comparison").json()
+    improvement = body["asset_availability_improvement"]
+    assert improvement["jobs_gained"] == 13
+    assert improvement["section_hours_released"] == 58.5
+    assert "jobs" in improvement["headline"]
+
+
 def test_comparison_serves_the_frozen_artefacts_verbatim(client):
     """Numbers here must match the source CSV exactly -- this is a reader."""
     import csv as _csv
@@ -92,7 +115,11 @@ def test_comparison_serves_the_frozen_artefacts_verbatim(client):
 
     body = client.get("/comparison").json()
     assert set(body) == {"method_comparison", "execution_scoring_summary",
-                         "benchmark_results"}
+                         "benchmark_results",
+                         # DERIVED from the two above, not a fourth artefact,
+                         # and named separately so a reader can tell which
+                         # numbers are frozen and which are computed here.
+                         "asset_availability", "asset_availability_improvement"}
 
     with open(paths.BENCHMARK_RESULTS_CSV, encoding="utf-8") as f:
         frozen_rows = list(_csv.DictReader(f))

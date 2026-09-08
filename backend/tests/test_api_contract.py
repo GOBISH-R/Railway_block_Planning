@@ -46,13 +46,27 @@ def test_response_carries_every_contract_field(plan):
 
 
 def test_no_undocumented_top_level_fields(plan):
-    """`instance` and `cache_hit` are additions; everything else must be in
-    the contract.
+    """`instance`, `cache_hit` and `availability` are additions; everything else
+    must be in the contract.
 
     Additive fields are a compatible change, but they must be deliberate --
-    this test fails if a third one appears without the contract being updated.
+    this test fails if a fourth one appears without the contract being updated.
+    It did exactly that when `availability` was added, which is the point.
     """
-    assert set(plan) - PLAN_FIELDS == {"instance", "cache_hit"}
+    assert set(plan) - PLAN_FIELDS == {"instance", "cache_hit", "availability"}
+
+
+def test_availability_travels_with_its_work_figures(plan):
+    """Asset availability is maximised by doing no maintenance, so the response
+    must never carry the percentage on its own. See availability.py."""
+    report = plan["availability"]
+    for key in ("availability", "jobs_done", "jobs_deferred",
+                "traffic_delay_minutes", "headline"):
+        assert key in report, key
+    assert report["jobs_done"] == plan["summary"]["jobs_done"]
+    assert report["jobs_deferred"] == plan["summary"]["jobs_deferred"]
+    assert 0.0 <= report["availability"] <= 1.0
+    assert str(report["jobs_done"]) in report["headline"]
 
 
 def test_block_shape(plan):

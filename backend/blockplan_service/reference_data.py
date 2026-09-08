@@ -145,15 +145,33 @@ def traffic_payload(context: PlanningContext, scenario: str,
 
 
 def comparison_payload() -> dict[str, Any]:
-    """GET /comparison. Serves the three frozen benchmark artefacts as-is.
+    """GET /comparison. The three frozen benchmark artefacts, plus availability.
 
-    A reader, not a runner: every number here must match its source CSV
-    exactly, with no rounding invented in this layer.
+    The three CSVs are still served verbatim -- every number in them must match
+    its source exactly, with no rounding invented in this layer.
+
+    `asset_availability` is DERIVED from two of them rather than read from a
+    fourth file, so it cannot drift out of agreement with the rows beside it.
+    It is labelled separately for that reason: a reader must be able to tell
+    which numbers are frozen and which are computed here.
     """
+    from . import availability as _availability
+
+    reports = _availability.from_frozen_artefacts()
     return {
         "method_comparison": _read_csv_numeric(paths.METHOD_COMPARISON_CSV),
         "execution_scoring_summary": _read_csv_numeric(paths.EXECUTION_SCORING_SUMMARY_CSV),
         "benchmark_results": _read_csv_numeric(paths.BENCHMARK_RESULTS_CSV),
+        # DERIVED, not a fourth frozen artefact. Computed from the two above,
+        # so it cannot disagree with them; the three CSVs are still served
+        # verbatim. Every row carries jobs_done and the traffic delay, because
+        # availability on its own ranks B2 Fixed-calendar above two baselines
+        # it causes far more disruption than.
+        "asset_availability": {
+            name: report.as_dict() for name, report in reports.items()
+        },
+        "asset_availability_improvement": _availability.improvement(
+            reports["B0 Dept-wise, no reliability"], reports["OURS"]),
     }
 
 

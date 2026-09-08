@@ -155,7 +155,13 @@ def _payload(objective: float, blocks: int) -> dict:
             for n in range(1, blocks + 1)
         ],
         "deferred": [{"job_id": "J00086", "dept": "SNT"}],
-        "summary": {"blocks": blocks}, "stage_timings_s": {"total": 1.0},
+        # A real summary, not a stub. core.evaluate always produces these, and
+        # the derived availability block reads them -- a fixture missing
+        # jobs_done passes the store tests and then fails the moment a plan is
+        # served, which is exactly what happened.
+        "summary": {"blocks": blocks, "jobs_done": blocks, "jobs_deferred": 1,
+                    "traffic_cost": 12.5},
+        "stage_timings_s": {"total": 1.0},
         "instance": {"max_bundle_size": 5, "mc_samples": 1500, "seed": None},
     }
 

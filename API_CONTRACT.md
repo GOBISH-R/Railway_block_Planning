@@ -301,6 +301,37 @@ rejects `theta` outside `(0, 1)`, `horizon_days < 1`, or an unknown
   is `false` — a solve really did run — while `plan_id` stays the same, because
   the id is derived from the request parameters. So a repeat request is not
   guaranteed to report `cache_hit: true`.
+- **`availability`** (added with the asset-availability work): the named metric
+  the problem statement asks for — the share of corridor section-line time not
+  withdrawn for maintenance, over `52 section-lines x horizon x 1440` minutes.
+  Fifty-two section-lines rather than twenty-six station pairs, because
+  blocking `JTJ-TPT-UP` does not block `JTJ-TPT-DN`.
+
+  **It is never served alone, and a client must never display it alone.** The
+  object always carries `jobs_done`, `jobs_deferred` and
+  `traffic_delay_minutes`, and its `headline` string embeds the work figures,
+  because availability on its own is maximised by doing no maintenance at all —
+  a plan that defers every job scores 100%.
+
+  It also cannot distinguish 03:00 from 08:00: block-minutes count the same
+  wherever they fall. On the frozen benchmark, B2 Fixed-calendar ranks third of
+  six on availability while causing 743.4 weighted delay-minutes against OURS'
+  299.2. That is why `traffic_delay_minutes` — core's own queue-simulator
+  figure — sits beside it, and why the delay is reported in its own units
+  rather than dressed up as a second availability ratio: this model has no
+  honest denominator for that.
+
+  ```json
+  "availability": {
+    "availability": 0.97791, "occupied_share": 0.02209,
+    "capacity_minutes": 1048320, "block_minutes": 23160, "block_hours": 386.0,
+    "blocks": 140, "section_lines": 52, "horizon_days": 14,
+    "jobs_done": 174, "jobs_deferred": 1,
+    "traffic_delay_minutes": 299.2,
+    "delay_per_weighted_movement": 0.004078, "weighted_movements": 73376.8,
+    "headline": "97.8% corridor availability while completing 174 of 175 jobs (...)"
+  }
+  ```
 
 ---
 
@@ -582,8 +613,33 @@ INFEASIBLE branch draws Monte Carlo samples.
 
 **Implemented in Phase 3.** A reader, not a runner, per the original design intent -- `_read_csv_numeric()` parses all three frozen CSVs generically with no reshaping.
 
-Serves the three frozen benchmark artefacts as-is. No computation — this
-endpoint is a reader, not a runner.
+Serves the three frozen benchmark artefacts as-is, plus one derived block.
+
+The three CSVs are returned verbatim. `asset_availability` and
+`asset_availability_improvement` are **computed from two of them** rather than
+read from a fourth file, so they cannot drift out of agreement with the rows
+beside them — and they are named separately so a reader can tell which numbers
+are frozen and which are derived here.
+
+`asset_availability` gives each of the six methods its availability, block
+hours, jobs completed and weighted delay. `asset_availability_improvement`
+compares B0 (dept-wise practice) with OURS:
+
+```json
+"asset_availability_improvement": {
+  "availability_before": 0.97447, "availability_after": 0.97782,
+  "availability_gain": 0.00335,
+  "block_hours_before": 446.0, "block_hours_after": 387.5,
+  "section_hours_released": 58.5,
+  "jobs_done_before": 161, "jobs_done_after": 174, "jobs_gained": 13,
+  "traffic_delay_before": 391.4, "traffic_delay_after": 299.2,
+  "headline": "+13 jobs completed while releasing 58.5 section-hours to traffic"
+}
+```
+
+The availability gain is 0.34 percentage points, which is the honest size of
+the effect; the figures worth quoting are the 13 additional jobs and the 58.5
+section-hours, both of which the gain alone conceals.
 
 **Response:**
 

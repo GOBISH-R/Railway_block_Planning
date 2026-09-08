@@ -17,6 +17,11 @@ check, recomputes the internals under the SAME plan id, and the Why request
 then succeeds. Verified end to end, in separate processes, in
 tests/test_plan_persistence.py.
 
+It does not store the derived availability block. That is recomputed from the
+context wherever a plan is handed out (planner._attach_availability), because
+it depends on the corridor's section-lines and train population rather than on
+the plan alone, and a stored copy could go stale against a different snapshot.
+
 It does not round. plans.objective and the three plan_blocks costs hold the raw
 values the solver produced; the rounding the response shows is applied on read,
 using planner.py's own constants rather than a second copy of the rule. Storing

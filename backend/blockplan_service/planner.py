@@ -252,6 +252,26 @@ class PlanningService:
 
     # -- persistence -------------------------------------------------------
 
+    def _attach_availability(self, payload: dict[str, Any]) -> dict[str, Any]:
+        """Add the derived availability block to a plan response.
+
+        DERIVED, NEVER STORED. It needs the context -- the corridor's
+        section-lines and train population -- which shape_plan_response
+        deliberately does not have and which the plans table does not hold. So
+        it is recomputed wherever a plan is handed out, including plans read
+        back from PostgreSQL, rather than persisted and risked going stale
+        against a different snapshot.
+
+        That omission is what broke five persistence tests when availability
+        was first added on the compute path alone: a restored plan came back
+        without the field and no longer equalled the response that was saved.
+        """
+        from .availability import for_plan as _availability_for_plan
+
+        payload["availability"] = _availability_for_plan(
+            payload, self.context).as_dict()
+        return payload
+
     def stored_plan(self, plan_id: str) -> dict[str, Any] | None:
         """A plan from memory, or from the store if this process never made it.
 
@@ -270,6 +290,7 @@ class PlanningService:
         restored = self.store.load_plan(plan_id, snapshot_id=self.snapshot_id)
         if restored is None:
             return None
+        self._attach_availability(restored)
         with self._plan_lock:
             self._plans.setdefault(plan_id, copy.deepcopy(restored))
         return restored
@@ -285,6 +306,19 @@ class PlanningService:
         if self.snapshot_id is None:
             return 0
         restored = self.store.recent_plans(limit, snapshot_id=self.snapshot_id)
+        usable = []
+        for payload in restored:
+            try:
+                usable.append(self._attach_availability(payload))
+            except (KeyError, TypeError, ValueError) as exc:
+                # One unreadable row must not stop the server booting. Skipped
+                # loudly rather than served without a documented field: a plan
+                # whose summary cannot produce availability is malformed, and
+                # pretending otherwise would put a contract-violating payload
+                # in the cache.
+                print(f"[startup] skipping stored plan "
+                      f"{payload.get('plan_id', '?')}: {exc!r}", flush=True)
+        restored = usable
         added = 0
         with self._plan_lock:
             for payload in restored:
@@ -502,6 +536,8 @@ class PlanningService:
                 status=result["status"],
                 rng_state=self.context.fresh_rng_state(request.seed),
             )
+
+        self._attach_availability(payload)
 
         self._store_internals(plan_id, internals)
         with self._plan_lock:
