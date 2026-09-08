@@ -106,5 +106,7 @@ the parameters the held-out realisations were drawn from. Plan_assumed planned
 with the truth. A learned plan that beat it outright would be a reason to look
 for a leak, not a result.
 
-If any of this reaches the Evidence screen it goes in as a **seventh row**,
-labelled, never overwriting the frozen six.
+If any of this is ever presented beside the benchmark it goes in as a
+**seventh row**, labelled, never overwriting the frozen six. (There is no
+longer a comparison screen in the app; the benchmark is presented from the
+written evidence.)

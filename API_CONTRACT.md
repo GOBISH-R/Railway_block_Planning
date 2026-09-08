@@ -700,8 +700,15 @@ definition (memory doc §17, Phase 7's "Definition of done").
 
 The full column lists are wider than shown above (`execution_scoring_summary`
 alone has 25 columns) — the actual response includes every column from the
-three CSVs; the excerpts here only show the columns the Evidence view's first
-draft needs. Extending this later is additive, not a contract break.
+three CSVs; the excerpts here only show the columns the comparison view's
+first draft needed. Extending this later is additive, not a contract break.
+
+**No screen consumes this endpoint any more.** The comparison view was removed
+from the frontend; the benchmark is presented from the written evidence
+instead. The endpoint stays because it is the machine-readable form of the
+frozen artefacts and `tests/test_reference_data.py` pins it against them —
+but nothing breaks if it goes unread, and a client is not required to call
+it.
 
 ---
 

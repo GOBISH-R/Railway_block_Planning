@@ -140,7 +140,7 @@ must use these values:
 **The project memory document's §22.1 B4 row (142 / 259.8 / 79.9 / 35.9%) is
 superseded and must not be quoted.** It was produced by a run whose RNG
 ordering differed from the one that generated the checked-in CSV; the CSV is
-what the Evidence screen serves, so it is what a judge will see. The other
+what `GET /comparison` serves, so it is what any slide must say. The other
 five rows (B0, B1, B2, B3, OURS) are unaffected and agree with §22.1 exactly.
 
 This resolves the reconciliation as a documentation change only: no CSV was
@@ -300,9 +300,18 @@ demo, not just here.
 ## Where things are right now
 
 Phase 0 (contract), Phase 1 (planning service: context, window cache, lock),
-Phase 2 (explanation service + API), Phase 3 (frontend: Plan/Timeline,
-Corridor & Demand, Why panel, Evidence), and Phase 8 (packaging: one process,
-one port, startup warmup) are built. See `API_CONTRACT.md` for the endpoint
+Phase 2 (explanation service + API), Phase 3 (frontend), and Phase 8
+(packaging: one process, one port, startup warmup) are built.
+
+The frontend is now **three views** — Overview, Block Plan (timeline), and
+Corridor & Demand — plus the Why panel. It briefly carried eight, including a
+Comparison view over the frozen benchmark; that was removed on 2026-09-08
+along with separate availability, data-source, ML-architecture and
+configuration tabs. `GET /comparison` still serves the frozen artefacts and
+is still pinned by `tests/test_reference_data.py`, but no screen reads it, so
+**the running product no longer argues the method against its baselines** —
+that argument has to come from the deck. See `DEMO.md` §1, where the 5:10 beat
+now cuts to slides. See `API_CONTRACT.md` for the endpoint
 reference, `backend/README.md` and `frontend/README.md` for how each half is
 structured and run, and `python run.py` at the repo root to start the whole
 packaged system.

@@ -26,8 +26,17 @@ promised something the software does not actually do. Corrections are marked
 | 3:10 | Why panel | Point at the three chains against the dashed envelope. | "The block ends when the last of three independent departments finishes. No single person owns the possession in India. That is why this is a probability, not a deadline." |
 | 3:50 | Plan → **Why** | Click a deferred job. Show INFEASIBLE. Then an OUTBID one. | "Not a black box. This one is infeasible at every permitted block length. That one was outbid — and here is exactly what forcing it in would cost, and what it would displace." |
 | 4:30 | Plan | Switch scenario to **Maintenance Backlog**, Re-plan. Instant. | "Now 340 jobs. It defers 152 and tells you which — that is a capacity answer the division does not currently have." |
-| 5:10 | **Evidence** | Point at the **worst block** column, not the averages. | "Against five baselines on the same instance. And scored against thirty independent executions the planner never saw: the greedy plan's worst block handed back on time zero times in thirty. Ours, twenty-eight." |
-| 6:00 | Plan | Return to the plan. | "Real infrastructure, real timetable, synthetic maintenance demand — clearly labelled, because that data is not public. Reproducible from three published files and one seed." |
+| 5:10 | **Slides** (not the app) | Cut away to the benchmark slide. Point at the **worst block** column, not the averages. | "Against five baselines on the same instance. And scored against thirty independent executions the planner never saw: the greedy plan's worst block handed back on time zero times in thirty. Ours, twenty-eight." |
+| 6:00 | **Overview** | Return to the app, land on Overview. | "Real infrastructure, real timetable, synthetic maintenance demand — clearly labelled, because that data is not public. Reproducible from three published files and one seed." |
+
+**The benchmark is no longer a screen in the app.** The Comparison view was
+removed; the app is now three views (Overview, Block Plan, Corridor & Demand).
+The numbers are unchanged and still served by `GET /comparison` from the frozen
+`method_comparison.csv` — but at 5:10 you are reading them off a slide, not
+off the product. Make sure that slide exists and that its B4 row says
+**272.8**, not 259.8. If you would rather not leave the app at all, cut the
+5:10 beat and give the time back to the Why panel, which is the stronger
+material anyway.
 
 ### Block targets — do not hunt on stage
 
@@ -106,9 +115,24 @@ scarce and visible) lands identically.
 ### Timing measured on this machine
 
 Cold start with warmup: ~70 s–2 min for all eight scenarios (run `python
-run.py` well before you present). Live re-plan at a new θ: **~3 s**. Cached
-scenario switch: **<0.1 s**. OUTBID explanation: **~4 s** (a real re-solve —
-the spinner is honest, let it run).
+run.py` well before you present).
+
+**Live re-plan at a θ the server has not seen: ~12 s.** Measured over HTTP on
+2026-09-08 — θ = 0.93 cold took **11.7 s**. The earlier "~3 s" in this file
+came from the project memory document, which was written on a faster machine;
+`CLAUDE.md` records the same gap (documented 3.91 s, measured 11–13 s here).
+Rehearse to twelve seconds or present from a faster laptop, but measure on the
+actual presentation machine first.
+
+**A θ the server has already computed: ~0.01 s.** Same measurement run: θ =
+0.97 and θ = 0.90 both returned in ten milliseconds from cache. This is worth
+knowing precisely, because it decides how the 1:45 beat feels — if warmup or
+an earlier rehearsal has already solved the θ you drag to, it is instant; if
+not, you are standing in twelve seconds of silence. Decide which you want and
+rehearse that one.
+
+Cached scenario switch: **<0.1 s**. OUTBID explanation: **~4 s** (a real
+re-solve — the spinner is honest, let it run).
 
 ---
 
@@ -245,18 +269,21 @@ from our own table.
 
 ### Verified working (rehearsed in the browser, against the live packaged app)
 
-- [x] All four views render from real backend responses; no mock data anywhere
+- [x] All three views render from real backend responses; no mock data anywhere
 - [x] Corridor: 27 stations JTJ→ED in order, 175 job marks at true km offsets
 - [x] Department filter: ENGG 79 / SNT 49 / TRD 47 = 175, matching the dataset
 - [x] Plan: 140 blocks, 174 done, 1 deferred, matching `benchmark_results.csv`
-- [x] Live re-plan at new θ: ~3 s, plan and all metrics update correctly
+- [x] Live re-plan at an unseen θ: ~12 s (measured 11.7 s), plan and all metrics update correctly; an already-solved θ returns in ~0.01 s
 - [x] Why panel — SCHEDULED block: three chains, envelope, reliability by length, rule citations
 - [x] Why panel — INFEASIBLE job: full lever table at 240/150/120 min
 - [x] Why panel — OUTBID job: price 7.1, would-go-in placement, displaced job
 - [x] Scenario switch to MAINTENANCE_BACKLOG: instant, 159 blocks / 152 deferred
-- [x] Evidence: three frozen tables + scatter, numbers matching the CSVs
 - [x] Console clean throughout; keyboard focus visible; Escape closes the panel
-- [x] 106 backend tests, 28 frontend tests passing
+- [x] Reliability is labelled on every block in the timeline, not only the 240-minute ones
+- [x] Backend and frontend suites green — see `backend/README.md` and
+      `frontend/README.md` for the commands. Run them yourself before you
+      present rather than trusting a count written here; a number in a
+      document goes stale the moment a test is added.
 - [x] Runs from one command on one port with no network calls at runtime
 
 ### Resolved
@@ -264,8 +291,9 @@ from our own table.
 - [x] **B4 row disagreement — settled: the frozen CSV is authoritative.** The
       CSV was not regenerated and no benchmark was re-run. Quote B4 as
       **138 blocks / 175 done / 0 deferred / 272.8 traffic / 69.0 overrun /
-      39.1% cross-dept / 0.99 mean R / 0.74 min R** — these are what the
-      Evidence screen serves and therefore what a judge sees. The project
+      39.1% cross-dept / 0.99 mean R / 0.74 min R** — these are what
+      `GET /comparison` serves from the frozen CSV, and therefore what any
+      slide quoting the benchmark must say. The project
       memory §22.1's B4 row (142 / 259.8 / 79.9 / 35.9%) is **superseded; do
       not quote it.** The other five rows agree with §22.1 exactly. Full
       reasoning in `CLAUDE.md`.
@@ -282,9 +310,10 @@ from our own table.
 - [ ] Disconnect networking, reboot, `python run.py` from cold, run the full
       demo. This has **not** been done — it cannot be done from a dev
       environment and is the one Phase 8 test still outstanding.
-- [ ] Time the live re-plan on that machine. It is ~3 s here; the memory
-      document's figures came from a faster machine, and CP-SAT is the part
-      that varies.
+- [ ] Time the live re-plan on that machine. It is ~12 s here (measured
+      11.7 s over HTTP); the memory document's ~4 s came from a faster
+      machine, and CP-SAT is the part that varies. This is the single most
+      likely thing to surprise you on stage.
 - [ ] Start the server and let warmup finish **before** the session begins.
 
 ### Rehearsal
