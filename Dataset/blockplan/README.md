@@ -21,7 +21,22 @@ and so the interfaces between the three of you are already fixed.
                 degenerate case where all baselines tie.
     dense.py    the instance the evaluation should actually use.
     ablation.py measures where the reliability constraint starts to bite.
-    *.csv       the four input tables.
+
+    pairing_rules.csv   the one CSV that is genuinely read. demo.py and
+                dense.py pass it to core.load_pairing_rules(), which is the
+                only file-reading function in core.py. Byte-identical to
+                dataset/processed/pairing_rules.csv, which is what the backend
+                loads; CLAUDE.md names both as the source of truth for
+                mandatory cross-department pairing.
+
+    jobs.csv, sections.csv, trains.csv
+                EXPORTS, not inputs. Nothing reads them -- not core.py, not
+                demo.py, dense.py or ablation.py, and not the backend, which
+                reads dataset/processed/ instead. These three were written out
+                FROM the hard-coded Python instances in demo.py and dense.py,
+                so they document what those scripts build rather than feeding
+                them. Editing one changes nothing; if you want a different
+                instance, edit the script.
 
 ## Provenance tags in the code
 
