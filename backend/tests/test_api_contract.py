@@ -1,8 +1,14 @@
 """API contract compatibility.
 
-Phase 2 builds the HTTP layer, but the service already produces the POST /plan
-response body. These tests pin that shape to API_CONTRACT.md so the contract
-cannot drift silently before the frontend is written against it.
+The service produces the POST /plan response body and the HTTP layer serves
+it. These tests pin that shape, and the set of endpoints, so neither drifts
+silently under the frontend that is written against them.
+
+The contract was originally written down in API_CONTRACT.md and these tests
+read it. That document has been removed, so the endpoint guard now asserts
+against the route table FastAPI actually registers. That is the stronger
+check: a markdown file can drift out of agreement with the code and still
+pass its own grep, a route table cannot.
 """
 from __future__ import annotations
 
@@ -13,10 +19,9 @@ import pytest
 
 from blockplan_service import PlanRequest, paths
 
-CONTRACT_MD = os.path.join(paths.REPO_ROOT, "API_CONTRACT.md")
 FIXTURE_JSON = os.path.join(paths.REPO_ROOT, "plan.json")
 
-# Exactly the fields API_CONTRACT.md documents for the POST /plan response.
+# Exactly the fields the POST /plan response carries.
 PLAN_FIELDS = {
     "plan_id", "scenario", "horizon_days", "theta", "status", "objective",
     "blocks", "deferred", "summary", "stage_timings_s",
@@ -111,12 +116,44 @@ def test_matches_the_phase_0_fixture_shape(plan):
     assert set(fixture["summary"]) == SUMMARY_FIELDS
 
 
-def test_contract_document_still_describes_these_endpoints():
-    """Guard against the contract being edited out from under the service."""
-    with open(CONTRACT_MD, encoding="utf-8") as f:
-        text = f.read()
-    for endpoint in ("GET /corridor", "GET /scenarios", "GET /demand", "GET /traffic",
-                     "POST /plan", "GET /plan/{plan_id}",
-                     "GET /plan/{plan_id}/block/{block_id}",
-                     "POST /plan/{plan_id}/explain/{job_id}", "GET /comparison"):
-        assert endpoint in text, f"{endpoint} missing from API_CONTRACT.md"
+EXPECTED_ENDPOINTS = {
+    ("GET", "/corridor"),
+    ("GET", "/scenarios"),
+    ("GET", "/demand"),
+    ("GET", "/traffic"),
+    ("GET", "/comparison"),
+    ("GET", "/health"),
+    ("POST", "/plan"),
+    ("GET", "/plan/{plan_id}"),
+    ("GET", "/plan/{plan_id}/block/{block_id}"),
+    ("POST", "/plan/{plan_id}/explain/{job_id}"),
+}
+
+
+def test_the_served_endpoints_are_exactly_the_expected_set():
+    """Guard against an endpoint being added, renamed or dropped unnoticed.
+
+    Equality, not containment, and deliberately so. Containment would let a new
+    endpoint appear with no test and no note; a frontend written against this
+    surface should not discover routes by accident.
+    """
+    from blockplan_api.app import app
+
+    served = set()
+    for route in app.routes:
+        methods = getattr(route, "methods", None)
+        path = getattr(route, "path", "")
+        if not methods or path in ("/openapi.json", "/docs", "/redoc",
+                                   "/docs/oauth2-redirect"):
+            continue
+        for method in methods - {"HEAD", "OPTIONS"}:
+            served.add((method, path))
+
+    # The static mount that serves the built frontend is not part of the API
+    # surface and carries no methods of its own.
+    served = {(m, p) for m, p in served if p != "/"}
+
+    assert served == EXPECTED_ENDPOINTS, (
+        f"unexpected: {sorted(served - EXPECTED_ENDPOINTS)}; "
+        f"missing: {sorted(EXPECTED_ENDPOINTS - served)}"
+    )

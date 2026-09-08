@@ -36,7 +36,8 @@ Startup loads the frozen dataset once. The first plan per scenario pays window
 generation (~20 s); after that the cache serves it.
 
 **For the packaged app (API + built frontend, one port, no network), use
-`python run.py` at the repo root instead** -- see the root `CLAUDE.md`'s
+`python run.py` at the repo root instead** -- see the packaging notes in this
+file's Packaging section and the root `run.py`'s
 packaging section. `BLOCKPLAN_WARM_ON_STARTUP=1` (which `run.py` sets)
 precomputes all eight scenarios before the server starts accepting requests;
 plain `uvicorn` above does not set it, so scenario switching pays its full
@@ -239,7 +240,7 @@ signature pattern; `planner.py` already passes `theta=` explicitly for that
 reason.
 
 **Block count and cross-department share are not determined by the model.**
-See CLAUDE.md. The optimal face of this instance contains solutions from 118 to
+The optimal face of this instance contains solutions from 118 to
 153 blocks at the identical optimal objective. Traffic cost, objective and
 reliability are invariant across that face; block count and cross-department
 share are chosen by solver tie-breaking. The tests assert the former exactly

@@ -1,14 +1,16 @@
 # BlockPlan frontend
 
-React 19 + TypeScript + Vite. Built against `API_CONTRACT.md`, not against the
-backend's source — the two are only coupled through that document and the
-Pydantic/TypeScript types on either side of it.
+React 19 + TypeScript + Vite. Built against the API's wire format, not against
+the backend's source. The two halves are coupled only through that format,
+which is pinned from both sides: `blockplan_api/schemas.py` and
+`backend/tests/test_api_contract.py` on the Python side (the latter asserts the
+served route set is exactly the expected one), and `src/api/types.ts` here.
 
 ## What is here
 
 ```
 src/
-  api/          typed client + types mirroring API_CONTRACT.md field-for-field
+  api/          typed client + response types, field-for-field with the API
   state/        usePlanningState (plan + scenario + theta) and useTheme
   styles/       design tokens (colour, type, spacing) + global reset
   components/
@@ -92,7 +94,7 @@ per day would imply data that is not there.
 
 **Block count and cross-department share are not asserted precisely
 anywhere in this UI's own logic.** Per the backend's own finding (see
-`CLAUDE.md`), those two figures are chosen by solver tie-breaking on this
+`backend/README.md`), those two figures are chosen by solver tie-breaking on this
 instance, not determined by the model. The frontend displays whatever the
 backend returns without editorialising on it, but doesn't build any feature
 that assumes those two numbers are stable across replans with identical

@@ -23,7 +23,10 @@ here is imported unless a feed is asked for.
 `contract.py` defines **the contract this system accepts**, not a reproduction
 of any real interface. We do not have the TMS, SMMS or TDMS specifications, and
 inventing field names then labelling them "the TMS schema" would be the same
-fabrication CLAUDE.md rule 5 forbids for the synthetic maintenance data.
+fabrication this project forbids for the synthetic maintenance data: never
+describe generated jobs, block requests or execution outcomes as real Indian
+Railways operational data, and never describe these ingestion schemas as
+official Indian Railways schemas. They are project-owned contracts.
 
 Every field is traced to the `core.Job` attribute it feeds. Connecting a real
 system means writing a mapping onto this contract — and `REQUIRED_TO_PLAN` says

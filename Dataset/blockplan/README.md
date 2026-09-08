@@ -26,8 +26,9 @@ and so the interfaces between the three of you are already fixed.
                 dense.py pass it to core.load_pairing_rules(), which is the
                 only file-reading function in core.py. Byte-identical to
                 dataset/processed/pairing_rules.csv, which is what the backend
-                loads; CLAUDE.md names both as the source of truth for
-                mandatory cross-department pairing.
+                loads. Both are the source of truth for mandatory
+                cross-department pairing and must not diverge;
+                tests/test_frozen_artifacts.py pins each against git.
 
     jobs.csv, sections.csv, trains.csv
                 EXPORTS, not inputs. Nothing reads them -- not core.py, not

@@ -5,14 +5,8 @@ the wire format a React client will consume is what gets asserted.
 """
 from __future__ import annotations
 
-import os
-
 import pytest
 from fastapi.testclient import TestClient
-
-from blockplan_service import paths
-
-CONTRACT_MD = os.path.join(paths.REPO_ROOT, "API_CONTRACT.md")
 
 
 @pytest.fixture(scope="module")
@@ -135,10 +129,3 @@ def test_openapi_documents_the_explanation_endpoints(client):
     assert "/plan/{plan_id}/block/{block_id}" in spec["paths"]
     assert "/plan/{plan_id}/explain/{job_id}" in spec["paths"]
 
-
-def test_contract_document_matches_the_implemented_endpoints():
-    """Endpoints implemented here must be the ones the contract describes."""
-    with open(CONTRACT_MD, encoding="utf-8") as f:
-        text = f.read()
-    assert "GET /plan/{plan_id}/block/{block_id}" in text
-    assert "POST /plan/{plan_id}/explain/{job_id}" in text
