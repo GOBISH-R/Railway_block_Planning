@@ -5,7 +5,7 @@ snapshot's planning inputs to a directory and hands back a `DatasetTree`. It
 does not stream rows into domain objects.
 
 That is a deliberate choice, not a shortcut. The blockplan_adapter loaders take
-file paths and open() them, and CLAUDE.md requires reusing them verbatim rather
+file paths and open() them, and they must be reused verbatim rather
 than reimplementing the parsing they do -- `load_trains`, for one, derives each
 Train id from the row's position in the file, and a reimplementation that
 missed that would silently change the plan. Materialising keeps those loaders

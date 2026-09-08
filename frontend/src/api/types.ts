@@ -1,5 +1,5 @@
 /**
- * Types mirroring API_CONTRACT.md field-for-field. No client-side
+ * Types mirroring the backend's wire format field-for-field. No client-side
  * reshaping happens between these types and the JSON the backend returns --
  * if a field is renamed here, it has drifted from the contract, which is
  * exactly the class of bug the contract exists to prevent.
@@ -404,7 +404,7 @@ export interface ComparisonResponse {
 }
 
 /**
- * GET /health. Not in API_CONTRACT.md (it is `include_in_schema=False`), so
+ * GET /health. Absent from the OpenAPI schema (`include_in_schema=False`), so
  * this type is written against the endpoint itself and is the one place in
  * this file not backed by the contract document.
  *

@@ -1,7 +1,7 @@
 """Read-only reference data: corridor geography, scenarios, demand, traffic,
 and the frozen comparison artefacts.
 
-Added in Phase 3, alongside the frontend that needs them. API_CONTRACT.md
+Added in Phase 3, alongside the frontend that needs them. The contract
 scoped all five of these in Phase 0; Phase 2 deliberately left them out of its
 brief ("explainability"), noting they would be built "for the phase that needs
 them" -- this is that phase.

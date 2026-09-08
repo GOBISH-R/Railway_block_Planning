@@ -44,7 +44,8 @@ METHOD_COMPARISON_CSV = os.path.join(SCENARIOS_DIR, "method_comparison.csv")
 BENCHMARK_RESULTS_CSV = os.path.join(SCENARIOS_DIR, "benchmark_results.csv")
 EXECUTION_SCORING_SUMMARY_CSV = os.path.join(SCENARIOS_DIR, "execution_scoring_summary.csv")
 
-# core.py's frozen identity. CLAUDE.md and the project memory both cite these;
+# core.py's frozen identity. Every published benchmark number came from this
+# exact file;
 # the tests assert against them so an accidental edit fails loudly.
 CORE_PY_BYTES = 44044
 CORE_PY_SHA256 = "20a240cc4979a8231b5405cbfecb84a57a957e2bcbff19166c48c88ef2d5d054"
@@ -63,9 +64,9 @@ class DatasetTree:
     """The six planning inputs, relative to one root directory.
 
     A directory rather than a row stream, and that is not laziness. The
-    blockplan_adapter loaders take file paths and open() them, and CLAUDE.md
-    requires reusing those loaders verbatim rather than reimplementing the
-    parsing they do. So the seam between "where the data lives" and "how it is
+    blockplan_adapter loaders take file paths and open() them, and those
+    loaders must be reused verbatim rather than reimplementing the parsing
+    they do. So the seam between "where the data lives" and "how it is
     read" has to sit at a directory layout: give the loaders a tree and they
     cannot tell where it came from.
 

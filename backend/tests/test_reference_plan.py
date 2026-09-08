@@ -125,7 +125,7 @@ def test_plan_still_matches_the_frozen_benchmark_row(reference):
 
     Expected values are read from the frozen CSV rather than restated here, so
     the two can never drift apart in this file. The CSV holds full-precision
-    values while the response rounds per API_CONTRACT.md, hence the rounding on
+    values while the response rounds to the documented precision, hence the rounding on
     the CSV side rather than a loosened comparison.
     """
     plan, _ = reference

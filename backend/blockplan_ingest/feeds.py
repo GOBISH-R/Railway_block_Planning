@@ -7,7 +7,7 @@ downstream consumes `MaintenanceDemand` objects rather than the wire format.
 
 WHY THIS PRODUCES CSV ROWS RATHER THAN core.Job OBJECTS.
 
-CLAUDE.md rule 4 requires reusing the blockplan_adapter loaders verbatim, and
+The blockplan_adapter loaders must be reused verbatim, and
 those loaders take file paths. One of them, load_trains, derives each train's id
 from its ROW POSITION in the file -- so a reimplementation that built domain
 objects directly would have to reproduce that, and any drift would change the

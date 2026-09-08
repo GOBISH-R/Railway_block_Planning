@@ -46,7 +46,7 @@ def test_block_explanation_endpoint(client, plan):
     assert response.status_code == 200, response.text
     body = response.json()
 
-    # Fields API_CONTRACT.md documented for this endpoint before Phase 2 must
+    # Fields this endpoint carried before Phase 2 must
     # all still be present -- Phase 2 extends, it does not reshape.
     for field in ("plan_id", "block_id", "section_id", "day", "start_min",
                   "length", "reliability", "jobs", "departmental_chains",

@@ -28,7 +28,7 @@ def _sha256(path: str) -> str:
 
 
 def test_core_py_is_byte_identical():
-    """core.py's frozen identity, as cited in CLAUDE.md and the project memory."""
+    """core.py's frozen identity. Every published number came from this file."""
     assert os.path.getsize(paths.CORE_PY) == paths.CORE_PY_BYTES
     assert _sha256(paths.CORE_PY) == paths.CORE_PY_SHA256
 
@@ -80,7 +80,7 @@ def test_benchmark_csv_still_holds_the_authoritative_b4_row():
     project memory's §22.1 B4 figures (142 / 259.8 / 79.9 / 35.9%) are
     superseded. Re-running the corrected adapter yields different B4 numbers
     (259.8 / 79.9) -- that divergence is known and accepted, not a reason to
-    overwrite this file. See CLAUDE.md.
+    overwrite this file.
     """
     with open(paths.METHOD_COMPARISON_CSV, encoding="utf-8") as f:
         text = f.read()

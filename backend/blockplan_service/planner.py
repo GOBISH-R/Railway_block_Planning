@@ -354,7 +354,7 @@ class PlanningService:
     def plan(self, request: PlanRequest, use_cache: bool = True) -> dict[str, Any]:
         """Produce a plan. Serialised by the planning lock.
 
-        Returns a dict shaped to API_CONTRACT.md's POST /plan response.
+        Returns a dict shaped to the POST /plan response.
         """
         if not self.context.has_scenario(request.scenario):
             raise UnknownScenarioError(request.scenario)
@@ -566,7 +566,7 @@ class PlanningService:
 
 # -- DTO shaping -----------------------------------------------------------
 
-# How many decimal places the response shows, per API_CONTRACT.md. Named rather
+# How many decimal places the response shows. Named rather
 # than inlined because a plan restored from the database is rebuilt from the
 # UNROUNDED values the solver produced, and applies these same rules on the way
 # out (blockplan_db/plan_store.py). Two hand-written copies of "round to 1" is
@@ -611,7 +611,7 @@ def shape_plan_response(*, plan_id: str, request: PlanRequest, jobs, bundles,
                         columns, window_set, result: Mapping[str, Any],
                         summary: Mapping[str, Any],
                         timings: Mapping[str, float]) -> dict[str, Any]:
-    """Shape core's output into API_CONTRACT.md's POST /plan response.
+    """Shape core's output into the POST /plan response.
 
     Field names here are the contract's. core.evaluate()'s dict is passed
     through as `summary` without renaming, so there is no translation layer to

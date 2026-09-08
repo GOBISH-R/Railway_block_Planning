@@ -244,7 +244,7 @@ def from_frozen_artefacts(method: str | None = None
     90 minutes, availability differing in the fifth decimal. Same plan id, same
     objective, same traffic cost, same block fingerprint.
 
-    That is the solver tie-breaking CLAUDE.md already documents: block count and
+    That is solver tie-breaking, documented in test_reference_plan.py: block count and
     utilisation are not determined by the model, and block LENGTH distribution
     is the same kind of quantity. It is recorded here so nobody has to explain
     on demo day why the Evidence table's OURS availability is not bit-identical

@@ -13,7 +13,7 @@ WHAT THIS FILE IS NOT.
 It is NOT a reproduction of any real system's schema. We do not have the TMS,
 SMMS or TDMS interface specifications, and inventing field names and then
 labelling them "the TMS schema" would be a fabrication of exactly the kind
-CLAUDE.md rule 5 forbids -- the same rule that stops this project describing
+is forbidden -- the same rule that stops this project describing
 its synthetic maintenance jobs as real Indian Railways operational data.
 
 What it IS: the contract THIS system accepts, defined by what the planner

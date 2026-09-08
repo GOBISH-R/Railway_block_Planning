@@ -272,7 +272,7 @@ def test_the_live_plan_and_the_frozen_artefact_disagree_by_one_block(service):
     150 minutes and 25 of 240, the live plan 116 and 24. Ninety minutes,
     availability differing in the fifth decimal.
 
-    This is the solver tie-breaking CLAUDE.md documents for block count and
+    This is the solver tie-breaking documented for block count and
     utilisation; length distribution is the same kind of quantity. If this test
     ever fails, the two have converged or diverged further, and either is worth
     knowing before a judge finds it.

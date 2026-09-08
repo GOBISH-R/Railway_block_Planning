@@ -232,7 +232,7 @@ def test_plan_matches_the_frozen_benchmark_row(service: PlanningService):
     )
 
 
-# -- error semantics (frozen in API_CONTRACT.md) ---------------------------
+# -- error semantics (frozen; pinned here) ---------------------------------
 
 def test_unknown_scenario_raises_a_404_shaped_error(service: PlanningService):
     with pytest.raises(UnknownScenarioError):

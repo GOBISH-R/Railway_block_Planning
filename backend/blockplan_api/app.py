@@ -1,4 +1,7 @@
-"""FastAPI application — the nine-endpoint surface in API_CONTRACT.md.
+"""FastAPI application — the ten-endpoint surface.
+
+The endpoint set is pinned by tests/test_api_contract.py, which asserts the
+registered routes are EXACTLY the expected ten.
 
     GET  /corridor                               static corridor geography
     GET  /scenarios                               the eight scenarios

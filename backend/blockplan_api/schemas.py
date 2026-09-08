@@ -1,6 +1,6 @@
 """Pydantic v2 request/response models for the explanation endpoints.
 
-These pin the wire format described in API_CONTRACT.md. Where Phase 2 adds
+These pin the wire format the frontend consumes. Where Phase 2 adds
 fields the contract did not previously specify, the contract document was
 extended alongside -- the additions are a superset, so nothing already
 documented changed shape.

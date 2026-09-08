@@ -7,7 +7,7 @@
 The third `DataSource`, after the frozen CSVs and PostgreSQL. It materialises a
 dataset tree and hands it back, exactly as blockplan_db/repository.py does, so
 the frozen blockplan_adapter loaders remain the only code that ever parses a
-job (CLAUDE.md rule 4). That pattern was measured in Phase 3 of the database
+job, reusing the frozen loaders. That pattern was measured in Phase 3 of the database
 track as reproducing the reference plan byte for byte; reusing it means this
 path is verifiable the same way, and blockplan_ingest/verify.py does exactly
 that.
