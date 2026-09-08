@@ -38,8 +38,41 @@ from typing import Any, Mapping
 
 from . import paths
 from .context import PlanningContext
+from .durations import CATALOGUE
 from .persistence import NullPlanStore, PlanStore, RawPlanValues, snapshot_id_for
 from .windows import DEFAULT_KEEP_PER_DAY, WindowCache
+
+
+def resolve_weighting():
+    """The criticality weighting, disabled unless asked for.
+
+    Local import for symmetry with resolve_durations, though this one has no
+    heavy dependency -- asset_impact needs only PyYAML, which the adapter
+    already requires.
+    """
+    from .asset_impact import resolve
+
+    return resolve()
+
+
+def resolve_durations():
+    """The duration source, catalogue unless asked otherwise.
+
+    Imported lazily so that blockplan_ml -- and therefore LightGBM and
+    scikit-learn -- is never imported on the default path. The packaged app must
+    keep starting on a machine with neither installed. (pandas is not part of
+    that promise: OR-Tools imports it regardless.)
+    """
+    import os
+
+    if os.environ.get("BLOCKPLAN_DURATION_SOURCE", "catalogue").strip().lower()             in ("", "catalogue"):
+        from .durations import CatalogueDurations
+
+        return CatalogueDurations()
+
+    from blockplan_ml.duration_source import resolve
+
+    return resolve()
 
 paths.ensure_import_paths()
 
@@ -147,7 +180,9 @@ class PlanningService:
     def __init__(self, context: PlanningContext | None = None,
                  window_cache: WindowCache | None = None,
                  max_internals: int = 4,
-                 store: PlanStore | None = None) -> None:
+                 store: PlanStore | None = None,
+                 durations: Any = None,
+                 weighting: Any = None) -> None:
         self.context = context if context is not None else PlanningContext.load()
         self.windows = window_cache if window_cache is not None else WindowCache()
         # NullPlanStore by default, so every call site below is unconditional.
@@ -159,11 +194,49 @@ class PlanningService:
         self.snapshot_id: int | None = (
             snapshot_id_for(self.context) if self.store.enabled
             else self.context.snapshot_id)
+        # Catalogue unless the environment says otherwise. Resolved once, so
+        # a learned model is fitted at startup rather than inside a solve.
+        self.durations = durations if durations is not None else resolve_durations()
+        # Criticality weighting. Disabled unless both the environment and the
+        # weight file say otherwise; see asset_impact.py.
+        self.weighting = (weighting if weighting is not None
+                          else resolve_weighting())
         self._plans: dict[str, dict[str, Any]] = {}
         self._internals: dict[str, PlanInternals] = {}
         self._internals_order: list[str] = []
         self._max_internals = max_internals
         self._plan_lock = threading.Lock()
+
+    def plan_id_for(self, request: PlanRequest) -> str:
+        """The plan id, which is the request hash unless an input was replaced.
+
+        A plan is determined by the request AND by where its duration estimates
+        came from. With learned durations the same request produced objective
+        428.4 and 137 blocks where the catalogue produced 337.4 and 140 -- two
+        materially different plans that, until this existed, were handed out
+        under the same id. They would then have collided in the plan cache and,
+        with persistence on, in the plans table.
+
+        The same applies to the asset-impact weighting: it changes what
+        deferring a job costs, so it changes the plan, so it must change the id.
+
+        The all-defaults path is left EXACTLY as it was rather than folding the
+        variant names into every hash, because 2db53586d84f is pinned by
+        tests/test_reference_plan.py and quoted in the docs. Same reasoning as
+        the snapshot key: identity gains components, the published id does not
+        change. The branch is on the DEFAULTS, so the frozen path cannot be
+        affected by anything the optional tracks do later.
+        """
+        plan_id = request.cache_key()
+        variant = []
+        if self.durations.name != CATALOGUE:
+            variant.append(self.durations.name)
+        if getattr(self.weighting, "enabled", False):
+            variant.append("asset-impact")
+        if not variant:
+            return plan_id
+        return hashlib.sha256(
+            (plan_id + ":" + ":".join(variant)).encode("utf-8")).hexdigest()[:12]
 
     # -- plan cache --------------------------------------------------------
 
@@ -262,7 +335,7 @@ class PlanningService:
                 f"max_bundle_size must be >= 1, got {request.max_bundle_size}"
             )
 
-        plan_id = request.cache_key()
+        plan_id = self.plan_id_for(request)
         if use_cache:
             hit = self.cached_plan(plan_id)
             # A cached response is only usable while the artefacts that explain
@@ -344,6 +417,31 @@ class PlanningService:
                     self.context.jobs_for(request.scenario)
                 )
                 timings["expand_pairings"] = time.perf_counter() - started
+
+                # Duration parameters, from the catalogue by default.
+                #
+                # AFTER expansion, not before: 63 of the 238 jobs are
+                # rule-generated companions that do not exist until the line
+                # above runs, and they sit in the same departmental hand-back
+                # chains as their parents. Applying earlier would leave a
+                # quarter of the instance on catalogue figures while the rest
+                # moved, which is neither of the two things being compared.
+                #
+                # Still before build_columns(), which is the only step that
+                # reads dur_mean/dur_sd. CatalogueDurations does nothing here,
+                # so the frozen path is untouched -- see the note on
+                # DEFAULT_DURATION_SOURCE.
+                started = time.perf_counter()
+                self.durations.apply(jobs)
+                timings["durations"] = time.perf_counter() - started
+
+                # Criticality weighting, at the same point and for the same
+                # reason: core.deferral_penalty reads job.criticality and
+                # nothing else does. Disabled() returns the jobs untouched, so
+                # the frozen path is unaffected.
+                started = time.perf_counter()
+                self.weighting.apply(jobs)
+                timings["asset_impact"] = time.perf_counter() - started
 
                 started = time.perf_counter()
                 bundles = core.enumerate_bundles(

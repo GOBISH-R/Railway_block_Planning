@@ -84,6 +84,47 @@ python -m blockplan_db.loader           # frozen CSVs -> snapshot 1
 python -m blockplan_db.verify           # prove it rebuilds the reference plan
 ```
 
+## Asset-impact weighting (optional, OFF)
+
+Scales a job's `criticality` by which asset it is on and how exposed the section
+is. `criticality` reaches the optimiser through exactly one expression —
+`core.deferral_penalty` at `core.py:677` — so multiplying the field scales the
+cost of deferring that job and nothing else. **`core.py` is not modified.**
+
+```
+BLOCKPLAN_ASSET_IMPACT=0                 declared criticality      (DEFAULT)
+BLOCKPLAN_ASSET_IMPACT=1                 apply the weighting
+BLOCKPLAN_ASSET_IMPACT_CONFIG=<path>     sweep a different weight file
+```
+
+**The weights are class E — ASSUMED.** Not measured, not from Indian Railways,
+not fitted. They live in `blockplan_service/asset_impact.yaml` so the judgement
+is visible and sweepable, and anything computed with them inherits that grade.
+The Why panel receives `declared_criticality`, `asset_impact_factor` and
+`criticality_provenance` alongside the scaled value, so a weighted number cannot
+be read as source data. With the feature off, none of those fields appears.
+
+Enabling takes **two** deliberate acts: the environment variable *and*
+`enabled: true` in the weight file. The shipped file is disabled, and a test
+asserts it stays that way.
+
+Three things worth knowing before quoting any of it:
+
+- **Companions are unaffected.** `core.py:249` gives every rule-generated
+  companion `criticality = 0.0`, so any factor multiplies to zero — 63 of the
+  238 jobs.
+- **The single-line term is inert on this corridor.** `is_single` is 0 for all
+  52 sections of the Jolarpettai–Erode double line. It is declared because the
+  rule is real, not because it fires here.
+- **The exposure terms ship at weight 0**, so turning the feature on changes
+  only the asset term until someone raises them deliberately.
+
+Measured on the benchmark instance with the asset term alone: 140 blocks → 137,
+**objective unchanged at 337.4** and traffic unchanged at 299.2, because the one
+deferred job (J00086, DEEP_SCREENING) is on `TRACK_KM` with a factor of exactly
+1.000. The block-count difference is solver tie-breaking on the degenerate
+optimal face, not an effect of the weighting.
+
 ## Where plans go
 
 A plan is the one thing this system produces that the frozen CSVs cannot hold.

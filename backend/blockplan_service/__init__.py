@@ -14,6 +14,7 @@ Layers, per the project architecture:
 Nothing in this package reimplements optimisation logic. It orchestrates the
 frozen core and reuses the existing blockplan_adapter loaders.
 """
+from . import asset_impact
 from .context import PlanningContext
 from .datasource import (
     CsvDataSource,
@@ -50,6 +51,7 @@ from .windows import WindowCache, WindowCacheKey, WindowSet
 
 __all__ = [
     "PlanningContext",
+    "asset_impact",
     "CsvDataSource",
     "DataSource",
     "DataSourceError",

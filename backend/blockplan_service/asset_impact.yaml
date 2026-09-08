@@ -1,0 +1,79 @@
+# Asset-impact weighting -- CLASS E: ASSUMED.
+#
+# READ THIS BEFORE QUOTING ANY NUMBER BELOW.
+#
+# None of these weights is measured. They are not from Indian Railways, not
+# from the dataset, and not fitted to anything. They are a declared editorial
+# judgement about which assets and which sections hurt more when work on them
+# slips, written down here so the judgement is visible, criticisable and
+# sweepable rather than buried in code.
+#
+# Class E is the dataset's own provenance grade for "assumed" (see
+# dataset/metadata/DATA_PROVENANCE.csv). Anything computed with these weights
+# inherits that grade and must be labelled with it.
+#
+# DISABLED BY DEFAULT. With `enabled: false` the factor is exactly 1.0 for
+# every job and the planner reproduces plan 2db53586d84f unchanged.
+#
+# How it is used: core.deferral_penalty (core.py:677) is
+#     criticality * 100 / (1 + slack)
+# so scaling criticality scales exactly what it costs to defer a job, and
+# nothing else. core.py is not modified.
+
+enabled: false
+
+# ---------------------------------------------------------------------------
+# Asset class -- from activities.csv `asset`
+#
+# TRACK_KM is the reference at 1.0. The ordering above it says a turnout or a
+# signalling point is a concentrated, single-point-of-failure asset where a
+# defect closes a route, while plain track and OHE degrade more gracefully.
+# That is an opinion. It is the whole content of this block.
+# ---------------------------------------------------------------------------
+asset:
+  TRACK_KM: 1.00
+  OHE_KM: 1.10
+  SIGNAL_POINT: 1.20
+  TURNOUT: 1.25
+
+# Any asset class not listed above. Present so a new activity cannot silently
+# receive a weight nobody chose.
+default_asset_weight: 1.00
+
+# ---------------------------------------------------------------------------
+# Section exposure -- from sections.csv
+#
+# factor = asset * (1 + w_support * (support_trains / ref - 1))
+#                * (1 + w_headway * (ref_headway / headway_min - 1))
+#                * (single_line if is_single else 1)
+#
+# A section carrying more trains, or running them closer together, propagates a
+# late hand-back to more services. Both terms are 0-weighted to start with, so
+# turning `enabled` on changes only the asset term until someone deliberately
+# raises them. Sweep them; do not treat the defaults as findings.
+# ---------------------------------------------------------------------------
+support_trains:
+  reference: 108        # the corridor's busiest sections (44 of 52)
+  weight: 0.00          # 0 disables the term
+
+headway_min:
+  reference: 8          # the loosest headway on the corridor
+  weight: 0.00          # 0 disables the term
+
+# INERT ON THIS CORRIDOR AND KEPT DELIBERATELY.
+#
+# `is_single` is 0 for all 52 sections of the Jolarpettai-Erode double line, so
+# this multiplier can never fire on the frozen dataset. It is retained because
+# the rule is real -- a single line has no alternative route -- and a corridor
+# with single-line sections would need it. It is declared here rather than
+# implemented silently so nobody reports it as an active factor.
+single_line: 1.30
+
+# ---------------------------------------------------------------------------
+# Bounds. A weighting that can multiply urgency by five is not a weighting, it
+# is a re-ranking, and it would let this assumed block overwhelm the measured
+# criticality it is supposed to modulate.
+# ---------------------------------------------------------------------------
+clamp:
+  min: 0.50
+  max: 2.00

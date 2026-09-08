@@ -68,10 +68,33 @@ service-layer `threading.Lock`, not a rewrite of `core.py`.
    station data, and the real train timetable are genuinely real public data
    (DataMeet / Indian Railways, CC0) — that distinction must never be blurred
    in either direction.
-6. No ML, no LLM, no chatbot, no database, no Redis/Celery/RQ, no
-   WebSockets/SSE, no microservices — none of these have a concrete
-   requirement behind them for this project. Do not add any of them without
-   first stating the requirement that needs it.
+6. No LLM, no chatbot, no Redis/Celery/RQ, no WebSockets/SSE, no
+   microservices — none of these have a concrete requirement behind them for
+   this project. Do not add any of them without first stating the requirement
+   that needs it.
+
+   **Two exceptions now have stated requirements and are built.** Both are
+   default-OFF and both are gated on the frozen plan reproducing exactly:
+
+   - **PostgreSQL** (`backend/blockplan_db/`) — plans and approvals died with
+     the process, which is the one thing the frozen CSVs cannot hold. The
+     dataset still lives in the CSVs and they are still the default.
+   - **A learned duration model** (`backend/blockplan_ml/`) — LightGBM
+     quantile regression estimating `dur_mean` / `dur_sd`, so a duration
+     estimate can come from execution history instead of the catalogue.
+     `core.py` is untouched; only the two parameter values change origin.
+     Read `backend/blockplan_ml/README.md` before quoting anything from it —
+     the honest result is that the model does NOT beat a per-activity lookup
+     on the split that matters, and the reasons are structural.
+
+   - **An asset-impact weighting** (`backend/blockplan_service/asset_impact.py`)
+     — scales `job.criticality`, which `core.deferral_penalty` (core.py:677) is
+     the only consumer of. The weights are **class E, ASSUMED**, declared in
+     `asset_impact.yaml`, and enabling needs both the env var and
+     `enabled: true` in the file.
+
+   None may become a startup dependency. `python run.py` must keep working on a
+   machine with no PostgreSQL, no LightGBM and no scikit-learn.
 7. Follow the phased roadmap (Phase 0 → 9) already agreed for this project.
    Do not substitute a generic software development plan.
 

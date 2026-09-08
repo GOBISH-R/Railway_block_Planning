@@ -58,6 +58,26 @@ PROV_SYNTHETIC = "D_SYNTHETIC"
 PROV_ASSUMPTION = "E_ASSUMPTION"
 
 
+def _criticality_provenance(job) -> dict:
+    """Disclose an adjusted criticality AS adjusted, or say nothing at all.
+
+    asset_impact.apply() records the declared value and the factor on the job
+    when it scales one. If it never ran, these attributes do not exist and this
+    returns {} -- so a default plan's response is byte-identical to what it was
+    before the weighting existed.
+    """
+    factor = getattr(job, "asset_impact_factor", None)
+    if factor is None:
+        return {}
+    from .asset_impact import PROVENANCE
+
+    return {
+        "declared_criticality": getattr(job, "declared_criticality", None),
+        "asset_impact_factor": round(float(factor), 4),
+        "criticality_provenance": PROVENANCE,
+    }
+
+
 class ExplanationUnavailableError(RuntimeError):
     """The plan exists but its pipeline artefacts have been evicted (-> 409).
 
@@ -168,7 +188,13 @@ class ExplanationService:
             "duration_mean_min": job.dur_mean,
             "duration_sd_min": job.dur_sd,
             "due_day": job.due_day,
+            # The value the optimiser actually used. When the asset-impact
+            # weighting is on this is a SCALED figure, so the two fields below
+            # appear alongside it and say so -- a weighted number must not be
+            # readable as source data. Absent entirely when nothing was
+            # applied, so the default response is unchanged.
             "criticality": job.criticality,
+            **_criticality_provenance(job),
             "protection_required": protections,
             "resources": list(job.resources),
             "is_companion": job.is_companion,
