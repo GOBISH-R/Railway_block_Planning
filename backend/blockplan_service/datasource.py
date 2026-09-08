@@ -6,6 +6,7 @@ cannot tell which source produced it. That is the whole abstraction.
 
     BLOCKPLAN_DATA_SOURCE=csv        the frozen dataset (DEFAULT)
     BLOCKPLAN_DATA_SOURCE=postgres   snapshot 1 out of the database
+    BLOCKPLAN_DATA_SOURCE=feed       a TMS/SMMS/TDMS feed (BLOCKPLAN_FEED_DIR)
 
 CSV IS THE DEFAULT, AND DELIBERATELY SO. Every number this project publishes was
 produced from the frozen tree, the demo has to run with no database installed,
@@ -28,6 +29,7 @@ from . import paths
 
 CSV = "csv"
 POSTGRES = "postgres"
+FEED = "feed"
 
 ENV_VAR = "BLOCKPLAN_DATA_SOURCE"
 SNAPSHOT_ENV_VAR = "BLOCKPLAN_SNAPSHOT_ID"
@@ -154,7 +156,13 @@ def resolve(env: Mapping[str, str] | None = None) -> DataSource:
             raise DataSourceError(
                 f"{SNAPSHOT_ENV_VAR}={raw!r} is not an integer") from None
         return DatabaseDataSource(snapshot_id)
+    if name == FEED:
+        # Imported here, not at module scope: blockplan_ingest must not be on
+        # the default path, for the same reason blockplan_db is not.
+        from blockplan_ingest.datasource import from_env
+
+        return from_env(env)
 
     raise DataSourceError(
         f"{ENV_VAR}={name!r} is not a data source. Use {CSV!r} (the default, "
-        f"the frozen dataset) or {POSTGRES!r}.")
+        f"the frozen dataset), {POSTGRES!r}, or {FEED!r}.")
