@@ -36,8 +36,35 @@ export const BLOCK_BAR_HEIGHT = 21;
  * was 27.6px), so the label never rendered at all. Any change to PX_PER_MIN
  * must keep this reachable -- `timelineGeometry.test.ts` asserts it against
  * the real 240-minute block width.
+ *
+ * AND THEN 34px WAS STILL TOO HIGH, which was worse than showing nothing.
+ * A 150-minute block is 24.0px and a 240-minute one is 38.4px, so the label
+ * appeared on the long blocks only -- 24 of the reference plan's 140. Long
+ * blocks have the most slack and therefore the highest reliability, so the
+ * only figure ever on screen was 1.00, and the timeline read as though every
+ * block were certain. A reader had to click each block to find the ones at
+ * 0.90.
+ *
+ * The fix is a shorter label rather than a lower bar for the same text:
+ * `reliabilityLabel` drops the leading zero, so ".90" is ~15px at the 9px
+ * label size and fits a 150-minute block with ~4px either side. 22 keeps that
+ * padding honest while admitting every block length the planner can emit.
  */
-export const MIN_WIDTH_FOR_RELIABILITY_LABEL = 34;
+export const MIN_WIDTH_FOR_RELIABILITY_LABEL = 22;
+
+/**
+ * Reliability as it appears ON a block: ".90", ".99", "1.0".
+ *
+ * The leading zero is dropped because it carries no information and costs
+ * roughly a quarter of the available width -- which is the difference between
+ * labelling every block and labelling only the widest ones. Full precision
+ * stays in the aria-label and the Why panel, so nothing is lost for a screen
+ * reader or for anyone who opens the block.
+ */
+export function reliabilityLabel(reliability: number): string {
+  if (reliability >= 0.995) return "1.0";
+  return reliability.toFixed(2).replace(/^0/, "");
+}
 
 export const HEADER_HEIGHT = 40;
 export const LABEL_COLUMN_WIDTH = 132;

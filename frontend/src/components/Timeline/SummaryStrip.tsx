@@ -21,6 +21,22 @@ export function SummaryStrip({ plan }: { plan: PlanResponse }) {
       <Metric label="Traffic cost" value={s.traffic_cost.toFixed(1)} unit="wtm" />
       <Metric label="Min reliability" value={s.min_reliability.toFixed(2)} tone={s.min_reliability < plan.theta ? "error" : undefined} />
       <Metric label="Objective" value={plan.objective.toFixed(1)} unit="wtm" />
+      {/* Availability sits AFTER the work figures, deliberately. Read left to
+          right the row says what was done and then what it cost the line --
+          the percentage arriving first would invite reading it alone, which is
+          the one way this metric misleads.
+
+          Omitted entirely if the response carries no availability object. The
+          contract says it is always there, but a missing measurement rendered
+          as 0% would be a fabricated one, and blanking the whole plan view
+          over an absent field would be worse than showing the rest of it. */}
+      {plan.availability ? (
+        <Metric
+          label="Availability"
+          value={`${(plan.availability.availability * 100).toFixed(2)}%`}
+          title={plan.availability.headline}
+        />
+      ) : null}
 
       <span
         className="summary-strip__timing"
@@ -45,14 +61,19 @@ function Metric({
   value,
   unit,
   tone,
+  title,
 }: {
+  title?: string;
   label: string;
   value: string | number;
   unit?: string;
   tone?: "warning" | "error";
 }) {
   return (
-    <div className={`summary-strip__metric ${tone ? `summary-strip__metric--${tone}` : ""}`}>
+    <div
+      className={`summary-strip__metric ${tone ? `summary-strip__metric--${tone}` : ""}`}
+      title={title}
+    >
       <span className="summary-strip__label">{label}</span>
       <span className="summary-strip__value">
         {value}

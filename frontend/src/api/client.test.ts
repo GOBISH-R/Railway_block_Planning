@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
-import { api, ApiError } from "./client";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { api, ApiError, clearApiCache } from "./client";
 
 function mockFetchOnce(status: number, body: unknown, statusText = "") {
   vi.stubGlobal(
@@ -14,6 +14,12 @@ function mockFetchOnce(status: number, body: unknown, statusText = "") {
 }
 
 describe("api client", () => {
+  // The read-only endpoints are memoised for the lifetime of the page, so
+  // without this a 200 recorded by one case is served to the next one that
+  // asks for the same path -- which is how this suite first caught the cache
+  // being introduced.
+  beforeEach(clearApiCache);
+
   afterEach(() => {
     vi.unstubAllGlobals();
   });
@@ -80,5 +86,48 @@ describe("api client", () => {
     await api.explainJob("p1", "J1");
     const init = fetchSpy.mock.calls[0][1] as RequestInit;
     expect(init.method).toBe("POST");
+  });
+});
+
+/**
+ * The cache exists to stop tab-switching refetching frozen data. These pin
+ * the two properties that make it safe to have at all.
+ */
+describe("api client caching", () => {
+  beforeEach(clearApiCache);
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("hits the network once for repeated reads of the same frozen resource", async () => {
+    const fetchSpy = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => ({ stations: [], sections: [] }),
+    });
+    vi.stubGlobal("fetch", fetchSpy);
+
+    // Concurrent, then sequential: both paths must collapse onto one request.
+    await Promise.all([api.corridor(), api.corridor()]);
+    await api.corridor();
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("keys per scenario, so one scenario's demand is never served for another", async () => {
+    const fetchSpy = vi.fn().mockResolvedValue({ ok: true, status: 200, json: async () => ({}) });
+    vi.stubGlobal("fetch", fetchSpy);
+
+    await api.demand("NORMAL_TRAFFIC");
+    await api.demand("HEAVY_FREIGHT");
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it("does not cache a failure, so a retry can still succeed", async () => {
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValueOnce({ ok: false, status: 503, statusText: "Service Unavailable", json: async () => ({}) })
+      .mockResolvedValue({ ok: true, status: 200, json: async () => ({ scenarios: [] }) });
+    vi.stubGlobal("fetch", fetchSpy);
+
+    await expect(api.scenarios()).rejects.toBeInstanceOf(ApiError);
+    await expect(api.scenarios()).resolves.toEqual({ scenarios: [] });
   });
 });

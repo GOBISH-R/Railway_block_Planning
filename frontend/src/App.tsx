@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AppShell, type ViewKey } from "./components/Shell/AppShell";
+import { OverviewView } from "./components/Overview/OverviewView";
 import { CorridorView } from "./components/Corridor/CorridorView";
-import { EvidenceView } from "./components/Evidence/EvidenceView";
 import { TimelineView } from "./components/Timeline/TimelineView";
 import { WhyPanel, type WhySelection } from "./components/WhyPanel/WhyPanel";
 import { ErrorState, LoadingState } from "./components/shared/ViewStates";
@@ -10,7 +10,7 @@ import { usePlanningState } from "./state/usePlanningState";
 import { useTheme } from "./state/useTheme";
 
 export default function App() {
-  const [view, setView] = useState<ViewKey>("timeline");
+  const [view, setView] = useState<ViewKey>("overview");
   const [whySelection, setWhySelection] = useState<WhySelection | null>(null);
   const {
     corridor,
@@ -27,8 +27,8 @@ export default function App() {
     setHorizonDays,
     replan,
   } = usePlanningState();
-  // Called before the early returns below, so the control is available even
-  // while reference data is still loading or the service is unreachable.
+  // Runs before the early returns below, so the theme control stays available
+  // while reference data is loading or the planning service is unreachable.
   const { preference, setPreference } = useTheme();
 
   if (isLoadingReference) {
@@ -47,6 +47,16 @@ export default function App() {
       onNavigate={setView}
       headerRight={<ThemeToggle preference={preference} onChange={setPreference} />}
     >
+      {view === "overview" && (
+        <OverviewView
+          corridor={corridor}
+          plan={plan}
+          isPlanning={isPlanning}
+          scenario={scenario}
+          onOpenPlan={() => setView("timeline")}
+        />
+      )}
+
       {view === "timeline" && (
         <TimelineView
           corridor={corridor}
@@ -80,8 +90,6 @@ export default function App() {
           onScenarioChange={setScenario}
         />
       )}
-
-      {view === "evidence" && <EvidenceView />}
 
       {whySelection && (
         <WhyPanel

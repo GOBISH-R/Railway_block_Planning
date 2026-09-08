@@ -1,0 +1,75 @@
+/*
+  KPI card.
+
+  Deliberately flat: a hairline border, no shadow, no gradient, no radius
+  beyond the 2px the rest of the app uses. A control-room readout is a panel,
+  not a floating card, and eight of these on a page with shadows reads as an
+  admin template.
+
+  The value is tabular-nums so a row of figures aligns on the decimal point
+  when the numbers change, which they do on every re-plan.
+*/
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: var(--space-3);
+}
+
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: var(--space-3) var(--space-4);
+  background: var(--paper-1);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--hairline-strong);
+  border-radius: 2px;
+  min-width: 0;
+}
+
+.kpi__label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.kpi__value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink-0);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.kpi__unit {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  margin-left: 0.25rem;
+}
+
+/* The qualifier. Same card, same visual weight class as the label, so it
+   cannot be read as optional. */
+.kpi__note {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--ink-1);
+}
+
+.kpi--emphasis {
+  background: var(--paper-2);
+  border-left-color: var(--accent-9);
+}
+
+.kpi--positive { border-left-color: var(--success-6); }
+.kpi--caution  { border-left-color: var(--warning-6); }
+.kpi--critical { border-left-color: var(--error-6); }
+
+@media (max-width: 640px) {
+  .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+  .kpi__value { font-size: 1.25rem; }
+}

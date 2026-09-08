@@ -6,6 +6,7 @@ import {
   MINUTES_PER_DAY,
   MIN_WIDTH_FOR_RELIABILITY_LABEL,
   PX_PER_MIN,
+  reliabilityLabel,
   ROW_HEIGHT,
   dayLeft,
   durationToWidth,
@@ -15,6 +16,10 @@ import {
 
 /** The only two block lengths the optimiser ever produces, across every scenario. */
 const SHORT_BLOCK_MIN = 150;
+// core.ALLOWED_BLOCK_LENGTHS. Mirrored rather than imported -- the frontend
+// has no access to core.py -- and asserted against the widths it produces.
+const ALLOWED_BLOCK_LENGTHS = [150, 240];
+
 const LONG_BLOCK_MIN = 240;
 
 function section(overrides: Partial<SectionMeta>): SectionMeta {
@@ -50,10 +55,34 @@ describe("geometry constants", () => {
     );
   });
 
+  it("EVERY block length the planner emits carries its reliability", () => {
+    // The point of the threshold change. At 34px only the 240-minute blocks
+    // qualified -- 24 of the reference plan's 140 -- and those are the ones
+    // with the most slack, so the only figure ever on screen was 1.00 and the
+    // timeline read as though every block were certain.
+    for (const minutes of ALLOWED_BLOCK_LENGTHS) {
+      expect(durationToWidth(minutes)).toBeGreaterThanOrEqual(
+        MIN_WIDTH_FOR_RELIABILITY_LABEL
+      );
+    }
+  });
+
   it("the label threshold leaves real padding rather than running edge to edge", () => {
-    // "0.99" at the 9px label size is ~20px wide.
-    const APPROX_LABEL_TEXT_WIDTH = 20;
-    expect(MIN_WIDTH_FOR_RELIABILITY_LABEL).toBeGreaterThan(APPROX_LABEL_TEXT_WIDTH + 8);
+    // ".90" at the 9px label size is ~15px wide -- the leading zero is dropped
+    // precisely to buy the width that admits a 150-minute block.
+    const APPROX_LABEL_TEXT_WIDTH = 15;
+    expect(MIN_WIDTH_FOR_RELIABILITY_LABEL).toBeGreaterThan(APPROX_LABEL_TEXT_WIDTH + 4);
+  });
+
+  it("renders reliability without a leading zero, and 1.00 as 1.0", () => {
+    expect(reliabilityLabel(0.9)).toBe(".90");
+    expect(reliabilityLabel(0.874)).toBe(".87");
+    expect(reliabilityLabel(1)).toBe("1.0");
+    expect(reliabilityLabel(0.999)).toBe("1.0");
+    // Three characters at most, or the width budget above is wrong.
+    for (const r of [0, 0.03, 0.5, 0.94, 0.995, 1]) {
+      expect(reliabilityLabel(r).length).toBeLessThanOrEqual(3);
+    }
   });
 
   it("splits the bar height evenly for every bundle size that occurs", () => {

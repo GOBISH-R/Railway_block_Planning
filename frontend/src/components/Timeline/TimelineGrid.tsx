@@ -7,6 +7,7 @@ import {
   LABEL_COLUMN_WIDTH,
   MINUTES_PER_DAY,
   MIN_WIDTH_FOR_RELIABILITY_LABEL,
+  reliabilityLabel,
   ROW_HEIGHT,
   durationToWidth,
   minutesToX,
@@ -229,7 +230,7 @@ export function TimelineGrid({
                           dominantBaseline="central"
                           className="tgrid__block-label"
                         >
-                          {block.reliability.toFixed(2)}
+                          {reliabilityLabel(block.reliability)}
                         </text>
                       )}
                     </g>

@@ -135,6 +135,53 @@ export interface PlanSummary {
   block_utilisation: number;
 }
 
+/**
+ * Availability of one section-line over the horizon. Sections with no blocks
+ * are present with availability 1.0 -- that is a fact about the plan, not
+ * missing data, so the UI must not filter them out silently.
+ */
+export interface SectionAvailability {
+  section_id: string;
+  blocks: number;
+  block_minutes: number;
+  block_hours: number;
+  availability: number;
+}
+
+/**
+ * Asset availability: the share of corridor section-line time not withdrawn
+ * for maintenance, over 52 section-lines x horizon x 1440 minutes.
+ *
+ * NEVER RENDER `availability` ALONE. On its own it is maximised by doing no
+ * maintenance -- a plan that defers every job scores 100% -- which is why
+ * jobs_done, jobs_deferred and traffic_delay_minutes are always in this object
+ * and why `headline` embeds them. The backend enforces the same rule.
+ *
+ * There is no "traffic-weighted availability" field and one must not be
+ * synthesised here. `traffic_delay_minutes` is core's queue-simulator figure in
+ * weighted train-minutes of DELAY; the model has no total-scheduled-train-
+ * minutes denominator to turn it into a ratio, so it is shown in its own units
+ * and normalised only per weighted movement.
+ */
+export interface AvailabilityReport {
+  availability: number;
+  occupied_share: number;
+  capacity_minutes: number;
+  block_minutes: number;
+  block_hours: number;
+  blocks: number;
+  section_lines: number;
+  horizon_days: number;
+  jobs_done: number;
+  jobs_deferred: number;
+  traffic_delay_minutes: number;
+  delay_per_weighted_movement: number;
+  weighted_movements: number;
+  headline: string;
+  /** Busiest section-line first. Empty for the frozen benchmark methods. */
+  by_section: SectionAvailability[];
+}
+
 export interface PlanResponse {
   plan_id: string;
   scenario: string;
@@ -146,6 +193,7 @@ export interface PlanResponse {
   blocks: PlanBlock[];
   deferred: DeferredEntry[];
   summary: PlanSummary;
+  availability: AvailabilityReport;
   stage_timings_s: Record<string, number>;
   instance: {
     base_jobs: number;
@@ -324,10 +372,63 @@ export interface JobExplanation {
   provenance?: Record<string, string>;
 }
 
+/**
+ * B0 (department-wise practice) against OURS.
+ *
+ * The availability gain is 0.34 percentage points. The figures worth showing
+ * are `jobs_gained` and `section_hours_released`; presenting the percentage as
+ * the achievement understates the result and invites "so, 0.3%?".
+ */
+export interface AvailabilityImprovement {
+  availability_before: number;
+  availability_after: number;
+  availability_gain: number;
+  block_hours_before: number;
+  block_hours_after: number;
+  section_hours_released: number;
+  jobs_done_before: number;
+  jobs_done_after: number;
+  jobs_gained: number;
+  traffic_delay_before: number;
+  traffic_delay_after: number;
+  headline: string;
+}
+
 export interface ComparisonResponse {
   method_comparison: Array<Record<string, number | string>>;
   execution_scoring_summary: Array<Record<string, number | string>>;
   benchmark_results: Array<Record<string, number | string>>;
+  /** DERIVED from the two arrays above, not a fourth frozen artefact. */
+  asset_availability: Record<string, AvailabilityReport>;
+  asset_availability_improvement: AvailabilityImprovement;
+}
+
+/**
+ * GET /health. Not in API_CONTRACT.md (it is `include_in_schema=False`), so
+ * this type is written against the endpoint itself and is the one place in
+ * this file not backed by the contract document.
+ *
+ * `data_source` and the two describe() strings are PROSE, not structured
+ * fields -- render them, do not parse them.
+ */
+export interface HealthResponse {
+  status: string;
+  data_source: string;
+  snapshot_id: number | null;
+  plan_store: string;
+  scenarios: number;
+  sections: number;
+  window_sets_cached: number;
+  cached_plans: number;
+  duration_source: {
+    name: string;
+    description: string;
+    is_default: boolean;
+  };
+  asset_impact: {
+    enabled: boolean;
+    description: string;
+  };
 }
 
 export interface ApiErrorBody {

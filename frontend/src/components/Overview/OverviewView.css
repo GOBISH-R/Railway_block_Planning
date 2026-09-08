@@ -1,0 +1,126 @@
+/*
+  Overview.
+
+  Sections separated by space and a quiet caption, not by cards-within-cards.
+  The one piece of visual emphasis on the page is the availability readout,
+  because it is the metric the problem statement names -- and it is built as a
+  figure plus a sentence so the qualifier cannot be cropped away from it.
+*/
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-5) var(--space-6);
+  max-width: 82rem;
+}
+
+.overview__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.overview__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink-0);
+}
+
+.overview__sub {
+  margin: 0.25rem 0 0;
+  font-size: var(--text-sm);
+  color: var(--ink-1);
+}
+
+.overview__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.overview__section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.overview__section-title {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.overview__link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent-9);
+  cursor: pointer;
+}
+
+.overview__link:hover { text-decoration: underline; }
+
+/* The availability readout: one figure, one sentence, one unit. */
+.overview__availability {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--paper-1);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--accent-9);
+  border-radius: 2px;
+  flex-wrap: wrap;
+}
+
+.overview__availability-figure {
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ink-0);
+  font-variant-numeric: tabular-nums;
+}
+
+.overview__availability-unit {
+  font-size: 1.25rem;
+  color: var(--ink-2);
+  margin-left: 0.125rem;
+}
+
+.overview__availability-body { flex: 1 1 22rem; min-width: 0; }
+
+.overview__availability-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.overview__availability-note {
+  margin: 0.25rem 0 0;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-1);
+}
+
+.overview__muted {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+@media (max-width: 720px) {
+  .overview { padding: var(--space-4); gap: var(--space-5); }
+  .overview__availability-figure { font-size: 2rem; }
+}

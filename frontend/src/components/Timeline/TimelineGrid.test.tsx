@@ -144,20 +144,27 @@ describe("TimelineGrid department bands", () => {
 
 describe("TimelineGrid reliability label", () => {
   /**
-   * Regression: the label was gated on `w > 30` when the widest possible block
-   * was 27.6px, so it never rendered on any block in any scenario.
+   * Regression, twice over. The label was first gated on `w > 30` when the
+   * widest possible block was 27.6px, so it never rendered at all. The
+   * threshold then went to 34px, which a 240-minute block clears (38.4px) and
+   * a 150-minute one does not (24.0px) -- and since long blocks carry the most
+   * slack, the only reliability figure ever visible on the timeline was 1.00.
+   * The plan being demonstrated is 116 short blocks and 24 long ones, so that
+   * read as "every block is certain" while the short ones sat at 0.90.
    */
   it("renders the reliability figure on a 240-minute block", () => {
     const container = renderGrid([block({ length: 240, end_min: 780, reliability: 0.94 })]);
     const label = container.querySelector(".tgrid__block-label");
     expect(label).not.toBeNull();
-    expect(label!.textContent).toBe("0.94");
+    expect(label!.textContent).toBe(".94");
   });
 
-  it("omits it on a 150-minute block, where the text would run edge to edge", () => {
-    const container = renderGrid([block({ length: 150 })]);
-    expect(container.querySelector(".tgrid__block-label")).toBeNull();
-    expect(durationToWidth(150)).toBeLessThan(MIN_WIDTH_FOR_RELIABILITY_LABEL);
+  it("renders it on a 150-minute block too, which is most of the plan", () => {
+    const container = renderGrid([block({ length: 150, reliability: 0.9 })]);
+    const label = container.querySelector(".tgrid__block-label");
+    expect(label).not.toBeNull();
+    expect(label!.textContent).toBe(".90");
+    expect(durationToWidth(150)).toBeGreaterThanOrEqual(MIN_WIDTH_FOR_RELIABILITY_LABEL);
   });
 
   it("centres the label on the bar rather than inside one department's band", () => {
