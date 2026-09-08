@@ -286,6 +286,19 @@ def health() -> dict[str, Any]:
         "data_source": service.context.source_description,
         "snapshot_id": service.snapshot_id,
         "plan_store": service.store.describe(),
+        # Which optional inputs are in force. Both default to the frozen
+        # behaviour and both change the plan when they are not, so a client
+        # showing a plan needs to be able to say which one it is looking at.
+        # Reporting only -- reading these does not touch the planner.
+        "duration_source": {
+            "name": service.durations.name,
+            "description": service.durations.describe(),
+            "is_default": service.durations.name == "catalogue",
+        },
+        "asset_impact": {
+            "enabled": bool(getattr(service.weighting, "enabled", False)),
+            "description": service.weighting.describe(),
+        },
         "scenarios": len(service.context.scenario_names),
         "sections": len(service.context.sections),
         "window_sets_cached": service.windows.size,

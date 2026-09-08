@@ -145,6 +145,20 @@ class AvailabilityReport:
                 self.delay_per_weighted_movement, 6),
             "weighted_movements": round(self.weighted_movements, 1),
             "headline": self.headline(),
+            # Per section-line, busiest first. A list rather than a map because
+            # the order is the useful part: which stretches of the corridor
+            # actually gave up time. Empty for reports built from the frozen
+            # benchmark artefacts, which record no section breakdown.
+            "by_section": [
+                {
+                    "section_id": s.section_id,
+                    "blocks": s.blocks,
+                    "block_minutes": s.block_minutes,
+                    "block_hours": round(s.block_minutes / 60.0, 2),
+                    "availability": round(s.availability, 5),
+                }
+                for s in self.busiest_sections
+            ],
         }
 
 

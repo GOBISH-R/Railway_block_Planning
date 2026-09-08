@@ -69,6 +69,48 @@ def test_blocks_are_attributed_to_their_own_section_line():
     assert report.busiest_sections[0].section_id == "A-B-UP"
 
 
+def test_the_section_breakdown_is_serialised_busiest_first():
+    """Computed since the metric existed, published only now.
+
+    Order is the useful part: which stretches of the corridor actually gave up
+    time. Sections with no blocks stay in the list, because their availability
+    of 1.0 is a fact about the plan, not an absence of data.
+    """
+    report = av.from_blocks(
+        [block("A-B-UP", 240), block("A-B-UP", 150), block("C-D-UP", 150)],
+        section_ids=["A-B-UP", "C-D-UP", "E-F-UP"], horizon_days=HORIZON,
+        jobs_done=3, jobs_deferred=0, traffic_delay_minutes=0.0)
+    rows = report.as_dict()["by_section"]
+
+    assert [r["section_id"] for r in rows] == ["A-B-UP", "C-D-UP", "E-F-UP"]
+    assert [r["block_minutes"] for r in rows] == [390, 150, 0]
+    assert rows[0]["blocks"] == 2
+    assert rows[-1]["availability"] == 1.0
+    assert set(rows[0]) == {"section_id", "blocks", "block_minutes",
+                            "block_hours", "availability"}
+
+
+def test_the_section_breakdown_reconciles_with_the_corridor_total():
+    """A breakdown that does not add up to the headline would be worse than
+    none at all."""
+    report = av.from_blocks(
+        [block("A-B-UP", 240), block("C-D-UP", 150)],
+        section_ids=["A-B-UP", "C-D-UP"], horizon_days=HORIZON,
+        jobs_done=2, jobs_deferred=0, traffic_delay_minutes=0.0)
+    payload = report.as_dict()
+
+    assert sum(r["block_minutes"] for r in payload["by_section"]) == \
+        payload["block_minutes"]
+    assert len(payload["by_section"]) == payload["section_lines"]
+
+
+def test_the_frozen_method_reports_carry_no_section_breakdown():
+    """The benchmark artefacts record no section for their blocks, so the list
+    is empty rather than fabricated."""
+    for report in av.from_frozen_artefacts().values():
+        assert report.as_dict()["by_section"] == []
+
+
 def test_a_section_with_no_blocks_still_counts_in_the_denominator():
     """Otherwise a plan that concentrated all its work on two section-lines
     would score better than one that spread it evenly."""

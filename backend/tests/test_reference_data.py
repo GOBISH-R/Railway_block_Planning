@@ -131,6 +131,42 @@ def test_comparison_serves_the_frozen_artefacts_verbatim(client):
         assert row["traffic_cost"] == pytest.approx(float(frozen["traffic_cost"]))
 
 
+def test_health_reports_which_optional_inputs_are_in_force(client):
+    """Both optional tracks change the plan when they are on, so a client
+    showing a plan has to be able to say which one it is looking at.
+
+    Neither was reachable through any endpoint before this: the service held
+    them, nothing published them, and a UI could only have guessed.
+    """
+    body = client.get("/health").json()
+
+    durations = body["duration_source"]
+    assert durations["name"] == "catalogue"
+    assert durations["is_default"] is True
+    assert "frozen dataset" in durations["description"]
+
+    weighting = body["asset_impact"]
+    assert weighting["enabled"] is False
+    assert "no asset weighting" in weighting["description"]
+
+
+def test_health_reporting_does_not_disturb_the_planner(client):
+    """It reads service state and nothing else. If reporting could change the
+    plan, the reporting would be the bug."""
+    before = client.post("/plan", json={
+        "scenario": "NORMAL_TRAFFIC", "horizon_days": 14, "theta": 0.90,
+        "max_bundle_size": 5, "mc_samples": 1500}).json()
+    client.get("/health")
+    after = client.post("/plan", json={
+        "scenario": "NORMAL_TRAFFIC", "horizon_days": 14, "theta": 0.90,
+        "max_bundle_size": 5, "mc_samples": 1500}).json()
+
+    assert before["plan_id"] == after["plan_id"]
+    assert before["objective"] == after["objective"]
+    assert [b["block_id"] for b in before["blocks"]] == \
+        [b["block_id"] for b in after["blocks"]]
+
+
 def test_health_endpoint_reports_state(client):
     body = client.get("/health").json()
     assert body["status"] == "ok"
